@@ -26,16 +26,16 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        <a href="#" className="flex items-center gap-2.5">
           <img
-            src="https://app.goster.ai/goster-ghost.png"
+            src="/goster-ghost.svg"
             alt="Gōster"
-            className="h-8 w-auto"
+            className="h-8 w-auto text-gray-900"
           />
           <img
-            src="https://app.goster.ai/goster-wordmark.png"
+            src="/goster-wordmark.svg"
             alt="Gōster"
-            className="h-5 w-auto"
+            className="h-5 w-auto text-gray-900"
           />
         </a>
 

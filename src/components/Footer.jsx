@@ -4,16 +4,16 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <img
-              src="https://app.goster.ai/goster-ghost.png"
+              src="/goster-ghost.svg"
               alt="Gōster"
-              className="h-7 w-auto"
+              className="h-7 w-auto text-gray-900"
             />
             <img
-              src="https://app.goster.ai/goster-wordmark.png"
+              src="/goster-wordmark.svg"
               alt="Gōster"
-              className="h-4 w-auto"
+              className="h-4 w-auto text-gray-900"
             />
           </div>
 
