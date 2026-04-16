@@ -68,13 +68,6 @@ export default function Hero() {
             Explorar plataforma
           </a>
         </div>
-
-        {/* App screenshot */}
-        <div className="scale-in delay-7 mt-16 md:mt-20">
-          <div className="rounded-2xl overflow-hidden border border-white/[0.06] mockup-shadow">
-            <img src="/interfaz.png" alt="Interfaz de Gōster" className="w-full h-auto block" />
-          </div>
-        </div>
       </div>
     </section>
   )
