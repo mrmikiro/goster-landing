@@ -32,21 +32,21 @@ export default function Hero() {
         </div>
 
         {/* Tagline */}
-        <p className="fade-up delay-3 mt-6 text-center text-lg md:text-xl text-white/40 font-light max-w-xl mx-auto leading-relaxed">
-          Inteligencia artificial para radiología.
-          <br />
-          <span className="text-white/70">Dicta. Genera. Informa.</span>
+        <p className="fade-up delay-3 mt-6 text-center text-base md:text-lg text-white/40 font-light max-w-2xl mx-auto leading-relaxed">
+          Tu asistente de redacción clínica en tiempo real.
         </p>
 
         {/* Headline */}
-        <h2 className="fade-up delay-4 mt-10 text-center text-2xl md:text-4xl lg:text-[44px] font-semibold tracking-tight leading-[1.15] text-white max-w-3xl mx-auto">
-          Radiología más rápida, {' '}
-          <span className="gradient-text">precisa y sin fricción.</span>
+        <h2 className="fade-up delay-4 mt-8 text-center text-2xl md:text-4xl lg:text-[44px] font-semibold tracking-tight leading-[1.15] text-white max-w-4xl mx-auto">
+          Tú analizas el estudio.{' '}
+          <span className="gradient-text">gōster escribe el informe.</span>
         </h2>
 
         <p className="fade-up delay-5 mt-6 text-center text-base md:text-lg text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
-          Transforma tu dictado de voz en informes estructurados con IA especializada.
-          Diseñada por radiólogos, para radiólogos.
+          Habla de forma natural — como si comentaras el caso con un colega.{' '}
+          <strong className="text-white/70 font-medium">gōster</strong> escucha, analiza tu voz en tiempo real
+          y genera un informe radiológico estructurado, completo y con terminología profesional.
+          Olvídate de redactar. Dedica tu tiempo a lo que realmente importa.
         </p>
 
         {/* CTAs */}
