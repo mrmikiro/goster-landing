@@ -13,7 +13,7 @@ const steps = [
     icon: Cpu,
     number: '02',
     title: 'La IA genera el informe',
-    desc: 'Gōster procesa tu dictado con IA y genera un informe estructurado con hallazgos y conclusión diagnóstica.',
+    desc: 'gōster procesa tu dictado con IA y genera un informe estructurado con hallazgos y conclusión diagnóstica.',
     color: 'from-lavender-500 to-purple-400',
   },
   {

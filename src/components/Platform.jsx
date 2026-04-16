@@ -21,7 +21,7 @@ export default function Platform() {
             <span className="gradient-text-light">impulsado por IA</span>
           </h2>
           <p className="fade-up delay-2 mt-5 text-lg text-gray-500 font-light max-w-xl mx-auto leading-relaxed">
-            Gōster transforma dictados de voz en informes radiológicos profesionales
+            gōster transforma dictados de voz en informes radiológicos profesionales
             mediante inteligencia artificial. Aprende de tu estilo y se adapta a tu práctica.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function Platform() {
         {/* App screenshot */}
         <div className="scale-in delay-2 mb-20">
           <div className="rounded-2xl overflow-hidden border border-gray-200/60 mockup-shadow-light">
-            <img src="/interfaz.png" alt="Interfaz de Gōster" className="w-full h-auto block" />
+            <img src="/interfaz.png" alt="Interfaz de gōster" className="w-full h-auto block" />
           </div>
         </div>
 

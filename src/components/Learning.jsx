@@ -5,22 +5,22 @@ const points = [
   {
     icon: BookOpen,
     title: 'Correcciones que se convierten en reglas',
-    desc: 'Cada vez que editas un informe y guardas los cambios, Gōster extrae patrones de redacción y los aplica en futuros informes. Lo que hoy corriges, mañana ya no tendrás que tocarlo.',
+    desc: 'Cada vez que editas un informe y guardas los cambios, gōster extrae patrones de redacción y los aplica en futuros informes. Lo que hoy corriges, mañana ya no tendrás que tocarlo.',
   },
   {
     icon: TrendingUp,
     title: 'Diccionario que crece contigo',
-    desc: 'Gōster incorpora automáticamente nuevas entradas al diccionario a partir de tus correcciones. Tu vocabulario clínico se expande con el uso, sin esfuerzo extra.',
+    desc: 'gōster incorpora automáticamente nuevas entradas al diccionario a partir de tus correcciones. Tu vocabulario clínico se expande con el uso, sin esfuerzo extra.',
   },
   {
     icon: History,
     title: 'Historial como memoria activa',
-    desc: 'Tus reportes previos no son solo referencia: son memoria activa que modifica el comportamiento del modelo. Gōster identifica tu estilo, tus equivalencias diagnósticas y tus decisiones.',
+    desc: 'Tus reportes previos no son solo referencia: son memoria activa que modifica el comportamiento del modelo. gōster identifica tu estilo, tus equivalencias diagnósticas y tus decisiones.',
   },
   {
     icon: Brain,
     title: 'Transferencia de aprendizaje',
-    desc: 'Cuando Gōster detecta hallazgos similares en un nuevo informe, aplica automáticamente el estilo corregido en casos previos. Una corrección se transfiere a todos los casos análogos futuros.',
+    desc: 'Cuando gōster detecta hallazgos similares en un nuevo informe, aplica automáticamente el estilo corregido en casos previos. Una corrección se transfiere a todos los casos análogos futuros.',
   },
 ]
 
@@ -57,7 +57,7 @@ export default function Learning() {
 
         {/* Flow diagram */}
         <div className="fade-up delay-5 mt-16 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 text-center">
-          {['Dictas', 'Gōster genera', 'Corriges', 'Gōster aprende', 'Mejores informes'].map((step, i) => (
+          {['Dictas', 'gōster genera', 'Corriges', 'gōster aprende', 'Mejores informes'].map((step, i) => (
             <div key={i} className="flex items-center gap-3 md:gap-4">
               <div className="px-4 py-2 rounded-full border border-white/10 bg-dark-800/50">
                 <span className="text-xs text-white/50 font-medium">{step}</span>

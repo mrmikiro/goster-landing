@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           <p className="text-[11px] text-white/15">
-            &copy; {new Date().getFullYear()} Gōster. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} gōster. Todos los derechos reservados.
           </p>
         </div>
       </div>

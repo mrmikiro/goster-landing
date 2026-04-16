@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Mic, Table2, Sparkles, Globe } from 'lucide-react'
+import { Mic, Palette, Infinity, Globe } from 'lucide-react'
 
 function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
@@ -36,9 +36,9 @@ function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
 }
 
 const stats = [
-  { icon: Sparkles, value: 60, suffix: '%', label: 'Menos tiempo dictando', prefix: '+' },
-  { icon: Mic, value: 14, suffix: '', label: 'Colores de acento personalizables' },
-  { icon: Table2, value: 6, suffix: '', label: 'Modalidades de estudio (RX, TC, RM, US, MG, DEXA)' },
+  { icon: Mic, value: 60, suffix: '%', label: 'Menos tiempo dictando', prefix: '+' },
+  { icon: Infinity, value: null, suffix: '', label: 'Cualquier modalidad de estudio', text: 'Todas' },
+  { icon: Palette, value: 14, suffix: '', label: 'Colores de acento personalizables' },
   { icon: Globe, value: 24, suffix: '/7', label: 'Disponibilidad de la plataforma' },
 ]
 
@@ -53,7 +53,7 @@ export default function Stats() {
           Bienvenido a la nueva forma de hacer radiología.
           <br />
           <span className="text-white/90 font-medium">
-            Una vez que pruebes Gōster, no vas a querer volver a trabajar sin él.
+            Una vez que pruebes gōster, no vas a querer volver a trabajar sin él.
           </span>
         </p>
       </div>
@@ -68,7 +68,7 @@ export default function Stats() {
                   <Icon className="w-5 h-5 text-lavender-400" strokeWidth={1.5} />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ''} />
+                  {stat.text ? stat.text : <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ''} />}
                 </div>
                 <div className="text-xs md:text-sm text-white/30 font-medium">{stat.label}</div>
               </div>

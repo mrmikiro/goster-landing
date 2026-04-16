@@ -23,17 +23,17 @@ export default function Philosophy() {
           <p className="text-white/50 text-lg leading-relaxed font-light">
             El nombre nace de <span className="text-white/80 font-medium">ghostwriter</span> — escritor fantasma.
             La <span className="text-white/80 font-medium">Ō</span> representa la H ausente.
-            Gōster trabaja en silencio para que el informe hable por ti.
+            gōster trabaja en silencio para que el informe hable por ti.
           </p>
           <p className="text-white/50 text-lg leading-relaxed font-light">
             No es un transcriptor. No es un chatbot. Es tu <span className="text-white/80 font-medium">copiloto clínico invisible</span> que
             entiende cómo piensas, cómo redactas y cómo diagnosticas. Habla como si estuvieras platicando
-            el caso con un colega — Gōster escucha, interpreta y redacta el informe completo con terminología profesional.
+            el caso con un colega — gōster escucha, interpreta y redacta el informe completo con terminología profesional.
           </p>
           <p className="text-white/50 text-lg leading-relaxed font-light">
             Olvídate del tedio de redactar. Dedica tu tiempo a lo que realmente importa:
             <span className="text-white/80 font-medium"> analizar tus estudios a profundidad</span>.
-            Gōster se encarga del resto.
+            gōster se encarga del resto.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function Philosophy() {
           {[
             {
               title: 'Habla natural',
-              desc: 'No necesitas dictar estructurado. Comenta el caso como si hablaras con un colega. Gōster entiende tu intención clínica, no solo tus palabras.',
+              desc: 'No necesitas dictar estructurado. Comenta el caso como si hablaras con un colega. gōster entiende tu intención clínica, no solo tus palabras.',
             },
             {
               title: 'Aprende de ti',
@@ -50,7 +50,7 @@ export default function Philosophy() {
             },
             {
               title: 'Cero alucinaciones',
-              desc: 'Gōster no inventa hallazgos. Si no lo dictaste, no aparece en el informe. Fidelidad absoluta a tu dictado, expandido con tu propio diccionario.',
+              desc: 'gōster no inventa hallazgos. Si no lo dictaste, no aparece en el informe. Fidelidad absoluta a tu dictado, expandido con tu propio diccionario.',
             },
           ].map((item, i) => (
             <div key={i} className="p-6 rounded-2xl border border-white/5 bg-dark-800/50">
