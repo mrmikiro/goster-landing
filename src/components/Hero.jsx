@@ -41,13 +41,13 @@ export default function Hero() {
 
         {/* Headline */}
         <h2 className="fade-up delay-4 mt-10 text-center text-2xl md:text-4xl lg:text-[44px] font-semibold tracking-tight leading-[1.15] text-white max-w-3xl mx-auto">
-          Informes radiológicos en segundos,{' '}
-          <span className="gradient-text">no en minutos.</span>
+          Radiología más rápida, {' '}
+          <span className="gradient-text">precisa y sin fricción.</span>
         </h2>
 
         <p className="fade-up delay-5 mt-6 text-center text-base md:text-lg text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
           Transforma tu dictado de voz en informes estructurados con IA especializada.
-          Diseñada por radiólogos, para radiólogos mexicanos.
+          Diseñada por radiólogos, para radiólogos.
         </p>
 
         {/* CTAs */}
