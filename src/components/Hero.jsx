@@ -33,8 +33,9 @@ export default function Hero() {
 
         {/* Headline */}
         <h2 className="fade-up delay-3 mt-8 text-center text-2xl md:text-4xl lg:text-[44px] font-bold tracking-tight leading-[1.15] max-w-4xl mx-auto">
-          <span className="text-white">Tu asistente de </span>
-          <span className="gradient-text">redacción clínica</span>
+          <span className="text-white">Tu asistente de redacción de</span>
+          <br />
+          <span className="gradient-text">informes radiológicos</span>
           <span className="text-white"> en tiempo real.</span>
         </h2>
 
