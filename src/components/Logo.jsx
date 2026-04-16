@@ -1,4 +1,4 @@
-export function GhostLogo({ className = "h-8 w-auto" }) {
+export function GhostLogo({ className = "h-8 w-auto", eyeColor = "currentColor" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,27 +10,24 @@ export function GhostLogo({ className = "h-8 w-auto" }) {
         d="M120 12 C52 12 12 62 12 130 L12 210 Q12 200 28 210 Q44 222 56 208 Q68 194 82 210 Q96 226 108 214 Q120 202 132 214 Q144 226 158 210 Q172 194 184 208 Q196 222 212 210 Q228 200 228 210 L228 130 C228 62 188 12 120 12Z"
         fill="currentColor"
       />
-      <ellipse cx="84" cy="118" rx="22" ry="28" fill="white" />
-      <ellipse cx="156" cy="118" rx="22" ry="28" fill="white" />
+      <ellipse cx="84" cy="118" rx="22" ry="28" fill={eyeColor} />
+      <ellipse cx="156" cy="118" rx="22" ry="28" fill={eyeColor} />
     </svg>
   )
 }
 
-export function Wordmark({ className = "h-5" }) {
+export function Wordmark({ className = "text-xl" }) {
   return (
-    <span
-      className={`font-medium tracking-tight text-current leading-none inline-block ${className}`}
-      style={{ fontSize: 'inherit' }}
-    >
-      g&#x14D;ster
+    <span className={`font-medium tracking-tight leading-none ${className}`}>
+      gōster
     </span>
   )
 }
 
-export function FullLogo({ ghostClassName = "h-8 w-auto", wordmarkClassName = "text-xl" }) {
+export function FullLogo({ ghostClassName = "h-8 w-auto", wordmarkClassName = "text-xl", eyeColor = "currentColor" }) {
   return (
     <div className="flex items-center gap-2.5">
-      <GhostLogo className={ghostClassName} />
+      <GhostLogo className={ghostClassName} eyeColor={eyeColor} />
       <Wordmark className={wordmarkClassName} />
     </div>
   )

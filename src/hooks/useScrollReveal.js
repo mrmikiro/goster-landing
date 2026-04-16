@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export function useScrollReveal(threshold = 0.15) {
+export function useScrollReveal(threshold = 0.12) {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -16,10 +16,11 @@ export function useScrollReveal(threshold = 0.15) {
           }
         })
       },
-      { threshold }
+      { threshold, rootMargin: '0px 0px -40px 0px' }
     )
 
-    const targets = el.querySelectorAll('.fade-up')
+    const selectors = '.fade-up, .fade-in, .scale-in, .slide-left, .slide-right'
+    const targets = el.querySelectorAll(selectors)
     targets.forEach((t) => observer.observe(t))
 
     return () => observer.disconnect()
