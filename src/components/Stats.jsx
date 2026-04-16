@@ -36,7 +36,7 @@ function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
 }
 
 const stats = [
-  { icon: Mic, value: 60, suffix: '%', label: 'Menos tiempo dictando', prefix: '+' },
+  { icon: Mic, value: 60, suffix: '%', label: 'Aumento de productividad', prefix: '+' },
   { icon: Palette, value: 14, suffix: '', label: 'Colores de acento personalizables' },
   { icon: Globe, value: 24, suffix: '/7', label: 'Disponibilidad de la plataforma' },
 ]
