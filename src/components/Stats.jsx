@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Mic, Palette, Infinity, Globe } from 'lucide-react'
+import { Mic, Palette, Globe } from 'lucide-react'
 
 function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
@@ -37,7 +37,6 @@ function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
 
 const stats = [
   { icon: Mic, value: 60, suffix: '%', label: 'Menos tiempo dictando', prefix: '+' },
-  { icon: Infinity, value: null, suffix: '', label: 'Cualquier modalidad de estudio', text: 'Todas' },
   { icon: Palette, value: 14, suffix: '', label: 'Colores de acento personalizables' },
   { icon: Globe, value: 24, suffix: '/7', label: 'Disponibilidad de la plataforma' },
 ]
@@ -59,7 +58,7 @@ export default function Stats() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+        <div className="grid grid-cols-3 gap-8 md:gap-4 max-w-3xl mx-auto">
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (

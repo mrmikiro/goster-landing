@@ -180,6 +180,28 @@ body {
   100% { transform: scale(1.8); opacity: 0; }
 }
 
+/* ── Image hover effects ── */
+.img-hover {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-hover:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4),
+              0 0 40px -10px rgba(139, 92, 246, 0.15);
+}
+
+/* Phone tilt on hover */
+.phone-tilt {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phone-tilt:hover {
+  transform: translateY(-8px) rotate(-2deg);
+}
+.phone-tilt-r:hover {
+  transform: translateY(-8px) rotate(2deg);
+}
+
 /* ── Horizontal scroll snap for mobile feature cards ── */
 .snap-scroll {
   scroll-snap-type: x mandatory;

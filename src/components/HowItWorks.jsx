@@ -6,21 +6,21 @@ const steps = [
     icon: Mic,
     number: '01',
     title: 'Dicta los hallazgos',
-    desc: 'Presiona el micrófono y dicta los hallazgos del estudio. Desde tu computadora o pareando tu celular por QR.',
+    desc: 'Desde tu computadora o celular por QR.',
     color: 'from-lavender-600 to-lavender-400',
   },
   {
     icon: Cpu,
     number: '02',
     title: 'La IA genera el informe',
-    desc: 'gōster procesa tu dictado con IA y genera un informe estructurado con hallazgos y conclusión diagnóstica.',
+    desc: 'Informe estructurado con hallazgos y conclusión diagnóstica.',
     color: 'from-lavender-500 to-purple-400',
   },
   {
     icon: PenLine,
     number: '03',
     title: 'Revisa y exporta',
-    desc: 'Refina en el editor profesional, aplica correcciones por voz y copia al portapapeles con formato Word.',
+    desc: 'Corrige por voz y copia con formato Word.',
     color: 'from-purple-500 to-pink-400',
   },
 ]
@@ -37,8 +37,8 @@ export default function HowItWorks() {
             Tres pasos.{' '}
             <span className="gradient-text">Sin curva de aprendizaje.</span>
           </h2>
-          <p className="fade-up delay-2 mt-5 text-white/40 text-lg font-light">
-            De la voz al informe en segundos, con la precisión que tu práctica exige.
+          <p className="fade-up delay-2 mt-4 text-white/40 text-base font-light">
+            De la voz al informe en segundos.
           </p>
         </div>
 

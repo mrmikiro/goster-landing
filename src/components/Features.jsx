@@ -8,33 +8,33 @@ const features = [
   {
     tag: 'Dictado inteligente',
     title: 'Dicta como si hablaras con un colega',
-    desc: 'No necesitas seguir un orden ni dictar de forma estructurada. Habla de forma natural — como si comentaras el caso en voz alta. gōster escucha, analiza tu voz en tiempo real y convierte esa conversación en un informe profesional. Si te corriges durante el dictado ("ah no, son 19 grados"), descarta lo anterior y conserva tu decisión final.',
+    desc: 'Habla de forma natural. Si te corriges durante el dictado, gōster descarta lo anterior y conserva tu decisión final.',
     bullets: [
-      { icon: Mic, text: 'Dictado continuo con reconocimiento en español' },
-      { icon: Smartphone, text: 'Pareamiento móvil por QR — sin apps, sin cables' },
-      { icon: Wand2, text: 'Correcciones en tiempo real: te corriges y gōster se adapta' },
+      { icon: Mic, text: 'Reconocimiento continuo en español' },
+      { icon: Smartphone, text: 'Pareamiento móvil por QR — sin apps' },
+      { icon: Wand2, text: 'Te corriges y gōster se adapta al instante' },
     ],
     visual: 'dictation',
   },
   {
     tag: 'Diccionario clínico',
     title: 'Tu vocabulario, tus reglas',
-    desc: 'Sube tus informes previos y gōster extrae automáticamente las frases trigger con sus descripciones clínicas — sin incluir medidas del estudio original. Cuando dictas un trigger, la IA lo expande a la descripción completa e inserta las medidas y lateralidad que tú dictas. Múltiples variantes por trigger evitan informes repetitivos.',
+    desc: 'Sube informes previos y gōster extrae tus triggers con sus descripciones. Dicta una frase corta y la IA expande la descripción completa adaptando medidas y lateralidad.',
     bullets: [
-      { icon: BookOpen, text: 'Triggers extraídos automáticamente de tus informes reales' },
-      { icon: Layers, text: 'Adaptación automática de medidas, lateralidad y niveles' },
-      { icon: PenLine, text: 'Múltiples descripciones por trigger — informes nunca repetitivos' },
+      { icon: BookOpen, text: 'Triggers extraídos de tus informes reales' },
+      { icon: Layers, text: 'Medidas y lateralidad adaptadas automáticamente' },
+      { icon: PenLine, text: 'Múltiples variantes — informes nunca repetitivos' },
     ],
     visual: 'report',
   },
   {
     tag: 'Asistente de corrección',
     title: 'Corrige por voz, sin tocar el teclado',
-    desc: 'Al terminar el informe, el fantasmita de gōster aparece preguntando "¿Quieres ajustar algo?". Dicta instrucciones en lenguaje natural: "cambia el grado de estenosis a moderado", "agrega derrame articular leve", "quita la conclusión de bursitis". gōster regenera el informe aplicando el cambio exactamente donde corresponde.',
+    desc: '¿Quieres ajustar algo? Dicta: "cambia la estenosis a moderada", "agrega derrame articular". gōster aplica el cambio exactamente donde corresponde.',
     bullets: [
-      { icon: MessageCircle, text: 'Dicta correcciones en lenguaje natural' },
-      { icon: FileText, text: 'Cambios aplicados en la sección correcta del informe' },
-      { icon: BookOpen, text: 'Cada corrección se convierte en aprendizaje permanente' },
+      { icon: MessageCircle, text: 'Correcciones en lenguaje natural' },
+      { icon: FileText, text: 'Aplicadas en la sección correcta del informe' },
+      { icon: BookOpen, text: 'Cada corrección mejora futuros informes' },
     ],
     visual: 'editor',
   },
@@ -43,7 +43,7 @@ const features = [
 function DictationVisual() {
   return (
     <div className="flex items-center justify-center gap-4 md:gap-6 h-full">
-      <div className="relative w-[45%] max-w-[200px]">
+      <div className="relative w-[45%] max-w-[200px] phone-tilt">
         <div className="rounded-[24px] overflow-hidden shadow-2xl shadow-black/40 border border-white/10">
           <img src="/IMG_9083.jpg" alt="gōster móvil — conectado" className="w-full h-auto block" />
         </div>
@@ -51,7 +51,7 @@ function DictationVisual() {
           <span className="text-[9px] text-white/50 font-medium tracking-wide">Conectado</span>
         </div>
       </div>
-      <div className="relative w-[45%] max-w-[200px]">
+      <div className="relative w-[45%] max-w-[200px] phone-tilt phone-tilt-r">
         <div className="rounded-[24px] overflow-hidden shadow-2xl shadow-lavender-600/20 border border-lavender-500/20">
           <img src="/IMG_9084.jpg" alt="gōster móvil — dictando" className="w-full h-auto block" />
         </div>
@@ -65,7 +65,7 @@ function DictationVisual() {
 
 function ReportVisual() {
   return (
-    <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/[0.06]">
+    <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/[0.06] img-hover">
       <img src="/ejemplo de dictado.png" alt="Ejemplo de dictado con triggers y informe generado" className="w-full h-auto block" />
     </div>
   )
@@ -74,7 +74,7 @@ function ReportVisual() {
 function EditorVisual() {
   return (
     <div className="flex items-center justify-center h-full">
-      <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/[0.06] max-w-[320px]">
+      <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/[0.06] max-w-[320px] img-hover">
         <img src="/widget.png" alt="Asistente gōster — ¿Quieres ajustar algo?" className="w-full h-auto block" />
       </div>
     </div>

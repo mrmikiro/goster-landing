@@ -5,22 +5,22 @@ const points = [
   {
     icon: BookOpen,
     title: 'Correcciones que se convierten en reglas',
-    desc: 'Cada vez que editas un informe y guardas los cambios, gōster extrae patrones de redacción y los aplica en futuros informes. Lo que hoy corriges, mañana ya no tendrás que tocarlo.',
+    desc: 'Lo que hoy corriges, mañana ya no tendrás que tocarlo.',
   },
   {
     icon: TrendingUp,
     title: 'Diccionario que crece contigo',
-    desc: 'gōster incorpora automáticamente nuevas entradas al diccionario a partir de tus correcciones. Tu vocabulario clínico se expande con el uso, sin esfuerzo extra.',
+    desc: 'Tu vocabulario clínico se expande con el uso, sin esfuerzo.',
   },
   {
     icon: History,
     title: 'Historial como memoria activa',
-    desc: 'Tus reportes previos no son solo referencia: son memoria activa que modifica el comportamiento del modelo. gōster identifica tu estilo, tus equivalencias diagnósticas y tus decisiones.',
+    desc: 'Tus reportes previos modifican el modelo. gōster recuerda tu estilo y tus decisiones.',
   },
   {
     icon: Brain,
     title: 'Transferencia de aprendizaje',
-    desc: 'Cuando gōster detecta hallazgos similares en un nuevo informe, aplica automáticamente el estilo corregido en casos previos. Una corrección se transfiere a todos los casos análogos futuros.',
+    desc: 'Una corrección en un caso se aplica a todos los casos similares futuros.',
   },
 ]
 

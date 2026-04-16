@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Mic, Brain, Zap, Shield } from 'lucide-react'
+import { Mic, Brain, Zap, Shield, Palette } from 'lucide-react'
 
 export default function Platform() {
   const ref = useScrollReveal()
@@ -21,40 +21,44 @@ export default function Platform() {
             <span className="gradient-text-light">impulsado por IA</span>
           </h2>
           <p className="fade-up delay-2 mt-5 text-lg text-gray-500 font-light max-w-xl mx-auto leading-relaxed">
-            gōster transforma dictados de voz en informes radiológicos profesionales
-            mediante inteligencia artificial. Aprende de tu estilo y se adapta a tu práctica.
+            Dictado de voz a informe profesional. Aprende de tu estilo.
           </p>
         </div>
 
         {/* App screenshot */}
         <div className="scale-in delay-2 mb-20">
-          <div className="rounded-2xl overflow-hidden border border-gray-200/60 mockup-shadow-light">
+          <div className="rounded-2xl overflow-hidden border border-gray-200/60 mockup-shadow-light img-hover">
             <img src="/interfaz.png" alt="Interfaz de gōster" className="w-full h-auto block" />
           </div>
         </div>
 
         {/* 4 pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {[
             {
               icon: Mic,
-              title: 'Dictado inteligente',
-              desc: 'Dictado por voz desde tu computadora o celular vía QR. Reconocimiento preciso de terminología radiológica en español.',
+              title: 'Dictado por voz',
+              desc: 'Computadora o celular vía QR.',
             },
             {
               icon: Brain,
-              title: 'IA especializada',
-              desc: 'Motor de Gemini 2.5 Flash entrenado con prompts médicos de más de 800 líneas. Cero alucinaciones, máxima fidelidad.',
+              title: 'Cero alucinaciones',
+              desc: 'Si no lo dictaste, no aparece.',
             },
             {
               icon: Zap,
-              title: 'Generación instantánea',
-              desc: 'Informes estructurados con hallazgos, conclusiones diagnósticas y formato profesional en segundos.',
+              title: 'Informes en segundos',
+              desc: 'Hallazgos y conclusiones al instante.',
             },
             {
               icon: Shield,
-              title: 'Aprendizaje continuo',
-              desc: 'Cada corrección enriquece tu diccionario clínico personal. La IA se adapta a tu estilo de informar.',
+              title: 'Aprende de ti',
+              desc: 'Cada corrección mejora el próximo informe.',
+            },
+            {
+              icon: Palette,
+              title: 'Hazlo tuyo',
+              desc: 'Tema claro/oscuro, control de tono, 14 colores de acento.',
             },
           ].map((item, i) => {
             const Icon = item.icon
