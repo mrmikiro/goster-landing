@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GŌSTER — Guía del Usuario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --violet: #a78bfa;
+    --blue: #60a5fa;
+    --cyan: #22d3ee;
+    --green: #4ade80;
+    --pink: #f472b6;
+    --orange: #fb923c;
+    --red: #f87171;
+    --amber: #fcd34d;
+    --bg: #0a0a0f;
+    --surface: #141420;
+    --border: #1e1e3a;
+    --text: #e2e2e8;
+    --text-dim: #8888a0;
+    --heading: #ffffff;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
+  body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Subtle radial gradient background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(167,139,250,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(34,211,238,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 50% at 80% 60%, rgba(244,114,182,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ghost container */
+  #ghost-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .floating-ghost {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* ── Hero Section ── */
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #0a0a0f 0%, #12101f 30%, #1a1035 50%, #12101f 70%, #0a0a0f 100%);
+    padding: 120px 40px 100px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: heroGlow 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .hero-ghost-logo {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto 32px;
+    width: 280px;
+    height: 280px;
+    animation: logoFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px rgba(167,139,250,0.4)) drop-shadow(0 0 80px rgba(167,139,250,0.2));
+  }
+  .hero-ghost-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: #ffffff;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero .subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: rgba(226,226,232,0.6);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+  }
+  .hero .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(167,139,250,0.1);
+    border: 1px solid rgba(167,139,250,0.2);
+    color: var(--violet);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+  }
+
+  /* ── Sticky navigation bar ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.8);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+  .sticky-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 12px 0;
+  }
+  .sticky-nav-inner::-webkit-scrollbar { display: none; }
+  .sticky-nav a {
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 100px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .sticky-nav a:hover {
+    color: var(--violet);
+    background: rgba(167,139,250,0.1);
+  }
+  .sticky-nav .nav-brand {
+    font-weight: 900;
+    color: var(--violet);
+    font-size: 0.9rem;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ── Warning banner ── */
+  .warning-banner {
+    max-width: 900px;
+    margin: 24px auto 0;
+    position: relative;
+    z-index: 10;
+    background: rgba(252,211,77,0.05);
+    border: 1px solid rgba(252,211,77,0.15);
+    border-left: 5px solid var(--amber);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  .warning-banner .wb-title {
+    font-weight: 700;
+    color: var(--amber);
+    font-size: 1rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .warning-banner p {
+    color: rgba(252,211,77,0.8);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .warning-banner p strong { color: var(--amber); }
+
+  /* ── Layout ── */
+  .layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── TOC sidebar ── */
+  .toc {
+    flex-shrink: 0;
+    width: 260px;
+    position: sticky;
+    top: 80px;
+    align-self: flex-start;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(167,139,250,0.3) transparent;
+  }
+  .toc::-webkit-scrollbar { width: 4px; }
+  .toc::-webkit-scrollbar-track { background: transparent; }
+  .toc::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.3); border-radius: 4px; }
+
+  .toc-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .toc-card h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--violet);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(167,139,250,0.15);
+  }
+  .toc-card a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    line-height: 1.35;
+  }
+  .toc-card a:hover {
+    color: var(--violet);
+    background: rgba(167,139,250,0.08);
+    transform: translateX(3px);
+  }
+  .toc-card a .toc-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: rgba(167,139,250,0.1);
+    color: var(--violet);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .toc-card a:hover .toc-num {
+    background: var(--violet);
+    color: var(--bg);
+  }
+
+  /* ── Main content ── */
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 860px;
+  }
+
+  /* ── Section accent colors ── */
+  .accent-violet { --accent: #a78bfa; }
+  .accent-blue { --accent: #60a5fa; }
+  .accent-cyan { --accent: #22d3ee; }
+  .accent-green { --accent: #4ade80; }
+  .accent-pink { --accent: #f472b6; }
+  .accent-orange { --accent: #fb923c; }
+  .accent-red { --accent: #f87171; }
+  .accent-amber { --accent: #fcd34d; }
+
+  /* ── Section cards ── */
+  .section-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 40px 44px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card:hover {
+    border-color: rgba(167,139,250,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+  }
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent, #a78bfa), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .section-card:hover::before { opacity: 1; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .section-number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--accent, #a78bfa);
+    color: var(--bg);
+    font-size: 1.2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .section-emoji {
+    display: flex;
+    align-items: center;
+    color: var(--primary-light);
+  }
+  .section-title {
+    font-size: 1.55rem;
+    font-weight: 900;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .section-card p {
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .section-card p:last-child { margin-bottom: 0; }
+  .section-card p strong { color: var(--heading); }
+
+  .section-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin: 28px 0 10px;
+  }
+  .section-card h4:first-of-type { margin-top: 8px; }
+
+  .section-card ul, .section-card ol {
+    padding-left: 24px;
+    margin-bottom: 14px;
+  }
+  .section-card li {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+  .section-card li strong { color: var(--heading); }
+
+  /* ── Numbered steps ── */
+  .steps { list-style: none; padding-left: 0; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 48px;
+    margin-bottom: 16px;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 2px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent, #a78bfa);
+    color: var(--bg);
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-radius: var(--radius-sm);
+    padding: 18px 22px;
+    margin: 20px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .callout-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .callout-content { flex: 1; }
+  .callout-content strong {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .callout.tip {
+    background: rgba(74,222,128,0.06);
+    border-left: 4px solid var(--green);
+    color: #86efac;
+  }
+  .callout.tip .callout-icon { background: rgba(74,222,128,0.12); }
+  .callout.tip strong { color: var(--green); }
+
+  .callout.note {
+    background: rgba(96,165,250,0.06);
+    border-left: 4px solid var(--blue);
+    color: #93c5fd;
+  }
+  .callout.note .callout-icon { background: rgba(96,165,250,0.12); }
+  .callout.note strong { color: var(--blue); }
+
+  .callout.warning {
+    background: rgba(252,211,77,0.06);
+    border-left: 4px solid var(--amber);
+    color: #fde68a;
+  }
+  .callout.warning .callout-icon { background: rgba(252,211,77,0.12); }
+  .callout.warning strong { color: var(--amber); }
+
+  /* ── Code / variable styling ── */
+  code, .var {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    background: rgba(167,139,250,0.1);
+    color: var(--violet);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 500;
+    border: 1px solid rgba(167,139,250,0.15);
+    white-space: nowrap;
+  }
+
+  /* ── Example blocks ── */
+  .example-block {
+    background: rgba(167,139,250,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .example-block .example-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--violet);
+    margin-bottom: 10px;
+  }
+  .example-block .example-row {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .example-block .example-row:last-child { margin-bottom: 0; }
+  .example-block .tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .example-block .tag-trigger { background: rgba(96,165,250,0.15); color: var(--blue); }
+  .example-block .tag-desc { background: rgba(74,222,128,0.15); color: var(--green); }
+  .example-block .example-text {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-weight: 700;
+    color: var(--heading);
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .faq-q::before {
+    content: 'P';
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: rgba(167,139,250,0.12);
+    color: var(--violet);
+    font-size: 0.7rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .faq-a {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    padding-left: 34px;
+  }
+
+  /* ── Tips list ── */
+  .tips-list { list-style: none; padding: 0; counter-reset: tips; }
+  .tips-list li {
+    counter-increment: tips;
+    position: relative;
+    padding: 14px 14px 14px 56px;
+    margin-bottom: 8px;
+    background: rgba(167,139,250,0.04);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 0.93rem;
+    color: var(--text);
+    transition: all 0.2s ease;
+  }
+  .tips-list li:hover {
+    border-color: rgba(167,139,250,0.25);
+    background: rgba(167,139,250,0.07);
+  }
+  .tips-list li strong { color: var(--heading); }
+  .tips-list li::before {
+    content: counter(tips);
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--violet);
+    color: var(--bg);
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--surface);
+    color: var(--text-dim);
+    text-align: center;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--violet), var(--blue), var(--cyan), var(--green), var(--pink), var(--orange), var(--red), var(--amber));
+  }
+  .footer-brand {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: var(--violet);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .footer-meta {
+    font-size: 0.78rem;
+    color: rgba(226,226,232,0.3);
+  }
+  .footer-meta a {
+    color: var(--violet);
+    text-decoration: none;
+  }
+  .footer-meta strong { color: rgba(226,226,232,0.5); }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .toc { display: none; }
+    .layout { padding: 32px 16px 60px; }
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 80px 24px 64px; }
+    .section-card { padding: 28px 24px; }
+    .warning-banner { margin: -30px 16px 0; }
+    .layout { gap: 0; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2.4rem; }
+    .section-header { flex-wrap: wrap; }
+    .sticky-nav { padding: 0 16px; }
+  }
+
+  /* ── Smooth reveal ── */
+  .section-card {
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Divider between sub-sections */
+  .sub-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 24px 0;
+  }
+
+  /* Ghost drift animations */
+  @keyframes ghostDrift0 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(30px, -40px) rotate(3deg); }
+    50% { transform: translate(-20px, -80px) rotate(-2deg); }
+    75% { transform: translate(40px, -40px) rotate(4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  @keyframes ghostDrift1 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-40px, -30px) rotate(-4deg); }
+    50% { transform: translate(20px, -60px) rotate(2deg); }
+    75% { transform: translate(-30px, -90px) rotate(-3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  @keyframes ghostDrift2 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(50px, -50px) rotate(5deg); }
+    66% { transform: translate(-30px, 30px) rotate(-3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  @keyframes ghostDrift3 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(-25px, -60px) rotate(-2deg); }
+    40% { transform: translate(35px, -30px) rotate(3deg); }
+    60% { transform: translate(-15px, 20px) rotate(-4deg); }
+    80% { transform: translate(20px, -50px) rotate(2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  @keyframes ghostDrift4 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-40px, -70px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  @keyframes ghostDrift5 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    30% { transform: translate(60px, -20px) rotate(3deg); }
+    60% { transform: translate(-20px, -60px) rotate(-4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ghost container for JS-generated ghosts -->
+<div id="ghost-container"></div>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-ghost-logo">
+      <img src="/goster-icon-light.png" alt="GŌSTER ghost" />
+    </div>
+    <div class="badge"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" style="display:inline-block;vertical-align:-2px;margin-right:4px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Guía del Usuario</div>
+    <h1 style="margin-top:24px;">GŌSTER</h1>
+    <p class="subtitle">Inteligencia invisible que escribe por ti</p>
+  </div>
+</header>
+
+<!-- ════════════════════ WARNING BANNER ════════════════════ -->
+<div class="warning-banner">
+  <div class="wb-title"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Importante</div>
+  <p>GŌSTER <strong>no reemplaza</strong> el criterio del radiólogo. El médico dicta los hallazgos; GŌSTER los expande y estructura con terminología profesional, pero <strong>la responsabilidad clínica es siempre del radiólogo.</strong></p>
+</div>
+
+<!-- ════════════════════ STICKY NAV ════════════════════ -->
+<nav class="sticky-nav">
+  <div class="sticky-nav-inner">
+    <span class="nav-brand">GŌSTER</span>
+    <a href="#s1">Qué es</a>
+    <a href="#s2">Registro</a>
+    <a href="#s3">Interfaz</a>
+    <a href="#s4">Config. inicial</a>
+    <a href="#s5">Diccionario</a>
+    <a href="#s6">Plantillas</a>
+    <a href="#s7">Generar informe</a>
+    <a href="#s8">Dictado por voz</a>
+    <a href="#s9">Editor</a>
+    <a href="#s10">Impresión dx</a>
+    <a href="#s11">Historial</a>
+    <a href="#s12">Consejos</a>
+    <a href="#s13">Aprendizaje</a>
+    <a href="#s14">FAQ</a>
+    <a href="#s15">Vincular celular</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════ LAYOUT ════════════════════════ -->
+<div class="layout">
+
+  <!-- ──────── TOC SIDEBAR ──────── -->
+  <aside class="toc">
+    <div class="toc-card">
+      <h3>Contenido</h3>
+      <a href="#s1"><span class="toc-num">1</span> ¿Qué es GŌSTER?</a>
+      <a href="#s2"><span class="toc-num">2</span> Registro e inicio de sesión</a>
+      <a href="#s3"><span class="toc-num">3</span> Interfaz general</a>
+      <a href="#s4"><span class="toc-num">4</span> Configuración inicial</a>
+      <a href="#s5"><span class="toc-num">5</span> Gestión del diccionario</a>
+      <a href="#s6"><span class="toc-num">6</span> Gestión de plantillas</a>
+      <a href="#s7"><span class="toc-num">7</span> Generar un informe</a>
+      <a href="#s8"><span class="toc-num">8</span> Dictado por voz</a>
+      <a href="#s9"><span class="toc-num">9</span> Editor y aprendizaje</a>
+      <a href="#s10"><span class="toc-num">10</span> Impresión diagnóstica</a>
+      <a href="#s11"><span class="toc-num">11</span> Historial de estudios</a>
+      <a href="#s12"><span class="toc-num">12</span> Consejos</a>
+      <a href="#s13"><span class="toc-num">13</span> Cuanto más lo usas, mejor funciona</a>
+      <a href="#s14"><span class="toc-num">14</span> Preguntas frecuentes</a>
+      <a href="#s15"><span class="toc-num">15</span> Vincular celular por QR</a>
+    </div>
+  </aside>
+
+  <!-- ──────── MAIN CONTENT ──────── -->
+  <main class="main-content">
+
+    <!-- ────── 1. Qué es GŌSTER ────── -->
+    <section class="section-card accent-violet" id="s1">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></span>
+        <h2 class="section-title">¿Qué es GŌSTER?</h2>
+      </div>
+      <p>GŌSTER es un <strong>asistente de redacción clínica en tiempo real</strong> diseñado para radiólogos. Funciona como un <em>ghostwriter</em> médico: tú dictas los hallazgos con frases cortas (<strong>triggers</strong>) y GŌSTER genera el informe completo, estructurado y con terminología radiológica profesional.</p>
+      <p>El nombre nace de <em>ghostwriter</em> (escritor fantasma), con la <strong>Ō</strong> como marca visual que representa la H ausente. GŌSTER trabaja en silencio para que el informe hable por ti.</p>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
+        <div class="callout-content">
+          <strong>Piensa en GŌSTER como tu transcriptor inteligente</strong>
+          No necesitas dictar de forma estructurada ni seguir un orden específico. Puedes <strong>hablar de forma natural</strong> — como si estuvieras comentando el caso con un colega o platicando los hallazgos en voz alta. GŌSTER escucha, analiza tu voz en tiempo real y convierte esa conversación natural en un informe radiológico estructurado, completo y con terminología profesional. Olvídate del tedio de redactar: dedica tu tiempo a lo que realmente importa — <strong>analizar a profundidad tus estudios</strong>. GŌSTER se encarga del resto.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 2. Registro ────── -->
+    <section class="section-card accent-blue" id="s2">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></span>
+        <h2 class="section-title">Registro e inicio de sesión</h2>
+      </div>
+      <p>GŌSTER cuenta con un sistema de cuentas de usuario. Cada usuario tiene su propio espacio con diccionarios, plantillas e historial independientes.</p>
+
+      <h4>📝 Registro</h4>
+      <ul>
+        <li><strong>Correo electrónico y contraseña</strong> — Ingresa tu nombre, correo y una contraseña (mínimo 6 caracteres).</li>
+        <li><strong>Google</strong> — Haz clic en "Iniciar sesión con Google" para registrarte automáticamente.</li>
+      </ul>
+
+      <h4>🚪 Inicio de sesión</h4>
+      <ul>
+        <li><strong>Correo y contraseña</strong> — Ingresa las credenciales que usaste al registrarte.</li>
+        <li><strong>Google</strong> — Un solo clic si ya tienes cuenta vinculada.</li>
+        <li><strong>Transición suave</strong> — Al iniciar sesión, la pantalla se desvanece suavemente y suena un acorde que confirma el acceso.</li>
+      </ul>
+
+      <h4>🔑 Recuperar contraseña</h4>
+      <p>Haz clic en <strong>"¿Olvidaste tu contraseña?"</strong> en la pantalla de inicio de sesión. Ingresa tu correo y recibirás un enlace de recuperación.</p>
+    </section>
+
+    <!-- ────── 3. Interfaz ────── -->
+    <section class="section-card accent-cyan" id="s3">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span>
+        <h2 class="section-title">Interfaz general</h2>
+      </div>
+      <p>La pantalla se divide en dos zonas principales:</p>
+
+      <h4>📚 Secciones de la barra lateral</h4>
+      <ul>
+        <li><strong>Diccionario</strong> — Repositorio de tus frases trigger y sus descripciones clínicas.</li>
+        <li><strong>Plantillas</strong> — Estructuras base de cada tipo de estudio (RM rodilla, TAC tórax, etc.).</li>
+        <li><strong>Informe</strong> — Espacio de trabajo donde dictas y recibes el informe generado en tiempo real.</li>
+        <li><strong>Historial</strong> — Acceso rápido a los últimos estudios generados.</li>
+      </ul>
+
+      <div class="sub-divider"></div>
+
+      <h4>🎨 Personalización visual</h4>
+      <ul>
+        <li><strong>Modo claro / oscuro:</strong> clic en el icono de sol/luna.</li>
+        <li><strong>Color de acento:</strong> clic en el icono de pincel para desplegar la paleta con 14 colores.</li>
+      </ul>
+
+      <div class="sub-divider"></div>
+
+      <h4>⚙️ Instrucciones personalizadas globales</h4>
+      <p>Haz clic en el icono de engrane (⚙) en la parte inferior de la barra lateral. Se despliega un menú con la opción <strong>"Personalizar"</strong>.</p>
+
+      <div class="example-block">
+        <div class="example-label">Ejemplos</div>
+        <div class="example-row"><span class="example-text">• "Evita usar las frases <em>se observa</em> y <em>se identifica.</em>"</span></div>
+        <div class="example-row"><span class="example-text">• "Usa terminología formal y precisa en todo momento."</span></div>
+        <div class="example-row"><span class="example-text">• "Expresa todas las medidas en milímetros."</span></div>
+      </div>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          Las instrucciones globales se combinan con las instrucciones especiales de cada plantilla.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 4. Configuración inicial ────── -->
+    <section class="section-card accent-green" id="s4">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
+        <h2 class="section-title">Configuración inicial</h2>
+      </div>
+      <p>Antes de generar tu primer informe realiza estos dos pasos.</p>
+
+      <h4>Paso 1 — Sube tus plantillas de estudio</h4>
+      <p>Ve a la sección <strong>Plantillas</strong> y carga una plantilla por cada tipo de estudio.</p>
+      <ul>
+        <li>Formato aceptado: <strong>DOCX</strong>, <strong>DOC</strong> o <strong>PDF</strong>.</li>
+        <li>También puedes generar manualmente las plantillas con texto copiado.</li>
+        <li>GŌSTER detecta automáticamente el tipo de estudio.</li>
+        <li>Puedes editar el nombre del estudio y el contenido desde su tarjeta.</li>
+      </ul>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Consejo</strong>
+          Sube un informe completamente normal por cada modalidad. Cuanto más completa la plantilla, mejores resultados.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>Paso 2 — Construye tu diccionario clínico</h4>
+      <p>Ve a la sección <strong>Diccionario</strong> y sube tus informes previos de estudios patológicos.</p>
+      <ul>
+        <li><strong>Conclusiones</strong> — cada hallazgo se convierte en una frase trigger.</li>
+        <li><strong>Sección descriptiva</strong> — la descripción clínica detallada se asocia a su trigger.</li>
+      </ul>
+      <p>Si ya tienes un diccionario del mismo tipo de estudio, GŌSTER fusiona las entradas nuevas sin duplicar.</p>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota — Privacidad</strong>
+          GŌSTER detecta y anonimiza automáticamente los datos del paciente.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 5. Gestión del diccionario ────── -->
+    <section class="section-card accent-pink" id="s5">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></span>
+        <h2 class="section-title">Gestión del diccionario</h2>
+      </div>
+
+      <h4>📕 Icono de libro y activación rápida</h4>
+      <p>Cada tarjeta muestra un icono de libro cerrado a la izquierda. Clic para activar/desactivar.</p>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          Al activar una Plantilla, GŌSTER vincula automáticamente el diccionario que mejor coincida.
+        </div>
+      </div>
+
+      <h4>🔍 Ver y editar entradas</h4>
+      <p>Haz clic en <strong>"X entradas"</strong> para expandir. Cada entrada muestra:</p>
+      <ul>
+        <li><strong>Trigger</strong> — la frase corta que dictas.</li>
+        <li><strong>Descripción(es)</strong> — el texto clínico completo que GŌSTER usará.</li>
+      </ul>
+
+      <h4>🔀 Múltiples variantes de descripción</h4>
+      <p>Un mismo trigger puede tener varias descripciones. GŌSTER elige una al azar, evitando informes repetitivos.</p>
+
+      <h4>➕ Agregar entradas manualmente</h4>
+      <p>Al final de la lista expandida encontrarás el botón <strong>"+ Agregar entrada"</strong>.</p>
+
+      <h4>↕️ Reordenar entradas y tarjetas (arrastrar y soltar)</h4>
+      <ul>
+        <li><strong>Entradas:</strong> mantén presionado el icono de arrastre (⠇) a la izquierda.</li>
+        <li><strong>Tarjetas:</strong> mantén presionado el icono de arrastre (⠇) en la esquina superior izquierda.</li>
+      </ul>
+
+      <h4>🔎 Buscar diccionarios</h4>
+      <p>Cuando tienes 2+ diccionarios, aparece un campo de búsqueda. Escribe fragmentos del nombre y GŌSTER localiza la tarjeta.</p>
+
+      <div class="sub-divider"></div>
+
+      <h4>📐 Adaptación automática de medidas</h4>
+      <p>Cuando subes un informe previo, GŌSTER extrae los triggers y descripciones <strong>sin incluir las medidas específicas</strong> del estudio original. Las descripciones se guardan como "recetas" genéricas, limpias y reutilizables. No tienes que manipular ni editar nada.</p>
+      <p>Al momento de generar un nuevo informe, GŌSTER <strong>toma las medidas que tú dictas</strong> y las inserta automáticamente en la descripción correspondiente.</p>
+
+      <div class="example-block">
+        <div class="example-label">Cómo funciona</div>
+        <div class="example-row">
+          <span class="tag tag-trigger">Informe original subido</span>
+          <span class="example-text">"Hernia discal de 8 mm con compresión radicular a nivel L4-L5"</span>
+        </div>
+        <div class="example-row">
+          <span class="tag tag-desc">Lo que GŌSTER guarda</span>
+          <span class="example-text">Trigger: "hernia discal" &mdash; Descripción: "Hernia discal con compresión radicular"</span>
+        </div>
+        <div style="height:8px;"></div>
+        <div class="example-row">
+          <span class="tag tag-trigger">Tú dictas</span>
+          <span class="example-text">"hernia discal de 12 mm en L5-S1"</span>
+        </div>
+        <div class="example-row">
+          <span class="tag tag-desc">GŌSTER genera</span>
+          <span class="example-text">"Hernia discal de 12 mm con compresión radicular a nivel L5-S1"</span>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>No necesitas editar las descripciones.</strong>
+          GŌSTER se encarga de adaptar medidas, lateralidad y niveles automáticamente cada vez que generas un informe. Solo sube tus reportes y dicta.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 6. Gestión de plantillas ────── -->
+    <section class="section-card accent-orange" id="s6">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></span>
+        <h2 class="section-title">Gestión de plantillas</h2>
+      </div>
+
+      <h4>📃 Icono de hoja y activación rápida</h4>
+      <p>Similar al diccionario. Al activar una plantilla, GŌSTER vincula automáticamente el diccionario correspondiente.</p>
+
+      <h4>✏️ Editar plantilla</h4>
+      <p>Botón con icono de lápiz abre editor con negritas, cursivas, subrayado, tablas, listas y más. Incluye pincel para colorear celdas de tablas.</p>
+
+      <h4>📋 Instrucciones Especiales</h4>
+      <p>Cada plantilla puede llevar instrucciones personalizadas.</p>
+
+      <div class="example-block">
+        <div class="example-label">Ejemplos</div>
+        <div class="example-row"><span class="example-text">• "Cuando se dicte ÍNDICE DE INSALL-SALVATI seguido de dos cifras, divide A entre B y escribe el resultado."</span></div>
+        <div class="example-row"><span class="example-text">• "Todos los valores numéricos deben expresarse en milímetros."</span></div>
+        <div class="example-row"><span class="example-text">• "Si se menciona derrame articular, incluye siempre la cuantificación."</span></div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Consejo</strong>
+          Las Instrucciones Especiales son ideales para cálculos y convenciones específicas de cada estudio.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 7. Generar un informe ────── -->
+    <section class="section-card accent-red" id="s7">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>
+        <h2 class="section-title">Generar un informe</h2>
+      </div>
+
+      <h4>🔄 Flujo de trabajo</h4>
+      <ol class="steps">
+        <li>Activa la plantilla del tipo de estudio. GŌSTER vinculará automáticamente el diccionario.</li>
+        <li>Ve a la sección <strong>Informe</strong> y verifica las etiquetas de contexto.</li>
+        <li>Dicta o escribe tus hallazgos usando tus frases trigger.</li>
+        <li>Haz clic en <strong>"Generar informe"</strong>. El texto aparece en tiempo real con una animación fluida de escritura progresiva. Usa el <strong>control de velocidad</strong> para ajustar la rapidez del streaming, y el <strong>botón de pausa</strong> (junto al slider de velocidad) para detener y reanudar la generación cuando lo necesites.</li>
+        <li>Al finalizar el streaming, un <strong>auditor independiente (Agente 3)</strong> valida automáticamente el informe completo. Si detecta errores o inconsistencias, los corrige de forma transparente antes de mostrarte el resultado final.</li>
+        <li>Revisa y confirma que el informe es correcto.</li>
+        <li>Copia o descarga el resultado final.</li>
+      </ol>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          Al iniciar sesión no se activa automáticamente ningún diccionario ni plantilla.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>🧩 Qué hace GŌSTER con el dictado</h4>
+      <ul>
+        <li><strong>Interpretación semántica flexible</strong> — GŌSTER prioriza tu <em>intención clínica</em> sobre la coincidencia textual exacta. Reconoce variaciones del lenguaje, errores de dictado, frases incompletas, sinónimos y cambios en el orden de la oración.</li>
+        <li><strong>Matching inteligente con diccionario</strong> — Cuando hay una coincidencia razonable entre tu dictado y un trigger, se activa automáticamente la descripción del diccionario. No depende de coincidencias exactas: el matching es semántico.</li>
+        <li>Adapta automáticamente lateralidad, medidas, grados, porcentajes y clasificaciones del dictado a la descripción del diccionario.</li>
+        <li>Si existen múltiples descripciones para un trigger, selecciona una de forma variable manteniendo coherencia clínica.</li>
+        <li>Las secciones no mencionadas conservan el texto normal de la plantilla.</li>
+        <li>Si dices <strong>"resto normal"</strong>, todo queda como en la plantilla.</li>
+        <li><strong>Correcciones en tiempo real</strong> — Si te corriges (<em>"ah no"</em>, <em>"espera"</em>, <em>"mejor cámbiale"</em>, <em>"quítale eso"</em>), GŌSTER sobrescribe inmediatamente la versión anterior y mantiene coherencia total entre descripción y conclusiones.</li>
+        <li><strong>Aprendizaje activo</strong> — GŌSTER consulta tus correcciones previas y tu historial de reportes como memoria activa, aplicando automáticamente los patrones aprendidos.</li>
+        <li>Genera <strong>siempre</strong> la <strong>Impresión Diagnóstica</strong>, infiriendo conclusiones del cuerpo, diccionario e historial, ordenadas por relevancia clínica.</li>
+        <li><strong>Fidelidad absoluta</strong> — No cambia tus palabras si no existe un trigger o patrón previo que lo justifique.</li>
+        <li>Sin diccionario activo, usa conocimiento clínico propio.</li>
+        <li>Las instrucciones globales y especiales se aplican siempre.</li>
+      </ul>
+
+      <div class="sub-divider"></div>
+
+      <h4>Correcciones en tiempo real y expansión inteligente de triggers</h4>
+      <p>GŌSTER entiende que el dictado es un proceso dinámico. Si te corriges, cambias una medida o reformulas un hallazgo durante el dictado, el sistema <strong>descarta automáticamente los valores provisionales</strong> y conserva solo tu decisión final.</p>
+
+      <p><strong>Ejemplo:</strong> si dictas <em>"inclinación de 16 grados... no espera, son 19 grados"</em>, GŌSTER descarta los 16° y usa 19° en todo el informe (descripción, tablas y conclusiones).</p>
+
+      <p>Además, cuando dices una frase trigger corta, GŌSTER la <strong>expande automáticamente</strong> a su descripción completa. No necesitas dictar la descripción larga: el sistema la recupera del diccionario o del historial.</p>
+
+      <p><strong>Ejemplo:</strong> si dices <em>"tendinosis del semimembranoso"</em> y tu diccionario tiene esa frase asociada a <em>"incremento del grosor y de la intensidad de señal del tendón semimembranoso"</em>, el informe usará la descripción expandida, no la frase corta.</p>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Dicta en modo corto, GŌSTER redacta en modo correcto.</strong>
+          Usa frases trigger como atajos y corrígete libremente durante el dictado. GŌSTER se encarga de expandir, resolver y producir un informe limpio con la versión final de cada hallazgo.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>Coherencia semántica automática</h4>
+      <p>GŌSTER valida internamente cada párrafo antes de mostrarlo para evitar contradicciones. Si el radiólogo dicta un hallazgo de lesión, el modelo no agrega frases automáticas de normalidad o conservación que contradigan ese hallazgo.</p>
+
+      <p><strong>Ejemplo de error que GŌSTER evita:</strong></p>
+      <ul>
+        <li><em>"Ligamento cruzado anterior engrosado e hiperintenso con rotura parcial difusa... conserva el patrón fascicular característico."</em></li>
+        <li>Problema: una rotura parcial difusa no es compatible con un patrón fascicular conservado. GŌSTER detecta esta contradicción y la elimina automáticamente.</li>
+      </ul>
+
+      <p><strong>Redacción correcta que GŌSTER produce:</strong></p>
+      <ul>
+        <li><em>"Ligamento cruzado anterior engrosado e hiperintenso, con rotura parcial difusa. Ligamento cruzado posterior íntegro. Ligamentos colaterales sin alteraciones."</em></li>
+      </ul>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          GŌSTER prioriza siempre el hallazgo dominante dictado por el radiólogo. Si detecta un conflicto entre lesión e integridad dentro de la misma estructura, elimina la frase incompatible y mantiene la descripción fiel al dictado.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 8. Dictado por voz ────── -->
+    <section class="section-card accent-amber" id="s8">
+      <div class="section-header">
+        <div class="section-number">8</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></span>
+        <h2 class="section-title">Dictado por voz</h2>
+      </div>
+      <p>GŌSTER utiliza la <strong>Web Speech API</strong> del navegador para reconocimiento de voz continuo en español.</p>
+      <ul>
+        <li>Haz clic en <strong>"Iniciar dictado"</strong> (icono de micrófono) para comenzar.</li>
+        <li>El texto aparece en tiempo real mientras hablas.</li>
+        <li>Haz clic en <strong>Detener</strong> para finalizar.</li>
+        <li>Puedes combinar dictado y escritura manual.</li>
+      </ul>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          Requiere navegador compatible (Chrome o Edge recomendados) y permiso de micrófono.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 9. Editor, aprendizaje y exportación ────── -->
+    <section class="section-card accent-violet" id="s9">
+      <div class="section-header">
+        <div class="section-number">9</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></span>
+        <h2 class="section-title">Editor de informe, aprendizaje y exportación</h2>
+      </div>
+
+      <h4>🧠 Aprendizaje persistente (Guardar cambios)</h4>
+      <p>GŌSTER aprende de tus correcciones. Cuando editas un informe generado y haces clic en <strong>"Guardar cambios"</strong>, se registra:</p>
+      <ul>
+        <li>La transcripción original que dictaste.</li>
+        <li>El informe original generado por el modelo.</li>
+        <li>El informe corregido por ti.</li>
+        <li>El tipo de estudio activo.</li>
+      </ul>
+      <p>Cada corrección se convierte en <strong>aprendizaje permanente</strong>:</p>
+      <ul>
+        <li>Si modificas una descripción, GŌSTER usa tu versión como estándar en futuros informes.</li>
+        <li>Si ajustas una conclusión, adopta esa forma diagnóstica como preferida.</li>
+        <li>Si cambias terminología, aplica el nuevo término en adelante.</li>
+        <li><strong>Transferencia a casos similares:</strong> las correcciones se aplican automáticamente a hallazgos similares, aunque sean en estructuras anatómicas diferentes.</li>
+      </ul>
+      <p>Si regeneras un informe, todas las correcciones previas ya están reflejadas automáticamente, sin que tengas que repetirlas.</p>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Consejo</strong>
+          Edita y guarda cambios cada vez que encuentres algo que mejorar. Cuantas más correcciones guardes, más rápido GŌSTER aprende tu estilo.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>👻 Asistente de corrección por voz</h4>
+      <p>Después de generar un informe, aparece un <strong>widget flotante con el fantasmita</strong> de GŌSTER sobre el panel de transcripción. Este asistente te pregunta <em>"¿Quieres ajustar algo?"</em> y te permite corregir el informe sin tocar el teclado:</p>
+      <ul>
+        <li><strong>Dictar corrección:</strong> presiona el botón de micrófono y dicta lo que quieres cambiar (por ejemplo: <em>"cambia el grado de estenosis a moderado"</em> o <em>"agrega derrame articular leve"</em>). GŌSTER regenera el informe aplicando tu indicación.</li>
+        <li><strong>No, está listo:</strong> cierra el asistente si no necesitas cambios.</li>
+      </ul>
+      <p>El widget se puede <strong>arrastrar</strong> libremente por la pantalla. También tiene controles para:</p>
+      <ul>
+        <li><strong>Minimizar (─):</strong> lo convierte en un cuadrito compacto con el fantasmita. Al minimizarse, regresa automáticamente a su posición original. Desde ahí puedes volver a moverlo o expandirlo con el botón <strong>+</strong>.</li>
+        <li><strong>Cerrar (✕):</strong> lo oculta completamente.</li>
+      </ul>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Consejo</strong>
+          Usa el asistente de corrección para ajustes rápidos sin salir del flujo de trabajo. Dicta instrucciones en lenguaje natural como si hablaras con un colega: "quita la conclusión de bursitis", "pon la medida en 3.2 cm", etc.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>✨ Animación de corrección fluida</h4>
+      <p>Cuando se aplica una corrección, ya sea del asistente de voz o del auditor automático (Agente 3), el informe no cambia de golpe. En su lugar, GŌSTER ejecuta una <strong>transición visual suave</strong> en tres fases:</p>
+      <ol>
+        <li><strong>Atenuación:</strong> el informe actual se atenúa gradualmente hasta volverse invisible.</li>
+        <li><strong>Intercambio:</strong> mientras el contenido está oculto, se reemplaza por la versión corregida.</li>
+        <li><strong>Reaparición con pulso:</strong> el informe reaparece suavemente y los <strong>párrafos modificados</strong> se resaltan brevemente con un pulso en el color de acento activo, para que identifiques exactamente qué cambió.</li>
+      </ol>
+      <p>Esta animación garantiza que nunca pierdas el contexto visual durante una corrección.</p>
+
+      <div class="sub-divider"></div>
+
+      <h4>✅ Confirmación antes de exportar</h4>
+      <p>Antes de copiar o descargar, GŌSTER muestra una ventana de confirmación con aviso de responsabilidad.</p>
+
+      <h4>📋 Al pegar en Word</h4>
+      <p>El informe se pega con fuente <strong>Arial 9pt</strong>, con colores de celdas preservados y espaciado profesional.</p>
+    </section>
+
+    <!-- ────── 10. Impresión diagnóstica ────── -->
+    <section class="section-card accent-blue" id="s10">
+      <div class="section-header">
+        <div class="section-number">10</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></span>
+        <h2 class="section-title">Impresión diagnóstica automática</h2>
+      </div>
+      <p>GŌSTER genera siempre la sección de <strong>Impresión Diagnóstica</strong> al final del informe, ordenada de mayor a menor relevancia clínica (hallazgo más grave primero). Para formular cada conclusión, sigue un proceso inteligente de tres pasos:</p>
+
+      <ol>
+        <li><strong>Matching inverso con el diccionario</strong> — Compara cada descripción del cuerpo del informe contra las descripciones del diccionario. Si coincide, usa el trigger correspondiente como conclusión. Ejemplo: si el cuerpo dice <em>"cambios en la señal subcortical en la inserción de la raíz anterior del menisco lateral"</em> y el diccionario tiene esa descripción asociada al trigger <em>"entesopatía de la raíz anterior del menisco lateral"</em>, la conclusión será exactamente ese trigger.</li>
+        <li><strong>Matching adaptativo</strong> — Si la misma patología aparece en una estructura anatómica diferente (medial/lateral, derecho/izquierdo, L4/L5, etc.), GŌSTER adapta el trigger del diccionario cambiando solo la localización. Ejemplo: el diccionario tiene <em>"entesopatía raíz anterior menisco lateral"</em>, pero el hallazgo es en el menisco medial; la conclusión se adapta a <em>"entesopatía de la raíz anterior del menisco medial"</em>.</li>
+        <li><strong>Inferencia clínica</strong> — Si no hay coincidencia en el diccionario, GŌSTER usa conocimiento radiológico para inferir el diagnóstico y transformar la descripción en una conclusión clínica precisa.</li>
+      </ol>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          La impresión se genera a partir del cuerpo del informe ya expandido, no del dictado directo. Cuanto más completo sea tu diccionario, más precisas serán las conclusiones.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>Normalización diagnóstica inteligente</h4>
+      <p>Las conclusiones no son un eco de la descripción: son un <strong>diagnóstico</strong>. GŌSTER transforma automáticamente los rasgos morfológicos descriptivos (adelgazamiento, hiperintensidad, discontinuidad...) a su forma diagnóstica final preferida, siempre que esa equivalencia ya exista en tu diccionario, historial o correcciones previas.</p>
+
+      <p><strong>Ejemplo:</strong></p>
+      <ul>
+        <li>Descripción: <em>"Retináculos asimétricos por adelgazamiento del interno."</em></li>
+        <li>Conclusión incorrecta: <em>"Adelgazamiento del retináculo interno"</em> (repite el nivel descriptivo).</li>
+        <li>Conclusión correcta: <em>"Laxitud del retináculo interno/ligamento patelofemoral medial"</em> (aplica la equivalencia diagnóstica aprendida).</li>
+      </ul>
+
+      <p>GŌSTER sigue este orden de prioridad para decidir la forma diagnóstica:</p>
+      <ol>
+        <li><strong>Diccionario activo</strong> — si el hallazgo tiene una equivalencia explícita trigger/descripción.</li>
+        <li><strong>Historial de reportes</strong> — si en informes previos del mismo tipo de estudio ese hallazgo ya fue transformado de forma específica.</li>
+        <li><strong>Correcciones previas</strong> — si ya corregiste antes esa formulación, se convierte en regla futura.</li>
+        <li><strong>Conocimiento radiológico general</strong> — solo si no existe ninguna equivalencia previa.</li>
+      </ol>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Consejo</strong>
+          Cuanto más uses GŌSTER y más correcciones guardes, mejor aprende tus equivalencias diagnósticas preferidas. Con el tiempo, las conclusiones se vuelven cada vez más precisas y alineadas con tu estilo clínico.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 11. Historial ────── -->
+    <section class="section-card accent-cyan" id="s11">
+      <div class="section-header">
+        <div class="section-number">11</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+        <h2 class="section-title">Historial de estudios</h2>
+      </div>
+      <p>GŌSTER guarda automáticamente cada informe generado y lo muestra como un <strong>índice clínico inteligente</strong>.</p>
+
+      <h4>🔍 Identificación rápida</h4>
+      <p>Cada entrada del historial muestra tres líneas:</p>
+      <ul>
+        <li><strong>Tipo de estudio abreviado</strong> — Ej: <em>RM Rodilla</em>, <em>TC Urotac</em>.</li>
+        <li><strong>Frase clave diagnóstica</strong> — Una frase de 2-6 palabras generada automáticamente que describe el hallazgo principal. Ej: <em>urolitiasis izquierda</em>, <em>rotura parcial LCA</em>, <em>hernia discal L4-L5</em>.</li>
+        <li><strong>Fecha</strong> — Día y mes del estudio.</li>
+      </ul>
+      <p>Esto te permite identificar cualquier estudio <strong>en segundos</strong>, sin necesidad de abrir cada informe.</p>
+
+      <h4>🔄 Actualización dinámica</h4>
+      <p>La frase clave se genera automáticamente al guardar el informe y se <strong>actualiza cuando corriges</strong> un informe, reflejando siempre la versión final del diagnóstico. Si no hay patología, mostrará <em>"sin hallazgos patológicos"</em>.</p>
+
+      <ul>
+        <li>Haz clic sobre cualquier entrada para cargar ese informe.</li>
+        <li>Icono de papelera para eliminar una entrada.</li>
+      </ul>
+    </section>
+
+    <!-- ────── 12. Consejos ────── -->
+    <section class="section-card accent-green" id="s12">
+      <div class="section-header">
+        <div class="section-number">12</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></span>
+        <h2 class="section-title">Consejos para sacarle el máximo provecho</h2>
+      </div>
+      <ol class="tips-list">
+        <li><strong>Construye el diccionario con variedad.</strong> Más variantes = informes menos repetitivos.</li>
+        <li><strong>Usa triggers cortos y consistentes.</strong></li>
+        <li><strong>Solo sube y dicta.</strong> GŌSTER adapta medidas, lateralidad y niveles automáticamente.</li>
+        <li><strong>Usa Instrucciones Especiales</strong> para cálculos.</li>
+        <li><strong>Configura instrucciones globales</strong> para tu estilo.</li>
+        <li><strong>Guarda tus correcciones.</strong> GŌSTER aprende y mejora con cada una. Las correcciones se transfieren automáticamente a casos similares futuros.</li>
+        <li><strong>Organiza tus tarjetas</strong> arrastrándolas.</li>
+        <li><strong>Combina dictado y escritura.</strong></li>
+        <li><strong>Revisa siempre antes de confirmar.</strong> GŌSTER es un asistente, no un sistema autónomo.</li>
+      </ol>
+    </section>
+
+    <!-- ────── 13. Cuanto más lo usas, mejor funciona ────── -->
+    <section class="section-card accent-amber" id="s13">
+      <div class="section-header">
+        <div class="section-number">13</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></span>
+        <h2 class="section-title">Cuanto más lo usas, mejor funciona</h2>
+      </div>
+
+      <p>GŌSTER no es un sistema estático. Es un asistente que <strong>evoluciona contigo</strong>. Cada informe que generas, cada corrección que guardas y cada diccionario que construyes alimenta un ciclo de mejora continua que hace que tus resultados sean cada vez más precisos, más rápidos y más alineados con tu forma de trabajar.</p>
+
+      <h4>Cómo mejora GŌSTER con el uso</h4>
+      <ul>
+        <li><strong>Correcciones que se convierten en reglas.</strong> Cada vez que editas un informe y haces clic en "Guardar cambios", GŌSTER extrae patrones de redacción y los aplica automáticamente en futuros informes del mismo tipo de estudio. Lo que hoy corriges, mañana ya no tendrás que tocarlo.</li>
+        <li><strong>Diccionario que crece y se enriquece.</strong> GŌSTER puede incorporar automáticamente nuevas entradas al diccionario a partir de tus correcciones. Tu vocabulario clínico se expande con el uso, sin esfuerzo extra.</li>
+        <li><strong>Historial como memoria activa.</strong> Tus reportes previos no son solo referencia: son memoria activa que modifica el comportamiento del modelo. GŌSTER identifica tu estilo de redacción, tus equivalencias diagnósticas y tus decisiones previas.</li>
+        <li><strong>Conclusiones cada vez más inteligentes.</strong> Con cada corrección, GŌSTER aprende tus equivalencias diagnósticas preferidas (descripción a conclusión), tus clasificaciones habituales (A.M.A., Stoller, ICRS...) y tu forma de priorizar hallazgos.</li>
+        <li><strong>Transferencia de aprendizaje.</strong> Cuando GŌSTER detecta hallazgos similares o estructuras clínicas equivalentes en un nuevo informe, aplica automáticamente el estilo corregido en casos previos. Una corrección en un estudio se transfiere a todos los casos análogos futuros.</li>
+        <li><strong>Coherencia que se afina sola.</strong> GŌSTER valida internamente cada párrafo para evitar contradicciones, y con el aprendizaje acumulado, la necesidad de correcciones disminuye progresivamente.</li>
+      </ul>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>En resumen</strong>
+          El primer informe es bueno. El décimo es mejor. El centésimo es tuyo. GŌSTER se adapta a ti, no al revés. Cuanto más lo uses, menos tendrás que corregir, y más tiempo podrás dedicar a lo que realmente importa: analizar tus estudios a profundidad.
+        </div>
+      </div>
+    </section>
+
+    <!-- ────── 14. FAQ ────── -->
+    <section class="section-card accent-pink" id="s14">
+      <div class="section-header">
+        <div class="section-number">14</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">¿Mis datos son privados?</div>
+        <div class="faq-a">Sí. Protegidos con autenticación y vinculados a tu cuenta.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué pasa si subo un informe con datos del paciente?</div>
+        <div class="faq-a">GŌSTER los anonimiza automáticamente.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo usar GŌSTER sin diccionario?</div>
+        <div class="faq-a">Sí. Usa conocimiento clínico propio.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo usar GŌSTER sin plantilla?</div>
+        <div class="faq-a">Sí. Genera en formato estándar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿El dictado de voz no funciona?</div>
+        <div class="faq-a">Verifica Chrome/Edge, permiso de micrófono.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo tener varios diccionarios?</div>
+        <div class="faq-a">Sí, todos los que necesites.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Las Instrucciones Especiales aplican a todos?</div>
+        <div class="faq-a">Solo cuando esa plantilla está activa.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo reordenar las tarjetas?</div>
+        <div class="faq-a">Sí, arrastra desde el icono ⠇.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿GŌSTER aprende de mis correcciones?</div>
+        <div class="faq-a">Sí. Cada "Guardar cambios" lo mejora.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo acceder desde cualquier dispositivo?</div>
+        <div class="faq-a">Sí, es una app web.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cómo cambio el color?</div>
+        <div class="faq-a">Icono de pincel en la barra lateral, 14 colores disponibles.</div>
+      </div>
+    </section>
+
+    <!-- ────── 15. Vincular celular por QR ────── -->
+    <section class="section-card accent-cyan" id="s15">
+      <div class="section-header">
+        <div class="section-number">15</div>
+        <span class="section-emoji"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></span>
+        <h2 class="section-title">Vincular celular por QR</h2>
+      </div>
+
+      <p>GŌSTER te permite vincular tu celular a tu sesión de escritorio escaneando un <strong>código QR</strong>. Una vez vinculado, puedes dictar desde el celular y ver el informe generado en tiempo real en la computadora — ideal cuando trabajas en una estación sin micrófono o prefieres la comodidad de tu propio dispositivo.</p>
+
+      <div class="sub-divider"></div>
+
+      <h4>📱 Cómo vincular tu celular</h4>
+      <ol>
+        <li>Abre GŌSTER en tu computadora y asegúrate de haber iniciado sesión.</li>
+        <li>En la barra lateral izquierda, haz clic en el icono de <strong>código QR</strong> (aparece como un cuadrado con patrón de puntos).</li>
+        <li>Se abrirá un panel con un <strong>código QR único</strong> generado para tu sesión activa. El código tiene una validez de <strong>5 minutos</strong>; pasado ese tiempo se regenera automáticamente.</li>
+        <li>En tu teléfono, abre el <strong>navegador</strong> (Chrome o Safari recomendados) o la aplicación de cámara.</li>
+        <li>Apunta la cámara al código QR y toca el enlace que aparece en pantalla. Esto abrirá GŌSTER en el teléfono, <strong>ya autenticado</strong> con tu cuenta.</li>
+        <li>Confirma la vinculación: en la computadora aparecerá un mensaje <em>"Celular vinculado correctamente"</em> y el icono de estado cambiará a verde.</li>
+      </ol>
+
+      <div class="callout tip">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="callout-content">
+          <strong>Consejo</strong>
+          No es necesario instalar ninguna aplicación. GŌSTER funciona directamente desde el navegador del celular.
+        </div>
+      </div>
+
+      <div class="sub-divider"></div>
+
+      <h4>🎙️ Dictar desde el celular</h4>
+      <p>Una vez vinculado, la interfaz del celular muestra un <strong>botón de micrófono</strong> grande y centrado. Úsalo exactamente igual que en la computadora:</p>
+      <ul>
+        <li>Toca <strong>Iniciar dictado</strong> y habla normalmente.</li>
+        <li>La transcripción aparece en tiempo real tanto en el celular como en la computadora.</li>
+        <li>Toca <strong>Detener</strong> cuando termines. GŌSTER generará el informe automáticamente en la computadora.</li>
+      </ul>
+
+      <div class="sub-divider"></div>
+
+      <h4>🔒 Seguridad del vínculo</h4>
+      <ul>
+        <li>Cada código QR es <strong>de un solo uso</strong> y expira a los 5 minutos.</li>
+        <li>El vínculo queda activo durante toda tu sesión. Al cerrar sesión en la computadora, el acceso desde el celular se desconecta automáticamente.</li>
+        <li>No compartas el código QR: quien lo escanee tendrá acceso a tu sesión activa.</li>
+      </ul>
+
+      <div class="callout note">
+        <div class="callout-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="callout-content">
+          <strong>Nota</strong>
+          La computadora y el celular deben estar en la misma red o el celular con datos celulares activos para mantener la sincronización en tiempo real.
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<footer class="footer">
+  <div class="footer-brand">GŌSTER</div>
+  <div class="footer-tagline">Inteligencia invisible que escribe por ti</div>
+  <div class="footer-meta">v4.1 · 2026 · <strong>STONEVALE</strong> · <a href="https://stonevale.io" target="_blank">stonevale.io</a></div>
+</footer>
+
+<script>
+(function() {
+  var ghostSrc = '/goster-icon-light.png';
+  var colors = ['#a78bfa','#60a5fa','#22d3ee','#4ade80','#f472b6','#fb923c','#f87171','#fcd34d'];
+  var animations = ['ghostDrift0','ghostDrift1','ghostDrift2','ghostDrift3','ghostDrift4','ghostDrift5'];
+  var container = document.getElementById('ghost-container');
+  var ghostCount = 40;
+
+  for (var i = 0; i < ghostCount; i++) {
+    var color = colors[Math.floor(Math.random() * colors.length)];
+    var size = 40 + Math.random() * 100;
+    var opacity = 0.04 + Math.random() * 0.06;
+    var x = Math.random() * 100;
+    var y = Math.random() * 100;
+    var duration = 15 + Math.random() * 25;
+    var delay = Math.random() * 20;
+    var anim = animations[Math.floor(Math.random() * animations.length)];
+
+    var img = document.createElement('img');
+    img.src = ghostSrc;
+    img.style.position = 'absolute';
+    img.style.left = x + '%';
+    img.style.top = y + '%';
+    img.style.width = size + 'px';
+    img.style.height = 'auto';
+    img.style.opacity = opacity;
+    img.style.filter = 'drop-shadow(0 0 8px ' + color + ')';
+    img.style.animation = anim + ' ' + duration + 's ease-in-out ' + delay + 's infinite';
+    img.style.pointerEvents = 'none';
+    img.classList.add('floating-ghost');
+
+    container.appendChild(img);
+  }
+})();
+</script>
+
+</body>
+</html>
