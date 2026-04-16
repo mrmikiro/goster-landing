@@ -40,8 +40,10 @@ export default function Hero() {
         </h2>
 
         <p className="fade-up delay-4 mt-6 text-center text-base md:text-lg text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
-          Transforma tu dictado de voz en informes estructurados con IA especializada.
-          Diseñada por radiólogos, para radiólogos.
+          Sube tus plantillas, construye tu diccionario clínico y dicta.{' '}
+          <strong className="text-white/70 font-medium">gōster</strong> aprende tu estilo,
+          genera el informe completo y se vuelve mejor con cada uso.
+          Olvídate de teclear — dedícate a ver estudios.
         </p>
 
         {/* CTAs */}
