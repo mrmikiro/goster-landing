@@ -1,5 +1,4 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import AppMockup from './AppMockup'
 import { Mic, Brain, Zap, Shield } from 'lucide-react'
 
 export default function Platform() {
@@ -27,9 +26,11 @@ export default function Platform() {
           </p>
         </div>
 
-        {/* Light mockup */}
+        {/* App screenshot */}
         <div className="scale-in delay-2 mb-20">
-          <AppMockup variant="light" />
+          <div className="rounded-2xl overflow-hidden border border-gray-200/60 mockup-shadow-light">
+            <img src="/interfaz.png" alt="Interfaz de Gōster" className="w-full h-auto block" />
+          </div>
         </div>
 
         {/* 4 pillars */}

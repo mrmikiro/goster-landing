@@ -1,5 +1,4 @@
 import { GhostLogo, Wordmark } from './Logo'
-import AppMockup from './AppMockup'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function Hero() {
@@ -70,9 +69,11 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* App mockup */}
+        {/* App screenshot */}
         <div className="scale-in delay-7 mt-16 md:mt-20">
-          <AppMockup />
+          <div className="rounded-2xl overflow-hidden border border-white/[0.06] mockup-shadow">
+            <img src="/interfaz.png" alt="Interfaz de Gōster" className="w-full h-auto block" />
+          </div>
         </div>
       </div>
     </section>
