@@ -21,14 +21,14 @@ export default function Hero() {
         {/* Animated ghost logo */}
         <div className="flex justify-center mb-8">
           <div className="ghost-animate">
-            <GhostLogo className="h-28 md:h-36 w-auto" invert />
+            <GhostLogo className="h-28 md:h-36 w-auto" />
           </div>
         </div>
 
         {/* Animated wordmark */}
         <div className="flex justify-center">
           <div className="word-animate">
-            <Wordmark className="h-12 md:h-16 w-auto" invert />
+            <Wordmark className="h-12 md:h-16 w-auto" />
           </div>
         </div>
 

@@ -26,8 +26,8 @@ export default function AppMockup({ variant = 'dark' }) {
         <div className={`hidden md:flex flex-col w-48 border-r ${isDark ? 'border-white/5 bg-dark-900' : 'border-gray-100 bg-gray-50'} p-3`}>
           {/* Logo */}
           <div className="flex items-center gap-2 px-2 mb-1">
-            <GhostLogo className="h-5 w-auto" invert={isDark} />
-            <Wordmark className="h-3 w-auto" invert={isDark} />
+            <GhostLogo className="h-5 w-auto" invert={!isDark} />
+            <Wordmark className="h-3 w-auto" invert={!isDark} />
           </div>
           <div className={`text-[10px] px-2 mb-4 ${isDark ? 'text-white/30' : 'text-gray-400'}`}>Buenas noches, <span className="font-medium">Miguel</span></div>
 

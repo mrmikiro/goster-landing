@@ -11,7 +11,7 @@ export default function FinalCTA() {
 
       <div className="relative max-w-3xl mx-auto px-6 text-center">
         <div className="fade-up mb-8">
-          <GhostLogo className="h-16 w-auto mx-auto opacity-10 invert" />
+          <GhostLogo className="h-16 w-auto mx-auto opacity-10" />
         </div>
         <h2 className="fade-up delay-1 text-3xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
           Empieza hoy.{' '}
