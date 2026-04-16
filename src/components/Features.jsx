@@ -44,51 +44,23 @@ const features = [
 
 function DictationVisual() {
   return (
-    <div className="bg-dark-800 rounded-2xl p-6 border border-white/5 h-full">
-      <div className="flex items-center gap-3 mb-5">
-        <div className="w-10 h-10 rounded-xl bg-lavender-600/20 flex items-center justify-center">
-          <Mic className="w-5 h-5 text-lavender-400" strokeWidth={1.5} />
+    <div className="flex items-center justify-center gap-4 md:gap-6 h-full">
+      {/* Phone 1 — Connected state */}
+      <div className="relative w-[45%] max-w-[200px]">
+        <div className="rounded-[24px] overflow-hidden shadow-2xl shadow-black/40 border border-white/10">
+          <img src="/IMG_9083.jpg" alt="Gōster móvil — conectado" className="w-full h-auto block" />
         </div>
-        <div>
-          <div className="text-sm font-medium text-white/80">Dictado activo</div>
-          <div className="text-[10px] text-lavender-400">Grabando desde celular...</div>
+        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-dark-700 border border-white/10 rounded-full">
+          <span className="text-[9px] text-white/50 font-medium tracking-wide">Conectado</span>
         </div>
       </div>
-      {/* Waveform */}
-      <div className="flex items-end justify-center gap-[3px] h-16 mb-5">
-        {Array.from({ length: 32 }).map((_, i) => {
-          const h = 10 + Math.sin(i * 0.5) * 20 + Math.random() * 25
-          return (
-            <div
-              key={i}
-              className="w-1 rounded-full bg-gradient-to-t from-lavender-600 to-lavender-400"
-              style={{
-                height: `${h}%`,
-                opacity: 0.3 + Math.random() * 0.5,
-                animation: `pulseRing ${1.5 + Math.random()}s ease-in-out ${Math.random() * 0.5}s infinite alternate`,
-              }}
-            />
-          )
-        })}
-      </div>
-      {/* Transcript preview */}
-      <div className="bg-dark-700/60 rounded-xl p-3 border border-white/5">
-        <p className="text-xs text-white/50 leading-relaxed">
-          "Se observa opacidad homogénea en base pulmonar derecha con broncograma aéreo. Silueta cardiaca de tamaño normal..."
-        </p>
-      </div>
-      {/* QR badge */}
-      <div className="mt-4 flex items-center gap-3">
-        <div className="w-12 h-12 bg-white rounded-lg p-1.5">
-          <div className="w-full h-full grid grid-cols-5 grid-rows-5 gap-[1px]">
-            {[1,1,1,0,1,1,0,1,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,1,1].map((v, i) => (
-              <div key={i} className={`rounded-[0.5px] ${v ? 'bg-dark-900' : 'bg-gray-200'}`} />
-            ))}
-          </div>
+      {/* Phone 2 — Dictating state */}
+      <div className="relative w-[45%] max-w-[200px]">
+        <div className="rounded-[24px] overflow-hidden shadow-2xl shadow-lavender-600/20 border border-lavender-500/20">
+          <img src="/IMG_9084.jpg" alt="Gōster móvil — dictando" className="w-full h-auto block" />
         </div>
-        <div>
-          <div className="text-[10px] text-white/50">Pareamiento móvil</div>
-          <div className="text-[10px] text-lavender-400">Escanea el QR desde tu celular</div>
+        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-lavender-600 rounded-full">
+          <span className="text-[9px] text-white font-medium tracking-wide">Dictando</span>
         </div>
       </div>
     </div>
