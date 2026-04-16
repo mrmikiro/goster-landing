@@ -16,12 +16,10 @@ export default function Philosophy() {
           <h2 className="fade-up delay-1 text-3xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
             Tu <span className="gradient-text">ghostwriter</span> radiológico
           </h2>
-          <p className="fade-up delay-2 mt-5 text-white/40 text-base font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="fade-up delay-2 mt-5 text-white/40 text-lg font-light max-w-2xl mx-auto leading-relaxed">
             El nombre nace de <span className="text-white/70 font-medium">ghostwriter</span> — el escriba invisible.
-            La <span className="text-white/80 font-medium">Ō</span> con macrón representa la H ausente en la abreviación,
-            aporta identidad visual única y refleja la precisión minimalista de la plataforma.
           </p>
-          <p className="fade-up delay-3 mt-3 text-white/50 text-base font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="fade-up delay-3 mt-3 text-white/50 text-lg font-light max-w-2xl mx-auto leading-relaxed">
             <strong className="text-white/80 font-medium">gōster</strong> es tu ghostwriter clínico personalizado:
             escribe como tú, contigo y para ti.
           </p>
