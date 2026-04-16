@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5 text-white/40">
-            <GhostLogo className="h-6 w-auto" eyeColor="#0a0a0f" />
+            <GhostLogo className="h-6 w-auto" darkBg />
             <Wordmark className="text-base" />
           </div>
 

@@ -157,7 +157,7 @@ function EditorVisual() {
       </div>
       {/* Ghost assistant */}
       <div className="flex items-center gap-3 p-3 rounded-xl bg-lavender-500/5 border border-lavender-500/10">
-        <GhostLogo className="h-8 w-auto text-lavender-400" eyeColor="#1a1a2e" />
+        <GhostLogo className="h-8 w-auto text-lavender-400" darkBg />
         <div>
           <div className="text-[10px] text-lavender-300 font-medium">Asistente Gōster</div>
           <div className="text-[10px] text-white/30">¿Quieres ajustar algo? Dicta la corrección...</div>

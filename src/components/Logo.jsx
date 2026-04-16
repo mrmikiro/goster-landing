@@ -1,33 +1,51 @@
-export function GhostLogo({ className = "h-8 w-auto", eyeColor = "currentColor" }) {
+export function GhostLogo({ className = "h-8 w-auto", darkBg = false }) {
+  // Eye color: white on dark backgrounds, white cutout on light (the body is currentColor)
+  const eyeFill = darkBg ? '#0a0a0f' : 'white'
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 240 260"
+      viewBox="0 0 480 520"
       fill="none"
       className={className}
     >
+      {/* Ghost body — wide dome, 3 smooth waves at bottom */}
       <path
-        d="M120 12 C52 12 12 62 12 130 L12 210 Q12 200 28 210 Q44 222 56 208 Q68 194 82 210 Q96 226 108 214 Q120 202 132 214 Q144 226 158 210 Q172 194 184 208 Q196 222 212 210 Q228 200 228 210 L228 130 C228 62 188 12 120 12Z"
+        d="M240 20
+           C130 20 40 100 40 220
+           L40 410
+           C40 410 60 370 100 400
+           C140 430 150 380 190 410
+           C210 430 230 430 250 420
+           C270 430 290 430 310 410
+           C350 380 360 430 400 400
+           C440 370 460 410 460 410
+           L460 220
+           C460 100 370 20 240 20Z"
         fill="currentColor"
       />
-      <ellipse cx="84" cy="118" rx="22" ry="28" fill={eyeColor} />
-      <ellipse cx="156" cy="118" rx="22" ry="28" fill={eyeColor} />
+      {/* Left eye — rounded oval */}
+      <ellipse cx="170" cy="230" rx="42" ry="50" fill={eyeFill} />
+      {/* Right eye — rounded oval */}
+      <ellipse cx="310" cy="230" rx="42" ry="50" fill={eyeFill} />
     </svg>
   )
 }
 
 export function Wordmark({ className = "text-xl" }) {
   return (
-    <span className={`font-medium tracking-tight leading-none ${className}`}>
+    <span className={`font-semibold tracking-[-0.02em] leading-none ${className}`}
+      style={{ fontFamily: "'Inter', system-ui, -apple-system, sans-serif" }}
+    >
       gōster
     </span>
   )
 }
 
-export function FullLogo({ ghostClassName = "h-8 w-auto", wordmarkClassName = "text-xl", eyeColor = "currentColor" }) {
+export function FullLogo({ ghostClassName = "h-8 w-auto", wordmarkClassName = "text-xl", darkBg = false }) {
   return (
     <div className="flex items-center gap-2.5">
-      <GhostLogo className={ghostClassName} eyeColor={eyeColor} />
+      <GhostLogo className={ghostClassName} darkBg={darkBg} />
       <Wordmark className={wordmarkClassName} />
     </div>
   )

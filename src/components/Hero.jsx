@@ -21,7 +21,7 @@ export default function Hero() {
         {/* Animated ghost logo */}
         <div className="flex justify-center mb-8">
           <div className="ghost-animate">
-            <GhostLogo className="h-28 md:h-36 w-auto text-white" eyeColor="#0a0a0f" />
+            <GhostLogo className="h-28 md:h-36 w-auto text-white" darkBg />
           </div>
         </div>
 
