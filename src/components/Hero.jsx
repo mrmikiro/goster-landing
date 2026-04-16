@@ -1,4 +1,4 @@
-import { GhostLogo } from './Logo'
+import { GhostLogo, Wordmark } from './Logo'
 import AppMockup from './AppMockup'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
@@ -21,16 +21,16 @@ export default function Hero() {
         {/* Animated ghost logo */}
         <div className="flex justify-center mb-8">
           <div className="ghost-animate">
-            <GhostLogo className="h-28 md:h-36 w-auto text-white" darkBg />
+            <GhostLogo className="h-28 md:h-36 w-auto" invert />
           </div>
         </div>
 
         {/* Animated wordmark */}
-        <h1 className="text-center">
-          <span className="word-animate block text-5xl md:text-7xl font-medium text-white tracking-tight">
-            gōster
-          </span>
-        </h1>
+        <div className="flex justify-center">
+          <div className="word-animate">
+            <Wordmark className="h-12 md:h-16 w-auto" invert />
+          </div>
+        </div>
 
         {/* Tagline */}
         <p className="fade-up delay-3 mt-6 text-center text-lg md:text-xl text-white/40 font-light max-w-xl mx-auto leading-relaxed">
