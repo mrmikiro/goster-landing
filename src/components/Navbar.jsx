@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { GhostLogo, Wordmark } from './Logo'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -26,17 +27,9 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5">
-          <img
-            src="/goster-ghost.svg"
-            alt="Gōster"
-            className="h-8 w-auto text-gray-900"
-          />
-          <img
-            src="/goster-wordmark.svg"
-            alt="Gōster"
-            className="h-5 w-auto text-gray-900"
-          />
+        <a href="#" className="flex items-center gap-2.5 text-gray-900">
+          <GhostLogo className="h-8 w-auto" />
+          <Wordmark className="text-xl font-medium tracking-tight" />
         </a>
 
         {/* Desktop nav */}
