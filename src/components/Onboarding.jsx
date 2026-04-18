@@ -29,7 +29,7 @@ export default function Onboarding() {
     <section ref={ref} className="py-20 md:py-28 bg-white border-t border-gray-100">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="fade-up text-sm font-medium text-lavender-500 tracking-wide uppercase mb-3">Empieza en minutos</p>
+          <p className="fade-up text-sm font-medium gradient-label tracking-wide uppercase mb-3">Empieza en minutos</p>
           <h2 className="fade-up delay-1 text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
             Tres pasos para tu primer informe
           </h2>

@@ -8,7 +8,7 @@ export default function TriggerExample() {
     <section ref={ref} className="py-20 md:py-28 bg-dark-900 overflow-hidden">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="fade-up text-sm font-medium text-lavender-400 tracking-wide uppercase mb-3">Triggers clínicos</p>
+          <p className="fade-up text-sm font-medium gradient-label-dark tracking-wide uppercase mb-3">Triggers clínicos</p>
           <h2 className="fade-up delay-1 text-3xl md:text-4xl font-semibold tracking-tight text-white">
             Dicta en corto. <span className="gradient-text">gōster redacta en completo.</span>
           </h2>

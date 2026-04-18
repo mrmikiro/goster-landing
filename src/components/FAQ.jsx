@@ -68,7 +68,7 @@ export default function FAQ() {
     <section ref={ref} className="py-20 md:py-32 bg-white">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="fade-up text-sm font-medium text-lavender-500 tracking-wide uppercase mb-3">FAQ</p>
+          <p className="fade-up text-sm font-medium gradient-label tracking-wide uppercase mb-3">FAQ</p>
           <h2 className="fade-up delay-1 text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
             Preguntas frecuentes
           </h2>

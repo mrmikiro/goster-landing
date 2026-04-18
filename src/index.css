@@ -114,6 +114,20 @@ body {
   background-clip: text;
 }
 
+.gradient-label {
+  background: linear-gradient(90deg, #10b981 0%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-label-dark {
+  background: linear-gradient(90deg, #34d399 0%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ── Ghost logo animation ── */
 @keyframes ghostFloat {
   0%, 100% { transform: translateY(0); }

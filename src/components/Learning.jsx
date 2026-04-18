@@ -31,7 +31,7 @@ export default function Learning() {
     <section ref={ref} className="py-20 md:py-32 bg-dark-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="fade-up text-sm font-medium text-lavender-400 tracking-wide uppercase mb-3">Aprendizaje continuo</p>
+          <p className="fade-up text-sm font-medium gradient-label-dark tracking-wide uppercase mb-3">Aprendizaje continuo</p>
           <h2 className="fade-up delay-1 text-3xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
             Cuanto más lo usas, <span className="gradient-text">mejor funciona</span>
           </h2>

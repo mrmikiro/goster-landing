@@ -11,7 +11,7 @@ export default function Platform() {
         <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <div className="fade-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-lavender-50 border border-lavender-200 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-lavender-500 animate-pulse" />
-            <span className="text-xs font-medium text-lavender-700 tracking-wide">
+            <span className="text-xs font-medium gradient-label tracking-wide">
               Plataforma de IA para radiología
             </span>
           </div>
