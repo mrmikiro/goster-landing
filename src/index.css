@@ -99,52 +99,82 @@ body {
   background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
 }
 
-/* ── Gradient text ── */
+/* ── Gradient text with shimmer ── */
+@keyframes lightSweep {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
 .gradient-text {
-  background: linear-gradient(135deg, #34d399 0%, #6ee7b7 40%, #10b981 100%);
+  background: linear-gradient(
+    90deg,
+    #10b981 0%,
+    #34d399 25%,
+    #ecfdf5 50%,
+    #34d399 75%,
+    #10b981 100%
+  );
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% 200%;
-  transition: background-position 0.6s ease;
+  animation: lightSweep 4s linear infinite;
 }
+
 .gradient-text:hover {
-  background-position: 100% 0%;
+  animation-duration: 1.2s;
 }
 
 .gradient-text-light {
-  background: linear-gradient(135deg, #059669 0%, #34d399 50%, #047857 100%);
+  background: linear-gradient(
+    90deg,
+    #047857 0%,
+    #10b981 25%,
+    #6ee7b7 50%,
+    #10b981 75%,
+    #047857 100%
+  );
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% 200%;
-  transition: background-position 0.6s ease;
+  animation: lightSweep 4s linear infinite;
 }
+
 .gradient-text-light:hover {
-  background-position: 100% 0%;
+  animation-duration: 1.2s;
 }
 
 .gradient-label {
-  background: linear-gradient(90deg, #10b981 0%, #6ee7b7 50%, #10b981 100%);
+  background: linear-gradient(
+    90deg,
+    #059669 0%,
+    #10b981 25%,
+    #a7f3d0 50%,
+    #10b981 75%,
+    #059669 100%
+  );
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
+  animation: lightSweep 3.5s linear infinite;
 }
 
 .gradient-label-dark {
-  background: linear-gradient(90deg, #34d399 0%, #a7f3d0 50%, #34d399 100%);
+  background: linear-gradient(
+    90deg,
+    #34d399 0%,
+    #6ee7b7 25%,
+    #ecfdf5 50%,
+    #6ee7b7 75%,
+    #34d399 100%
+  );
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  animation: lightSweep 3.5s linear infinite;
 }
 
 /* ── Ghost logo animation ── */
