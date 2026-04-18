@@ -26,7 +26,7 @@ export default function FinalCTA() {
             href="https://app.goster.ai"
             className="group inline-flex items-center gap-2.5 px-10 py-4 text-base font-medium text-white bg-lavender-600 rounded-full hover:bg-lavender-500 transition-all duration-300 hover:shadow-xl hover:shadow-lavender-600/25"
           >
-            Probar gōster gratis
+            Entrar a la plataforma
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>

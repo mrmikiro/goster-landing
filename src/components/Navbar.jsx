@@ -46,7 +46,7 @@ export default function Navbar() {
             href="https://app.goster.ai"
             className="inline-flex items-center px-5 py-2 text-[13px] font-medium text-white bg-lavender-600 rounded-full hover:bg-lavender-500 transition-all duration-300 hover:shadow-lg hover:shadow-lavender-600/20"
           >
-            Probar gratis
+            Entrar a la plataforma
           </a>
         </div>
 
@@ -81,7 +81,7 @@ export default function Navbar() {
             href="https://app.goster.ai"
             className="block text-center mt-2 px-5 py-2.5 text-sm font-medium text-white bg-lavender-600 rounded-full"
           >
-            Probar gratis
+            Entrar a la plataforma
           </a>
         </div>
       )}

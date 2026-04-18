@@ -49,11 +49,11 @@ export default function Hero() {
         {/* CTAs */}
         <div className="fade-up delay-6 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="https://app.goster.ai"
+            href="#planes"
             className="group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-medium text-white bg-lavender-600 rounded-full hover:bg-lavender-500 transition-all duration-300 hover:shadow-xl hover:shadow-lavender-600/25"
           >
             <span className="absolute inset-0 rounded-full bg-lavender-400/20 animate-ping opacity-0 group-hover:opacity-100" style={{ animationDuration: '2s' }} />
-            Comenzar gratis
+            Prueba gōster
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
