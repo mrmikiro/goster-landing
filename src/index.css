@@ -105,6 +105,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 200%;
+  transition: background-position 0.6s ease;
+}
+.gradient-text:hover {
+  background-position: 100% 0%;
 }
 
 .gradient-text-light {
@@ -112,20 +117,34 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 200%;
+  transition: background-position 0.6s ease;
+}
+.gradient-text-light:hover {
+  background-position: 100% 0%;
 }
 
 .gradient-label {
-  background: linear-gradient(90deg, #10b981 0%, #6ee7b7 100%);
+  background: linear-gradient(90deg, #10b981 0%, #6ee7b7 50%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 .gradient-label-dark {
-  background: linear-gradient(90deg, #34d399 0%, #a7f3d0 100%);
+  background: linear-gradient(90deg, #34d399 0%, #a7f3d0 50%, #34d399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* ── Ghost logo animation ── */
