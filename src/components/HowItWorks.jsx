@@ -14,14 +14,14 @@ const steps = [
     number: '02',
     title: 'La IA genera el informe',
     desc: 'Informe estructurado con hallazgos y conclusión diagnóstica.',
-    color: 'from-lavender-500 to-purple-400',
+    color: 'from-lavender-500 to-emerald-400',
   },
   {
     icon: PenLine,
     number: '03',
     title: 'Revisa y exporta',
     desc: 'Corrige por voz y copia con formato Word.',
-    color: 'from-purple-500 to-pink-400',
+    color: 'from-emerald-500 to-teal-400',
   },
 ]
 

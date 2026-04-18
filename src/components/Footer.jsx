@@ -15,6 +15,7 @@ export default function Footer() {
               { label: 'Plataforma', href: '#plataforma' },
               { label: 'Características', href: '#caracteristicas' },
               { label: 'Planes', href: '#planes' },
+              { label: 'Guía de usuario', href: '/guia.html' },
               { label: 'Contacto', href: 'mailto:contacto@goster.ai' },
             ].map((link) => (
               <a
