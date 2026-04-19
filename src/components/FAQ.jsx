@@ -35,6 +35,26 @@ const faqs = [
     q: '¿Qué navegador necesito?',
     a: 'Chrome o Edge son los recomendados para el dictado por voz. La plataforma funciona en cualquier navegador moderno.',
   },
+  {
+    q: '¿Necesito dictar de forma estructurada?',
+    a: 'No. Puedes hablar de forma natural, cambiar el orden, corregirte a mitad de frase. gōster entiende tu intención clínica y estructura el informe correctamente.',
+  },
+  {
+    q: '¿Qué pasa si me corrijo durante el dictado?',
+    a: 'gōster descarta automáticamente los valores provisionales y conserva solo tu decisión final. Si dices "16 grados... no, son 19", usará 19° en todo el informe.',
+  },
+  {
+    q: '¿Puedo agregar instrucciones específicas por tipo de estudio?',
+    a: 'Sí. Cada plantilla puede llevar instrucciones especiales: cálculos, convenciones de medidas, terminología. Se combinan con tus instrucciones globales.',
+  },
+  {
+    q: '¿gōster genera la impresión diagnóstica?',
+    a: 'Siempre. La impresión se genera automáticamente a partir del cuerpo del informe, ordenada de mayor a menor relevancia clínica. Si el diccionario tiene equivalencias, las usa; si no, infiere el diagnóstico.',
+  },
+  {
+    q: '¿gōster reemplaza al radiólogo?',
+    a: 'No. gōster es un asistente de redacción. El médico dicta los hallazgos; gōster los expande y estructura. La responsabilidad clínica es siempre del radiólogo.',
+  },
 ]
 
 function FAQItem({ q, a }) {

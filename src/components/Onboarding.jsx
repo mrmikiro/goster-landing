@@ -6,19 +6,19 @@ const steps = [
     icon: Upload,
     step: '1',
     title: 'Sube tus plantillas',
-    desc: 'Carga un informe normal por cada tipo de estudio (DOCX o PDF). gōster detecta la modalidad automáticamente.',
+    desc: 'Carga un informe normal por cada tipo de estudio (DOCX, DOC o PDF). gōster detecta la modalidad y puedes agregar instrucciones especiales por plantilla.',
   },
   {
     icon: BookOpen,
     step: '2',
     title: 'Construye tu diccionario',
-    desc: 'Sube informes previos patológicos. gōster extrae los triggers y descripciones, anonimizando datos del paciente.',
+    desc: 'Sube informes patológicos previos. gōster extrae triggers y descripciones, anonimiza datos del paciente y fusiona entradas sin duplicar.',
   },
   {
     icon: Mic,
     step: '3',
     title: 'Dicta y genera',
-    desc: 'Activa plantilla, dicta tus hallazgos y presiona Generar. En segundos tienes el informe completo.',
+    desc: 'Activa una plantilla (el diccionario se vincula solo), dicta tus hallazgos y presiona Generar. Informe completo en segundos.',
   },
 ]
 
