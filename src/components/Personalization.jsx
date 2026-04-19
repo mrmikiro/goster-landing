@@ -2,9 +2,9 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import { Sun, Moon, Palette, SlidersHorizontal } from 'lucide-react'
 
 const colors = [
-  '#7c3aed', '#2563eb', '#06b6d4', '#10b981', '#f472b6',
-  '#f97316', '#ef4444', '#eab308', '#84cc16', '#0891b2',
-  '#6366f1', '#d946ef', '#1d4ed8', '#78716c',
+  '#6ee7b7', '#8b8bf5', '#c4c4d4', '#1e3a8a', '#818cf8', '#9ca3af', '#60a5fa',
+  '#9ca3af', '#22d3ee', '#a7c4a0', '#facc15', '#d97706', '#b5a78a',
+  '#f97316', '#78716c', '#b45454', '#e87994', '#a855f7',
 ]
 
 export default function Personalization() {
