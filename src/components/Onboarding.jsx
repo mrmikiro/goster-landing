@@ -18,7 +18,7 @@ const steps = [
     icon: Mic,
     step: '3',
     title: 'Dicta y genera',
-    desc: 'Activa una plantilla (el diccionario se vincula solo), dicta tus hallazgos y presiona Generar. Informe completo en segundos.',
+    desc: 'Activa la plantilla manualmente o con voz diciendo el tipo de estudio (ej. "resonancia magnética de hombro"). El diccionario se vincula solo. Dicta tus hallazgos y presiona Generar informe.',
   },
 ]
 
