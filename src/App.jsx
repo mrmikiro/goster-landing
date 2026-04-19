@@ -6,6 +6,7 @@ import Platform from './components/Platform'
 import Onboarding from './components/Onboarding'
 import Features from './components/Features'
 import TriggerExample from './components/TriggerExample'
+import Instructions from './components/Instructions'
 import HowItWorks from './components/HowItWorks'
 import Learning from './components/Learning'
 import Personalization from './components/Personalization'
@@ -26,6 +27,7 @@ export default function App() {
       <Onboarding />
       <Features />
       <TriggerExample />
+      <Instructions />
       <HowItWorks />
       <Learning />
       <Personalization />
