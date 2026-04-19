@@ -56,9 +56,11 @@ export default function TriggerExample() {
             </div>
           </div>
 
-          <p className="text-center text-white/25 text-sm font-light">
-            Resultado: dices 5 palabras y <strong className="text-white/50 font-medium">gōster</strong> escribe 30.
-          </p>
+          <div className="rounded-xl bg-lavender-500/10 border border-lavender-500/20 px-6 py-4 text-center">
+            <p className="text-base font-medium text-lavender-300">
+              Resultado: dices 5 palabras y <strong className="text-white font-semibold">gōster</strong> escribe 30.
+            </p>
+          </div>
         </div>
 
         {/* Label */}
