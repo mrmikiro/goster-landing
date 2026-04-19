@@ -1,10 +1,10 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { Sun, Moon, Palette, SlidersHorizontal } from 'lucide-react'
 
-const colors = [
-  '#6ee7b7', '#8b8bf5', '#c4c4d4', '#1e3a8a', '#818cf8', '#9ca3af', '#60a5fa',
-  '#9ca3af', '#22d3ee', '#a7c4a0', '#facc15', '#d97706', '#b5a78a',
-  '#f97316', '#78716c', '#b45454', '#e87994', '#a855f7',
+const colorRows = [
+  ['#6ee7b7', '#8b8bf5', '#c4c4d4', '#1e3a8a', '#818cf8', '#9ca3af', '#60a5fa'],
+  ['#9ca3af', '#22d3ee', '#a7c4a0', '#facc15', '#d97706', '#f59e0b', '#b5a78a'],
+  ['#f97316', '#78716c', '#84cc16', '#eab308', '#f472b6', '#fb923c', '#a855f7'],
 ]
 
 export default function Personalization() {
@@ -60,12 +60,16 @@ export default function Personalization() {
             <div className="flex items-center justify-center mb-4">
               <Palette className="w-5 h-5 text-lavender-500" strokeWidth={1.5} />
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-1.5 mb-4">
-              {colors.map((c) => (
-                <div key={c} className="w-5 h-5 rounded-full shadow-sm" style={{ background: c }} />
+            <div className="space-y-1.5 mb-4">
+              {colorRows.map((row, r) => (
+                <div key={r} className="flex items-center justify-center gap-1.5">
+                  {row.map((c, i) => (
+                    <div key={`${r}-${i}`} className="w-5 h-5 rounded-full shadow-sm" style={{ background: c }} />
+                  ))}
+                </div>
               ))}
             </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-1">14 colores de acento</h3>
+            <h3 className="text-base font-semibold text-gray-900 mb-1">21 colores de acento</h3>
             <p className="text-sm text-gray-400">Elige el que represente tu estilo.</p>
           </div>
         </div>
