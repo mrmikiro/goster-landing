@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Mic, Brain, Zap, Shield, Palette } from 'lucide-react'
+import { Mic, Brain, Zap, Shield, Palette, FileText, Settings, Table2 } from 'lucide-react'
 
 export default function Platform() {
   const ref = useScrollReveal()
@@ -33,32 +33,47 @@ export default function Platform() {
         </div>
 
         {/* 4 pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {[
             {
               icon: Mic,
-              title: 'Dictado por voz',
-              desc: 'Computadora o celular vía QR.',
+              title: 'Dictado natural',
+              desc: 'Habla como con un colega. Desde tu computadora o celular vía QR.',
             },
             {
               icon: Brain,
-              title: 'Cero alucinaciones',
-              desc: 'Si no lo dictaste, no aparece.',
+              title: 'Interpretación semántica',
+              desc: 'Entiende tu intención clínica, no solo tus palabras exactas. Tolera errores de dictado y sinónimos.',
+            },
+            {
+              icon: FileText,
+              title: 'Plantillas + diccionario',
+              desc: 'Al activar una plantilla, se vincula automáticamente el diccionario correspondiente.',
             },
             {
               icon: Zap,
               title: 'Informes en segundos',
-              desc: 'Hallazgos y conclusiones al instante.',
+              desc: 'Hallazgos, conclusiones diagnósticas y formato profesional al instante.',
+            },
+            {
+              icon: Settings,
+              title: 'Instrucciones especiales',
+              desc: 'Reglas por plantilla: cálculos, convenciones, terminología específica para cada estudio.',
+            },
+            {
+              icon: Table2,
+              title: 'Tablas por voz',
+              desc: 'Dicta y llena tablas clínicas dentro del informe con tu voz.',
             },
             {
               icon: Shield,
               title: 'Aprende de ti',
-              desc: 'Cada corrección mejora el próximo informe.',
+              desc: 'Cada corrección se convierte en regla. Tu estilo se replica automáticamente.',
             },
             {
               icon: Palette,
               title: 'Hazlo tuyo',
-              desc: 'Tema claro/oscuro, control de tono, 14 colores de acento.',
+              desc: 'Tema claro/oscuro, tono sepia a blanco, 14 colores de acento.',
             },
           ].map((item, i) => {
             const Icon = item.icon

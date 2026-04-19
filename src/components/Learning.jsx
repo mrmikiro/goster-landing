@@ -1,26 +1,31 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { TrendingUp, BookOpen, History, Brain, ArrowRight, Sparkles } from 'lucide-react'
+import { TrendingUp, BookOpen, History, Brain, ShieldCheck, ArrowRight, Sparkles } from 'lucide-react'
 
 const points = [
   {
     icon: BookOpen,
-    title: 'Correcciones que se convierten en reglas',
-    desc: 'Lo que hoy corriges, mañana ya no tendrás que tocarlo.',
+    title: 'Correcciones → reglas',
+    desc: 'Editas un informe, guardas cambios, y gōster aplica ese patrón en el futuro. Lo que hoy corriges, mañana ya no lo tocas.',
   },
   {
     icon: TrendingUp,
-    title: 'Diccionario que crece contigo',
-    desc: 'Tu vocabulario clínico se expande con el uso, sin esfuerzo.',
+    title: 'Diccionario que crece',
+    desc: 'Nuevas entradas se incorporan automáticamente desde tus correcciones. Tu vocabulario clínico se expande sin esfuerzo.',
   },
   {
     icon: History,
-    title: 'Historial como memoria activa',
-    desc: 'Tus reportes previos modifican el modelo. gōster recuerda tu estilo y tus decisiones.',
+    title: 'Historial activo',
+    desc: 'Tus reportes previos son memoria activa. gōster recuerda tu estilo, tus equivalencias diagnósticas y tus decisiones.',
   },
   {
     icon: Brain,
-    title: 'Transferencia de aprendizaje',
-    desc: 'Una corrección en un caso se aplica a todos los casos similares futuros.',
+    title: 'Transferencia entre casos',
+    desc: 'Una corrección en rodilla se aplica a hallazgos similares en hombro. El aprendizaje cruza estructuras anatómicas.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Coherencia automática',
+    desc: 'Valida cada párrafo para evitar contradicciones. Si dictas una lesión, no agrega frases de normalidad incompatibles.',
   },
 ]
 
