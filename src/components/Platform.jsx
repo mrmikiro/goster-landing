@@ -73,7 +73,7 @@ export default function Platform() {
             {
               icon: Palette,
               title: 'Hazlo tuyo',
-              desc: 'Tema claro/oscuro, tono sepia a blanco, 14 colores de acento.',
+              desc: 'Tema claro/oscuro, tono sepia a blanco, 21 colores de acento.',
             },
           ].map((item, i) => {
             const Icon = item.icon
