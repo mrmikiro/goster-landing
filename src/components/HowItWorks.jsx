@@ -6,7 +6,7 @@ const steps = [
     icon: Mic,
     number: '01',
     title: 'Dicta los hallazgos',
-    desc: 'Desde tu computadora o celular por QR.',
+    desc: 'Usa el micrófono de tu computadora (integrado o externo) o vincula tu celular por QR para usarlo como micrófono inalámbrico.',
     color: 'from-lavender-600 to-lavender-400',
   },
   {
