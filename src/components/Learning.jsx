@@ -18,11 +18,6 @@ const points = [
     desc: 'Tus reportes previos son memoria activa. gōster recuerda tu estilo, tus equivalencias diagnósticas y tus decisiones.',
   },
   {
-    icon: Brain,
-    title: 'Transferencia entre casos',
-    desc: 'Una corrección en rodilla se aplica a hallazgos similares en hombro. El aprendizaje cruza estructuras anatómicas.',
-  },
-  {
     icon: ShieldCheck,
     title: 'Coherencia automática',
     desc: 'Valida cada párrafo para evitar contradicciones. Si dictas una lesión, no agrega frases de normalidad incompatibles.',
