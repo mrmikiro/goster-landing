@@ -101,7 +101,7 @@ body {
 
 /* ── Gradient text with shimmer ── */
 @keyframes lightSweep {
-  0% { background-position: -200% center; }
+  0% { background-position: -100% center; }
   100% { background-position: 200% center; }
 }
 
@@ -109,72 +109,72 @@ body {
   background: linear-gradient(
     90deg,
     #10b981 0%,
-    #34d399 25%,
-    #ecfdf5 50%,
-    #34d399 75%,
+    #10b981 35%,
+    #6ee7b7 50%,
+    #10b981 65%,
     #10b981 100%
   );
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: lightSweep 4s linear infinite;
+  animation: lightSweep 8s ease-in-out infinite;
 }
 
 .gradient-text:hover {
-  animation-duration: 1.2s;
+  animation-duration: 3s;
 }
 
 .gradient-text-light {
   background: linear-gradient(
     90deg,
     #047857 0%,
-    #10b981 25%,
-    #6ee7b7 50%,
-    #10b981 75%,
+    #047857 35%,
+    #34d399 50%,
+    #047857 65%,
     #047857 100%
   );
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: lightSweep 4s linear infinite;
+  animation: lightSweep 8s ease-in-out infinite;
 }
 
 .gradient-text-light:hover {
-  animation-duration: 1.2s;
+  animation-duration: 3s;
 }
 
 .gradient-label {
   background: linear-gradient(
     90deg,
     #059669 0%,
-    #10b981 25%,
+    #059669 35%,
     #a7f3d0 50%,
-    #10b981 75%,
+    #059669 65%,
     #059669 100%
   );
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: lightSweep 3.5s linear infinite;
+  animation: lightSweep 7s ease-in-out infinite;
 }
 
 .gradient-label-dark {
   background: linear-gradient(
     90deg,
     #34d399 0%,
-    #6ee7b7 25%,
+    #34d399 35%,
     #ecfdf5 50%,
-    #6ee7b7 75%,
+    #34d399 65%,
     #34d399 100%
   );
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: lightSweep 3.5s linear infinite;
+  animation: lightSweep 7s ease-in-out infinite;
 }
 
 /* ── Ghost logo animation ── */
