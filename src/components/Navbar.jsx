@@ -16,6 +16,7 @@ export default function Navbar() {
     { label: 'Características', href: '#caracteristicas' },
     { label: 'Cómo funciona', href: '#como-funciona' },
     { label: 'Planes', href: '#planes' },
+    { label: 'Guía', href: '/guia.html' },
   ]
 
   return (
