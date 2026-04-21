@@ -174,8 +174,10 @@
 
   /* ── Sticky nav ── */
   .sticky-nav {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
     background: rgba(10,10,15,0.9);
     backdrop-filter: blur(20px) saturate(1.8);
@@ -770,35 +772,7 @@
 <!-- Ghost container for floating ghosts -->
 <div id="ghost-container"></div>
 
-<!-- ════════════════════════ HERO ════════════════════════ -->
-<header class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-blur"></div>
-  <div class="hero-content">
-    <div class="hero-ghost-logo">
-      <img src="/goster-icon-light.png" alt="gōster ghost" />
-    </div>
-    <div style="margin-bottom: 20px;">
-      <img src="/goster-wordmark.png" alt="gōster" style="height: 56px; width: auto; margin: 0 auto; display: block;" />
-    </div>
-    <div class="badge" style="margin-bottom: 16px;">
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-      Guía del Usuario
-    </div>
-    <p class="subtitle">Inteligencia invisible que escribe por ti</p>
-  </div>
-</header>
-
-<!-- ════════════════════ WARNING BANNER ════════════════════ -->
-<div class="warning-banner">
-  <div class="wb-title">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-    Importante
-  </div>
-  <p><b>gōster</b> <strong>no reemplaza</strong> el criterio del radiólogo. El médico dicta los hallazgos; <b>gōster</b> los expande y estructura con terminología profesional, pero <strong>la responsabilidad clínica es siempre del radiólogo.</strong></p>
-</div>
-
-<!-- ════════════════════ STICKY NAV ════════════════════ -->
+<!-- ════════════════════ FIXED NAV ════════════════════ -->
 <nav class="sticky-nav">
   <div class="sticky-nav-inner">
     <a href="/" class="sticky-nav-logo">
@@ -824,8 +798,35 @@
     </div>
     <a href="https://app.goster.ai" class="sticky-nav-cta">Entrar a la plataforma</a>
   </div>
-  </div>
 </nav>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<header class="hero" style="padding-top: 160px;">
+  <div class="hero-glow"></div>
+  <div class="hero-blur"></div>
+  <div class="hero-content">
+    <div class="hero-ghost-logo">
+      <img src="/goster-icon-light.png" alt="gōster ghost" />
+    </div>
+    <div style="margin-bottom: 20px;">
+      <img src="/goster-wordmark.png" alt="gōster" style="height: 56px; width: auto; margin: 0 auto; display: block;" />
+    </div>
+    <div class="badge" style="margin-bottom: 16px;">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      Guía del Usuario
+    </div>
+    <p class="subtitle">Inteligencia invisible que escribe por ti</p>
+  </div>
+</header>
+
+<!-- ════════════════════ WARNING BANNER ════════════════════ -->
+<div class="warning-banner">
+  <div class="wb-title">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    Importante
+  </div>
+  <p><b>gōster</b> <strong>no reemplaza</strong> el criterio del radiólogo. El médico dicta los hallazgos; <b>gōster</b> los expande y estructura con terminología profesional, pero <strong>la responsabilidad clínica es siempre del radiólogo.</strong></p>
+</div>
 
 <!-- ════════════════════════ LAYOUT ════════════════════════ -->
 <div class="layout">
