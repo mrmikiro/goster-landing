@@ -177,45 +177,76 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(10,10,15,0.75);
+    background: rgba(10,10,15,0.9);
     backdrop-filter: blur(20px) saturate(1.8);
     -webkit-backdrop-filter: blur(20px) saturate(1.8);
     border-bottom: 1px solid var(--white-5);
     padding: 0 24px;
   }
   .sticky-nav-inner {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 12px 0;
+  }
+  .sticky-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .sticky-nav-logo img:first-child {
+    height: 26px;
+    width: auto;
+  }
+  .sticky-nav-logo img:last-child {
+    height: 15px;
+    width: auto;
+  }
+  .sticky-nav-links {
     display: flex;
     align-items: center;
     gap: 4px;
     overflow-x: auto;
     scrollbar-width: none;
-    padding: 10px 0;
+    -ms-overflow-style: none;
   }
-  .sticky-nav-inner::-webkit-scrollbar { display: none; }
+  .sticky-nav-links::-webkit-scrollbar { display: none; }
   .sticky-nav a {
     white-space: nowrap;
     font-size: 0.72rem;
     font-weight: 500;
     color: var(--white-40);
     text-decoration: none;
-    padding: 5px 12px;
+    padding: 5px 10px;
     border-radius: 100px;
     transition: all 0.25s ease;
     flex-shrink: 0;
   }
   .sticky-nav a:hover {
-    color: var(--lavender-400);
-    background: rgba(139,92,246,0.08);
+    color: #34d399;
+    background: rgba(16,185,129,0.08);
   }
-  .sticky-nav .nav-brand {
-    font-weight: 800;
-    color: var(--lavender-400);
-    font-size: 0.82rem;
-    margin-right: 8px;
+  .sticky-nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+    background: #059669;
+    border-radius: 100px;
+    text-decoration: none;
+    margin-left: 12px;
     flex-shrink: 0;
-    letter-spacing: -0.02em;
+    transition: all 0.25s ease;
+  }
+  .sticky-nav-cta:hover {
+    background: #10b981;
   }
 
   /* ── Warning banner ── */
@@ -770,22 +801,29 @@
 <!-- ════════════════════ STICKY NAV ════════════════════ -->
 <nav class="sticky-nav">
   <div class="sticky-nav-inner">
-    <span class="nav-brand"><b>gōster</b></span>
-    <a href="#s1">Qué es</a>
-    <a href="#s2">Registro</a>
-    <a href="#s3">Interfaz</a>
-    <a href="#s4">Config. inicial</a>
-    <a href="#s5">Diccionario</a>
-    <a href="#s6">Plantillas</a>
-    <a href="#s7">Generar informe</a>
-    <a href="#s8">Dictado por voz</a>
-    <a href="#s9">Editor</a>
-    <a href="#s10">Impresión dx</a>
-    <a href="#s11">Historial</a>
-    <a href="#s12">Consejos</a>
-    <a href="#s13">Aprendizaje</a>
-    <a href="#s14">FAQ</a>
-    <a href="#s15">Vincular celular</a>
+    <a href="/" class="sticky-nav-logo">
+      <img src="/goster-icon-light.png" alt="gōster" />
+      <img src="/goster-wordmark.png" alt="gōster" />
+    </a>
+    <div class="sticky-nav-links">
+      <a href="#s1">Qué es</a>
+      <a href="#s2">Registro</a>
+      <a href="#s3">Interfaz</a>
+      <a href="#s4">Config. inicial</a>
+      <a href="#s5">Diccionario</a>
+      <a href="#s6">Plantillas</a>
+      <a href="#s7">Generar informe</a>
+      <a href="#s8">Dictado por voz</a>
+      <a href="#s9">Editor</a>
+      <a href="#s10">Impresión dx</a>
+      <a href="#s11">Historial</a>
+      <a href="#s12">Consejos</a>
+      <a href="#s13">Aprendizaje</a>
+      <a href="#s14">FAQ</a>
+      <a href="#s15">Vincular celular</a>
+    </div>
+    <a href="https://app.goster.ai" class="sticky-nav-cta">Entrar a la plataforma</a>
+  </div>
   </div>
 </nav>
 
