@@ -44,6 +44,7 @@ const plans = [
     features: [
       'Todo lo del Plan Pro',
       'Plantillas e informes ilimitados',
+      'Plantillas institucionales precargadas para todos los usuarios',
       'Planes grupales y multi-usuario',
       'Facturación institucional',
       'Onboarding dedicado',
