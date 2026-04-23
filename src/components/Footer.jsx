@@ -32,6 +32,14 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} gōster. Todos los derechos reservados.
           </p>
         </div>
+        <div className="mt-6 text-center">
+          <p className="text-[10px] text-white/10">
+            Desarrollado por{' '}
+            <a href="https://www.stonevale.io" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-white/40 transition-colors">
+              STONEVALE
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   )
