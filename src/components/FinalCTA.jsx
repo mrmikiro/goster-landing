@@ -29,7 +29,7 @@ export default function FinalCTA() {
           </a>
         </div>
         <p className="fade-up delay-3 mt-5 text-sm text-white/25">
-          Sin tarjeta · Sin compromiso · 15 días gratis
+          Sin tarjeta · Sin compromiso · Prueba gratuita
         </p>
       </div>
     </section>
