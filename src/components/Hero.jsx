@@ -38,8 +38,8 @@ export default function Hero() {
         </p>
 
         <p className="fade-up delay-5 mt-4 text-center text-base text-white/35 max-w-xl mx-auto font-light leading-relaxed">
-          Dicta naturalmente. <strong className="text-white/60 font-medium">gōster</strong> escribe informes que suenan como tú.
-          Aprende tu vocabulario, tus plantillas, tu forma de redactar.
+          Interpreta tus estudios con naturalidad. <strong className="text-white/60 font-medium">gōster</strong> escribe informes que suenan como tú.
+          Aprende tu vocabulario, tu estilo.
         </p>
 
         <div className="fade-up delay-6 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
