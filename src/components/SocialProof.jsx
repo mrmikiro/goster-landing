@@ -54,6 +54,12 @@ export default function SocialProof() {
             </div>
           ))}
         </div>
+
+        <div className="fade-up delay-5 mt-14 text-center">
+          <p className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+            Todo esto, <span className="gradient-text-light">gōster ya lo hace.</span>
+          </p>
+        </div>
       </div>
     </section>
   )
