@@ -11,6 +11,7 @@ import TriggerExample from './components/TriggerExample'
 import Instructions from './components/Instructions'
 import HowItWorks from './components/HowItWorks'
 import Learning from './components/Learning'
+import Autopilot from './components/Autopilot'
 import Personalization from './components/Personalization'
 import Pricing from './components/Pricing'
 import FAQ from './components/FAQ'
@@ -34,6 +35,7 @@ export default function App() {
       <Instructions />
       <HowItWorks />
       <Learning />
+      <Autopilot />
       <Personalization />
       <Pricing />
       <FAQ />
