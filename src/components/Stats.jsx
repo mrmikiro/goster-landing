@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Mic, Palette, Globe } from 'lucide-react'
+import { Clock, Users, CheckCircle } from 'lucide-react'
 
 function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
@@ -36,40 +36,29 @@ function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
 }
 
 const stats = [
-  { icon: Mic, value: 60, suffix: '%', label: 'Aumento de productividad', prefix: '+' },
-  { icon: Palette, value: 21, suffix: '', label: 'Colores de acento personalizables' },
-  { icon: Globe, value: 24, suffix: '/7', label: 'Disponibilidad de la plataforma' },
+  { icon: Clock, value: 15, suffix: 's', label: 'Tiempo promedio de generación', prefix: '<' },
+  { icon: Users, value: 98, suffix: '', label: 'Radiólogos que validaron gōster' },
+  { icon: CheckCircle, value: 74, suffix: '%', label: 'Lo considera muy útil o imprescindible' },
 ]
 
 export default function Stats() {
   const ref = useScrollReveal()
 
   return (
-    <section ref={ref} className="relative bg-white border-t border-gray-100">
-      {/* Banner message */}
-      <div className="max-w-7xl mx-auto px-6 pt-14 pb-4 text-center">
-        <p className="fade-up text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-          Bienvenido a la nueva forma de hacer radiología.
-          <br />
-          <span className="text-gray-900 font-medium">
-            Una vez que pruebes <strong className="font-semibold">gōster</strong>, no vas a querer volver a trabajar sin él.
-          </span>
-        </p>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+    <section ref={ref} className="relative bg-dark-900 border-t border-white/5">
+      <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
         <div className="grid grid-cols-3 gap-8 md:gap-4 max-w-3xl mx-auto">
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (
               <div key={i} className={`fade-up delay-${i + 1} text-center`}>
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-lavender-50 mb-3">
-                  <Icon className="w-5 h-5 text-lavender-500" strokeWidth={1.5} />
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-lavender-600/10 mb-3">
+                  <Icon className="w-5 h-5 text-lavender-400" strokeWidth={1.5} />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                  {stat.text ? stat.text : <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ''} />}
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ''} />
                 </div>
-                <div className="text-xs md:text-sm text-gray-400 font-medium">{stat.label}</div>
+                <div className="text-xs md:text-sm text-white/30 font-medium">{stat.label}</div>
               </div>
             )
           })}

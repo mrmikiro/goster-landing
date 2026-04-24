@@ -1,7 +1,9 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
+import SocialProof from './components/SocialProof'
 import Philosophy from './components/Philosophy'
+import Comparison from './components/Comparison'
 import Platform from './components/Platform'
 import Onboarding from './components/Onboarding'
 import Features from './components/Features'
@@ -22,7 +24,9 @@ export default function App() {
       <Navbar />
       <Hero />
       <Stats />
+      <SocialProof />
       <Philosophy />
+      <Comparison />
       <Platform />
       <Onboarding />
       <Features />
