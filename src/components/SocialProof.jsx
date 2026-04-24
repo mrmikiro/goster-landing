@@ -36,7 +36,7 @@ export default function SocialProof() {
         <div className="text-center mb-14">
           <p className="fade-up text-sm font-medium gradient-label tracking-wide uppercase mb-3">Validado por la comunidad</p>
           <h2 className="fade-up delay-1 text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
-            98 radiólogos mexicanos probaron <strong className="font-bold">gōster</strong>
+            Validado por radiólogos mexicanos
           </h2>
           <p className="fade-up delay-2 mt-4 text-2xl md:text-3xl font-bold gradient-text-light">
             74% lo considera muy útil o imprescindible
