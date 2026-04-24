@@ -5,7 +5,7 @@ const plans = [
   {
     name: 'Trial',
     price: 'Gratis',
-    period: '15 días',
+    period: '',
     desc: 'Prueba todo sin compromiso.',
     features: [
       '3 plantillas personalizadas',
@@ -20,7 +20,7 @@ const plans = [
   },
   {
     name: 'Base',
-    price: '$199',
+    price: '$249',
     period: 'MXN/mes',
     desc: 'Ideal para comenzar.',
     features: [
@@ -35,7 +35,7 @@ const plans = [
   },
   {
     name: 'Pro',
-    price: '$399',
+    price: '$499',
     period: 'MXN/mes',
     desc: 'Sin límites. Para alta demanda.',
     features: [
@@ -137,7 +137,7 @@ export default function Pricing() {
         </div>
 
         <p className="fade-up delay-4 mt-8 text-center text-sm text-gray-400">
-          * Todos los precios en pesos mexicanos. Sin tarjeta de crédito para el trial.
+          * Todos los precios en pesos mexicanos. Sin tarjeta de crédito para la prueba gratuita.
         </p>
       </div>
     </section>

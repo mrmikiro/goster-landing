@@ -49,7 +49,7 @@ export default function Hero() {
             className="group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-medium text-white bg-lavender-600 rounded-full hover:bg-lavender-500 transition-all duration-300 hover:shadow-xl hover:shadow-lavender-600/25"
           >
             <span className="absolute inset-0 rounded-full bg-lavender-400/20 animate-ping opacity-0 group-hover:opacity-100" style={{ animationDuration: '2s' }} />
-            Probar gratis 15 días
+            Probar gratis
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
@@ -63,7 +63,7 @@ export default function Hero() {
         </div>
 
         <div className="fade-up delay-7 mt-8 flex flex-wrap items-center justify-center gap-6">
-          {['Sin tarjeta de crédito', '3 plantillas incluidas', '15 informes de prueba'].map((item, i) => (
+          {['Sin tarjeta de crédito', '3 plantillas incluidas', 'Sin compromiso'].map((item, i) => (
             <div key={i} className="flex items-center gap-2">
               <Check className="w-3.5 h-3.5 text-lavender-400" strokeWidth={2} />
               <span className="text-xs text-white/30 font-medium">{item}</span>
