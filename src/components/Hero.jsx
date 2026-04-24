@@ -40,10 +40,10 @@ export default function Hero() {
         </h2>
 
         <p className="fade-up delay-4 mt-6 text-center text-base md:text-lg text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
-          Sube tus plantillas, construye tu diccionario clínico y dicta.{' '}
+          Sube tus plantillas, construye tu diccionario y dicta.{' '}
           <strong className="text-white/70 font-medium">gōster</strong> aprende tu estilo,
           genera el informe completo y se vuelve mejor con cada uso.
-          Olvídate de teclear — dedícate a ver estudios.
+          El teclado es historia — bienvenido a la evolución del dictado.
         </p>
 
         {/* CTAs */}
