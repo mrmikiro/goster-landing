@@ -39,7 +39,7 @@ export default function SocialProof() {
             Validado por radiólogos mexicanos
           </h2>
           <p className="fade-up delay-2 mt-4 text-2xl md:text-3xl font-bold gradient-text-light">
-            74% lo considera muy útil o imprescindible
+            92% lo considera útil o imprescindible
           </p>
         </div>
 
