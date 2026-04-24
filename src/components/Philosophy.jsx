@@ -20,7 +20,7 @@ export default function Philosophy() {
             El nombre nace de <span className="text-white/70 font-medium">ghostwriter</span> — el escriba invisible.
           </p>
           <p className="fade-up delay-3 mt-3 text-white/50 text-lg font-light max-w-3xl mx-auto leading-relaxed">
-            <strong className="text-white/80 font-medium">gōster</strong> es tu ghostwriter clínico personalizado:
+            <strong className="text-white/80 font-medium">gōster</strong> es tu ghostwriter personalizado:
             escribe como tú, contigo y&nbsp;para&nbsp;ti.
           </p>
         </div>
