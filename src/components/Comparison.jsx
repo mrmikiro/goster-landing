@@ -26,7 +26,7 @@ export default function Comparison() {
         <div className="text-center mb-14">
           <p className="fade-up text-sm font-medium gradient-label tracking-wide uppercase mb-3">¿Por qué gōster?</p>
           <h2 className="fade-up delay-1 text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
-            Diseñado para radiólogos, no para instituciones
+            Diseñado por radiólogos, para radiólogos
           </h2>
         </div>
 
