@@ -13,9 +13,9 @@ export default function FinalCTA() {
           <GhostLogo className="h-16 w-auto mx-auto opacity-15" />
         </div>
         <h2 className="fade-up delay-1 text-3xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
-          Únete a los 98 radiólogos que
+          Únete a los radiólogos que
           <br />
-          ya validaron <span className="gradient-text">gōster</span>
+          ya confían en <span className="gradient-text">gōster</span>
         </h2>
         <div className="fade-up delay-2 mt-10">
           <a
