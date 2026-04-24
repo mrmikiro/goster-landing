@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Check, Sparkles } from 'lucide-react'
+import { Check, Sparkles, Building2 } from 'lucide-react'
 
 const plans = [
   {
@@ -49,6 +49,24 @@ const plans = [
     cta: 'Comenzar ahora',
     highlighted: true,
   },
+  {
+    name: 'Enterprise',
+    price: 'Personalizado',
+    period: '',
+    desc: 'Para instituciones y grupos de radiólogos.',
+    features: [
+      'Todo lo del Plan Pro',
+      'Plantillas institucionales precargadas',
+      'Informes homogeneizados para toda la organización',
+      'Planes grupales y multi-usuario',
+      'Onboarding dedicado',
+      'Facturación institucional',
+      'Soporte 24/7 dedicado',
+    ],
+    cta: 'Contactar ventas',
+    highlighted: false,
+    isEnterprise: true,
+  },
 ]
 
 export default function Pricing() {
@@ -67,7 +85,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {plans.map((plan, i) => (
             <div
               key={i}
@@ -105,7 +123,7 @@ export default function Pricing() {
               </ul>
 
               <a
-                href="https://app.goster.ai"
+                href={plan.isEnterprise ? 'mailto:contacto@goster.ai' : 'https://app.goster.ai'}
                 className={`block text-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                   plan.highlighted
                     ? 'bg-lavender-600 text-white hover:bg-lavender-700 hover:shadow-lg hover:shadow-lavender-200'
