@@ -1,60 +1,53 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import { Check, Building2, Sparkles } from 'lucide-react'
+import { Check, Sparkles } from 'lucide-react'
 
 const plans = [
   {
-    name: 'Base',
-    price: '$349',
-    period: 'MXN/mes',
-    desc: 'Ideal para comenzar a digitalizar tu flujo de informes.',
+    name: 'Trial',
+    price: 'Gratis',
+    period: '15 días',
+    desc: 'Prueba todo sin compromiso.',
     features: [
-      '30 plantillas',
+      '3 plantillas personalizadas',
+      '15 informes generados',
+      'Diccionario clínico propio',
+      'Dictado por voz',
+      'Celular como micrófono',
+      'Historial de estudios',
+    ],
+    cta: 'Comenzar prueba',
+    highlighted: false,
+  },
+  {
+    name: 'Base',
+    price: '$199',
+    period: 'MXN/mes',
+    desc: 'Ideal para comenzar.',
+    features: [
+      'Plantillas ilimitadas',
       '100 informes por mes',
-      'Dictado por voz (computadora y celular)',
-      'Diccionario clínico personalizado',
-      'Conclusiones diagnósticas automáticas',
-      'Editor de texto enriquecido',
-      'Instrucciones personalizadas',
-      'Soporte estándar',
+      'Todo lo del Trial',
+      'Soporte por email',
+      'Actualizaciones incluidas',
     ],
     cta: 'Comenzar ahora',
     highlighted: false,
   },
   {
     name: 'Pro',
-    price: '$599',
+    price: '$399',
     period: 'MXN/mes',
-    desc: 'Sin límites. Para radiólogos con alta demanda.',
+    desc: 'Sin límites. Para alta demanda.',
     features: [
-      'Plantillas e informes ilimitados',
-      'Procesamiento prioritario',
-      'Historial ilimitado con búsqueda avanzada',
-      'Analíticas de productividad',
-      'Respaldos automáticos en la nube',
+      'Plantillas ilimitadas',
+      'Informes ilimitados',
+      'Todo lo de Base',
+      'Soporte prioritario',
       'Acceso anticipado a nuevas funciones',
-      'Exportación avanzada (Word, PDF, texto)',
-      'Soporte prioritario (<24h)',
+      'Exportación múltiple (Word, PDF, RTF)',
     ],
     cta: 'Comenzar ahora',
     highlighted: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Personalizado',
-    period: '',
-    desc: 'Para grupos de radiólogos e instituciones.',
-    features: [
-      'Todo lo del Plan Pro',
-      'Plantillas e informes ilimitados',
-      'Plantillas institucionales precargadas para todos los usuarios',
-      'Planes grupales y multi-usuario',
-      'Facturación institucional',
-      'Onboarding dedicado',
-      'Soporte 24/7 dedicado',
-    ],
-    cta: 'Contactar ventas',
-    highlighted: false,
-    isEnterprise: true,
   },
 ]
 
@@ -92,10 +85,7 @@ export default function Pricing() {
               )}
 
               <div className="mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  {plan.isEnterprise && <Building2 className="w-4 h-4 text-gray-400" strokeWidth={1.5} />}
-                  <h3 className="text-lg font-semibold text-gray-900">{plan.name}</h3>
-                </div>
+                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1">
                   <span className={`text-3xl font-bold ${plan.highlighted ? 'text-lavender-700' : 'text-gray-900'}`}>
                     {plan.price}
@@ -115,7 +105,7 @@ export default function Pricing() {
               </ul>
 
               <a
-                href={plan.isEnterprise ? 'mailto:contacto@goster.ai' : 'https://app.goster.ai'}
+                href="https://app.goster.ai"
                 className={`block text-center px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                   plan.highlighted
                     ? 'bg-lavender-600 text-white hover:bg-lavender-700 hover:shadow-lg hover:shadow-lavender-200'
@@ -127,6 +117,10 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+
+        <p className="fade-up delay-4 mt-8 text-center text-sm text-gray-400">
+          * Todos los precios en pesos mexicanos. Sin tarjeta de crédito para el trial.
+        </p>
       </div>
     </section>
   )
