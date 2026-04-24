@@ -37,7 +37,7 @@ function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
 
 const stats = [
   { icon: Clock, value: 40, suffix: 's', label: 'Tiempo promedio de generación', prefix: '<' },
-  { icon: CheckCircle, value: 74, suffix: '%', label: 'Lo considera muy útil o imprescindible' },
+  { icon: CheckCircle, value: 92, suffix: '%', label: 'Lo considera útil o imprescindible' },
   { icon: Sparkles, value: 24, suffix: '/7', label: 'Disponibilidad de la plataforma' },
 ]
 
