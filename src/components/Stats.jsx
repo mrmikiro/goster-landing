@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { Clock, Sparkles, CheckCircle } from 'lucide-react'
+import { useLang } from '../i18n/LanguageContext'
 
 function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
   const [count, setCount] = useState(0)
@@ -35,14 +36,33 @@ function AnimatedNumber({ value, suffix = '', prefix = '', duration = 2000 }) {
   )
 }
 
+const t = {
+  es: {
+    labels: [
+      'Tiempo promedio de generación',
+      'Lo considera útil o imprescindible',
+      'Disponibilidad de la plataforma',
+    ],
+  },
+  en: {
+    labels: [
+      'Average generation time',
+      'Consider it useful or essential',
+      'Platform availability',
+    ],
+  },
+}
+
 const stats = [
-  { icon: Clock, value: 40, suffix: 's', label: 'Tiempo promedio de generación', prefix: '<' },
-  { icon: CheckCircle, value: 92, suffix: '%', label: 'Lo considera útil o imprescindible' },
-  { icon: Sparkles, value: 24, suffix: '/7', label: 'Disponibilidad de la plataforma' },
+  { icon: Clock, value: 40, suffix: 's', labelIndex: 0, prefix: '<' },
+  { icon: CheckCircle, value: 92, suffix: '%', labelIndex: 1 },
+  { icon: Sparkles, value: 24, suffix: '/7', labelIndex: 2 },
 ]
 
 export default function Stats() {
   const ref = useScrollReveal()
+  const { lang } = useLang()
+  const txt = t[lang]
 
   return (
     <section ref={ref} className="relative bg-dark-900 border-t border-white/5">
@@ -58,7 +78,7 @@ export default function Stats() {
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ''} />
                 </div>
-                <div className="text-xs md:text-sm text-white/30 font-medium">{stat.label}</div>
+                <div className="text-xs md:text-sm text-white/30 font-medium">{txt.labels[stat.labelIndex]}</div>
               </div>
             )
           })}

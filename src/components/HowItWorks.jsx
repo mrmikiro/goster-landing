@@ -1,44 +1,89 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useLang } from '../i18n/LanguageContext'
 import { Mic, Cpu, PenLine } from 'lucide-react'
 
-const steps = [
+const t = {
+  es: {
+    sectionLabel: 'Cómo funciona',
+    heading1: 'Tres pasos. ',
+    heading2: 'Sin curva de aprendizaje.',
+    subtitle: 'De la voz al informe en segundos.',
+    steps: [
+      {
+        title: 'Dicta los hallazgos',
+        desc: 'Usa el micrófono de tu computadora (integrado o externo) o vincula tu celular por QR para usarlo como micrófono inalámbrico.',
+      },
+      {
+        title: 'La IA genera el informe',
+        desc: 'Informe estructurado con hallazgos y conclusión diagnóstica.',
+      },
+      {
+        title: 'Revisa y exporta',
+        desc: 'Corrige por voz y copia con formato Word.',
+      },
+    ],
+  },
+  en: {
+    sectionLabel: 'How it works',
+    heading1: 'Three steps. ',
+    heading2: 'No learning curve.',
+    subtitle: 'From voice to report in seconds.',
+    steps: [
+      {
+        title: 'Dictate the findings',
+        desc: 'Use your computer microphone (built-in or external) or link your phone via QR to use it as a wireless microphone.',
+      },
+      {
+        title: 'AI generates the report',
+        desc: 'Structured report with findings and diagnostic conclusion.',
+      },
+      {
+        title: 'Review and export',
+        desc: 'Correct by voice and copy in Word format.',
+      },
+    ],
+  },
+}
+
+const stepMeta = [
   {
     icon: Mic,
     number: '01',
-    title: 'Dicta los hallazgos',
-    desc: 'Usa el micrófono de tu computadora (integrado o externo) o vincula tu celular por QR para usarlo como micrófono inalámbrico.',
     color: 'from-lavender-600 to-lavender-400',
   },
   {
     icon: Cpu,
     number: '02',
-    title: 'La IA genera el informe',
-    desc: 'Informe estructurado con hallazgos y conclusión diagnóstica.',
     color: 'from-lavender-500 to-emerald-400',
   },
   {
     icon: PenLine,
     number: '03',
-    title: 'Revisa y exporta',
-    desc: 'Corrige por voz y copia con formato Word.',
     color: 'from-emerald-500 to-teal-400',
   },
 ]
 
 export default function HowItWorks() {
   const ref = useScrollReveal()
+  const { lang } = useLang()
+  const txt = t[lang]
+
+  const steps = stepMeta.map((meta, i) => ({
+    ...meta,
+    ...txt.steps[i],
+  }))
 
   return (
     <section id="como-funciona" ref={ref} className="py-20 md:py-32 bg-dark-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <p className="fade-up text-sm font-medium gradient-label-dark tracking-wide uppercase mb-3">Cómo funciona</p>
+          <p className="fade-up text-sm font-medium gradient-label-dark tracking-wide uppercase mb-3">{txt.sectionLabel}</p>
           <h2 className="fade-up delay-1 text-3xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
-            Tres pasos.{' '}
-            <span className="gradient-text">Sin curva de aprendizaje.</span>
+            {txt.heading1}{' '}
+            <span className="gradient-text">{txt.heading2}</span>
           </h2>
           <p className="fade-up delay-2 mt-4 text-white/40 text-base font-light">
-            De la voz al informe en segundos.
+            {txt.subtitle}
           </p>
         </div>
 

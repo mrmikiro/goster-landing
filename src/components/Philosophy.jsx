@@ -1,8 +1,60 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { GhostLogo } from './Logo'
+import { useLang } from '../i18n/LanguageContext'
+
+const t = {
+  es: {
+    heading: 'Tu',
+    headingHighlight: 'ghostwriter',
+    headingEnd: 'radiológico',
+    origin: 'El nombre nace de',
+    originHighlight: 'ghostwriter',
+    originEnd: '— el escriba invisible.',
+    desc: 'es tu ghostwriter personalizado: escribe como tú, contigo y para ti.',
+    cards: [
+      {
+        title: 'Habla natural',
+        desc: 'Comenta el caso como si hablaras con un colega. La IA entiende tu intención clínica.',
+      },
+      {
+        title: 'Aprende de ti',
+        desc: 'Cada corrección mejora los próximos informes. Tu diccionario crece con el uso.',
+      },
+      {
+        title: 'Fidelidad absoluta',
+        desc: 'Si no lo dictaste, no aparece. Sin alucinaciones. Sin invenciones.',
+      },
+    ],
+  },
+  en: {
+    heading: 'Your',
+    headingHighlight: 'ghostwriter',
+    headingEnd: 'for radiology',
+    origin: 'The name comes from',
+    originHighlight: 'ghostwriter',
+    originEnd: '— the invisible scribe.',
+    desc: 'is your personalized ghostwriter: writes like you, with you, and for you.',
+    cards: [
+      {
+        title: 'Natural speech',
+        desc: 'Discuss the case as if talking to a colleague. The AI understands your clinical intent.',
+      },
+      {
+        title: 'Learns from you',
+        desc: 'Every correction improves future reports. Your dictionary grows with use.',
+      },
+      {
+        title: 'Absolute fidelity',
+        desc: 'If you didn’t dictate it, it won’t appear. No hallucinations. No fabrications.',
+      },
+    ],
+  },
+}
 
 export default function Philosophy() {
   const ref = useScrollReveal()
+  const { lang } = useLang()
+  const txt = t[lang]
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-dark-900 overflow-hidden relative">
@@ -14,32 +66,18 @@ export default function Philosophy() {
             <GhostLogo className="h-14 w-auto mx-auto opacity-20" />
           </div>
           <h2 className="fade-up delay-1 text-3xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
-            Tu <span className="gradient-text">ghostwriter</span> radiológico
+            {txt.heading} <span className="gradient-text">{txt.headingHighlight}</span> {txt.headingEnd}
           </h2>
           <p className="fade-up delay-2 mt-5 text-white/40 text-lg font-light max-w-2xl mx-auto leading-relaxed">
-            El nombre nace de <span className="text-white/70 font-medium">ghostwriter</span> — el escriba invisible.
+            {txt.origin} <span className="text-white/70 font-medium">{txt.originHighlight}</span> {txt.originEnd}
           </p>
           <p className="fade-up delay-3 mt-3 text-white/50 text-lg font-light max-w-3xl mx-auto leading-relaxed">
-            <strong className="text-white/80 font-medium">gōster</strong> es tu ghostwriter personalizado:
-            escribe como tú, contigo y&nbsp;para&nbsp;ti.
+            <strong className="text-white/80 font-medium">gōster</strong> {txt.desc}
           </p>
         </div>
 
         <div className="fade-up delay-3 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'Habla natural',
-              desc: 'Comenta el caso como si hablaras con un colega. La IA entiende tu intención clínica.',
-            },
-            {
-              title: 'Aprende de ti',
-              desc: 'Cada corrección mejora los próximos informes. Tu diccionario crece con el uso.',
-            },
-            {
-              title: 'Fidelidad absoluta',
-              desc: 'Si no lo dictaste, no aparece. Sin alucinaciones. Sin invenciones.',
-            },
-          ].map((item, i) => (
+          {txt.cards.map((item, i) => (
             <div key={i} className="p-6 rounded-2xl border border-white/5 bg-dark-800/50">
               <h3 className="text-base font-semibold text-white mb-2">{item.title}</h3>
               <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>

@@ -1,4 +1,5 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useLang } from '../i18n/LanguageContext'
 import { Sun, Moon, Palette, SlidersHorizontal } from 'lucide-react'
 
 const colorRows = [
@@ -7,19 +8,46 @@ const colorRows = [
   ['#f97316', '#78716c', '#84cc16', '#eab308', '#f472b6', '#fb923c', '#a855f7'],
 ]
 
+const t = {
+  es: {
+    label: 'Personalización',
+    heading: 'Hazlo tuyo',
+    subheading: 'Tu espacio de trabajo, a tu manera.',
+    themeTitle: 'Tema claro y oscuro',
+    themeDesc: 'Cambia con un clic.',
+    toneTitle: 'Control de tono',
+    toneDesc: 'De negro a gris. De blanco a sepia.',
+    colorsTitle: '21 colores de acento',
+    colorsDesc: 'Elige el que represente tu estilo.',
+  },
+  en: {
+    label: 'Customization',
+    heading: 'Make it yours',
+    subheading: 'Your workspace, your way.',
+    themeTitle: 'Light and dark theme',
+    themeDesc: 'Switch with one click.',
+    toneTitle: 'Tone control',
+    toneDesc: 'From black to gray. From white to sepia.',
+    colorsTitle: '21 accent colors',
+    colorsDesc: 'Choose the one that matches your style.',
+  },
+}
+
 export default function Personalization() {
   const ref = useScrollReveal()
+  const { lang } = useLang()
+  const txt = t[lang]
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-white border-t border-gray-100">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="fade-up text-sm font-medium gradient-label tracking-wide uppercase mb-3">Personalización</p>
+          <p className="fade-up text-sm font-medium gradient-label tracking-wide uppercase mb-3">{txt.label}</p>
           <h2 className="fade-up delay-1 text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
-            Hazlo tuyo
+            {txt.heading}
           </h2>
           <p className="fade-up delay-2 mt-3 text-gray-500 font-light">
-            Tu espacio de trabajo, a tu manera.
+            {txt.subheading}
           </p>
         </div>
 
@@ -34,8 +62,8 @@ export default function Personalization() {
                 <Sun className="w-4 h-4 text-gray-600" strokeWidth={1.5} />
               </div>
             </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-1">Tema claro y oscuro</h3>
-            <p className="text-sm text-gray-400">Cambia con un clic.</p>
+            <h3 className="text-base font-semibold text-gray-900 mb-1">{txt.themeTitle}</h3>
+            <p className="text-sm text-gray-400">{txt.themeDesc}</p>
           </div>
 
           {/* Tone slider */}
@@ -51,8 +79,8 @@ export default function Personalization() {
               <div className="w-6 h-6 rounded bg-amber-50 border border-gray-200" />
               <div className="w-6 h-6 rounded bg-orange-50 border border-gray-200" />
             </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-1">Control de tono</h3>
-            <p className="text-sm text-gray-400">De negro a gris. De blanco a sepia.</p>
+            <h3 className="text-base font-semibold text-gray-900 mb-1">{txt.toneTitle}</h3>
+            <p className="text-sm text-gray-400">{txt.toneDesc}</p>
           </div>
 
           {/* Colors */}
@@ -69,8 +97,8 @@ export default function Personalization() {
                 </div>
               ))}
             </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-1">21 colores de acento</h3>
-            <p className="text-sm text-gray-400">Elige el que represente tu estilo.</p>
+            <h3 className="text-base font-semibold text-gray-900 mb-1">{txt.colorsTitle}</h3>
+            <p className="text-sm text-gray-400">{txt.colorsDesc}</p>
           </div>
         </div>
       </div>
