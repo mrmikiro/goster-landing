@@ -32,8 +32,8 @@ const t = {
         period: 'MXN/mes',
         desc: 'Ideal para comenzar.',
         features: [
-          'Plantillas ilimitadas',
-          '100 informes por mes',
+          '20 plantillas',
+          '50 informes por mes',
           'Todo lo del Trial',
           'Soporte por email',
           'Actualizaciones incluidas',
@@ -106,8 +106,8 @@ const t = {
         period: 'MXN/mo',
         desc: 'Ideal to get started.',
         features: [
-          'Unlimited templates',
-          '100 reports per month',
+          '20 templates',
+          '50 reports per month',
           'Everything in Trial',
           'Email support',
           'Updates included',
