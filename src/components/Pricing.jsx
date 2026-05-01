@@ -17,7 +17,7 @@ const t = {
         desc: 'Prueba todo sin compromiso.',
         features: [
           '3 plantillas personalizadas',
-          '15 informes generados',
+          '10 informes generados',
           'Diccionario clínico propio',
           'Dictado por voz',
           'Celular como micrófono',
@@ -91,7 +91,7 @@ const t = {
         desc: 'Try everything with no commitment.',
         features: [
           '3 custom templates',
-          '15 generated reports',
+          '10 generated reports',
           'Personal clinical dictionary',
           'Voice dictation',
           'Phone as microphone',
