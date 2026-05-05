@@ -17,7 +17,7 @@ const t = {
       { title: 'Instrucciones especiales', desc: 'Reglas por plantilla: cálculos, convenciones, terminología específica para cada estudio.' },
       { title: 'Tablas por voz', desc: 'Dicta y llena tablas clínicas dentro del informe con tu voz.' },
       { title: 'Aprende de ti', desc: 'Cada corrección se convierte en regla. Tu estilo se replica automáticamente.' },
-      { title: 'Hazlo tuyo', desc: 'Tema claro/oscuro, tono sepia a blanco, 21 colores de acento.' },
+      { title: 'Hazlo tuyo', desc: 'Tema claro/oscuro, tono sepia a blanco, 12 colores de acento.' },
     ],
   },
   en: {
@@ -34,7 +34,7 @@ const t = {
       { title: 'Special instructions', desc: 'Per-template rules: calculations, conventions, and study-specific terminology.' },
       { title: 'Tables by voice', desc: 'Dictate and fill clinical tables within the report using your voice.' },
       { title: 'Learns from you', desc: 'Every correction becomes a rule. Your style is replicated automatically.' },
-      { title: 'Make it yours', desc: 'Light/dark theme, sepia to white tone, 21 accent colors.' },
+      { title: 'Make it yours', desc: 'Light/dark theme, sepia to white tone, 12 accent colors.' },
     ],
   },
 }

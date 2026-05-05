@@ -3,9 +3,8 @@ import { useLang } from '../i18n/LanguageContext'
 import { Sun, Moon, Palette, SlidersHorizontal } from 'lucide-react'
 
 const colorRows = [
-  ['#6ee7b7', '#8b8bf5', '#c4c4d4', '#1e3a8a', '#818cf8', '#9ca3af', '#60a5fa'],
-  ['#9ca3af', '#22d3ee', '#a7c4a0', '#facc15', '#d97706', '#f59e0b', '#b5a78a'],
-  ['#f97316', '#78716c', '#84cc16', '#eab308', '#f472b6', '#fb923c', '#a855f7'],
+  ['#6ee7b7', '#8b8bf5', '#b8c4e0', '#c4c4d4', '#b8d4c8', '#9ca3af'],
+  ['#9ca3af', '#6b9dad', '#a0a47a', '#b5a78a', '#b8a0c4', '#c4a0a0'],
 ]
 
 const t = {
@@ -17,7 +16,7 @@ const t = {
     themeDesc: 'Cambia con un clic.',
     toneTitle: 'Control de tono',
     toneDesc: 'De negro a gris. De blanco a sepia.',
-    colorsTitle: '21 colores de acento',
+    colorsTitle: '12 colores de acento',
     colorsDesc: 'Elige el que represente tu estilo.',
   },
   en: {
@@ -28,7 +27,7 @@ const t = {
     themeDesc: 'Switch with one click.',
     toneTitle: 'Tone control',
     toneDesc: 'From black to gray. From white to sepia.',
-    colorsTitle: '21 accent colors',
+    colorsTitle: '12 accent colors',
     colorsDesc: 'Choose the one that matches your style.',
   },
 }
