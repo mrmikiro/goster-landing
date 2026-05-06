@@ -3,8 +3,8 @@ import { useLang } from '../i18n/LanguageContext'
 import { Sun, Moon, Palette, SlidersHorizontal } from 'lucide-react'
 
 const colorRows = [
-  ['#6ee7b7', '#8b8bf5', '#b8c4e0', '#c4c4d4', '#b8d4c8', '#9ca3af'],
-  ['#9ca3af', '#6b9dad', '#a0a47a', '#b5a78a', '#b8a0c4', '#c4a0a0'],
+  ['#34d399', '#8b8bf5', '#b8c4e0', '#f5c4c8', '#b8d4c8', '#9ca3af'],
+  ['#d9cfc0', '#8a9a7a', '#c4a56a', '#b0a0c4', '#c8a090', '#c4c0b0'],
 ]
 
 const t = {
