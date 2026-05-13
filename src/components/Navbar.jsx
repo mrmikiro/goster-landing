@@ -19,7 +19,7 @@ const t = {
       { label: 'Features', href: '#caracteristicas' },
       { label: 'How it works', href: '#como-funciona' },
       { label: 'Pricing', href: '#planes' },
-      { label: 'Guide', href: '/guia.html' },
+      { label: 'Guide', href: '/guide.html' },
     ],
     cta: 'Sign in',
   },
