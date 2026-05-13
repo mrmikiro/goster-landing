@@ -9,30 +9,12 @@ const t = {
     closing: 'Todo esto,',
     closingHighlight: 'gōster ya lo hace.',
     testimonials: [
-      {
-        quote: 'Necesitamos herramientas que funcionen como un colega que te escucha y redacta el informe por ti, con el conocimiento clínico que solo un radiólogo tiene.',
-        role: 'Radiólogo intervencionista',
-      },
-      {
-        quote: 'Lo más importante es que aprenda mi estilo personal. Cada radiólogo tiene su forma de redactar y la herramienta debe adaptarse, no imponerme un formato genérico.',
-        role: 'Neurorradióloga',
-      },
-      {
-        quote: 'Que sea preciso y veraz. No puede inventar información que yo no dicté. Eso es crítico para adopción en un entorno médico.',
-        role: 'Residente de 4to año',
-      },
-      {
-        quote: 'La estructura del informe debe ser correcta, con gramática impecable y respetando el formato que yo defino.',
-        role: 'Fellow de mama',
-      },
-      {
-        quote: 'Sería ideal que pudiera vincular hallazgos con literatura médica actual. Eso le daría un valor agregado único.',
-        role: 'Radiólogo MSK',
-      },
-      {
-        quote: 'Tiene que ser práctica y fácil de usar. Si es complicada, nadie la va a adoptar en el flujo diario.',
-        role: 'Radióloga de ultrasonido',
-      },
+      { quote: 'Necesitamos herramientas que funcionen como un colega que te escucha y redacta el informe por ti, con el conocimiento clínico que solo un radiólogo tiene.' },
+      { quote: 'Lo más importante es que aprenda mi estilo personal. Cada radiólogo tiene su forma de redactar y la herramienta debe adaptarse, no imponerme un formato genérico.' },
+      { quote: 'Que sea preciso y veraz. No puede inventar información que yo no dicté. Eso es crítico para adopción en un entorno médico.' },
+      { quote: 'La estructura del informe debe ser correcta, con gramática impecable y respetando el formato que yo defino.' },
+      { quote: 'Sería ideal que pudiera vincular hallazgos con literatura médica actual. Eso le daría un valor agregado único.' },
+      { quote: 'Tiene que ser práctica y fácil de usar. Si es complicada, nadie la va a adoptar en el flujo diario.' },
     ],
   },
   en: {
@@ -42,30 +24,12 @@ const t = {
     closing: 'All of this —',
     closingHighlight: 'gōster already does it.',
     testimonials: [
-      {
-        quote: 'We need tools that work like a colleague who listens and writes the report for you, with the clinical knowledge only a radiologist has.',
-        role: 'Interventional radiologist',
-      },
-      {
-        quote: 'The most important thing is that it learns my personal style. Every radiologist has their own way of writing, and the tool must adapt — not impose a generic format.',
-        role: 'Neuroradiologist',
-      },
-      {
-        quote: 'It must be accurate and truthful. It cannot make up information I didn’t dictate. That is critical for adoption in a medical setting.',
-        role: '4th-year radiology resident',
-      },
-      {
-        quote: 'The report structure must be correct, with impeccable grammar and respecting the format I define.',
-        role: 'Breast imaging fellow',
-      },
-      {
-        quote: 'It would be ideal if it could link findings with current medical literature. That would give it unique added value.',
-        role: 'MSK radiologist',
-      },
-      {
-        quote: 'It has to be practical and easy to use. If it’s complicated, nobody will adopt it in their daily workflow.',
-        role: 'Ultrasound radiologist',
-      },
+      { quote: 'We need tools that work like a colleague who listens and writes the report for you, with the clinical knowledge only a radiologist has.' },
+      { quote: 'The most important thing is that it learns my personal style. Every radiologist has their own way of writing, and the tool must adapt — not impose a generic format.' },
+      { quote: 'It must be accurate and truthful. It cannot make up information I didn’t dictate. That is critical for adoption in a medical setting.' },
+      { quote: 'The report structure must be correct, with impeccable grammar and respecting the format I define.' },
+      { quote: 'It would be ideal if it could link findings with current medical literature. That would give it unique added value.' },
+      { quote: 'It has to be practical and easy to use. If it’s complicated, nobody will adopt it in their daily workflow.' },
     ],
   },
 }
@@ -94,8 +58,7 @@ export default function SocialProof() {
               key={i}
               className={`fade-up delay-${Math.min(i + 1, 4)} p-6 rounded-2xl bg-white border border-gray-100 hover:border-lavender-200 transition-all duration-300`}
             >
-              <p className="text-base text-gray-700 leading-relaxed mb-4">"{item.quote}"</p>
-              <p className="text-sm text-gray-400 font-medium">— {item.role}</p>
+              <p className="text-base text-gray-700 leading-relaxed">"{item.quote}"</p>
             </div>
           ))}
         </div>
