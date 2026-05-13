@@ -82,7 +82,7 @@ const t = {
     heading: 'Choose your plan',
     subheading: 'No long-term contracts. Cancel anytime.',
     mostPopular: 'Most popular',
-    note: '* All prices in Mexican pesos. No credit card required for the free trial.',
+    note: '* All prices in US dollars. No credit card required for the free trial.',
     plans: [
       {
         name: 'Trial',
@@ -102,8 +102,8 @@ const t = {
       },
       {
         name: 'Base',
-        price: '$249',
-        period: 'MXN/mo',
+        price: '$14.99',
+        period: 'USD/mo',
         desc: 'Ideal to get started.',
         features: [
           '20 templates',
@@ -117,8 +117,8 @@ const t = {
       },
       {
         name: 'Pro',
-        price: '$499',
-        period: 'MXN/mo',
+        price: '$29.99',
+        period: 'USD/mo',
         desc: 'No limits. For high demand.',
         features: [
           'Unlimited templates',
