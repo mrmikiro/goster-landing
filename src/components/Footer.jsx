@@ -18,7 +18,7 @@ const t = {
       { label: 'Platform', href: '#plataforma' },
       { label: 'Features', href: '#caracteristicas' },
       { label: 'Pricing', href: '#planes' },
-      { label: 'User guide', href: '/guia.html' },
+      { label: 'User guide', href: '/guide.html' },
       { label: 'Contact', href: 'mailto:contacto@goster.ai' },
     ],
     rights: 'All rights reserved',
