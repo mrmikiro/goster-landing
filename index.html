@@ -1,17 +1,295 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/goster-dark-removebg-preview.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Gōster — Plataforma de IA para radiología. Transforma dictados de voz en informes radiológicos profesionales." />
-    <title>Gōster — IA para Radiología</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/goster-dark-removebg-preview.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gōster — Plataforma de IA para radiología. Transforma dictados de voz en informes radiológicos profesionales." />
+  <title>Gōster — IA para Radiología</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --dark-900: #0a0a0f;
+      --dark-800: #111118;
+      --dark-700: #16161f;
+      --dark-600: #1e1e2a;
+      --green-500: #22c55e;
+      --green-400: #4ade80;
+      --purple-500: #8b5cf6;
+      --purple-400: #a78bfa;
+      --white-60: rgba(255,255,255,0.60);
+      --white-80: rgba(255,255,255,0.80);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--dark-900);
+      color: var(--white-60);
+      line-height: 1.6;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,15,0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index: 100;
+      padding: 16px 0;
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; padding: 0 24px; }
+    .logo { font-size: 20px; font-weight: 700; color: var(--white-80); }
+    .lang-toggle { display: flex; gap: 8px; }
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white-60);
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--green-500); color: var(--dark-900); border-color: var(--green-500); }
+    .lang-btn:hover:not(.active) { border-color: var(--white-80); color: var(--white-80); }
+    .section { padding: 80px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .section.landing { background: linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(34,197,94,0.05) 100%); }
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--white-80);
+      line-height: 1.2;
+    }
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--white-80);
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--white-80);
+    }
+    p { margin-bottom: 16px; line-height: 1.8; }
+    .gradient-text { background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 40%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--green-500) 0%, var(--green-400) 100%);
+      color: var(--dark-900);
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(34,197,94,0.3); }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 40px 0;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 24px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(34,197,94,0.3);
+      background: rgba(34,197,94,0.05);
+      transform: translateY(-4px);
+    }
+    .hidden { display: none; }
+    footer {
+      background: var(--dark-800);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 0;
+      margin-top: 80px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">gōster</div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="switchLang('es')">ES</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="landing-es" class="section landing">
+    <div class="container">
+      <h1><span class="gradient-text">Landing</span></h1>
+      <p style="font-size: 18px; margin-bottom: 32px;">Plataforma de IA para radiología que transforma dictados de voz en informes profesionales.</p>
+
+      <h2>Características principales</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Reconocimiento de voz</h3>
+          <p>Convierte dictados médicos en texto con precisión clínica. Entiende la jerga radiológica y anatomía compleja.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Plantillas inteligentes</h3>
+          <p>Acceso a plantillas estándar que se adaptan automáticamente a cada caso. Ahorra tiempo en redacción repetitiva.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Aprendizaje personalizado</h3>
+          <p>El sistema aprende tu estilo de escritura y preferencias. Cada informe es más rápido que el anterior.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Integración clínica</h3>
+          <p>Se integra con sistemas PACS y HIS existentes. Compatible con tu flujo de trabajo actual.</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 48px;">Cómo funciona</h2>
+      <p>Registra un dictado • IA procesa el contenido • Revisa y edita • Exporta el informe profesional</p>
+
+      <button class="cta-button" style="margin-top: 32px;">Prueba gōster ahora</button>
+    </div>
+  </section>
+
+  <section id="landing-en" class="section landing hidden">
+    <div class="container">
+      <h1><span class="gradient-text">Landing</span></h1>
+      <p style="font-size: 18px; margin-bottom: 32px;">AI platform for radiology that transforms voice dictations into professional reports.</p>
+
+      <h2>Key features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Voice recognition</h3>
+          <p>Converts medical dictations to text with clinical precision. Understands radiological terminology and complex anatomy.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Smart templates</h3>
+          <p>Access to standard templates that automatically adapt to each case. Saves time on repetitive writing.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Personalized learning</h3>
+          <p>The system learns your writing style and preferences. Each report is faster than the last.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Clinical integration</h3>
+          <p>Integrates with existing PACS and HIS systems. Compatible with your current workflow.</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 48px;">How it works</h2>
+      <p>Record a dictation • AI processes content • Review and edit • Export professional report</p>
+
+      <button class="cta-button" style="margin-top: 32px;">Try gōster now</button>
+    </div>
+  </section>
+
+  <section id="minerva-es" class="section">
+    <div class="container">
+      <h1><span class="gradient-text">Minerva</span></h1>
+      <p style="font-size: 18px; margin-bottom: 32px;">Centro de aprendizaje continuo para radiología. Mejora tus habilidades con contenido educativo especializado.</p>
+
+      <h2>Módulos de capacitación</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Interpretación de imágenes</h3>
+          <p>Cursos interactivos sobre patología radiológica. Desde casos simples hasta diagnósticos complejos.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Redacción clínica</h3>
+          <p>Mejora la calidad y claridad de tus informes. Aprende las mejores prácticas en comunicación médica.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Protocolos actualizados</h3>
+          <p>Acceso a las últimas guías y protocolos en radiología. Mantente actualizado con la evidencia actual.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Simulaciones prácticas</h3>
+          <p>Casos clínicos realistas para practicar. Feedback inmediato y seguimiento de progreso.</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 48px;">Beneficios del aprendizaje</h2>
+      <p>Aumenta tu confianza en diagnósticos • Mejora la velocidad de lectura • Reduce errores clínicos • Obtén certificaciones reconocidas</p>
+
+      <button class="cta-button" style="margin-top: 32px;">Accede a Minerva</button>
+    </div>
+  </section>
+
+  <section id="minerva-en" class="section hidden">
+    <div class="container">
+      <h1><span class="gradient-text">Minerva</span></h1>
+      <p style="font-size: 18px; margin-bottom: 32px;">Continuous learning center for radiology. Improve your skills with specialized educational content.</p>
+
+      <h2>Training modules</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Image interpretation</h3>
+          <p>Interactive courses on radiological pathology. From simple cases to complex diagnostics.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Clinical writing</h3>
+          <p>Improve the quality and clarity of your reports. Learn best practices in medical communication.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Updated protocols</h3>
+          <p>Access the latest guidelines and protocols in radiology. Stay updated with current evidence.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Practical simulations</h3>
+          <p>Realistic clinical cases for practice. Immediate feedback and progress tracking.</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 48px;">Learning benefits</h2>
+      <p>Increase your diagnostic confidence • Improve reading speed • Reduce clinical errors • Earn recognized certifications</p>
+
+      <button class="cta-button" style="margin-top: 32px;">Access Minerva</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Gōster. All rights reserved. | <a href="#" style="color: var(--green-500); text-decoration: none;">Privacy</a> | <a href="#" style="color: var(--green-500); text-decoration: none;">Terms</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('[id*="-es"], [id*="-en"]').forEach(el => {
+        el.classList.add('hidden');
+      });
+      document.querySelectorAll(`[id*="-${lang}"]`).forEach(el => {
+        el.classList.remove('hidden');
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      document.documentElement.lang = lang;
+    }
+  </script>
+</body>
 </html>
