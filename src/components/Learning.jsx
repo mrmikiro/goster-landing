@@ -7,7 +7,7 @@ const t = {
     sectionLabel: 'Aprendizaje continuo',
     heading1: 'Cuanto más lo usas, ',
     heading2: 'mejor funciona',
-    subtitle: 'El primer informe es bueno. El décimo es mejor. El centésimo es tuyo.',
+    subtitle: 'El primer informe es bueno. El quinto es mejor. El décimo es tuyo.',
     points: [
       {
         title: 'Correcciones → reglas',
@@ -32,7 +32,7 @@ const t = {
     sectionLabel: 'Continuous learning',
     heading1: 'The more you use it, ',
     heading2: 'the better it gets',
-    subtitle: 'The first report is good. The tenth is better. The hundredth is yours.',
+    subtitle: 'The first report is good. The fifth is better. The tenth is yours.',
     points: [
       {
         title: 'Corrections → rules',
