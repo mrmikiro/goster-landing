@@ -1,0 +1,1276 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>gōster — Guía del usuarix</title>
+<meta name="description" content="Guía del usuarix de gōster: configura tus plantillas, construye tu diccionario clínico y dicta tus informes radiológicos en minutos." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(0.10 0.012 240);
+    --bg-2: oklch(0.12 0.012 240);
+    --bg-3: oklch(0.14 0.012 240);
+    --line: oklch(0.22 0.012 240);
+    --line-2: oklch(0.18 0.012 240);
+    --fg: oklch(0.97 0.005 240);
+    --muted: oklch(0.68 0.012 240);
+    --dim: oklch(0.48 0.012 240);
+    --neon: oklch(0.69 0.18 295);
+    --neon-soft: oklch(0.69 0.18 295 / 0.16);
+    --neon-glow: oklch(0.69 0.18 295 / 0.45);
+
+    --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+    --body: "Inter", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--fg); }
+  html { scroll-behavior: smooth; }
+
+  /* Ghost cursor — green to match landing, masked ghost shape */
+  html, body, * { cursor: none !important; }
+  #ghostCursor {
+    position: fixed; top: 0; left: 0;
+    width: 32px; height: 32px;
+    pointer-events: none;
+    z-index: 99999;
+    background: oklch(0.93 0.16 142);
+    -webkit-mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
+    mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
+    transform: translate3d(-9999px, -9999px, 0);
+    margin-left: -8px; margin-top: -4px;
+    mix-blend-mode: difference;
+    will-change: transform;
+  }
+  body {
+    font-family: var(--body); font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  ::selection { background: var(--neon); color: #000; }
+
+  a { color: var(--neon); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(1100px 700px at 78% -6%, oklch(0.69 0.18 295 / 0.22), transparent 60%),
+      radial-gradient(900px 600px at 0% 110%, oklch(0.58 0.13 290 / 0.14), transparent 65%),
+      radial-gradient(700px 500px at 50% 50%, oklch(0.65 0.12 320 / 0.06), transparent 70%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  }
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.5;
+    background-image:
+      linear-gradient(oklch(0.22 0.012 240 / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.22 0.012 240 / 0.35) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(14px) saturate(140%);
+    background: oklch(0.08 0.012 240 / 0.7);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+  .brand .mark { width: 30px; height: 30px; display: grid; place-items: center; }
+  .brand .mark img {
+    width: 100%; height: 100%; object-fit: contain;
+    filter: drop-shadow(0 0 10px oklch(0.69 0.18 295 / 0.4));
+  }
+  .brand .wordmark-img { height: 18px; width: auto; display: block; }
+  .brand .tag {
+    margin-left: 8px;
+    padding: 3px 8px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--neon);
+    border: 1px solid oklch(0.69 0.18 295 / 0.3);
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+  .top-right { display: flex; align-items: center; gap: 14px; }
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: oklch(0.08 0.012 240 / 0.4);
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.08em;
+  }
+  .lang-switch a { color: var(--dim); }
+  .lang-switch a:hover { color: var(--fg); text-decoration: none; }
+  .lang-switch a.active { color: var(--neon); }
+  .lang-switch .sep { color: var(--dim); }
+  .back-btn {
+    font-family: var(--body); font-size: 13px; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .back-btn:hover { color: var(--fg); text-decoration: none; }
+
+  .wrap { position: relative; z-index: 10; }
+  .layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    max-width: 1320px;
+    margin: 0 auto;
+    gap: 56px;
+    padding: 0 28px;
+  }
+
+  aside.toc {
+    position: sticky;
+    top: 76px;
+    align-self: start;
+    height: calc(100vh - 76px);
+    padding: 36px 0 80px;
+    overflow-y: auto;
+    border-right: 1px solid var(--line);
+    padding-right: 22px;
+    margin-right: -22px;
+  }
+  aside.toc::-webkit-scrollbar { width: 6px; }
+  aside.toc::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .toc-eyebrow {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--neon); letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toc-eyebrow::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--neon);
+    box-shadow: 0 0 8px var(--neon);
+  }
+  .toc-group { margin-bottom: 28px; }
+  .toc-group h5 {
+    font-family: var(--display); font-size: 11px; font-weight: 600;
+    color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-left: 12px;
+  }
+  .toc-group a {
+    display: block;
+    padding: 7px 12px;
+    color: var(--muted); font-size: 13.5px;
+    border-left: 1.5px solid transparent;
+    transition: color .15s, border-color .15s, background .15s;
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .toc-group a:hover { color: var(--fg); border-color: var(--line); }
+  .toc-group a.active {
+    color: var(--neon);
+    border-color: var(--neon);
+    background: var(--neon-soft);
+  }
+
+  main {
+    padding: 56px 0 140px;
+    min-width: 0;
+    max-width: 780px;
+  }
+  .doc-header {
+    position: relative;
+    margin: -16px -40px 64px;
+    padding: 64px 56px 56px;
+    border: 1px solid oklch(0.69 0.18 295 / 0.28);
+    border-radius: 24px;
+    background:
+      radial-gradient(600px 300px at 100% 0%, oklch(0.69 0.18 295 / 0.22), transparent 60%),
+      radial-gradient(400px 240px at 0% 100%, oklch(0.58 0.13 290 / 0.16), transparent 70%),
+      linear-gradient(180deg, oklch(0.13 0.03 295 / 0.7), oklch(0.10 0.02 290 / 0.6));
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .doc-header::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background-image:
+      linear-gradient(oklch(0.69 0.18 295 / 0.10) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.69 0.18 295 / 0.10) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at 80% 0%, black 0%, transparent 65%);
+    opacity: 0.7;
+  }
+  .doc-header .hero-ghost {
+    position: absolute;
+    right: -40px; bottom: -50px;
+    width: 280px;
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: -1;
+    filter:
+      drop-shadow(0 0 60px oklch(0.69 0.18 295 / 0.55))
+      drop-shadow(0 30px 60px oklch(0.05 0.012 290 / 0.6));
+    animation: docFloat 7s ease-in-out infinite;
+  }
+  @keyframes docFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-14px) rotate(3deg); }
+  }
+  .doc-header .hero-orbit {
+    position: absolute;
+    right: 40px; top: 40px;
+    width: 96px; height: 96px;
+    border: 1px dashed oklch(0.69 0.18 295 / 0.35);
+    border-radius: 50%;
+    z-index: -1;
+    animation: docSpin 30s linear infinite;
+  }
+  .doc-header .hero-orbit::before {
+    content: "";
+    position: absolute;
+    top: -4px; left: 50%; transform: translateX(-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 12px var(--neon), 0 0 24px var(--neon-glow);
+  }
+  @keyframes docSpin { to { transform: rotate(360deg); } }
+  @media (max-width: 720px) {
+    .doc-header { margin: -16px 0 40px; padding: 44px 28px; border-radius: 18px; }
+    .doc-header .hero-ghost { width: 160px; right: -30px; bottom: -30px; opacity: 0.5; }
+    .doc-header .hero-orbit { display: none; }
+  }
+  .doc-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 11.5px;
+    color: var(--neon); letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--neon-soft);
+    border: 1px solid oklch(0.69 0.18 295 / 0.3);
+    margin-bottom: 24px;
+  }
+  .doc-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--neon);
+    box-shadow: 0 0 8px var(--neon);
+  }
+  h1.doc-title {
+    font-family: var(--display);
+    font-size: clamp(48px, 6.4vw, 84px);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 22px;
+    text-wrap: balance;
+    position: relative;
+  }
+  h1.doc-title .accent {
+    background: linear-gradient(120deg, var(--neon) 0%, oklch(0.72 0.25 320) 50%, var(--neon) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic; font-weight: 500;
+  }
+  .doc-lede {
+    font-size: 19px;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 640px;
+    text-wrap: pretty;
+  }
+  .meta-row {
+    display: flex; gap: 14px; margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-row span {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 7px 14px;
+    border: 1px solid oklch(0.69 0.18 295 / 0.25);
+    border-radius: 999px;
+    background: oklch(0.69 0.18 295 / 0.06);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .meta-row span::before {
+    content: ""; display: inline-block;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 8px var(--neon);
+  }
+
+  section.chap { padding-top: 56px; margin-top: 8px; scroll-margin-top: 80px; }
+  section.chap + section.chap { border-top: 1px solid var(--line-2); }
+
+  h2.chap-title {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .chap-eyebrow {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--neon); letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .chap-lede {
+    color: var(--muted); font-size: 16.5px; line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 660px;
+    text-wrap: pretty;
+  }
+
+  h3.sub {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 36px 0 12px;
+    color: var(--fg);
+    scroll-margin-top: 80px;
+  }
+  h3.sub::before {
+    content: "#";
+    color: var(--neon);
+    font-weight: 500;
+    margin-right: 8px;
+    opacity: 0.5;
+  }
+  p { color: var(--muted); font-size: 15.5px; line-height: 1.7; margin-bottom: 14px; }
+  p strong { color: var(--fg); font-weight: 600; }
+  p em { font-style: italic; color: var(--fg); }
+
+  ul.bullets, ol.bullets { padding-left: 0; list-style: none; margin: 12px 0 18px; }
+  ul.bullets li, ol.bullets li {
+    color: var(--muted); font-size: 15.5px; line-height: 1.7;
+    padding-left: 28px; position: relative;
+    margin-bottom: 8px;
+  }
+  ul.bullets li::before {
+    content: ""; position: absolute;
+    left: 8px; top: 14px;
+    width: 5px; height: 5px;
+    background: var(--neon);
+    border-radius: 50%;
+  }
+  ol.bullets { counter-reset: o; }
+  ol.bullets li { counter-increment: o; }
+  ol.bullets li::before {
+    content: counter(o, decimal-leading-zero);
+    position: absolute; left: 0; top: 0;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--neon); letter-spacing: 0.05em;
+  }
+
+  code {
+    font-family: var(--mono); font-size: 12.5px;
+    background: oklch(0.07 0.012 240 / 0.7);
+    border: 1px solid var(--line-2);
+    color: var(--neon);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  kbd {
+    font-family: var(--mono); font-size: 11.5px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--fg);
+    padding: 3px 8px;
+    border-radius: 6px;
+    box-shadow: 0 1px 0 var(--line);
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .steps {
+    display: grid; gap: 14px;
+    margin: 20px 0 26px;
+  }
+  .step-row {
+    display: grid; grid-template-columns: 64px 1fr; gap: 18px;
+    align-items: start;
+    padding: 18px 22px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: oklch(0.11 0.012 240 / 0.6);
+  }
+  .step-row .step-n {
+    font-family: var(--display); font-size: 28px; font-weight: 600;
+    color: var(--neon); letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .step-row h4 {
+    font-family: var(--display); font-size: 16px; font-weight: 600;
+    color: var(--fg); margin-bottom: 6px;
+  }
+  .step-row p {
+    font-size: 14.5px; margin-bottom: 0;
+  }
+  .step-row .hint {
+    margin-top: 10px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--dim); letter-spacing: 0.06em;
+  }
+  .step-row .hint::before {
+    content: "→ "; color: var(--neon);
+  }
+
+  .callout {
+    display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--neon);
+    background: var(--neon-soft);
+    border-radius: 0 10px 10px 0;
+    margin: 22px 0;
+  }
+  .callout .ico {
+    font-family: var(--mono); font-size: 13px;
+    color: var(--neon);
+    line-height: 1.5;
+  }
+  .callout h5 {
+    font-family: var(--display); font-size: 13px; font-weight: 600;
+    color: var(--fg);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .callout p {
+    font-size: 14.5px; margin-bottom: 0; line-height: 1.6;
+    color: var(--muted);
+  }
+  .callout p strong { color: var(--fg); }
+  .callout.warn { border-color: oklch(0.75 0.18 60); background: oklch(0.75 0.18 60 / 0.10); }
+  .callout.warn .ico { color: oklch(0.85 0.18 60); }
+  .callout.danger { border-color: oklch(0.65 0.2 25); background: oklch(0.65 0.2 25 / 0.10); }
+  .callout.danger .ico { color: oklch(0.78 0.2 25); }
+
+  .example {
+    display: grid; grid-template-columns: 1fr 28px 1fr; gap: 16px;
+    align-items: stretch;
+    margin: 24px 0;
+  }
+  .example .col {
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: oklch(0.09 0.012 240 / 0.55);
+  }
+  .example .col .lbl {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--neon); letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .example .col .lbl::before {
+    content: ""; width: 5px; height: 5px; background: var(--neon); border-radius: 50%;
+  }
+  .example .col .text {
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.65;
+    color: var(--fg);
+  }
+  .example .arrow {
+    display: grid; place-items: center;
+    color: var(--neon);
+    font-family: var(--mono); font-size: 18px;
+    align-self: center;
+  }
+  .example .col mark {
+    background: var(--neon-soft);
+    color: var(--fg); padding: 0 3px; border-radius: 3px;
+  }
+
+  .kbd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 22px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .kbd-table th, .kbd-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line-2);
+    font-size: 14.5px;
+  }
+  .kbd-table th {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase;
+    background: oklch(0.08 0.012 240 / 0.5);
+    font-weight: 500;
+  }
+  .kbd-table tr:last-child td { border-bottom: none; }
+  .kbd-table td:first-child { width: 200px; }
+  .kbd-table td:first-child kbd + kbd { margin-left: 4px; }
+  .kbd-table td:last-child { color: var(--muted); }
+
+  .feat-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin: 18px 0 24px;
+  }
+  .feat {
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: oklch(0.10 0.012 240 / 0.6);
+  }
+  .feat h4 {
+    font-family: var(--display); font-size: 15px; font-weight: 600;
+    color: var(--fg); margin-bottom: 6px;
+  }
+  .feat p { font-size: 14px; margin-bottom: 0; line-height: 1.55; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--line-2);
+    padding: 18px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-family: var(--display); font-size: 16px; font-weight: 600;
+    color: var(--fg); margin-bottom: 8px;
+  }
+  .faq-a { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+
+  .doc-foot {
+    margin-top: 80px;
+    padding: 32px 28px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: oklch(0.10 0.012 240 / 0.7);
+    display: grid; grid-template-columns: 1fr auto; gap: 24px;
+    align-items: center;
+  }
+  .doc-foot h4 {
+    font-family: var(--display); font-size: 19px; font-weight: 600;
+    color: var(--fg); margin-bottom: 6px;
+  }
+  .doc-foot p { font-size: 14.5px; margin-bottom: 0; }
+  .doc-foot .actions { display: flex; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    font-family: var(--body); font-weight: 500; font-size: 13.5px;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: transform .15s ease, background .2s ease, box-shadow .25s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--neon); color: #1a0a30;
+    box-shadow: 0 0 0 1px var(--neon), 0 8px 30px -10px var(--neon-glow);
+  }
+  .btn-primary:hover { transform: translateY(-1px); text-decoration: none; }
+  .btn-ghost {
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover { background: oklch(0.18 0.012 240); text-decoration: none; }
+
+  .updated {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--dim); letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    aside.toc {
+      position: relative; top: 0; height: auto;
+      border-right: none; border-bottom: 1px solid var(--line);
+      padding: 24px 0;
+      margin-right: 0;
+    }
+    main { padding-top: 24px; max-width: 100%; }
+    .example { grid-template-columns: 1fr; }
+    .example .arrow { transform: rotate(90deg); padding: 4px 0; }
+    .feat-grid { grid-template-columns: 1fr; }
+    .doc-foot { grid-template-columns: 1fr; }
+    .step-row { grid-template-columns: 48px 1fr; gap: 12px; padding: 14px 16px; }
+  }
+
+  /* Brand wordmark — "gōster" always in Poppins */
+  .goster-word { font-family: "Poppins", "Inter", system-ui, sans-serif; font-weight: inherit; font-style: normal; letter-spacing: -0.005em; }
+</style>
+</head>
+<body>
+
+<div id="ghostCursor" aria-hidden="true"></div>
+
+<div class="bg"></div>
+<div class="bg-grid"></div>
+
+<div class="wrap">
+
+  <nav class="top">
+    <a href="Goster Landing.html" class="brand">
+      <div class="mark"><img src="assets/goster-ghost.png" alt="gōster" /></div>
+      <img class="wordmark-img" src="assets/goster-wordmark.png" alt="gōster" />
+      <span class="tag">DOCS</span>
+    </a>
+    <div class="top-right">
+      <a href="Goster Landing.html" class="back-btn">← Volver al sitio</a>
+      <div class="lang-switch">
+        <a class="active" href="Guia del usuario.html">ES</a>
+        <span class="sep">·</span>
+        <a href="Guia del usuario EN.html">EN</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="layout">
+
+    <aside class="toc" id="toc">
+      <div class="toc-eyebrow">Guía del usuarix</div>
+
+      <div class="toc-group">
+        <h5>Empezar</h5>
+        <a href="#bienvenida">Bienvenida</a>
+        <a href="#primeros-pasos">Primeros pasos</a>
+        <a href="#interfaz">Tu espacio de trabajo</a>
+      </div>
+
+      <div class="toc-group">
+        <h5>Lo esencial</h5>
+        <a href="#dictado">Dictar un informe</a>
+        <a href="#plantillas">Plantillas</a>
+        <a href="#diccionario">Diccionario clínico</a>
+        <a href="#tablas">Tablas por voz</a>
+        <a href="#correcciones">Correcciones por voz</a>
+      </div>
+
+      <div class="toc-group">
+        <h5>Avanzado</h5>
+        <a href="#reglas">Instrucciones y reglas</a>
+        <a href="#exportar">Editar y exportar</a>
+        <a href="#movil">Celular como micrófono</a>
+        <a href="#personalizacion">Apariencia</a>
+      </div>
+
+      <div class="toc-group">
+        <h5>Referencia</h5>
+        <a href="#atajos">Atajos de teclado</a>
+        <a href="#privacidad">Privacidad y datos</a>
+        <a href="#solucion">Solución de problemas</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </aside>
+
+    <main>
+
+      <header class="doc-header">
+        <span class="hero-orbit" aria-hidden="true"></span>
+        <img class="hero-ghost" src="assets/goster-ghost.png" alt="" aria-hidden="true" />
+        <span class="doc-eyebrow"><span class="dot"></span>Documentación · v1.0</span>
+        <h1 class="doc-title">Guía del <span class="accent">usuarix.</span></h1>
+        <p class="doc-lede">
+          Todo lo que necesitas saber para empezar a usar <span class="goster-word">gōster</span> — desde subir tu primera plantilla hasta dominar el dictado por voz, las reglas personalizadas y el diccionario clínico.
+        </p>
+        <div class="meta-row">
+          <span>Lectura ≈ 15 min</span>
+          <span>12 capítulos</span>
+          <span>Actualizado · mayo 2026</span>
+        </div>
+      </header>
+
+      <!-- BIENVENIDA -->
+      <section class="chap" id="bienvenida">
+        <div class="chap-eyebrow">— Capítulo 01</div>
+        <h2 class="chap-title">Bienvenida.</h2>
+        <p class="chap-lede">
+          <span class="goster-word">gōster</span> es tu <em>ghostwriter</em> radiológico: dicta tus hallazgos con naturalidad y recibe un informe profesional, estructurado y escrito en tu estilo, en segundos.
+        </p>
+
+        <h3 class="sub" id="que-hace">Qué hace <span class="goster-word">gōster</span></h3>
+        <p><span class="goster-word">gōster</span> convierte tu dictado clínico en un informe terminado. No es un dictado clásico que transcribe palabra por palabra: <strong>interpreta tu intención</strong>, aplica tus plantillas, expande tus frases cortas con el diccionario que tú le enseñaste y respeta el formato que tú definiste.</p>
+
+        <ul class="bullets">
+          <li><strong>Habla natural.</strong> Comenta el caso como con un colega.</li>
+          <li><strong>Aprende de ti.</strong> Cada corrección que guardas se convierte en una regla para el futuro.</li>
+          <li><strong>Fidelidad absoluta.</strong> Si no lo dictaste, no aparece. Sin alucinaciones, sin invenciones.</li>
+          <li><strong>Funciona sin configurar.</strong> Si todavía no tienes plantilla ni diccionario, <span class="goster-word">gōster</span> aplica su conocimiento radiológico estándar — luego personalizas a tu estilo.</li>
+          <li><strong>Web y móvil.</strong> Funciona en cualquier computadora moderna; tu celular puede ser el micrófono.</li>
+        </ul>
+
+        <div class="callout">
+          <div class="ico">i</div>
+          <div>
+            <h5>Antes de empezar</h5>
+            <p>Esta guía asume que ya tienes una cuenta activa. Si todavía no la tienes, <a href="Goster Landing.html#cta">empieza tu prueba gratis</a> — 15 informes incluidos y hasta 3 plantillas activas, sin tarjeta de crédito.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRIMEROS PASOS -->
+      <section class="chap" id="primeros-pasos">
+        <div class="chap-eyebrow">— Capítulo 02</div>
+        <h2 class="chap-title">Primeros pasos.</h2>
+        <p class="chap-lede">
+          Configura <span class="goster-word">gōster</span> una vez. Después solo dictas. Estos son los tres pasos para tu primer informe — toma menos de diez minutos.
+        </p>
+
+        <div class="steps">
+          <div class="step-row">
+            <div class="step-n">01</div>
+            <div>
+              <h4>Sube tus plantillas</h4>
+              <p>En la barra lateral, ve a <code>Plantillas → Nueva</code>. Sube un informe normal por cada tipo de estudio que reportes. <span class="goster-word">gōster</span> detecta automáticamente la modalidad (TC, RM, US, RX…) y la región anatómica.</p>
+              <div class="hint">Formatos aceptados: DOCX, DOC, PDF</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-n">02</div>
+            <div>
+              <h4>Construye tu diccionario</h4>
+              <p>Ve a <code>Diccionario → Importar</code> y sube informes <em>patológicos</em> previos. <span class="goster-word">gōster</span> extrae cada hallazgo como un <em>trigger</em>, asocia la descripción completa del cuerpo y anonimiza los datos del paciente. Las medidas se eliminan; la descripción queda reutilizable.</p>
+              <div class="hint">Recomendado: 20–30 informes por modalidad para empezar</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-n">03</div>
+            <div>
+              <h4>Dicta y genera</h4>
+              <p>Abre un estudio nuevo, activa la plantilla por voz (<em>"resonancia magnética de hombro"</em>) y dicta tus hallazgos como si comentaras el caso a un colega. Pulsa <kbd>Generar informe</kbd> y revisa el resultado.</p>
+              <div class="hint">El diccionario se vincula automáticamente con la plantilla</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout warn">
+          <div class="ico">!</div>
+          <div>
+            <h5>Solo tienes que hacerlo una vez</h5>
+            <p>La configuración inicial es la única parte que toma tiempo. A partir de ahí, <span class="goster-word">gōster</span> aprende con cada informe — no vuelves a tocar plantillas ni diccionario salvo que quieras.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERFAZ -->
+      <section class="chap" id="interfaz">
+        <div class="chap-eyebrow">— Capítulo 03</div>
+        <h2 class="chap-title">Tu espacio de trabajo.</h2>
+        <p class="chap-lede">
+          Una sola pantalla. Tres columnas. Sin menús escondidos. Esta es la única vista que necesitas dominar.
+        </p>
+
+        <div class="feat-grid">
+          <div class="feat">
+            <h4>1 · Biblioteca</h4>
+            <p>Tu historial, plantillas y diccionario. Filtra por modalidad, región o fecha. Cada elemento está a un clic.</p>
+          </div>
+          <div class="feat">
+            <h4>2 · Dictado</h4>
+            <p>El botón central de grabar usa tu color de acento. Al grabar pulsa al ritmo de tu voz con ondas expansivas. Alterna entre teclado y dictado con el selector superior.</p>
+          </div>
+          <div class="feat">
+            <h4>3 · Informe</h4>
+            <p>Editor con formato completo: negritas, listas, tablas, alineado y exportación. Listo para firmar y copiar.</p>
+          </div>
+          <div class="feat">
+            <h4>Barra superior</h4>
+            <p>Plantilla activa, modalidad de entrada (teclado / dictado), perfil y configuración. Cambia de plantilla con un clic.</p>
+          </div>
+        </div>
+
+        <h3 class="sub" id="estados">Estados del dictado</h3>
+        <ul class="bullets">
+          <li><strong>Inactivo</strong> — el botón muestra el ícono de micrófono en tu color de acento, en reposo con respiración suave.</li>
+          <li><strong>Escuchando</strong> — <span class="goster-word">gōster</span> captura tu voz; el botón pulsa al ritmo de la voz con ondas expansivas en tu color de acento.</li>
+          <li><strong>En pausa</strong> — la grabación se detiene momentáneamente con el botón más tenue. Pulsa de nuevo para reanudar.</li>
+          <li><strong>Procesando</strong> — <span class="goster-word">gōster</span> interpreta y redacta; típicamente entre 10 y 25 segundos para un informe estándar.</li>
+          <li><strong>Listo</strong> — el informe aparece en la columna derecha; puedes seguir dictando para añadir o corregir.</li>
+        </ul>
+      </section>
+
+      <!-- DICTADO -->
+      <section class="chap" id="dictado">
+        <div class="chap-eyebrow">— Capítulo 04</div>
+        <h2 class="chap-title">Dictar un informe.</h2>
+        <p class="chap-lede">
+          El secreto de <span class="goster-word">gōster</span> es que <strong>no</strong> tienes que dictar de forma estructurada. Habla como si le contaras el caso a un colega — <span class="goster-word">gōster</span> ordena los hallazgos en la estructura de la plantilla.
+        </p>
+
+        <h3 class="sub" id="empezar-dictado">Cómo empezar</h3>
+        <ol class="bullets">
+          <li>Selecciona o activa una plantilla (por voz o desde la biblioteca).</li>
+          <li>Cambia a modalidad <em>Dictado</em> y pulsa el botón central del micrófono.</li>
+          <li>Habla con naturalidad. No es necesario dictar encabezados como "hallazgos" o "conclusión" — la plantilla los provee.</li>
+          <li>Pulsa <kbd>Generar informe</kbd> para producir el reporte.</li>
+        </ol>
+
+        <h3 class="sub" id="que-dictar">Qué dictar y qué no</h3>
+        <ul class="bullets">
+          <li><strong>Sí:</strong> hallazgos en orden libre, lateralidad, niveles, medidas, clasificaciones.</li>
+          <li><strong>Sí:</strong> tus frases cortas (triggers) que el diccionario expande automáticamente.</li>
+          <li><strong>No es necesario:</strong> dictar encabezados como "hallazgos" o "conclusión" — la plantilla los provee.</li>
+          <li><strong>Si quieres ser explícito:</strong> puedes dictar "punto" o "coma" para forzar puntuación específica; <span class="goster-word">gōster</span> respeta tu intención.</li>
+        </ul>
+
+        <div class="example">
+          <div class="col">
+            <div class="lbl">Lo que dictas</div>
+            <div class="text">lesión grado dos del ligamento cruzado anterior, derrame articular leve, cuerno posterior del menisco medial con señal degenerativa lineal que no contacta superficie articular</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="col">
+            <div class="lbl">Lo que <span class="goster-word">gōster</span> escribe</div>
+            <div class="text">Ligamento cruzado anterior con <mark>rotura parcial</mark> de sus fibras. Derrame articular de leve cuantía. Cuerno posterior del menisco medial con señal degenerativa lineal que no contacta superficie articular.</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="ico">i</div>
+          <div>
+            <h5>El dictado es continuo</h5>
+            <p>Puedes pausar y reanudar todas las veces que quieras. Toma tu tiempo entre frases — <span class="goster-word">gōster</span> espera. Pulsa el micrófono otra vez para pausar.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLANTILLAS -->
+      <section class="chap" id="plantillas">
+        <div class="chap-eyebrow">— Capítulo 05</div>
+        <h2 class="chap-title">Plantillas.</h2>
+        <p class="chap-lede">
+          Una plantilla es tu informe normal para un tipo de estudio. <span class="goster-word">gōster</span> usa esa estructura — encabezados, secciones, frases por defecto — para todo lo que dictas dentro de ese estudio.
+        </p>
+
+        <h3 class="sub" id="crear-plantilla">Crear una plantilla</h3>
+        <ol class="bullets">
+          <li>Ve a <code>Biblioteca → Plantillas → Nueva</code>.</li>
+          <li>Sube un informe normal en DOCX, DOC o PDF.</li>
+          <li>Asigna un nombre claro: por ejemplo, <em>"RM rodilla — normal"</em> o <em>"TC tórax — protocolo COVID"</em>.</li>
+          <li>Activa o desactiva el vínculo automático con el diccionario.</li>
+        </ol>
+
+        <h3 class="sub" id="activar-plantilla">Activar una plantilla por voz</h3>
+        <p>Cuando empiezas un estudio nuevo, puedes activar la plantilla simplemente diciendo el nombre del estudio: <em>"resonancia magnética de hombro"</em>, <em>"TC de tórax simple"</em>, <em>"mamografía bilateral"</em>. <span class="goster-word">gōster</span> identifica la plantilla y carga el diccionario asociado.</p>
+
+        <h3 class="sub" id="sin-plantilla">¿Y si no tienes plantilla?</h3>
+        <p><span class="goster-word">gōster</span> sigue funcionando. Cuando no hay plantilla activa, aplica su conocimiento radiológico estándar y estructura el informe con encabezados convencionales (técnica, hallazgos, impresión diagnóstica). Útil para estudios poco frecuentes, casos urgentes, o tu primer día antes de subir plantillas.</p>
+
+        <h3 class="sub" id="varias-plantillas">Cuándo tener varias plantillas para el mismo estudio</h3>
+        <ul class="bullets">
+          <li>Cuando reportes por protocolos distintos (ej. RM rodilla deportiva vs. degenerativa).</li>
+          <li>Cuando tengas instituciones diferentes que pidan formatos distintos.</li>
+          <li>Cuando una variante use clasificaciones o tablas que la otra no.</li>
+        </ul>
+
+        <div class="callout warn">
+          <div class="ico">!</div>
+          <div>
+            <h5>Mantén las plantillas limpias</h5>
+            <p>Sube un informe normal — no uno patológico. Los hallazgos patológicos deben ir al <a href="#diccionario">diccionario</a>, no a la plantilla.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DICCIONARIO -->
+      <section class="chap" id="diccionario">
+        <div class="chap-eyebrow">— Capítulo 06</div>
+        <h2 class="chap-title">Diccionario clínico.</h2>
+        <p class="chap-lede">
+          El diccionario es donde vive tu estilo. Cada entrada empareja un <em>trigger</em> (lo que dictas) con una descripción clínica completa (lo que <span class="goster-word">gōster</span> escribe).
+        </p>
+
+        <h3 class="sub" id="como-funciona-dict">Cómo funciona</h3>
+        <p>Cuando subes informes previos, <span class="goster-word">gōster</span> los analiza así:</p>
+        <ol class="bullets">
+          <li>Identifica cada hallazgo de la conclusión y lo guarda como <em>trigger</em>.</li>
+          <li>Busca la descripción completa de ese hallazgo en el cuerpo del informe.</li>
+          <li>Elimina las medidas y datos específicos — la descripción queda genérica.</li>
+          <li>Anonimiza nombres, fechas e identificadores del paciente.</li>
+          <li>Fusiona entradas similares sin duplicar.</li>
+        </ol>
+
+        <div class="example">
+          <div class="col">
+            <div class="lbl">Trigger</div>
+            <div class="text">signos de neumonía en lóbulo medio</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="col">
+            <div class="lbl">Descripción guardada</div>
+            <div class="text">Pulmón derecho con un área de incremento de la densidad en <mark>patrón de vidrio despulido</mark> con tendencia a la consolidación, localizado en el lóbulo medio.</div>
+          </div>
+        </div>
+
+        <h3 class="sub" id="editar-dict">Editar el diccionario</h3>
+        <ul class="bullets">
+          <li>Ve a <code>Biblioteca → Diccionario</code>. Filtra por modalidad o región.</li>
+          <li>Edita el trigger, la descripción o ambos.</li>
+          <li>Añade <strong>variantes</strong> — múltiples descripciones para el mismo trigger; <span class="goster-word">gōster</span> las rota para evitar informes repetitivos.</li>
+          <li>Borra entradas que ya no uses.</li>
+        </ul>
+
+        <h3 class="sub" id="crecimiento">El diccionario crece solo</h3>
+        <p>Cada corrección que haces sobre un informe generado se evalúa: si <span class="goster-word">gōster</span> detecta un patrón, ofrece convertirlo en una nueva entrada o actualizar una existente. Tu vocabulario clínico se expande sin esfuerzo, con tu uso diario.</p>
+      </section>
+
+      <!-- TABLAS -->
+      <section class="chap" id="tablas">
+        <div class="chap-eyebrow">— Capítulo 07</div>
+        <h2 class="chap-title">Tablas por voz.</h2>
+        <p class="chap-lede">
+          Si tu plantilla incluye tablas — medidas, ángulos, clasificaciones por lado — dictas los valores y <span class="goster-word">gōster</span> los coloca en las celdas correspondientes. Sin tocar el teclado.
+        </p>
+
+        <h3 class="sub" id="usar-tablas">Cómo usar tablas por voz</h3>
+        <ol class="bullets">
+          <li>Tu plantilla debe contener la tabla con encabezados claros (ej. <em>Estructura · Derecho · Izquierdo</em>).</li>
+          <li>Dicta cada valor con su contexto: <em>"ángulo Q derecho catorce grados, ángulo Q izquierdo doce grados"</em>.</li>
+          <li><span class="goster-word">gōster</span> identifica la fila, la columna y formatea el número con la unidad correcta.</li>
+        </ol>
+
+        <div class="example">
+          <div class="col">
+            <div class="lbl">Lo que dictas</div>
+            <div class="text">ángulo Q catorce derecho doce izquierdo, Insall-Salvati uno punto cero ocho derecho uno punto cero cuatro izquierdo, TT-TG once punto dos derecho diez punto ocho izquierdo</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="col">
+            <div class="lbl">Lo que <span class="goster-word">gōster</span> llena</div>
+            <div class="text">
+              Ángulo Q · 14° · 12°<br/>
+              Insall-Salvati · 1.08 · 1.04<br/>
+              TT-TG · 11.2 mm · 10.8 mm
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORRECCIONES -->
+      <section class="chap" id="correcciones">
+        <div class="chap-eyebrow">— Capítulo 08</div>
+        <h2 class="chap-title">Correcciones por voz.</h2>
+        <p class="chap-lede">
+          Te equivocas a mitad de un dictado y te corriges con naturalidad. <span class="goster-word">gōster</span> descarta el valor anterior y conserva tu decisión final — sin tocar el teclado, sin volver atrás.
+        </p>
+
+        <div class="example">
+          <div class="col">
+            <div class="lbl">Te corriges</div>
+            <div class="text">"inclinación de dieciséis grados… no, espera, son diecinueve grados"</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="col">
+            <div class="lbl"><span class="goster-word">gōster</span> aplica</div>
+            <div class="text"><mark>19°</mark> propagado a la descripción, las tablas y la conclusión del informe.</div>
+          </div>
+        </div>
+
+        <h3 class="sub" id="como-corregir">Cómo se corrige por voz</h3>
+        <p><span class="goster-word">gōster</span> interpreta correcciones expresadas con naturalidad — por ejemplo "no, son…", "perdón, quise decir…", "quítale lo de…", "cámbiale X por Y". El motor combina coincidencia literal, semántica y fonética sobre el dictado más reciente; no necesitas memorizar frases mágicas, solo corregirte como lo harías hablando con un colega.</p>
+      </section>
+
+      <!-- REGLAS -->
+      <section class="chap" id="reglas">
+        <div class="chap-eyebrow">— Capítulo 09</div>
+        <h2 class="chap-title">Instrucciones y reglas.</h2>
+        <p class="chap-lede">
+          Define cómo <span class="goster-word">gōster</span> redacta por ti. Tu estilo, tus convenciones, tu terminología — siempre aplicadas, sin que tengas que recordarlas.
+        </p>
+
+        <h3 class="sub" id="globales">Instrucciones globales</h3>
+        <p>Se aplican a <strong>todos</strong> los informes. Configúralas una sola vez en <code>Perfil → Instrucciones globales</code>.</p>
+        <ul class="bullets">
+          <li><em>"Evita usar las frases <strong>se observa</strong> y <strong>se identifica</strong>."</em></li>
+          <li><em>"Todos los valores numéricos deben expresarse en milímetros."</em></li>
+          <li><em>"Usa siempre la primera persona del plural ('observamos', 'identificamos')."</em></li>
+        </ul>
+
+        <h3 class="sub" id="por-plantilla">Instrucciones por plantilla</h3>
+        <p>Se aplican <strong>solo</strong> dentro de esa plantilla. Configúralas en cada plantilla, en <code>Plantilla → Instrucciones especiales</code>.</p>
+        <ul class="bullets">
+          <li><em>"Si se menciona derrame articular, incluye siempre la cuantificación."</em></li>
+          <li><em>"Para esta plantilla, expresa los ángulos con un decimal."</em></li>
+          <li><em>"Reporta siempre los ligamentos colaterales aunque no se mencionen."</em></li>
+        </ul>
+
+        <div class="callout warn">
+          <div class="ico">!</div>
+          <div>
+            <h5>Reglas en conflicto</h5>
+            <p>Si una regla por plantilla contradice una global, la <strong>regla por plantilla gana</strong>. Es por diseño: la global es tu estilo general, la específica es la excepción para ese tipo de estudio.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPORTAR -->
+      <section class="chap" id="exportar">
+        <div class="chap-eyebrow">— Capítulo 10</div>
+        <h2 class="chap-title">Editar y exportar.</h2>
+        <p class="chap-lede">
+          Cuando el informe está generado, lo editas con el teclado o con la voz, y lo envías al sistema que uses para firmarlo.
+        </p>
+
+        <h3 class="sub" id="editar">Editar el informe</h3>
+        <ul class="bullets">
+          <li>Haz clic en cualquier parte para editar como en un procesador de texto.</li>
+          <li>Usa la barra de formato para negritas, cursivas, listas y alineado.</li>
+          <li>Si dictas otra frase, <span class="goster-word">gōster</span> la inserta donde tengas el cursor.</li>
+          <li>Guarda cambios para que se conviertan en reglas futuras.</li>
+        </ul>
+
+        <h3 class="sub" id="exportar-formato">Formatos de exportación</h3>
+        <ul class="bullets">
+          <li><strong>Copiar con formato</strong> — al portapapeles con negritas, listas y tablas, listo para pegar en Word o tu RIS.</li>
+          <li><strong>Copiar como texto plano</strong> — sin formato, para sistemas RIS / PACS que solo aceptan texto.</li>
+        </ul>
+
+        <div class="callout">
+          <div class="ico">i</div>
+          <div>
+            <h5>Pegado universal</h5>
+            <p>La opción <em>Copiar con formato</em> conserva negritas, listas y tablas en la mayoría de sistemas modernos. Si tu RIS solo acepta texto plano, usa esa opción dedicada — <span class="goster-word">gōster</span> aplica los saltos de línea correctos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MÓVIL -->
+      <section class="chap" id="movil">
+        <div class="chap-eyebrow">— Capítulo 11</div>
+        <h2 class="chap-title">Celular como micrófono.</h2>
+        <p class="chap-lede">
+          ¿Mejor calidad de audio? ¿Movilidad sin cable? Vincula tu celular y úsalo como micrófono inalámbrico. Sin app, sin instalación.
+        </p>
+
+        <h3 class="sub" id="vincular">Vincular el celular</h3>
+        <ol class="bullets">
+          <li>En la barra del dictado, pulsa el icono de QR.</li>
+          <li>Escanea el código con la cámara del celular.</li>
+          <li>Acepta el acceso al micrófono en el navegador del celular.</li>
+          <li>Listo — el indicador en la app web cambia a <em>"celular conectado"</em>.</li>
+        </ol>
+
+        <h3 class="sub" id="movil-tips">Consejos</h3>
+        <ul class="bullets">
+          <li>Conecta auriculares con micrófono al celular para mejor calidad y menos ruido ambiente.</li>
+          <li>Cuando termines, cierra la pestaña del celular o desconecta desde la app web.</li>
+          <li>El celular y la computadora pueden estar en redes distintas — la conexión es web.</li>
+        </ul>
+      </section>
+
+      <!-- PERSONALIZACIÓN -->
+      <section class="chap" id="personalizacion">
+        <div class="chap-eyebrow">— Capítulo 12</div>
+        <h2 class="chap-title">Apariencia.</h2>
+        <p class="chap-lede">
+          Tu espacio de trabajo, a tu manera. Cámbialo cuando quieras desde el panel de ajustes en la barra lateral.
+        </p>
+
+        <div class="feat-grid">
+          <div class="feat">
+            <h4>Tema claro / oscuro</h4>
+            <p>Cambia con un clic. La preferencia se guarda por dispositivo.</p>
+          </div>
+          <div class="feat">
+            <h4>Control de tono</h4>
+            <p>Desliza el slider de brillo para ajustar la temperatura del fondo. Útil para reducir fatiga visual en turnos largos.</p>
+          </div>
+          <div class="feat">
+            <h4>24 colores de acento</h4>
+            <p>Elige el color de cursor, botones, ondas de dictado y destacados. Cuatro filas: signature, neutrales cálidos, vivos cálidos y vivos fríos. Solo cambia el cromatismo; el contraste se mantiene legible.</p>
+          </div>
+          <div class="feat">
+            <h4>Idioma</h4>
+            <p>Cambia entre español e inglés desde el menú de idioma. La preferencia se guarda en tu cuenta y se aplica a la interfaz, los emails y los prompts.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATAJOS -->
+      <section class="chap" id="atajos">
+        <div class="chap-eyebrow">— Referencia</div>
+        <h2 class="chap-title">Atajos de teclado.</h2>
+        <p class="chap-lede">Atajos disponibles hoy en <span class="goster-word">gōster</span>.</p>
+
+        <table class="kbd-table">
+          <thead>
+            <tr><th>Atajo</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><kbd>⌘</kbd> + <kbd>K</kbd></td><td>Búsqueda rápida (plantillas, diccionario, historial)</td></tr>
+          </tbody>
+        </table>
+
+        <p style="font-family:var(--mono); font-size:12px; color:var(--dim);">En Windows / Linux, reemplaza <kbd>⌘</kbd> por <kbd>Ctrl</kbd>.</p>
+      </section>
+
+      <!-- PRIVACIDAD -->
+      <section class="chap" id="privacidad">
+        <div class="chap-eyebrow">— Referencia</div>
+        <h2 class="chap-title">Privacidad y datos.</h2>
+        <p class="chap-lede">Tus datos son tuyos. Esta sección explica cómo los tratamos.</p>
+
+        <h3 class="sub" id="cifrado">Transporte y almacenamiento</h3>
+        <ul class="bullets">
+          <li>Todos los datos viajan cifrados con TLS.</li>
+          <li>Los servidores corren en infraestructura cloud certificada.</li>
+          <li>El audio del dictado no se almacena: existe solo como archivo temporal durante el procesamiento del estudio activo. No queda en historial, base de datos permanente, logs ni archivos asociados.</li>
+        </ul>
+
+        <h3 class="sub" id="anonimizacion">Anonimización automática</h3>
+        <p>Cuando subes informes para construir el diccionario, <span class="goster-word">gōster</span> anonimiza automáticamente:</p>
+        <ul class="bullets">
+          <li>Nombre completo del paciente y familiares.</li>
+          <li>Fechas identificables.</li>
+          <li>Identificadores numéricos, expedientes, teléfonos y direcciones.</li>
+          <li>Nombres de médicos remitentes y centros institucionales.</li>
+        </ul>
+
+        <h3 class="sub" id="entrenamiento">Uso para entrenamiento</h3>
+        <p><strong>No</strong> usamos tu información para entrenar modelos públicos. Los modelos que aprenden de ti se aplican <strong>solo a tu cuenta</strong>. Si necesitas configuración aislada por institución, escríbenos sobre el plan Enterprise.</p>
+
+        <h3 class="sub" id="exportar-borrar">Borrar tu cuenta</h3>
+        <p>Si quieres dejar de usar <span class="goster-word">gōster</span>, escríbenos a <a href="mailto:hello@goster.ai">hello@goster.ai</a> y procesamos la eliminación definitiva de tu cuenta y todos los datos asociados.</p>
+      </section>
+
+      <!-- SOLUCIÓN -->
+      <section class="chap" id="solucion">
+        <div class="chap-eyebrow">— Referencia</div>
+        <h2 class="chap-title">Solución de problemas.</h2>
+
+        <h3 class="sub" id="mic-no-funciona">El micrófono no se activa</h3>
+        <ul class="bullets">
+          <li>Revisa que el navegador tenga permiso al micrófono (icono de candado en la barra de URL).</li>
+          <li>Asegúrate de no tener otra pestaña o app usando el micrófono.</li>
+          <li>En macOS, ve a <em>Ajustes → Privacidad → Micrófono</em> y autoriza tu navegador.</li>
+          <li>Reinicia el navegador si el indicador sigue gris.</li>
+        </ul>
+
+        <h3 class="sub" id="generacion-lenta">La generación tarda más de lo normal</h3>
+        <ul class="bullets">
+          <li>Verifica tu conexión a internet (≥ 5 Mbps recomendado).</li>
+          <li>Dictados muy largos (&gt; 5 min) tardan proporcionalmente más.</li>
+          <li>Si el problema persiste, escríbenos a <a href="mailto:hello@goster.ai">hello@goster.ai</a>.</li>
+        </ul>
+
+        <h3 class="sub" id="diccionario-erroneo">El diccionario expande algo que no quiero</h3>
+        <ul class="bullets">
+          <li>Abre la entrada en <code>Diccionario</code> y edita la descripción, o añade una variante alternativa.</li>
+          <li>Si dos triggers se solapan, renómbralos para que sean más específicos.</li>
+          <li>Dicta tu corrección al estilo <em>"quítale lo de X"</em> sobre el informe generado y guarda los cambios — <span class="goster-word">gōster</span> aprende.</li>
+        </ul>
+
+        <h3 class="sub" id="qr-no-funciona">El QR del celular no conecta</h3>
+        <ul class="bullets">
+          <li>Comprueba que el celular tenga conexión a internet.</li>
+          <li>Si el código caducó, ciérralo y vuelve a abrir el QR desde la barra de dictado.</li>
+          <li>Si usas red corporativa, pídele al equipo de TI que permita conexiones WebSocket salientes.</li>
+        </ul>
+      </section>
+
+      <!-- FAQ -->
+      <section class="chap" id="faq">
+        <div class="chap-eyebrow">— Referencia</div>
+        <h2 class="chap-title">Preguntas frecuentes.</h2>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Necesito instalar algo?</div>
+          <div class="faq-a">No. <span class="goster-word">gōster</span> es web — funciona en Chrome, Edge, Safari y Firefox modernos. Recomendamos Chrome o Edge para el dictado óptimo.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Funciona sin internet?</div>
+          <div class="faq-a">No. La generación se hace en la nube, por lo que se requiere conexión activa durante el dictado y la generación.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Puedo usar <span class="goster-word">gōster</span> en otro idioma?</div>
+          <div class="faq-a"><span class="goster-word">gōster</span> soporta español (México, España, Latam) e inglés. El inglés sigue en beta — escríbenos si tienes feedback.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿<span class="goster-word">gōster</span> puede inventar hallazgos?</div>
+          <div class="faq-a">No. La regla de oro es fidelidad absoluta: si no lo dictaste, no aparece. <span class="goster-word">gōster</span> solo expande triggers con descripciones que tú le enseñaste.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Cómo me cobran?</div>
+          <div class="faq-a">El cargo es mensual recurrente al método de pago que configures. Cancela cuando quieras desde tu portal de facturación; la cancelación es efectiva al final del periodo actual.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Hay descuentos para grupos o instituciones?</div>
+          <div class="faq-a">Sí. Escríbenos a <a href="mailto:hello@goster.ai">hello@goster.ai</a> para una cotización institucional con plantillas precargadas para todo el equipo.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Puedo migrar mi diccionario de otra herramienta?</div>
+          <div class="faq-a">Sí, en la mayoría de los casos. Si tienes un export en CSV, JSON o DOCX, escríbenos y lo importamos por ti.</div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="chap" id="contacto">
+        <div class="chap-eyebrow">— Referencia</div>
+        <h2 class="chap-title">Contacto.</h2>
+        <p class="chap-lede">Estamos para ayudarte. Escríbenos al correo del equipo o entra al sitio para más información.</p>
+
+        <div class="feat-grid">
+          <div class="feat">
+            <h4>Soporte y ventas</h4>
+            <p><a href="mailto:hello@goster.ai">hello@goster.ai</a> — el único canal del equipo; respondemos lo antes posible.</p>
+          </div>
+          <div class="feat">
+            <h4>Sitio</h4>
+            <p><a href="https://goster.ai">goster.ai</a> — landing, planes y novedades.</p>
+          </div>
+        </div>
+
+        <div class="doc-foot">
+          <div>
+            <h4>¿Listo para tu primer informe?</h4>
+            <p>Abre <span class="goster-word">gōster</span> y dicta. Si tienes dudas, vuelve a esta guía.</p>
+          </div>
+          <div class="actions">
+            <a href="https://goster.ai" class="btn btn-primary">Abrir <span class="goster-word">gōster</span></a>
+            <a href="Goster Landing.html" class="btn btn-ghost">Volver al sitio</a>
+          </div>
+        </div>
+
+        <p style="margin-top:30px;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:0.06em;">© 2026 <span class="goster-word">gōster</span> · Hecho con cuidado por radiólogos, para radiólogos.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+(function() {
+  const links = Array.from(document.querySelectorAll('.toc-group a'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  function update() {
+    const y = window.scrollY + 120;
+    let active = sections[0];
+    for (const s of sections) {
+      if (s.offsetTop <= y) active = s;
+    }
+    links.forEach(a => {
+      const targetId = a.getAttribute('href').slice(1);
+      a.classList.toggle('active', active && active.id === targetId);
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// Ghost cursor follower
+(function () {
+  const gc = document.getElementById('ghostCursor');
+  if (!gc) return;
+  function move(e) {
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
+    gc.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+  }
+  window.addEventListener('mousemove', move, { passive: true });
+  window.addEventListener('touchmove', move, { passive: true });
+})();
+</script>
+
+</body>
+</html>
