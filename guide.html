@@ -34,7 +34,7 @@
 
   /* Ghost cursor — green to match landing, masked ghost shape */
   html, body, *, a, button, input, select, textarea, [role="button"] {
-    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>') 0 0, none !important;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg==) 0 0, none !important;
   }
   #ghostCursor {
     position: fixed; top: 0; left: 0;
@@ -558,7 +558,7 @@
     padding: 11px 18px;
     border-radius: 999px;
     font-family: var(--body); font-weight: 500; font-size: 13.5px;
-    text-decoration: none; cursor: pointer; border: none;
+    text-decoration: none; cursor: inherit; border: none;
     transition: transform .15s ease, background .2s ease, box-shadow .25s ease;
     white-space: nowrap;
   }
