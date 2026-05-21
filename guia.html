@@ -629,7 +629,7 @@
     --neon-glow: oklch(0.40 0.20 152 / 0.20);
   }
   [data-theme="light"] ::selection { background: oklch(0.40 0.20 152 / 0.3); color: var(--fg); }
-  [data-theme="light"] #ghostCursor { background: oklch(0.40 0.20 152); }
+  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); mix-blend-mode: normal; }
 
   /* Light: backgrounds */
   [data-theme="light"] .bg {
@@ -711,7 +711,7 @@
   /* Light: black ghosts */
   [data-theme="light"] .doc-header .hero-ghost,
   [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
-  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); }
+  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); mix-blend-mode: normal; }
 </style>
 <script>
 (function(){var t=localStorage.getItem('goster-theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}})();
