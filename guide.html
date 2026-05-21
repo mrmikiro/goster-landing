@@ -34,25 +34,9 @@
 
   /* Ghost cursor — green to match landing, masked ghost shape */
   html, body, *, a, button, input, select, textarea, [role="button"] {
-    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg==) 0 0, none !important;
+    cursor: url('assets/goster-ghost-cursor.png') 8 4, none !important;
   }
-  #ghostCursor {
-    position: fixed; top: 0; left: 0;
-    width: 32px; height: 32px;
-    pointer-events: none;
-    z-index: 99999;
-    background: oklch(0.93 0.16 142);
-    -webkit-mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
-    mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
-    transform: translate3d(-9999px, -9999px, 0);
-    margin-left: -8px; margin-top: -4px;
-    mix-blend-mode: difference;
-    will-change: transform;
-  }
-  [data-theme="light"] #ghostCursor {
-    background: oklch(0.72 0.16 295) !important;
-    mix-blend-mode: normal !important;
-  }
+  #ghostCursor { display: none; }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
