@@ -32,7 +32,7 @@
 
   /* Ghost cursor — purple, masked to the ghost shape, blends with bg */
   html, body, *, a, button, input, select, textarea, [role="button"] {
-    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>') 0 0, none !important;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg==) 0 0, none !important;
   }
   #ghostCursor {
     position: fixed; top: 0; left: 0;
@@ -173,7 +173,7 @@
     padding: 12px 20px;
     border-radius: 999px;
     font-family: var(--body); font-weight: 500; font-size: 14px;
-    text-decoration: none; cursor: pointer; border: none;
+    text-decoration: none; cursor: inherit; border: none;
     transition: transform .15s ease, background .2s ease, box-shadow .25s ease;
     white-space: nowrap;
   }
@@ -1421,7 +1421,7 @@
   }
   .faq-q {
     width: 100%; text-align: left;
-    background: none; border: none; cursor: pointer;
+    background: none; border: none; cursor: inherit;
     padding: 24px 0;
     display: flex; justify-content: space-between; align-items: center;
     color: var(--fg);

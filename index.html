@@ -35,7 +35,7 @@
      dark areas and turns black over white (the big ghost illos),
      giving a bi-colored effect. */
   html, body, *, a, button, input, select, textarea, [role="button"] {
-    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>') 0 0, none !important;
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg==) 0 0, none !important;
   }
 
   /* Ghost cursor — solid purple (matches the user-guide accent), masked
@@ -181,7 +181,7 @@
     padding: 12px 20px;
     border-radius: 999px;
     font-family: var(--body); font-weight: 500; font-size: 14px;
-    text-decoration: none; cursor: pointer; border: none;
+    text-decoration: none; cursor: inherit; border: none;
     transition: transform .15s ease, background .2s ease, box-shadow .25s ease;
     white-space: nowrap;
   }
@@ -1408,7 +1408,7 @@
     font-family: var(--mono); font-size: 11px;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--muted);
-    cursor: pointer;
+    cursor: inherit;
     transition: background .2s, color .2s, box-shadow .2s;
   }
   .theme-toggle .t .ico {
@@ -1586,7 +1586,7 @@
   }
   .faq-q {
     width: 100%; text-align: left;
-    background: none; border: none; cursor: pointer;
+    background: none; border: none; cursor: inherit;
     padding: 24px 50px 24px 0;
     position: relative;
     color: var(--fg);
