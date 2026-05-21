@@ -2029,6 +2029,15 @@
 
   /* Light: footer */
   [data-theme="light"] footer { background: oklch(0.95 0.005 270); }
+
+  /* Light: black ghosts */
+  [data-theme="light"] .ghost-stage .ghost-img,
+  [data-theme="light"] .mani-ghost,
+  [data-theme="light"] .cta-ghost,
+  [data-theme="light"] .cta-ghost-left,
+  [data-theme="light"] .foot-brand img,
+  [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
+  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); }
   /* ========== MOBILE OPTIMIZATIONS ========== */
   @media (hover: none), (pointer: coarse) { html, body, *, a, button, input, select, textarea, [role="button"] { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
   .nav-hamburger { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; color: var(--muted); }
@@ -2097,7 +2106,7 @@
       <a href="#diccionario">Diccionario</a>
       <a href="#precios">Precios</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-guide" href="guia.html">Guía del usuarix</a>
+      <a class="nav-guide" href="guia.html">Guía del usuario</a>
     </div>
     <div class="nav-cta">
       <div class="lang-switch">
@@ -2844,7 +2853,7 @@
             <li>Todo lo del Plan Pro</li>
             <li>Plantillas institucionales precargadas</li>
             <li>Informes homogeneizados para toda la organización</li>
-            <li>Planes grupales y multi-usuarix</li>
+            <li>Planes grupales y multi-usuario</li>
             <li>Onboarding dedicado</li>
             <li>Facturación institucional</li>
             <li>Soporte 24/7 dedicado</li>

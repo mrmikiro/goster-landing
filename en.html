@@ -1862,6 +1862,15 @@
   /* Light: footer */
   [data-theme="light"] footer { background: oklch(0.95 0.005 270); }
 
+  /* Light: black ghosts */
+  [data-theme="light"] .ghost-stage .ghost-img,
+  [data-theme="light"] .mani-ghost,
+  [data-theme="light"] .cta-ghost,
+  [data-theme="light"] .cta-ghost-left,
+  [data-theme="light"] .foot-brand img,
+  [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
+  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); }
+
   @media (hover: none), (pointer: coarse) { html, body, *, a, button, input, select, textarea, [role="button"] { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
   .nav-hamburger { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; color: var(--muted); }
   .nav-hamburger svg { display: block; }

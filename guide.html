@@ -700,6 +700,18 @@
   /* Light: footer */
   [data-theme="light"] footer { background: oklch(0.95 0.005 270); }
   [data-theme="light"] .foot-inner { border-top-color: oklch(0.87 0.008 270); }
+
+  /* Light: accent gradient green */
+  [data-theme="light"] h1.doc-title .accent {
+    background: linear-gradient(120deg, var(--neon) 0%, oklch(0.50 0.22 120) 50%, var(--neon) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Light: black ghosts */
+  [data-theme="light"] .doc-header .hero-ghost,
+  [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
+  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); }
 </style>
 <script>
 (function(){var t=localStorage.getItem('goster-theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}})();
