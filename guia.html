@@ -49,6 +49,10 @@
     mix-blend-mode: difference;
     will-change: transform;
   }
+  [data-theme="light"] #ghostCursor {
+    background: oklch(0.72 0.16 295) !important;
+    mix-blend-mode: normal !important;
+  }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -629,7 +633,6 @@
     --neon-glow: oklch(0.52 0.14 135 / 0.20);
   }
   [data-theme="light"] ::selection { background: oklch(0.52 0.14 135 / 0.3); color: var(--fg); }
-  [data-theme="light"] #ghostCursor { background: oklch(0.72 0.16 295); mix-blend-mode: normal; }
 
   /* Light: backgrounds */
   [data-theme="light"] .bg {
@@ -711,7 +714,6 @@
   /* Light: black ghosts */
   [data-theme="light"] .doc-header .hero-ghost,
   [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
-  [data-theme="light"] #ghostCursor { background: oklch(0.72 0.16 295); mix-blend-mode: normal; }
 </style>
 <script>
 (function(){var t=localStorage.getItem('goster-theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}})();
