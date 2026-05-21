@@ -34,7 +34,9 @@
      mix-blend-mode: difference — the white ghost stays white over
      dark areas and turns black over white (the big ghost illos),
      giving a bi-colored effect. */
-  html, body, * { cursor: none !important; }
+  html, body, *, a, button, input, select, textarea, [role="button"] {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>') 0 0, none !important;
+  }
 
   /* Ghost cursor — solid purple (matches the user-guide accent), masked
      to the ghost shape. mix-blend-mode: difference still gives the
@@ -2028,7 +2030,7 @@
   /* Light: footer */
   [data-theme="light"] footer { background: oklch(0.95 0.005 270); }
   /* ========== MOBILE OPTIMIZATIONS ========== */
-  @media (hover: none), (pointer: coarse) { html, body, * { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
+  @media (hover: none), (pointer: coarse) { html, body, *, a, button, input, select, textarea, [role="button"] { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
   .nav-hamburger { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; color: var(--muted); }
   .nav-hamburger svg { display: block; }
   .nav-mobile { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 49; background: oklch(0.08 0.012 240 / 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 80px 24px 32px; flex-direction: column; gap: 8px; overflow-y: auto; }
