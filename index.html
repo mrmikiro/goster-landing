@@ -35,29 +35,13 @@
      dark areas and turns black over white (the big ghost illos),
      giving a bi-colored effect. */
   html, body, *, a, button, input, select, textarea, [role="button"] {
-    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAABJRU5ErkJggg==) 0 0, none !important;
+    cursor: url('assets/goster-ghost-cursor.png') 8 4, none !important;
   }
 
   /* Ghost cursor — solid purple (matches the user-guide accent), masked
      to the ghost shape. mix-blend-mode: difference still gives the
      contrast-shift effect on whatever is underneath. */
-  #ghostCursor {
-    position: fixed; top: 0; left: 0;
-    width: 32px; height: 32px;
-    pointer-events: none;
-    z-index: 99999;
-    background: oklch(0.82 0.14 295);
-    -webkit-mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
-    mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
-    transform: translate3d(-9999px, -9999px, 0);
-    margin-left: -8px; margin-top: -4px;
-    mix-blend-mode: difference;
-    will-change: transform;
-  }
-  [data-theme="light"] #ghostCursor {
-    background: oklch(0.70 0.18 142) !important;
-    mix-blend-mode: normal !important;
-  }
+  #ghostCursor { display: none; }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
