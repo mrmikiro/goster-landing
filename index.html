@@ -30,27 +30,18 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--bg); color: var(--fg); }
 
-  /* Ghost cursor: rendered as a DOM element so we can apply
-     mix-blend-mode: difference — the white ghost stays white over
-     dark areas and turns black over white (the big ghost illos),
-     giving a bi-colored effect. */
-  html, body, *, a, button, input, select, textarea, [role="button"] {
-    cursor: url('assets/goster-ghost-cursor.png') 8 4, none !important;
+  html, body, *, a, button, input, select, textarea, [role="button"] { cursor: none !important; }
+  #ghostCursor {
+    position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+    pointer-events: none; z-index: 99999;
+    background: oklch(0.82 0.14 295);
+    -webkit-mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
+    mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
+    transform: translate3d(-9999px, -9999px, 0);
+    margin-left: -8px; margin-top: -4px;
+    will-change: transform;
   }
-
-  /* Ghost cursor — solid purple (matches the user-guide accent), masked
-     to the ghost shape. mix-blend-mode: difference still gives the
-     contrast-shift effect on whatever is underneath. */
-  #ghostCursor { display: none; }
-  [data-theme="light"],
-  [data-theme="light"] *,
-  [data-theme="light"] a,
-  [data-theme="light"] button,
-  [data-theme="light"] input,
-  [data-theme="light"] select,
-  [data-theme="light"] textarea {
-    cursor: url('assets/goster-ghost-cursor-dark.png') 8 4, none !important;
-  }
+  [data-theme="light"] #ghostCursor { background: oklch(0.70 0.18 142); }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -3219,8 +3210,6 @@
     var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', next);
     localStorage.setItem('goster-theme', next);
-    document.body.style.cursor = 'auto';
-    requestAnimationFrame(function () { document.body.style.cursor = ''; });
   });
 })();
 </script>
