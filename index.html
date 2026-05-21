@@ -42,6 +42,15 @@
      to the ghost shape. mix-blend-mode: difference still gives the
      contrast-shift effect on whatever is underneath. */
   #ghostCursor { display: none; }
+  [data-theme="light"],
+  [data-theme="light"] *,
+  [data-theme="light"] a,
+  [data-theme="light"] button,
+  [data-theme="light"] input,
+  [data-theme="light"] select,
+  [data-theme="light"] textarea {
+    cursor: url('assets/goster-ghost-cursor-dark.png') 8 4, none !important;
+  }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -3210,6 +3219,8 @@
     var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', next);
     localStorage.setItem('goster-theme', next);
+    document.body.style.cursor = 'auto';
+    requestAnimationFrame(function () { document.body.style.cursor = ''; });
   });
 })();
 </script>
