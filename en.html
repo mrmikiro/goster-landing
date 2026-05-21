@@ -1572,6 +1572,43 @@
 
   /* Brand wordmark — "gōster" always in Poppins */
   .goster-word { font-family: "Poppins", "Inter", system-ui, sans-serif; font-weight: inherit; font-style: normal; letter-spacing: -0.005em; }
+  @media (hover: none), (pointer: coarse) { html, body, * { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
+  .nav-hamburger { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; color: var(--muted); }
+  .nav-hamburger svg { display: block; }
+  .nav-mobile { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 49; background: oklch(0.08 0.012 240 / 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 80px 24px 32px; flex-direction: column; gap: 8px; overflow-y: auto; }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a { display: block; color: var(--muted); text-decoration: none; font-size: 18px; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--line-2); transition: color .2s; }
+  .nav-mobile .mobile-login { margin-top: 16px; text-align: center; padding: 14px 24px; background: var(--neon); color: #061a0c; border-radius: 999px; font-weight: 600; border-bottom: none; }
+  @media (max-width: 900px) {
+    .nav-hamburger { display: block; }
+    .nav-links { display: none !important; }
+    .nav-cta .login { display: none; }
+    .lang-switch { font-size: 10px; padding: 5px 10px; }
+    nav.top { padding: 12px 16px; }
+    .brand .mark { width: 28px; height: 28px; }
+    .brand .wordmark-img { height: 16px; }
+    section.block { padding: 60px 0; }
+    .container { padding: 0 16px; }
+    .hero { padding: 110px 0 50px; }
+    .hero-wordmark { margin-bottom: 32px; }
+    .hero-wordmark img { max-width: 240px; }
+    .hero-inner h1 { font-size: 28px; line-height: 1.2; }
+    .hero-blurb { font-size: 15px; }
+    .hero-actions { flex-direction: column; gap: 12px; align-items: stretch; }
+    .hero-actions .btn { text-align: center; justify-content: center; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .caps { grid-template-columns: 1fr !important; }
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .foot-grid { grid-template-columns: 1fr !important; gap: 28px; }
+    .foot-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .cta-card { padding: 48px 20px; }
+  }
+  @media (max-width: 400px) {
+    .hero-wordmark img { max-width: 200px; }
+    .hero-inner h1 { font-size: 24px; }
+    .btn-lg { padding: 14px 22px; font-size: 14px; }
+    .container { padding: 0 12px; }
+  }
 </style>
 </head>
 <body>
@@ -1598,17 +1635,27 @@
       <a href="#dictionary">Dictionary</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-guide" href="Guia del usuario EN.html">User guide</a>
+      <a class="nav-guide" href="guide.html">User guide</a>
     </div>
     <div class="nav-cta">
       <div class="lang-switch">
-        <a href="Goster Landing.html">ES</a>
+        <a href="index.html">ES</a>
         <span class="sep">·</span>
-        <a class="active" href="Goster Landing EN.html">EN</a>
+        <a class="active" href="en.html">EN</a>
       </div>
       <a href="https://app.goster.ai/" class="login">Log in</a>
-      <a href="#cta" class="btn btn-primary">Try free →</a>
+      <a href="#pricing" class="btn btn-primary">Try free →</a>
     </div>
+    <button class="nav-hamburger" onclick="document.getElementById('navMobile').classList.toggle('open')" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 9h16.5m-16.5 6.75h16.5"/></svg></button>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#product" onclick="this.parentElement.classList.remove('open')">Product</a>
+    <a href="#flow" onclick="this.parentElement.classList.remove('open')">How it works</a>
+    <a href="#dictionary" onclick="this.parentElement.classList.remove('open')">Dictionary</a>
+    <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Pricing</a>
+    <a href="#faq" onclick="this.parentElement.classList.remove('open')">FAQ</a>
+    <a href="guide.html">User guide</a>
+    <a href="https://app.goster.ai/" class="mobile-login">Log in</a>
+  </div>
   </nav>
 
   <!-- HERO -->
@@ -2340,7 +2387,7 @@
         <h2>Focus on interpreting.<br /><span class="accent"><span class="goster-word">gōster</span> writes.</span></h2>
         <p>Free for 14 days. No credit card, no commitment. 3 templates and 10 reports included.</p>
         <div class="cta-actions">
-          <a href="#" class="btn btn-primary btn-lg">Try free</a>
+          <a href="#pricing" class="btn btn-primary btn-lg">Try free</a>
           <a href="#flow" class="btn btn-ghost btn-lg">See how it works</a>
         </div>
         <div class="cta-foot">No card · No commitment · Cancel anytime</div>
@@ -2373,7 +2420,7 @@
           <a href="#flow">Get started in minutes</a>
           <a href="#how-it-works">How it works</a>
           <a href="#faq">FAQ</a>
-          <a href="Guia del usuario EN.html">Documentation</a>
+          <a href="guide.html">Documentation</a>
         </div>
         <div class="foot-col">
           <h5>Company</h5>
