@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <link rel="icon" type="image/png" href="assets/goster-ghost-dark.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>gōster — Guía del usuarix</title>
-<meta name="description" content="Guía del usuarix de gōster: configura tus plantillas, construye tu diccionario clínico y dicta tus informes radiológicos en minutos." />
+<title>gōster — Guía del usuario</title>
+<meta name="description" content="Guía del usuario de gōster: configura tus plantillas, construye tu diccionario clínico y dicta tus informes radiológicos en minutos." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -700,6 +700,18 @@
   /* Light: footer */
   [data-theme="light"] footer { background: oklch(0.95 0.005 270); }
   [data-theme="light"] .foot-inner { border-top-color: oklch(0.87 0.008 270); }
+
+  /* Light: accent gradient green */
+  [data-theme="light"] h1.doc-title .accent {
+    background: linear-gradient(120deg, var(--neon) 0%, oklch(0.50 0.22 120) 50%, var(--neon) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Light: black ghosts */
+  [data-theme="light"] .doc-header .hero-ghost,
+  [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
+  [data-theme="light"] #ghostCursor { background: oklch(0.10 0.01 240); }
 </style>
 <script>
 (function(){var t=localStorage.getItem('goster-theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}})();
@@ -736,7 +748,7 @@
   <div class="layout">
 
     <aside class="toc" id="toc">
-      <div class="toc-eyebrow">Guía del usuarix</div>
+      <div class="toc-eyebrow">Guía del usuario</div>
 
       <div class="toc-group">
         <h5>Empezar</h5>
@@ -778,7 +790,7 @@
         <span class="hero-orbit" aria-hidden="true"></span>
         <img class="hero-ghost" src="assets/goster-ghost.png" alt="" aria-hidden="true" />
         <span class="doc-eyebrow"><span class="dot"></span>Documentación · v1.0</span>
-        <h1 class="doc-title">Guía del <span class="accent">usuarix.</span></h1>
+        <h1 class="doc-title">Guía del <span class="accent">usuario.</span></h1>
         <p class="doc-lede">
           Todo lo que necesitas saber para empezar a usar <span class="goster-word">gōster</span> — desde subir tu primera plantilla hasta dominar el dictado por voz, las reglas personalizadas y el diccionario clínico.
         </p>
