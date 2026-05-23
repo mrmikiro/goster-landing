@@ -637,6 +637,16 @@
     display: block;
     width: 100%; height: auto;
   }
+  .showcase-spacer { height: 2px; background: var(--line); margin: 0; }
+  .showcase-caption {
+    padding: 12px 20px;
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--dim);
+    text-align: center;
+    background: oklch(0.09 0.012 240 / 0.6);
+  }
+  [data-theme="light"] .showcase-caption { background: oklch(0.96 0.005 270 / 0.8); }
   .showcase-callouts {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 16px;
@@ -2228,8 +2238,11 @@
           <div class="lights"><span></span><span></span><span></span></div>
           <div style="width: 40px;"></div>
         </div>
-        <img class="showcase-img" src="assets/goster-app.png" alt="Interfaz de gōster: grabando dictado con visualización de audio." />
-        <img class="showcase-img" src="assets/goster-interfaz.png" alt="Interfaz de gōster: listo para dictar con botón de micrófono." />
+        <img class="showcase-img" src="assets/goster-default.png" alt="Interfaz de gōster: listo para dictar con botón de micrófono." />
+        <div class="showcase-caption">Dicta tus hallazgos por voz — presiona el micrófono y comienza a hablar</div>
+        <div class="showcase-spacer"></div>
+        <img class="showcase-img" src="assets/goster-interfaz.png" alt="Interfaz de gōster: entrada de texto por teclado." />
+        <div class="showcase-caption">O escribe directamente por teclado — tú decides cómo trabajar</div>
       </div>
 
       <div class="showcase-callouts">
