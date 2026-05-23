@@ -1476,13 +1476,17 @@
   }
   .cta-ghost {
     position: absolute; right: -40px; bottom: -60px;
-    width: 320px; opacity: 0.05; pointer-events: none; z-index: 0;
+    width: 320px; opacity: 0.05; pointer-events: auto; z-index: 0;
+    transition: opacity 0.6s ease;
   }
+  .cta-ghost:hover { opacity: 0.85; }
   .cta-ghost-left {
     position: absolute; left: -50px; top: -40px;
-    width: 200px; opacity: 0.04; pointer-events: none; z-index: 0;
+    width: 200px; opacity: 0.04; pointer-events: auto; z-index: 0;
     transform: rotate(-12deg);
+    transition: opacity 0.6s ease;
   }
+  .cta-ghost-left:hover { opacity: 0.85; }
   .cta-card > * { position: relative; z-index: 1; }
   .cta-card::before {
     content: "";
