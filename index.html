@@ -32,18 +32,32 @@
 
   html, body, *, a, button, input, select, textarea, [role="button"] { cursor: none !important; }
   #ghostCursor {
-    position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+    position: fixed; top: 0; left: 0; width: 36px; height: 36px;
     pointer-events: none; z-index: 99999;
     background: oklch(0.82 0.14 295);
-    -webkit-mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
-    mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
+    -webkit-mask: url('assets/goster-chibi-cursor.png') center / contain no-repeat;
+    mask: url('assets/goster-chibi-cursor.png') center / contain no-repeat;
     transform: translate3d(-9999px, -9999px, 0);
-    margin-left: -8px; margin-top: -4px;
+    margin-left: -12px; margin-top: -12px;
     opacity: 0.75;
     mix-blend-mode: difference;
     will-change: transform;
   }
+  #ghostCursor.flip { transform: translate3d(-9999px, -9999px, 0) scaleX(-1); }
+  #ghostDot {
+    position: fixed; top: 0; left: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    pointer-events: none; z-index: 99998;
+    background: oklch(0.82 0.14 295);
+    opacity: 0.5;
+    mix-blend-mode: difference;
+    transform: translate3d(-9999px, -9999px, 0);
+    will-change: transform;
+    transition: width 0.3s, height 0.3s;
+  }
   [data-theme="light"] #ghostCursor { background: oklch(0.70 0.18 322); }
+  [data-theme="light"] #ghostDot { background: oklch(0.70 0.18 322); }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -2092,6 +2106,7 @@
 <div class="bg-vignette"></div>
 <div class="cursor-aura" id="aura"></div>
 <div id="ghostCursor" aria-hidden="true"></div>
+<div id="ghostDot" aria-hidden="true"></div>
 
 <div class="wrap">
 
@@ -2970,6 +2985,9 @@
   const stage = document.getElementById('bgStage');
   const aura = document.getElementById('aura');
   const ghostCursor = document.getElementById('ghostCursor');
+  const ghostDot = document.getElementById('ghostDot');
+  var cursorLastX = -9999, cursorFlipped = false;
+  var dotX = -9999, dotY = -9999;
 
   let dpr = Math.min(window.devicePixelRatio || 1, 2);
   let w = 0, h = 0;
@@ -3008,9 +3026,27 @@
     aura.style.left = x + 'px';
     aura.style.top = y + 'px';
     if (ghostCursor) {
-      ghostCursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+      var dx = x - cursorLastX;
+      if (Math.abs(dx) > 2) {
+        var shouldFlip = dx > 0;
+        if (shouldFlip !== cursorFlipped) {
+          cursorFlipped = shouldFlip;
+        }
+      }
+      var scaleX = cursorFlipped ? -1 : 1;
+      ghostCursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scaleX(' + scaleX + ')';
+      cursorLastX = x;
     }
   }
+  function animateDot() {
+    dotX += (mouse.tx - dotX) * 0.08;
+    dotY += (mouse.ty - dotY) * 0.08;
+    if (ghostDot) {
+      ghostDot.style.transform = 'translate3d(' + (dotX - 3) + 'px,' + (dotY + 18) + 'px,0)';
+    }
+    requestAnimationFrame(animateDot);
+  }
+  animateDot();
   function onLeave() {
     mouse.active = false;
     mouse.tx = w / 2; mouse.ty = h / 2;

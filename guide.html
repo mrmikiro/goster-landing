@@ -34,18 +34,30 @@
 
   html, body, *, a, button, input, select, textarea, [role="button"] { cursor: none !important; }
   #ghostCursor {
-    position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+    position: fixed; top: 0; left: 0; width: 36px; height: 36px;
     pointer-events: none; z-index: 99999;
     background: oklch(0.93 0.16 142);
-    -webkit-mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
-    mask: url('assets/goster-ghost-cursor.png') center / contain no-repeat;
+    -webkit-mask: url('assets/goster-chibi-cursor.png') center / contain no-repeat;
+    mask: url('assets/goster-chibi-cursor.png') center / contain no-repeat;
     transform: translate3d(-9999px, -9999px, 0);
-    margin-left: -8px; margin-top: -4px;
+    margin-left: -12px; margin-top: -12px;
     opacity: 0.75;
     mix-blend-mode: difference;
     will-change: transform;
   }
+  #ghostDot {
+    position: fixed; top: 0; left: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    pointer-events: none; z-index: 99998;
+    background: oklch(0.93 0.16 142);
+    opacity: 0.5;
+    mix-blend-mode: difference;
+    transform: translate3d(-9999px, -9999px, 0);
+    will-change: transform;
+  }
   [data-theme="light"] #ghostCursor { background: oklch(0.72 0.16 115); }
+  [data-theme="light"] #ghostDot { background: oklch(0.72 0.16 115); }
   body {
     font-family: var(--body); font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -715,6 +727,7 @@
 <body>
 
 <div id="ghostCursor" aria-hidden="true"></div>
+<div id="ghostDot" aria-hidden="true"></div>
 
 <div class="bg"></div>
 <div class="bg-grid"></div>
@@ -1380,12 +1393,26 @@
 // Ghost cursor follower
 (function () {
   const gc = document.getElementById('ghostCursor');
+  const gd = document.getElementById('ghostDot');
   if (!gc) return;
+  var lastX = -9999, flipped = false, dotX = -9999, dotY = -9999, mx = -9999, my = -9999;
   function move(e) {
-    const x = e.touches ? e.touches[0].clientX : e.clientX;
-    const y = e.touches ? e.touches[0].clientY : e.clientY;
-    gc.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+    var x = e.touches ? e.touches[0].clientX : e.clientX;
+    var y = e.touches ? e.touches[0].clientY : e.clientY;
+    mx = x; my = y;
+    var dx = x - lastX;
+    if (Math.abs(dx) > 2) { flipped = dx > 0; }
+    var sx = flipped ? -1 : 1;
+    gc.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scaleX(' + sx + ')';
+    lastX = x;
   }
+  function tick() {
+    dotX += (mx - dotX) * 0.08;
+    dotY += (my - dotY) * 0.08;
+    if (gd) { gd.style.transform = 'translate3d(' + (dotX - 3) + 'px,' + (dotY + 18) + 'px,0)'; }
+    requestAnimationFrame(tick);
+  }
+  tick();
   window.addEventListener('mousemove', move, { passive: true });
   window.addEventListener('touchmove', move, { passive: true });
 })();
