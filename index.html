@@ -46,7 +46,7 @@
   #ghostCursor.flip { transform: translate3d(-9999px, -9999px, 0) scaleX(-1); }
   #ghostDot {
     position: fixed; top: 0; left: 0;
-    width: 6px; height: 6px;
+    width: 4px; height: 4px;
     border-radius: 50%;
     pointer-events: none; z-index: 99998;
     background: oklch(0.82 0.14 295);
@@ -3033,7 +3033,7 @@
           cursorFlipped = shouldFlip;
         }
       }
-      var scaleX = cursorFlipped ? -1 : 1;
+      var scaleX = cursorFlipped ? 1 : -1;
       ghostCursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scaleX(' + scaleX + ')';
       cursorLastX = x;
     }

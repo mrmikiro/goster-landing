@@ -47,7 +47,7 @@
   }
   #ghostDot {
     position: fixed; top: 0; left: 0;
-    width: 6px; height: 6px;
+    width: 4px; height: 4px;
     border-radius: 50%;
     pointer-events: none; z-index: 99998;
     background: oklch(0.93 0.16 142);
@@ -1402,7 +1402,7 @@
     mx = x; my = y;
     var dx = x - lastX;
     if (Math.abs(dx) > 2) { flipped = dx > 0; }
-    var sx = flipped ? -1 : 1;
+    var sx = flipped ? 1 : -1;
     gc.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scaleX(' + sx + ')';
     lastX = x;
   }
