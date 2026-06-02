@@ -32,13 +32,13 @@
 
   html, body, *, a, button, input, select, textarea, [role="button"] { cursor: none !important; }
   #ghostCursor {
-    position: fixed; top: 0; left: 0; width: 36px; height: 36px;
+    position: fixed; top: 0; left: 0; width: 46px; height: 46px;
     pointer-events: none; z-index: 99999;
     background: oklch(0.82 0.14 295);
     -webkit-mask: url('assets/goster-cursor.png') center / contain no-repeat;
     mask: url('assets/goster-cursor.png') center / contain no-repeat;
     transform: translate3d(-9999px, -9999px, 0);
-    margin-left: -12px; margin-top: -12px;
+    margin-left: -16px; margin-top: -16px;
     opacity: 0.75;
     mix-blend-mode: difference;
     will-change: transform;
@@ -84,16 +84,7 @@
     position: fixed; inset: 0; z-index: 3; pointer-events: none;
     background: radial-gradient(120% 90% at 50% 50%, transparent 55%, oklch(0.05 0.01 240) 100%);
   }
-  .cursor-aura {
-    position: fixed; z-index: 4; pointer-events: none;
-    width: 380px; height: 380px;
-    left: var(--mx,50%); top: var(--my,50%);
-    transform: translate(-50%,-50%);
-    background: radial-gradient(circle, var(--neon-glow) 0%, transparent 60%);
-    filter: blur(40px);
-    opacity: 0.5;
-    mix-blend-mode: screen;
-  }
+  .cursor-aura { display: none; }
   @media (prefers-reduced-motion: reduce) {
     .cursor-aura { opacity: 0.15; }
     html { scroll-behavior: auto; }
@@ -2836,10 +2827,12 @@
     }
   }
   function animateDot() {
-    dotX += (mouse.tx - dotX) * 0.08;
-    dotY += (mouse.ty - dotY) * 0.08;
+    var restX = mouse.tx + (cursorFlipped ? 14 : -14);
+    var restY = mouse.ty + 22;
+    dotX += (restX - dotX) * 0.06;
+    dotY += (restY - dotY) * 0.06;
     if (ghostDot) {
-      ghostDot.style.transform = 'translate3d(' + (dotX - 3) + 'px,' + (dotY + 18) + 'px,0)';
+      ghostDot.style.transform = 'translate3d(' + (dotX - 2) + 'px,' + (dotY - 2) + 'px,0)';
     }
     requestAnimationFrame(animateDot);
   }
