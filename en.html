@@ -2869,11 +2869,11 @@
       const breath = Math.sin(time * 0.8 + d.phase) * 0.4;
       d.x += (d.ox + pushX - d.x) * 0.12;
       d.y += (d.oy + pushY - d.y) * 0.12;
-      const base = 0.18 + breath * 0.06;
+      const base = 0.08 + breath * 0.03;
       const size = 1.1 + glow * 1.6;
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       if (glow > 0.15) {
-        const a = Math.min(0.95, 0.35 + glow * 0.8);
+        const a = Math.min(0.6, 0.15 + glow * 0.5);
         ctx.fillStyle = isLight ? `oklch(0.55 0.18 295 / ${a})` : `oklch(0.87 0.21 142 / ${a})`;
         ctx.beginPath(); ctx.arc(d.x, d.y, size, 0, Math.PI * 2); ctx.fill();
       } else {
@@ -2884,7 +2884,7 @@
 
     if (mouse.active) {
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      ctx.strokeStyle = isLight ? `oklch(0.55 0.18 295 / 0.18)` : `oklch(0.87 0.21 142 / 0.22)`;
+      ctx.strokeStyle = isLight ? `oklch(0.55 0.18 295 / 0.08)` : `oklch(0.87 0.21 142 / 0.10)`;
       ctx.lineWidth = 1;
       const LINK_R = 70;
       const LINK_R2 = LINK_R * LINK_R;
