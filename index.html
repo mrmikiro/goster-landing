@@ -1752,6 +1752,76 @@
   /* Brand wordmark — "gōster" always in Poppins */
   .goster-word { font-family: "Poppins", "Inter", system-ui, sans-serif; font-weight: inherit; font-style: normal; letter-spacing: -0.005em; }
 
+  /* ---------- Mobile app section ---------- */
+  .mobile-app { padding: 110px 0; position: relative; }
+  .mobile-app-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .mobile-app-phones {
+    display: flex; justify-content: center; gap: 24px;
+    perspective: 1200px;
+  }
+  .iphone-frame {
+    position: relative;
+    width: 220px;
+    border-radius: 36px;
+    background: oklch(0.08 0.012 240);
+    padding: 12px;
+    box-shadow:
+      0 0 0 2px oklch(0.20 0.012 240),
+      0 30px 80px -20px oklch(0.02 0 0 / 0.6),
+      inset 0 0 0 1px oklch(0.25 0.012 240);
+    overflow: hidden;
+  }
+  .iphone-frame::before {
+    content: "";
+    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px;
+    background: oklch(0.06 0.012 240);
+    border-radius: 20px;
+    z-index: 2;
+  }
+  .iphone-frame img {
+    width: 100%; height: auto;
+    border-radius: 24px;
+    display: block;
+  }
+  .iphone-frame:first-child {
+    animation: phoneFloat1 5s ease-in-out infinite;
+  }
+  .iphone-frame:last-child {
+    animation: phoneFloat2 5s ease-in-out infinite;
+    margin-top: 40px;
+  }
+  @keyframes phoneFloat1 {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes phoneFloat2 {
+    0%, 100% { transform: translateY(0) rotate(1deg); }
+    50% { transform: translateY(-10px) rotate(-1deg); }
+  }
+  [data-theme="light"] .iphone-frame {
+    background: oklch(0.96 0.005 270);
+    box-shadow:
+      0 0 0 2px oklch(0.85 0.008 270),
+      0 30px 80px -20px oklch(0.50 0 270 / 0.10),
+      inset 0 0 0 1px oklch(0.90 0.006 270);
+  }
+  [data-theme="light"] .iphone-frame::before { background: oklch(0.92 0.005 270); }
+  @media (prefers-reduced-motion: reduce) {
+    .iphone-frame { animation: none !important; }
+  }
+  @media (max-width: 900px) {
+    .mobile-app-inner { grid-template-columns: 1fr; gap: 40px; }
+    .mobile-app-phones { gap: 16px; }
+    .iphone-frame { width: 160px; border-radius: 28px; padding: 8px; }
+    .iphone-frame::before { width: 60px; height: 16px; top: 7px; }
+    .iphone-frame img { border-radius: 20px; }
+    .iphone-frame:last-child { margin-top: 24px; }
+  }
+
   /* ---------- Theme toggle button ---------- */
   .theme-btn {
     width: 34px; height: 34px;
@@ -2298,6 +2368,39 @@
               <h4>Fidelidad absoluta</h4>
               <p>Si no lo dictaste, no aparece. Sin alucinaciones. Sin invenciones.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE APP -->
+  <section class="mobile-app block" id="movil">
+    <div class="container">
+      <div class="mobile-app-inner">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Disponible en tu celular</span>
+          <h2 class="sec-title">Vincula tu celular y dicta <span class="accent">desde cualquier lugar.</span></h2>
+          <p class="sec-desc" style="max-width:480px; margin-top:18px;">
+            Conecta tu dispositivo móvil y usa <strong style="color:var(--fg)"><span class="goster-word">gōster</span></strong> como micrófono inalámbrico. Dicta hallazgos junto al paciente, en el consultorio o donde estés — el informe se genera en tu computadora en tiempo real.
+          </p>
+          <div style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; color:var(--neon); letter-spacing:0.1em; text-transform:uppercase;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)"></span>
+              Sincronización instantánea
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; color:var(--neon); letter-spacing:0.1em; text-transform:uppercase;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)"></span>
+              Sin cables ni apps extra
+            </div>
+          </div>
+        </div>
+        <div class="mobile-app-phones">
+          <div class="iphone-frame">
+            <img src="assets/goster-cel.jpg" alt="gōster móvil — listo para dictar" />
+          </div>
+          <div class="iphone-frame">
+            <img src="assets/goster-cel-2.jpg" alt="gōster móvil — dictando" />
           </div>
         </div>
       </div>
