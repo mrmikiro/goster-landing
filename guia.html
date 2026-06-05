@@ -1407,8 +1407,8 @@
     lastX = x;
   }
   function tick() {
-    var restX = mx + (flipped ? -14 : 28);
-    var restY = my + 24;
+    var restX = mx + (flipped ? -16 : 28);
+    var restY = my + (flipped ? 22 : 24);
     dotX += (restX - dotX) * 0.06;
     dotY += (restY - dotY) * 0.06;
     if (gd) { gd.style.transform = 'translate3d(' + (dotX - 2) + 'px,' + (dotY - 2) + 'px,0)'; }

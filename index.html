@@ -3030,8 +3030,8 @@
     }
   }
   function animateDot() {
-    var restX = mouse.tx + (cursorFlipped ? -14 : 28);
-    var restY = mouse.ty + 24;
+    var restX = mouse.tx + (cursorFlipped ? -16 : 28);
+    var restY = mouse.ty + (cursorFlipped ? 22 : 24);
     dotX += (restX - dotX) * 0.06;
     dotY += (restY - dotY) * 0.06;
     if (ghostDot) {
