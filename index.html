@@ -32,13 +32,13 @@
 
   html, body, *, a, button, input, select, textarea, [role="button"] { cursor: none !important; }
   #ghostCursor {
-    position: fixed; top: 0; left: 0; width: 46px; height: 46px;
+    position: fixed; top: 0; left: 0; width: 30px; height: 30px;
     pointer-events: none; z-index: 99999;
     background: oklch(0.82 0.14 295);
     -webkit-mask: url('assets/goster-cursor.png') center / contain no-repeat;
     mask: url('assets/goster-cursor.png') center / contain no-repeat;
     transform: translate3d(-9999px, -9999px, 0);
-    margin-left: -16px; margin-top: -16px;
+    margin-left: -10px; margin-top: -10px;
     opacity: 0.75;
     mix-blend-mode: difference;
     will-change: transform;
@@ -46,7 +46,7 @@
   #ghostCursor.flip { transform: translate3d(-9999px, -9999px, 0) scaleX(-1); }
   #ghostDot {
     position: fixed; top: 0; left: 0;
-    width: 8px; height: 8px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     pointer-events: none; z-index: 99998;
     background: oklch(0.82 0.14 295);
@@ -3030,8 +3030,8 @@
     }
   }
   function animateDot() {
-    var restX = mouse.tx + (cursorFlipped ? -16 : 27);
-    var restY = mouse.ty + (cursorFlipped ? 22 : 23);
+    var restX = mouse.tx + (cursorFlipped ? -10 : 18);
+    var restY = mouse.ty + (cursorFlipped ? 14 : 15);
     dotX += (restX - dotX) * 0.06;
     dotY += (restY - dotY) * 0.06;
     if (ghostDot) {
