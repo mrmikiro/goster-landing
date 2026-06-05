@@ -45,7 +45,7 @@
   }
   #ghostDot {
     position: fixed; top: 0; left: 0;
-    width: 4px; height: 4px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     pointer-events: none; z-index: 99998;
     background: oklch(0.82 0.14 295);
@@ -2827,8 +2827,8 @@
     }
   }
   function animateDot() {
-    var restX = mouse.tx + (cursorFlipped ? -7 : 20);
-    var restY = mouse.ty + 16;
+    var restX = mouse.tx + (cursorFlipped ? -10 : 24);
+    var restY = mouse.ty + 20;
     dotX += (restX - dotX) * 0.06;
     dotY += (restY - dotY) * 0.06;
     if (ghostDot) {
