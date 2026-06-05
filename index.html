@@ -1774,14 +1774,7 @@
       inset 0 0 0 1px oklch(0.25 0.012 240);
     overflow: hidden;
   }
-  .iphone-frame::before {
-    content: "";
-    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-    width: 80px; height: 22px;
-    background: oklch(0.06 0.012 240);
-    border-radius: 20px;
-    z-index: 2;
-  }
+  .iphone-frame::before { display: none; }
   .iphone-frame img {
     width: 100%; height: auto;
     border-radius: 24px;
