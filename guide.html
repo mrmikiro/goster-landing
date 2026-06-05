@@ -47,7 +47,7 @@
   }
   #ghostDot {
     position: fixed; top: 0; left: 0;
-    width: 4px; height: 4px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     pointer-events: none; z-index: 99998;
     background: oklch(0.93 0.16 142);
@@ -1407,8 +1407,8 @@
     lastX = x;
   }
   function tick() {
-    var restX = mx + (flipped ? -7 : 20);
-    var restY = my + 16;
+    var restX = mx + (flipped ? -10 : 24);
+    var restY = my + 20;
     dotX += (restX - dotX) * 0.06;
     dotY += (restY - dotY) * 0.06;
     if (gd) { gd.style.transform = 'translate3d(' + (dotX - 2) + 'px,' + (dotY - 2) + 'px,0)'; }
