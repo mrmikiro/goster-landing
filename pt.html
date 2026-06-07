@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <link rel="icon" type="image/png" href="assets/goster-chibi-favicon.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>gōster — Your personal radiology writing assistant</title>
-<meta name="description" content="gōster: your radiology ghostwriter. Voice dictation to professional report. Learns your style. AI platform for radiology." />
+<title>gōster — Seu assistente pessoal de redação radiológica</title>
+<meta name="description" content="gōster: seu ghostwriter radiológico. Ditado de voz a laudo profissional. Aprende do seu estilo. Plataforma de IA para radiologia." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -43,6 +43,7 @@
     mix-blend-mode: difference;
     will-change: transform;
   }
+  #ghostCursor.flip { transform: translate3d(-9999px, -9999px, 0) scaleX(-1); }
   #ghostDot {
     position: fixed; top: 0; left: 0;
     width: 6px; height: 6px;
@@ -53,6 +54,7 @@
     mix-blend-mode: difference;
     transform: translate3d(-9999px, -9999px, 0);
     will-change: transform;
+    transition: width 0.3s, height 0.3s;
   }
   [data-theme="light"] #ghostCursor { background: oklch(0.70 0.18 322); }
   [data-theme="light"] #ghostDot { background: oklch(0.70 0.18 322); }
@@ -687,6 +689,90 @@
 
   /* ---------- Section base ---------- */
   section.block { position: relative; padding: 110px 0; }
+
+  /* ---------- Scroll reveal (varied directions per section) ---------- */
+  .reveal-item {
+    opacity: 0;
+    transition: opacity 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform, filter;
+  }
+  /* Direction variants — applied per-section by JS */
+  .reveal-up       { transform: translateY(48px); }
+  .reveal-down     { transform: translateY(-48px); }
+  .reveal-left     { transform: translateX(-64px); }
+  .reveal-right    { transform: translateX(64px); }
+  .reveal-diag-tl  { transform: translate(-48px, -48px); }
+  .reveal-diag-tr  { transform: translate(48px, -48px); }
+  .reveal-diag-bl  { transform: translate(-48px, 48px); }
+  .reveal-diag-br  { transform: translate(48px, 48px); }
+  .reveal-scale    { transform: scale(0.92); }
+  .reveal-zoom     { transform: scale(1.06); filter: blur(8px); }
+  .reveal-rise     { transform: translateY(72px) scale(0.96); }
+  .reveal-tilt     { transform: translateY(40px) rotate(-2deg); }
+  .reveal-blur     { filter: blur(14px); transform: translateY(16px); }
+
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0);
+    filter: blur(0);
+  }
+
+  /* Stagger children inside a revealed container */
+  .reveal-item.revealed > * {
+    animation: revealRise 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .reveal-item.revealed > *:nth-child(1) { animation-delay: 0ms; }
+  .reveal-item.revealed > *:nth-child(2) { animation-delay: 90ms; }
+  .reveal-item.revealed > *:nth-child(3) { animation-delay: 180ms; }
+  .reveal-item.revealed > *:nth-child(4) { animation-delay: 270ms; }
+  .reveal-item.revealed > *:nth-child(5) { animation-delay: 360ms; }
+  .reveal-item.revealed > *:nth-child(6) { animation-delay: 450ms; }
+
+  /* Per-section child-stagger directions */
+  .stagger-left.revealed > *      { animation-name: revealFromLeft; }
+  .stagger-right.revealed > *     { animation-name: revealFromRight; }
+  .stagger-up.revealed > *        { animation-name: revealRise; }
+  .stagger-down.revealed > *      { animation-name: revealFromTop; }
+  .stagger-diag.revealed > *      { animation-name: revealDiag; }
+  .stagger-scale.revealed > *     { animation-name: revealScale; }
+  .stagger-zigzag.revealed > *:nth-child(odd)  { animation-name: revealFromLeft; }
+  .stagger-zigzag.revealed > *:nth-child(even) { animation-name: revealFromRight; }
+  .stagger-blur.revealed > *      { animation-name: revealBlur; }
+
+  @keyframes revealRise {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes revealFromTop {
+    from { opacity: 0; transform: translateY(-28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes revealFromLeft {
+    from { opacity: 0; transform: translateX(-48px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes revealFromRight {
+    from { opacity: 0; transform: translateX(48px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes revealDiag {
+    from { opacity: 0; transform: translate(-32px, 32px); }
+    to   { opacity: 1; transform: translate(0, 0); }
+  }
+  @keyframes revealScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes revealBlur {
+    from { opacity: 0; filter: blur(12px); transform: translateY(12px); }
+    to   { opacity: 1; filter: blur(0);    transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+    .reveal-item.revealed > * { animation: none !important; }
+  }
   .sec-head { margin-bottom: 56px; display: flex; align-items: end; justify-content: space-between; gap: 40px; }
   .sec-eyebrow {
     font-family: var(--mono);
@@ -883,7 +969,7 @@
   }
   .cap p { color: var(--muted); font-size: 14px; line-height: 1.55; }
 
-  /* ---------- Steps (Get started in minutes / How it works) ---------- */
+  /* ---------- Steps (Empieza en minutos / Cómo funciona) ---------- */
   .flow {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     position: relative;
@@ -1289,7 +1375,7 @@
     margin-bottom: 6px;
   }
   .theme-card p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
-  .theme-toggle {
+  .theme-toggle-legacy {
     display: flex; gap: 6px;
     padding: 4px;
     background: oklch(0.06 0.012 240 / 0.7);
@@ -1297,36 +1383,109 @@
     border: 1px solid var(--line-2);
     width: fit-content;
   }
-  .theme-toggle .t {
+  .theme-toggle-legacy .t {
     padding: 8px 14px;
     border-radius: 999px;
     font-family: var(--mono); font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.08em; text-transform: uppercase;
   }
-  .theme-toggle .t.on {
+  .theme-toggle-legacy .t.on {
     background: var(--neon); color: #061a0c;
     box-shadow: 0 0 12px var(--neon-glow);
   }
+  /* Stacked theme toggle (Claro / Oscuro) with icons */
+  .theme-toggle {
+    display: flex; flex-direction: column;
+    gap: 10px;
+    padding: 10px 14px;
+    background: oklch(0.10 0.012 240);
+    border: 1px solid var(--line-2);
+    border-radius: 14px;
+    width: fit-content;
+    margin-left: 6px;
+  }
+  .theme-toggle .t {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 12px 6px 8px;
+    border-radius: 999px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted);
+    cursor: inherit;
+    transition: background .2s, color .2s, box-shadow .2s;
+  }
+  .theme-toggle .t .ico {
+    width: 24px; height: 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: oklch(0.14 0.012 240);
+    border: 1px solid var(--line-2);
+    color: var(--muted);
+  }
+  .theme-toggle .t .ico svg { width: 14px; height: 14px; }
+  .theme-toggle .t.on { color: var(--text); }
+  .theme-toggle .t.on .ico {
+    background: var(--neon); color: #061a0c;
+    border-color: transparent;
+    box-shadow: 0 0 10px var(--neon-glow);
+  }
+
+  /* Tone control: two bars, one per theme, with matching icons */
+  .tone-stack {
+    display: flex; flex-direction: column;
+    gap: 14px;
+    margin-left: 6px;
+  }
+  .tone-row {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+  .tone-row .ico {
+    width: 24px; height: 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: oklch(0.14 0.012 240);
+    border: 1px solid var(--line-2);
+    color: var(--muted);
+  }
+  .tone-row .ico svg { width: 14px; height: 14px; }
   .tone-bar {
+    position: relative;
     height: 14px;
     border-radius: 7px;
+    border: 1px solid var(--line-2);
+  }
+  .tone-bar.light {
+    background: linear-gradient(to right,
+      oklch(0.96 0.04 80),
+      oklch(0.94 0.012 70),
+      oklch(0.99 0.002 80)
+    );
+  }
+  .tone-bar.dark {
     background: linear-gradient(to right,
       oklch(0.06 0.005 60),
-      oklch(0.5 0.005 60),
-      oklch(0.94 0.012 70),
-      oklch(0.96 0.04 80)
+      oklch(0.28 0.006 60),
+      oklch(0.5 0.005 60)
     );
-    border: 1px solid var(--line-2);
-    position: relative;
   }
-  .tone-bar::before {
-    content: ""; position: absolute; top: -3px; left: 30%;
-    width: 18px; height: 18px;
+  .tone-bar .knob {
+    position: absolute; top: -4px;
+    width: 20px; height: 20px;
     border-radius: 50%;
     background: var(--neon);
     border: 3px solid oklch(0.10 0.012 240);
-    box-shadow: 0 0 10px var(--neon);
+    box-shadow: 0 0 10px var(--neon-glow);
+    transform: translateX(-50%);
+  }
+  .tone-labels {
+    display: flex; justify-content: space-between;
+    margin-top: 6px; margin-left: 36px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase;
   }
   .accent-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
   .accent-row .ac {
@@ -1334,7 +1493,7 @@
     border-radius: 50%;
     border: 1px solid var(--line-2);
   }
-  .accent-row .ac.on { box-shadow: 0 0 0 2px var(--neon), 0 0 12px var(--neon-glow); border-color: transparent; }
+  .accent-row .ac.on { box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(255,255,255,0.18); border-color: transparent; }
 
   /* ---------- Pricing ---------- */
   .pricing-head { text-align: center; max-width: 640px; margin: 0 auto 60px; }
@@ -1432,8 +1591,8 @@
   .faq-q {
     width: 100%; text-align: left;
     background: none; border: none; cursor: inherit;
-    padding: 24px 0;
-    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 50px 24px 0;
+    position: relative;
     color: var(--fg);
     font-family: var(--display); font-size: 18px; font-weight: 500;
     letter-spacing: -0.01em;
@@ -1449,9 +1608,9 @@
     font-family: var(--mono); font-size: 14px;
     line-height: 1;
     transition: transform .25s;
-    flex-shrink: 0; margin-left: 24px;
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
   }
-  .faq-item.open .faq-q .pl { transform: rotate(45deg); }
+  .faq-item.open .faq-q .pl { transform: translateY(-50%) rotate(45deg); }
   .faq-a {
     max-height: 0;
     overflow: hidden;
@@ -1478,18 +1637,21 @@
     overflow: hidden;
   }
   .cta-ghost {
-    position: absolute; right: -40px; bottom: -60px;
-    width: 320px; opacity: 0.05; pointer-events: auto; z-index: 0;
+    position: absolute; right: -30px; top: -40px;
+    width: 220px; opacity: 0.05; pointer-events: auto; z-index: 0;
+    animation: none !important;
     transition: opacity 0.6s ease;
   }
   .cta-ghost:hover { opacity: 0.85; }
   .cta-ghost-left {
-    position: absolute; left: -50px; top: -40px;
-    width: 200px; opacity: 0.04; pointer-events: auto; z-index: 0;
+    position: absolute; left: -40px; top: -50px;
+    width: 160px; opacity: 0.04; pointer-events: auto; z-index: 0;
     transform: rotate(-12deg);
+    animation: none !important;
     transition: opacity 0.6s ease;
   }
   .cta-ghost-left:hover { opacity: 0.85; }
+  .mani-ghost { animation: float 6s ease-in-out infinite !important; }
   .cta-card > * { position: relative; z-index: 1; }
   .cta-card::before {
     content: "";
@@ -1945,13 +2107,14 @@
   [data-theme="light"] .cta-ghost-left,
   [data-theme="light"] .foot-brand img,
   [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
-
+  /* ========== MOBILE OPTIMIZATIONS ========== */
   @media (hover: none), (pointer: coarse) { html, body, *, a, button, input, select, textarea, [role="button"] { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
   .nav-hamburger { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; color: var(--muted); }
   .nav-hamburger svg { display: block; }
   .nav-mobile { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 49; background: oklch(0.08 0.012 240 / 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 80px 24px 32px; flex-direction: column; gap: 8px; overflow-y: auto; }
   .nav-mobile.open { display: flex; }
   .nav-mobile a { display: block; color: var(--muted); text-decoration: none; font-size: 18px; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--line-2); transition: color .2s; }
+  .nav-mobile a:hover { color: var(--fg); }
   .nav-mobile .mobile-login { margin-top: 16px; text-align: center; padding: 14px 24px; background: var(--neon); color: #061a0c; border-radius: 999px; font-weight: 600; border-bottom: none; }
   @media (max-width: 900px) {
     .nav-hamburger { display: block; }
@@ -2008,37 +2171,37 @@
       <img class="wordmark-img" src="assets/goster-wordmark.png" alt="gōster" />
     </a>
     <div class="nav-links">
-      <a href="#product">Product</a>
-      <a href="#flow">How it works</a>
-      <a href="#dictionary">Dictionary</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#producto">Produto</a>
+      <a href="#flujo">Como funciona</a>
+      <a href="#diccionario">Dicionário</a>
+      <a href="#precios">Preços</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-guide" href="guide.html">User guide</a>
+      <a class="nav-guide" href="guia-pt.html">Guia do usuário</a>
     </div>
     <div class="nav-cta">
       <div class="lang-switch">
         <a href="index.html">ES</a>
         <span class="sep">·</span>
-        <a class="active" href="en.html">EN</a>
+        <a href="en.html">EN</a>
         <span class="sep">·</span>
-        <a href="pt.html">PT</a>
+        <a class="active" href="pt.html">PT</a>
       </div>
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+      <button class="theme-btn" id="themeToggle" aria-label="Mudar tema">
         <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75 9.75 9.75 0 0 1 8.25 6c0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25 9.75 9.75 0 0 0 12.75 21a9.753 9.753 0 0 0 8.002-5.998Z"/></svg>
         <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-7.364-1.414 1.414M7.05 16.95l-1.414 1.414m12.728 0-1.414-1.414M7.05 7.05 5.636 5.636"/></svg>
       </button>
-      <a href="https://app.goster.ai/" class="login">Log in</a>
-      <a href="#pricing" class="btn btn-primary">Try free →</a>
+      <a href="https://app.goster.ai/" class="login">Entrar</a>
+      <a href="#precios" class="btn btn-primary">Experimentar grátis →</a>
     </div>
     <button class="nav-hamburger" onclick="document.getElementById('navMobile').classList.toggle('open')" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 9h16.5m-16.5 6.75h16.5"/></svg></button>
   <div class="nav-mobile" id="navMobile">
-    <a href="#product" onclick="this.parentElement.classList.remove('open')">Product</a>
-    <a href="#flow" onclick="this.parentElement.classList.remove('open')">How it works</a>
-    <a href="#dictionary" onclick="this.parentElement.classList.remove('open')">Dictionary</a>
-    <a href="#pricing" onclick="this.parentElement.classList.remove('open')">Pricing</a>
+    <a href="#producto" onclick="this.parentElement.classList.remove('open')">Produto</a>
+    <a href="#flujo" onclick="this.parentElement.classList.remove('open')">Como funciona</a>
+    <a href="#diccionario" onclick="this.parentElement.classList.remove('open')">Dicionário</a>
+    <a href="#precios" onclick="this.parentElement.classList.remove('open')">Preços</a>
     <a href="#faq" onclick="this.parentElement.classList.remove('open')">FAQ</a>
-    <a href="guide.html">User guide</a>
-    <a href="https://app.goster.ai/" class="mobile-login">Log in</a>
+    <a href="guia-pt.html">Guia do usuário</a>
+    <a href="https://app.goster.ai/" class="mobile-login">Entrar</a>
   </div>
   </nav>
 
@@ -2050,32 +2213,32 @@
       </div>
       <div class="hero-inner">
         <div>
-          <span class="eyebrow"><span class="dot"></span>AI platform for radiology</span>
+          <span class="eyebrow"><span class="dot"></span>Plataforma de IA para radiologia</span>
           <h1 class="hero-title">
-            Your personal<br />
-            <span class="accent">radiology writing assistant.</span>
+            Seu assistente pessoal de<br />
+            <span class="accent">redação radiológica.</span>
           </h1>
-          <div class="hero-tag">// The keyboard is history — welcome to the evolution of dictation.</div>
+          <div class="hero-tag">// O teclado é história — bem-vindo à evolução do ditado.</div>
           <p class="hero-sub">
-            Focus on interpreting naturally. <strong style="color:var(--fg);font-weight:500"><span class="goster-word">gōster</span> writes the reports for you.</strong>
-            In your words, in your style.
+            Dedique-se a interpretar com naturalidade. <strong style="color:var(--fg);font-weight:500"><span class="goster-word">gōster</span> escreve os laudos por você.</strong>
+            Com suas palavras, no seu estilo.
           </p>
           <div class="hero-actions">
-            <a href="#cta" class="btn btn-primary btn-lg">Try free</a>
+            <a href="#precios" class="btn btn-primary btn-lg">Experimentar grátis</a>
             <a href="#flujo" class="btn btn-ghost btn-lg">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-              See how it works
+              Ver como funciona
             </a>
           </div>
           <div class="hero-microtags">
-            <span>No credit card</span>
-            <span>3 templates included</span>
-            <span>No commitment</span>
+            <span>Sem cartão de crédito</span>
+            <span>3 modelos incluídos</span>
+            <span>Sem compromisso</span>
           </div>
           <div class="hero-stats">
-            <div class="stat"><span class="n">&lt;40s</span><span class="l">Average generation time</span></div>
-            <div class="stat"><span class="n">92%</span><span class="l">Find it useful or essential</span></div>
-            <div class="stat"><span class="n">24/7</span><span class="l">Platform uptime</span></div>
+            <div class="stat"><span class="n">&lt;40s</span><span class="l">Tempo médio de geração</span></div>
+            <div class="stat"><span class="n">92%</span><span class="l">Considera útil ou imprescindível</span></div>
+            <div class="stat"><span class="n">24/7</span><span class="l">Disponibilidade da plataforma</span></div>
           </div>
         </div>
 
@@ -2089,10 +2252,10 @@
           <div class="orbit rev"><span class="dot a" style="left:80%"></span><span class="dot c" style="left:60%; bottom:auto; top:8%"></span></div>
           <img class="ghost-img" src="assets/goster-chibi.png" alt="" />
           <div class="tickers">
-            <div class="ticker t1"><span class="dotg"></span>DICTATION ACTIVE</div>
-            <div class="ticker t2"><span class="dotg"></span>99% ACCURACY</div>
-            <div class="ticker t3"><span class="dotg"></span>LATENCY &lt; 40s</div>
-            <div class="ticker t4"><span class="dotg"></span>LEARNS FROM YOU</div>
+            <div class="ticker t1"><span class="dotg"></span>DITADO ATIVO</div>
+            <div class="ticker t2"><span class="dotg"></span>99% PRECISÃO</div>
+            <div class="ticker t3"><span class="dotg"></span>LATÊNCIA &lt; 40s</div>
+            <div class="ticker t4"><span class="dotg"></span>APRENDE COM VOCÊ</div>
           </div>
         </div>
       </div>
@@ -2103,46 +2266,46 @@
   <section class="validation" id="validacion">
     <div class="container">
       <div class="val-head">
-        <div class="sec-eyebrow" style="justify-content: center;">Validated by the community</div>
+        <div class="sec-eyebrow" style="justify-content: center;">Validado pela comunidade</div>
         <div class="pct">92<sup>%</sup></div>
-        <h2>of Mexican radiologists find it <span class="accent">useful or essential.</span></h2>
+        <h2>dos radiologistas mexicanos considera <span class="accent">útil ou imprescindível.</span></h2>
       </div>
 
       <div class="val-grid">
         <div class="val-quote">
-          <p>We need tools that work like a colleague who listens and writes the report for you, with the clinical knowledge only a radiologist has.</p>
+          <p>Precisamos de ferramentas que funcionem como um colega que te ouve e redige o laudo por você, com o conhecimento clínico que só um radiologista tem.</p>
         </div>
         <div class="val-quote">
-          <p>The most important thing is that it learns my personal style. Every radiologist has their own way of writing, and the tool should adapt — not impose a generic format on me.</p>
+          <p>O mais importante é que aprenda meu estilo pessoal. Cada radiologista tem sua forma de redigir e a ferramenta deve se adaptar, não me impor um formato genérico.</p>
         </div>
         <div class="val-quote">
-          <p>It must be accurate and truthful. It cannot invent information I didn't dictate. That's critical for adoption in a medical setting.</p>
+          <p>Que seja preciso e verdadeiro. Não pode inventar informação que eu não ditei. Isso é crítico para adoção em um ambiente médico.</p>
         </div>
         <div class="val-quote">
-          <p>The structure of the report must be correct, with impeccable grammar and respecting the format I define.</p>
+          <p>A estrutura do laudo deve ser correta, com gramática impecável e respeitando o formato que eu defino.</p>
         </div>
         <div class="val-quote">
-          <p>It would be ideal if it could link findings to current medical literature. That would give it unique added value.</p>
+          <p>Seria ideal que pudesse vincular achados com literatura médica atual. Isso daria um valor agregado único.</p>
         </div>
         <div class="val-quote">
-          <p>It has to be practical and easy to use. If it's complicated, no one will adopt it in their daily workflow.</p>
+          <p>Tem que ser prática e fácil de usar. Se for complicada, ninguém vai adotar no fluxo diário.</p>
         </div>
       </div>
 
       <div class="val-closer">
         <span class="check">✓</span>
-        All of this, <span style="font-style:italic"><span class="goster-word">gōster</span> already does.</span>
+        Tudo isso, <span style="font-style:italic"><span class="goster-word">gōster</span> já faz.</span>
       </div>
     </div>
   </section>
 
   <!-- PRODUCT SHOWCASE -->
-  <section class="showcase" id="product">
+  <section class="showcase" id="producto">
     <div class="container">
       <div class="showcase-head">
-        <div class="sec-eyebrow" style="justify-content: center;">The product</div>
-        <h2>What you see when you open <span class="accent"><span class="goster-word">gōster</span>.</span></h2>
-        <p>One screen. Three columns: your library, dictation, and the report — all in view, no hidden menus.</p>
+        <div class="sec-eyebrow" style="justify-content: center;">O produto</div>
+        <h2>O que você vê ao abrir o <span class="accent"><span class="goster-word">gōster</span>.</span></h2>
+        <p>Uma única tela. Três colunas: sua biblioteca, o ditado e o laudo — tudo à vista, sem menus escondidos.</p>
       </div>
 
       <div class="showcase-frame">
@@ -2150,28 +2313,28 @@
           <div class="lights"><span></span><span></span><span></span></div>
           <div style="width: 40px;"></div>
         </div>
-        <img class="showcase-img" src="assets/goster-white1.png" alt="gōster interface: ready to dictate with microphone button." />
-        <div class="showcase-caption">Dictate your findings by voice — press the mic and start speaking</div>
+        <img class="showcase-img" src="assets/goster-interfaz.png" alt="Interface do gōster: pronto para ditar com botão de microfone." />
+        <div class="showcase-caption">Dite seus achados por voz — pressione o microfone e comece a falar</div>
         <div class="showcase-spacer"></div>
-        <img class="showcase-img" src="assets/goster-white2.png" alt="gōster interface: keyboard text input." />
-        <div class="showcase-caption">Or type directly with your keyboard — you choose how to work</div>
+        <img class="showcase-img" src="assets/goster-default.png" alt="Interface do gōster: entrada de texto por teclado." />
+        <div class="showcase-caption">Ou escreva diretamente pelo teclado — você decide como trabalhar</div>
       </div>
 
       <div class="showcase-callouts">
         <div class="showcase-callout">
-          <div class="tag"><span class="num">1</span>Library</div>
-          <h4>Unlimited templates and dictionary (Pro Plan)</h4>
-          <p>Your history, templates and dictionary — always one click away.</p>
+          <div class="tag"><span class="num">1</span>Biblioteca</div>
+          <h4>Modelos e dicionário ilimitados (no Plano Pro)</h4>
+          <p>Seu histórico, modelos e dicionário — sempre a um clique de distância.</p>
         </div>
         <div class="showcase-callout">
-          <div class="tag"><span class="num">2</span>Dictation</div>
-          <h4>One button. Start talking.</h4>
-          <p>Switch between keyboard and dictation. The indicator confirms recording is active.</p>
+          <div class="tag"><span class="num">2</span>Ditado</div>
+          <h4>Um botão. Comece a falar.</h4>
+          <p>Alterne entre teclado e ditado. O indicador confirma gravação ativa.</p>
         </div>
         <div class="showcase-callout">
-          <div class="tag"><span class="num">3</span>Generated report</div>
-          <h4>Editor with full formatting.</h4>
-          <p>Bold, lists, alignment, tables and export — ready to sign.</p>
+          <div class="tag"><span class="num">3</span>Laudo gerado</div>
+          <h4>Editor com formatação completa.</h4>
+          <p>Negrito, listas, alinhamento, tabelas e exportação — pronto para assinar.</p>
         </div>
       </div>
     </div>
@@ -2183,22 +2346,22 @@
       <div class="mani-card">
         <img class="mani-ghost" src="assets/goster-chibi.png" alt="" aria-hidden="true" />
         <div class="mani-content">
-          <div class="mani-eyebrow">Why <span class="goster-word">gōster</span></div>
-          <h2>Your radiology <span class="accent">ghostwriter</span>.</h2>
-          <p>The name comes from <strong>ghostwriter</strong> — the invisible scribe.</p>
-          <p><span class="goster-word">gōster</span> is your personalized ghostwriter: <strong>it writes like you, with you, and for you.</strong> It doesn't impose a format. It doesn't take away control. It just writes — the way you would, at your pace.</p>
+          <div class="mani-eyebrow">Por que <span class="goster-word">gōster</span></div>
+          <h2>Seu <span class="accent">ghostwriter</span> radiológico.</h2>
+          <p>O nome nasce de <strong>ghostwriter</strong> — o escriba invisível.</p>
+          <p><span class="goster-word">gōster</span> é seu ghostwriter personalizado: <strong>escreve como você, com você e para você.</strong> Não impõe um formato. Não tira seu controle. Apenas escreve — como você faria, no seu ritmo.</p>
           <div class="mani-pillars">
             <div class="mani-pillar">
-              <h4>Speak naturally</h4>
-              <p>Discuss the case as if talking to a colleague. The AI understands your clinical intent.</p>
+              <h4>Fala natural</h4>
+              <p>Comente o caso como se falasse com um colega. A IA entende sua intenção clínica.</p>
             </div>
             <div class="mani-pillar">
-              <h4>Learns from you</h4>
-              <p>Every correction improves the next reports. Your dictionary grows with use.</p>
+              <h4>Aprende com você</h4>
+              <p>Cada correção melhora os próximos laudos. Seu dicionário cresce com o uso.</p>
             </div>
             <div class="mani-pillar">
-              <h4>Absolute fidelity</h4>
-              <p>If you didn't dictate it, it doesn't appear. No hallucinations. No fabrications.</p>
+              <h4>Fidelidade absoluta</h4>
+              <p>Se você não ditou, não aparece. Sem alucinações. Sem invenções.</p>
             </div>
           </div>
         </div>
@@ -2207,32 +2370,32 @@
   </section>
 
   <!-- MOBILE APP -->
-  <section class="mobile-app block" id="mobile">
+  <section class="mobile-app block" id="movil">
     <div class="container">
       <div class="mobile-app-inner">
         <div>
-          <span class="eyebrow"><span class="dot"></span>Available on your phone</span>
-          <h2 class="sec-title">Link your phone and dictate <span class="accent">from anywhere.</span></h2>
+          <span class="eyebrow"><span class="dot"></span>Disponível no seu celular</span>
+          <h2 class="sec-title">Vincule seu celular e dite <span class="accent">de qualquer lugar.</span></h2>
           <p class="sec-desc" style="max-width:480px; margin-top:18px;">
-            Connect your mobile device and use <strong style="color:var(--fg)"><span class="goster-word">gōster</span></strong> as a wireless microphone. Dictate findings next to the patient, in the office, or wherever you are — the report generates on your computer in real time.
+            Conecte seu dispositivo móvel e use o <strong style="color:var(--fg)"><span class="goster-word">gōster</span></strong> como microfone sem fio. Dite achados junto ao paciente, no consultório ou onde estiver — o laudo é gerado no seu computador em tempo real.
           </p>
           <div style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap;">
             <div style="display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; color:var(--neon); letter-spacing:0.1em; text-transform:uppercase;">
               <span style="width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)"></span>
-              Instant sync
+              Sincronização instantânea
             </div>
             <div style="display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; color:var(--neon); letter-spacing:0.1em; text-transform:uppercase;">
               <span style="width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)"></span>
-              No cables or extra apps
+              Sem cabos nem apps extras
             </div>
           </div>
         </div>
         <div class="mobile-app-phones">
           <div class="iphone-frame">
-            <img src="assets/goster-cel.jpg" alt="gōster mobile — ready to dictate" />
+            <img src="assets/goster-cel.jpg" alt="gōster móvil — listo para dictar" />
           </div>
           <div class="iphone-frame">
-            <img src="assets/goster-cel-2.jpg" alt="gōster mobile — dictating" />
+            <img src="assets/goster-cel-2.jpg" alt="gōster móvil — dictando" />
           </div>
         </div>
       </div>
@@ -2240,14 +2403,14 @@
   </section>
 
   <!-- CAPABILITIES -->
-  <section class="block" id="capabilities">
+  <section class="block" id="capacidades">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">Capabilities</div>
-          <h2 class="sec-title">Your clinical copilot, <span class="accent">powered by AI.</span></h2>
+          <div class="sec-eyebrow">Capacidades</div>
+          <h2 class="sec-title">Seu copiloto clínico, <span class="accent">impulsionado por IA.</span></h2>
         </div>
-        <p class="sec-desc">Voice dictation to professional report. Learns your style. Every detail designed for your clinical workflow.</p>
+        <p class="sec-desc">Ditado de voz a laudo profissional. Aprende do seu estilo. Cada detalhe pensado para seu fluxo clínico.</p>
       </div>
 
       <div class="caps">
@@ -2255,77 +2418,77 @@
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
           </div>
-          <h4>Natural dictation</h4>
-          <p>Talk like you would with a colleague. From your computer or phone via QR.</p>
+          <h4>Ditado natural</h4>
+          <p>Fale como com um colega. Do seu computador ou celular via QR.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6"/></svg>
           </div>
-          <h4>Semantic interpretation</h4>
-          <p>Understands your clinical intent. Tolerates dictation errors and synonyms.</p>
+          <h4>Interpretação semântica</h4>
+          <p>Entende sua intenção clínica. Tolera erros de ditado e sinônimos.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
           </div>
-          <h4>Templates + dictionary</h4>
-          <p>When you activate a template, the matching dictionary links automatically.</p>
+          <h4>Modelos + dicionário</h4>
+          <p>Ao ativar um modelo, o dicionário correspondente é vinculado automaticamente.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
-          <h4>Reports in seconds</h4>
-          <p>Findings, diagnostic conclusions and professional formatting — instantly.</p>
+          <h4>Laudos em segundos</h4>
+          <p>Achados, conclusões diagnósticas e formatação profissional instantânea.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 7v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V7l-8-5z"/></svg>
           </div>
-          <h4>Special instructions</h4>
-          <p>Per-template rules: calculations, conventions and specific terminology.</p>
+          <h4>Instruções especiais</h4>
+          <p>Regras por modelo: cálculos, convenções e terminologia específica.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
           </div>
-          <h4>Tables by voice</h4>
-          <p>Dictate and fill clinical tables inside the report with your voice.</p>
+          <h4>Tabelas por voz</h4>
+          <p>Dite e preencha tabelas clínicas dentro do laudo com sua voz.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>
           </div>
-          <h4>Learns from you</h4>
-          <p>Every correction becomes a rule. Your style replicates automatically.</p>
+          <h4>Aprende com você</h4>
+          <p>Cada correção se torna uma regra. Seu estilo se replica automaticamente.</p>
         </div>
         <div class="cap">
           <div class="ico">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </div>
-          <h4>Make it yours</h4>
-          <p>Light/dark theme, sepia-to-white tone, and 12 accent colors.</p>
+          <h4>Faça do seu jeito</h4>
+          <p>Tema claro/escuro, tom sépia a branco e 24 cores de destaque.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- EMPIEZA EN MINUTOS -->
-  <section class="block" id="flow">
+  <section class="block" id="flujo">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">Get started in minutes</div>
-          <h2 class="sec-title">Three steps to <span class="accent">your first report.</span></h2>
+          <div class="sec-eyebrow">Comece em minutos</div>
+          <h2 class="sec-title">Três passos para <span class="accent">seu primeiro laudo.</span></h2>
         </div>
-        <p class="sec-desc">No installers, no learning curve. Configure once and dictate for the rest of your career.</p>
+        <p class="sec-desc">Sem instaladores, sem curva de aprendizado. Configure uma vez e dite pelo resto da carreira.</p>
       </div>
       <div class="flow">
         <div class="step">
           <div class="num">01</div>
-          <h3>Upload your templates</h3>
-          <p>Upload one normal report per study type. <span class="goster-word">gōster</span> detects the modality and you can add special instructions per template.</p>
+          <h3>Suba seus modelos</h3>
+          <p>Carregue um laudo normal por cada tipo de exame. O <span class="goster-word">gōster</span> detecta a modalidade e você pode adicionar instruções especiais por modelo.</p>
           <div class="formats">
             <span>DOCX</span>
             <span>DOC</span>
@@ -2334,106 +2497,106 @@
         </div>
         <div class="step">
           <div class="num">02</div>
-          <h3>Build your dictionary</h3>
-          <p>Upload previous pathological reports. <span class="goster-word">gōster</span> extracts triggers and descriptions, anonymizes patient data and merges entries without duplicating.</p>
+          <h3>Construa seu dicionário</h3>
+          <p>Suba laudos patológicos anteriores. O <span class="goster-word">gōster</span> extrai triggers e descrições, anonimiza dados do paciente e unifica entradas sem duplicar.</p>
           <div class="formats">
-            <span>Anonymized</span>
-            <span>No duplicates</span>
+            <span>Anonimizado</span>
+            <span>Sem duplicar</span>
           </div>
         </div>
         <div class="step">
           <div class="num">03</div>
-          <h3>Dictate and generate</h3>
-          <p>Activate the template by voice: "shoulder MRI". The dictionary links itself. Dictate your findings and press Generate.</p>
+          <h3>Dite e gere</h3>
+          <p>Ative o modelo com a voz: "ressonância magnética de ombro". O dicionário se vincula sozinho. Dite seus achados e pressione Gerar.</p>
           <div class="formats">
-            <span>Voice</span>
-            <span>Mobile QR</span>
+            <span>Voz</span>
+            <span>QR móvel</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CLINICAL DICTIONARY DEEP DIVE -->
-  <section class="block" id="dictionary" style="padding-top: 60px;">
+  <!-- DICCIONARIO CLÍNICO DEEP DIVE -->
+  <section class="block" id="diccionario" style="padding-top: 60px;">
     <div class="container">
 
       <div class="dict-hero">
-        <div class="sec-eyebrow" style="justify-content: center;">Clinical dictionary</div>
-        <h2 class="sec-title" style="margin: 0 auto;">Your phrases. Your style. <span class="accent">Your dictionary.</span></h2>
+        <div class="sec-eyebrow" style="justify-content: center;">Dicionário clínico</div>
+        <h2 class="sec-title" style="margin: 0 auto;">Suas frases. Seu estilo. <span class="accent">Seu dicionário.</span></h2>
       </div>
 
       <div class="dict-flow">
         <div class="df">
-          <div class="step-num">— Step 1 — Extraction</div>
-          <h3>You upload your real reports.</h3>
-          <p><span class="goster-word">gōster</span> extracts every finding from the conclusion as a <em style="color:var(--neon);font-style:normal">trigger</em> and associates its full clinical description from the body of the report.</p>
-          <p>Measurements are stripped out — the description stays generic and reusable.</p>
+          <div class="step-num">— Passo 1 — Extração</div>
+          <h3>Você sobe seus laudos reais.</h3>
+          <p>O <span class="goster-word">gōster</span> extrai cada achado da conclusão como <em style="color:var(--neon);font-style:normal">trigger</em> e associa sua descrição clínica completa do corpo do laudo.</p>
+          <p>As medidas são eliminadas — a descrição fica genérica e reutilizável.</p>
         </div>
         <div class="df">
-          <div class="step-num">— Step 2 — Expansion</div>
-          <h3>When you dictate a trigger, <span class="goster-word">gōster</span> expands it.</h3>
-          <p>It inserts the full description with the measurements, laterality and levels you dictate in the moment.</p>
-          <p>A trigger can have multiple variants to avoid repetitive reports.</p>
+          <div class="step-num">— Passo 2 — Expansão</div>
+          <h3>Quando você dita um trigger, o <span class="goster-word">gōster</span> o expande.</h3>
+          <p>Insere a descrição completa com as medidas, lateralidade e níveis que você dita naquele momento.</p>
+          <p>Um trigger pode ter múltiplas variantes para evitar laudos repetitivos.</p>
         </div>
       </div>
 
       <div class="dict-equation">
         <span class="e-num">5</span>
-        <span class="e-word">words</span>
+        <span class="e-word">palavras</span>
         <span class="e-arrow">→</span>
-        <span class="e-word"><span class="goster-word">gōster</span> writes</span>
+        <span class="e-word"><span class="goster-word">gōster</span> escreve</span>
         <span class="e-num">30</span>
       </div>
 
       <div class="triggers-head">
-        <h3>Real examples <strong>extracted from radiology</strong> reports.</h3>
+        <h3>Exemplos reais <strong>extraídos de laudos</strong> radiológicos.</h3>
       </div>
 
       <div class="trigger-grid">
 
         <div class="trigger-card">
           <div class="tc-head">
-            <div class="region">Knee</div>
-            <div class="study">MRI</div>
+            <div class="region">Joelho</div>
+            <div class="study">RM</div>
           </div>
           <div class="tc-section input">
-            <div class="tc-label"><span class="lbl-tag">▶</span>Trigger — what you dictate</div>
-            <div class="tc-input-text">grade 2 anterior cruciate ligament injury</div>
+            <div class="tc-label"><span class="lbl-tag">▶</span>Trigger — o que você dita</div>
+            <div class="tc-input-text">lesão grau 2 do ligamento cruzado anterior</div>
           </div>
           <div class="tc-section output">
-            <div class="tc-label"><span class="lbl-tag">●</span>Description — what <span class="goster-word">gōster</span> generates</div>
-            <div class="tc-output-text">Anterior cruciate ligament with <mark style="background:oklch(0.87 0.21 142 / 0.18);color:var(--fg);padding:0 3px;border-radius:2px;">partial discontinuity</mark> of the fiber continuity.</div>
+            <div class="tc-label"><span class="lbl-tag">●</span>Descrição — o que o <span class="goster-word">gōster</span> gera</div>
+            <div class="tc-output-text">Ligamento cruzado anterior com <mark style="background:oklch(0.87 0.21 142 / 0.18);color:var(--fg);padding:0 3px;border-radius:2px;">interrupção parcial</mark> na continuidade das fibras.</div>
           </div>
         </div>
 
         <div class="trigger-card">
           <div class="tc-head">
-            <div class="region">Chest</div>
-            <div class="study">CT</div>
+            <div class="region">Tórax</div>
+            <div class="study">TC</div>
           </div>
           <div class="tc-section input">
-            <div class="tc-label"><span class="lbl-tag">▶</span>Trigger — what you dictate</div>
-            <div class="tc-input-text">signs of pneumonia in the middle lobe</div>
+            <div class="tc-label"><span class="lbl-tag">▶</span>Trigger — o que você dita</div>
+            <div class="tc-input-text">sinais de pneumonia no lobo médio</div>
           </div>
           <div class="tc-section output">
-            <div class="tc-label"><span class="lbl-tag">●</span>Description — what <span class="goster-word">gōster</span> generates</div>
-            <div class="tc-output-text">Right lung with an area of increased density in a <mark style="background:oklch(0.87 0.21 142 / 0.18);color:var(--fg);padding:0 3px;border-radius:2px;">ground-glass pattern</mark> with a tendency toward consolidation, localized in the middle lobe.</div>
+            <div class="tc-label"><span class="lbl-tag">●</span>Descrição — o que o <span class="goster-word">gōster</span> gera</div>
+            <div class="tc-output-text">Pulmão direito com uma área de aumento da densidade em <mark style="background:oklch(0.87 0.21 142 / 0.18);color:var(--fg);padding:0 3px;border-radius:2px;">padrão de vidro fosco</mark> com tendência à consolidação, localizada no lobo médio.</div>
           </div>
         </div>
 
         <div class="trigger-card">
           <div class="tc-head">
-            <div class="region">Brain</div>
-            <div class="study">MRI</div>
+            <div class="region">Cérebro</div>
+            <div class="study">RM</div>
           </div>
           <div class="tc-section input">
-            <div class="tc-label"><span class="lbl-tag">▶</span>Trigger — what you dictate</div>
-            <div class="tc-input-text">Fazekas 1 findings in the parietal lobes</div>
+            <div class="tc-label"><span class="lbl-tag">▶</span>Trigger — o que você dita</div>
+            <div class="tc-input-text">achados de Fazekas 1 nos lobos parietais</div>
           </div>
           <div class="tc-section output">
-            <div class="tc-label"><span class="lbl-tag">●</span>Description — what <span class="goster-word">gōster</span> generates</div>
-            <div class="tc-output-text"><mark style="background:oklch(0.87 0.21 142 / 0.18);color:var(--fg);padding:0 3px;border-radius:2px;">Isolated nodular hyperintensities</mark> in the subcortical and deep white matter of both parietal lobes, non-confluent.</div>
+            <div class="tc-label"><span class="lbl-tag">●</span>Descrição — o que o <span class="goster-word">gōster</span> gera</div>
+            <div class="tc-output-text"><mark style="background:oklch(0.87 0.21 142 / 0.18);color:var(--fg);padding:0 3px;border-radius:2px;">Hiperintensidades nodulares isoladas</mark> na substância branca subcortical e profunda de ambos os lobos parietais, não confluentes.</div>
           </div>
         </div>
 
@@ -2441,112 +2604,112 @@
 
       <div class="autocorrect-row">
         <div class="ac-side">
-          <div class="ac-tag">Real-time auto-correction</div>
-          <h4>You correct yourself</h4>
-          <div class="ac-quote">"inclination of <span class="strike">16 degrees</span>... wait, it's <span class="keep">19 degrees</span>"</div>
+          <div class="ac-tag">Autocorreção em tempo real</div>
+          <h4>Você se corrige</h4>
+          <div class="ac-quote">"inclinação de <span class="strike">16 graus</span>... não, espera, são <span class="keep">19 graus</span>"</div>
         </div>
         <div class="ac-side">
-          <div class="ac-tag"><span class="goster-word">gōster</span> understands</div>
-          <h4>Discards the previous value</h4>
-          <div class="ac-quote">Uses <span class="keep">19°</span> throughout the report: description, tables and conclusions. Without touching the keyboard.</div>
+          <div class="ac-tag"><span class="goster-word">gōster</span> entende</div>
+          <h4>Descarta o anterior</h4>
+          <div class="ac-quote">Usa <span class="keep">19°</span> em todo o laudo: descrição, tabelas e conclusões. Sem tocar no teclado.</div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ADVANCED PERSONALIZATION -->
-  <section class="block" id="rules">
+  <!-- PERSONALIZACIÓN AVANZADA -->
+  <section class="block" id="reglas">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">Advanced personalization</div>
-          <h2 class="sec-title">Configure how <span class="goster-word">gōster</span> <span class="accent">writes for you.</span></h2>
+          <div class="sec-eyebrow">Personalização avançada</div>
+          <h2 class="sec-title">Configure como o <span class="goster-word">gōster</span> <span class="accent">redige por você.</span></h2>
         </div>
-        <p class="sec-desc">Define global and per-study rules. <span class="goster-word">gōster</span> applies them in every report — no reminders, no rework.</p>
+        <p class="sec-desc">Defina regras globais e por exame. O <span class="goster-word">gōster</span> as aplica em cada laudo — sem lembretes, sem retrabalho.</p>
       </div>
 
       <div class="pa-grid">
         <div class="pa-card">
-          <div class="scope">Global · all reports</div>
-          <h3>Global instructions</h3>
-          <p>Define your writing style, preferred terminology and conventions. <span class="goster-word">gōster</span> always respects them.</p>
-          <div class="pa-rule">"Avoid using the phrases <em>is observed</em> and <em>is identified</em>."</div>
-          <div class="pa-rule">"All numerical values must be expressed in millimeters."</div>
+          <div class="scope">Globais · todos os laudos</div>
+          <h3>Instruções globais</h3>
+          <p>Defina seu estilo de redação, terminologia preferida e convenções. O <span class="goster-word">gōster</span> as respeita sempre.</p>
+          <div class="pa-rule">"Evite usar as frases <em>observa-se</em> e <em>identifica-se</em>."</div>
+          <div class="pa-rule">"Todos os valores numéricos devem ser expressos em milímetros."</div>
         </div>
 
         <div class="pa-card">
-          <div class="scope">Per template · specific study</div>
-          <h3>Per-template instructions</h3>
-          <p>Each template can carry its own rules: calculations, conventions, classifications. They combine with the global ones.</p>
-          <div class="pa-rule">"When INSALL-SALVATI INDEX is dictated followed by two numbers, divide A by B and write the result."</div>
-          <div class="pa-rule">"If joint effusion is mentioned, always include the quantification."</div>
+          <div class="scope">Por modelo · exame específico</div>
+          <h3>Instruções por modelo</h3>
+          <p>Cada modelo pode ter suas próprias regras: cálculos, convenções, classificações. Combinam-se com as globais.</p>
+          <div class="pa-rule">"Quando for ditado ÍNDICE DE INSALL-SALVATI seguido de duas cifras, divida A por B e escreva o resultado."</div>
+          <div class="pa-rule">"Se for mencionado derrame articular, inclua sempre a quantificação."</div>
         </div>
 
         <div class="pa-table-card">
           <div>
-            <div class="scope">Clinical tables · by voice</div>
-            <h3>Dictate the values, <span class="goster-word">gōster</span> fills the table.</h3>
-            <p>If your template includes tables (measurements, angles, classifications), just dictate the values. <span class="goster-word">gōster</span> identifies which field each value belongs to and fills the table with the correct format. Without touching the keyboard.</p>
+            <div class="scope">Tabelas clínicas · por voz</div>
+            <h3>Dite os valores, o <span class="goster-word">gōster</span> preenche a tabela.</h3>
+            <p>Se seu modelo inclui tabelas (medidas, ângulos, classificações), apenas dite os valores. O <span class="goster-word">gōster</span> identifica a qual campo pertence cada valor e preenche a tabela com o formato correto. Sem tocar no teclado.</p>
           </div>
           <div class="table-demo">
             <div class="td-head">
-              <span>Structure</span>
-              <span>Right</span>
-              <span>Left</span>
+              <span>Estrutura</span>
+              <span>Direito</span>
+              <span>Esquerdo</span>
             </div>
-            <div class="td-row"><span>Q angle</span><span class="v">14°</span><span class="v">12°</span></div>
+            <div class="td-row"><span>Ângulo Q</span><span class="v">14°</span><span class="v">12°</span></div>
             <div class="td-row"><span>Insall-Salvati</span><span class="v">1.08</span><span class="v">1.04</span></div>
             <div class="td-row"><span>TT-TG (mm)</span><span class="v">11.2</span><span class="v">10.8</span></div>
-            <div class="td-foot"><span class="dotp"></span>Voice-filled · dictation in progress</div>
+            <div class="td-foot"><span class="dotp"></span>Preenchido por voz · ditado em curso</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS (3 short steps) -->
-  <section class="block" id="how-it-works" style="padding-top: 40px;">
+  <!-- CÓMO FUNCIONA (3 pasos cortos) -->
+  <section class="block" id="como-funciona" style="padding-top: 40px;">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">How it works</div>
-          <h2 class="sec-title">From voice to report, <span class="accent">in seconds.</span></h2>
+          <div class="sec-eyebrow">Como funciona</div>
+          <h2 class="sec-title">Da voz ao laudo, <span class="accent">em segundos.</span></h2>
         </div>
-        <p class="sec-desc">Three steps. No learning curve.</p>
+        <p class="sec-desc">Três passos. Sem curva de aprendizado.</p>
       </div>
       <div class="flow">
         <div class="step">
           <div class="num">01</div>
-          <h3>Dictate the findings</h3>
-          <p>Use your computer's microphone (built-in or external), or pair your phone via QR to use it as a wireless mic.</p>
-          <div class="formats"><span>Microphone</span><span>Mobile QR</span></div>
+          <h3>Dite os achados</h3>
+          <p>Use o microfone do seu computador (integrado ou externo) ou vincule seu celular por QR para usá-lo como microfone sem fio.</p>
+          <div class="formats"><span>Microfone</span><span>QR móvel</span></div>
         </div>
         <div class="step">
           <div class="num">02</div>
-          <h3>AI generates the report</h3>
-          <p>Structured report with findings and diagnostic conclusion, applying your template and dictionary.</p>
-          <div class="formats"><span>Structured</span><span>Diagnostic</span></div>
+          <h3>A IA gera o laudo</h3>
+          <p>Laudo estruturado com achados e conclusão diagnóstica, aplicando seu modelo e dicionário.</p>
+          <div class="formats"><span>Estruturado</span><span>Diagnóstico</span></div>
         </div>
         <div class="step">
           <div class="num">03</div>
-          <h3>Review and export</h3>
-          <p>Correct by voice (no keyboard needed) and copy with formatting. Compatible with Word and plain text.</p>
-          <div class="formats"><span>Word</span><span>Plain text</span></div>
+          <h3>Revise e exporte</h3>
+          <p>Corrija por voz (não precisa tocar no teclado) e copie com formatação. Compatível com Word e texto simples.</p>
+          <div class="formats"><span>Word</span><span>Texto simples</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- LEARNING LOOP -->
-  <section class="block" id="learning">
+  <section class="block" id="aprendizaje">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">Continuous learning</div>
-          <h2 class="sec-title">The more you use it, <span class="accent">the better it works.</span></h2>
+          <div class="sec-eyebrow">Aprendizado contínuo</div>
+          <h2 class="sec-title">Quanto mais você usa, <span class="accent">melhor funciona.</span></h2>
         </div>
-        <p class="sec-desc">The first report is good. The fifth is better. The tenth is yours.</p>
+        <p class="sec-desc">O primeiro laudo é bom. O quinto é melhor. O décimo é seu.</p>
       </div>
 
       <div class="loop">
@@ -2556,8 +2719,8 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             </div>
             <div>
-              <h4>Corrections → rules</h4>
-              <p>You edit a report, save changes, and <span class="goster-word">gōster</span> applies that pattern going forward. What you fix today, you won't touch tomorrow.</p>
+              <h4>Correções → regras</h4>
+              <p>Você edita um laudo, salva as alterações, e o <span class="goster-word">gōster</span> aplica esse padrão no futuro. O que hoje você corrige, amanhã já não precisa tocar.</p>
             </div>
           </div>
           <div class="loop-point">
@@ -2565,8 +2728,8 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
             </div>
             <div>
-              <h4>A dictionary that grows</h4>
-              <p>New entries are added automatically from your corrections. Your clinical vocabulary expands effortlessly.</p>
+              <h4>Dicionário que cresce</h4>
+              <p>Novas entradas são incorporadas automaticamente a partir das suas correções. Seu vocabulário clínico se expande sem esforço.</p>
             </div>
           </div>
           <div class="loop-point">
@@ -2574,8 +2737,8 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <h4>Active history</h4>
-              <p>Your previous reports are active memory. <span class="goster-word">gōster</span> remembers your style, your diagnostic equivalences and your decisions.</p>
+              <h4>Histórico ativo</h4>
+              <p>Seus laudos anteriores são memória ativa. O <span class="goster-word">gōster</span> lembra seu estilo, suas equivalências diagnósticas e suas decisões.</p>
             </div>
           </div>
           <div class="loop-point">
@@ -2583,8 +2746,8 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
             <div>
-              <h4>Automatic coherence</h4>
-              <p>It validates each paragraph to avoid contradictions. If you dictate a lesion, it won't add incompatible normality phrases.</p>
+              <h4>Coerência automática</h4>
+              <p>Valida cada parágrafo para evitar contradições. Se você dita uma lesão, não adiciona frases de normalidade incompatíveis.</p>
             </div>
           </div>
         </div>
@@ -2603,13 +2766,13 @@
               <animate attributeName="stroke-dashoffset" from="0" to="-1068" dur="6s" repeatCount="indefinite"/>
             </circle>
             <circle cx="200" cy="200" r="60" fill="oklch(0.10 0.012 240)" stroke="oklch(0.87 0.21 142 / 0.5)" stroke-width="1"/>
-            <text x="200" y="195" text-anchor="middle" fill="oklch(0.87 0.21 142)" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">better</text>
-            <text x="200" y="213" text-anchor="middle" fill="oklch(0.87 0.21 142)" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">reports</text>
+            <text x="200" y="195" text-anchor="middle" fill="oklch(0.87 0.21 142)" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">melhores</text>
+            <text x="200" y="213" text-anchor="middle" fill="oklch(0.87 0.21 142)" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">laudos</text>
           </svg>
-          <div class="loop-node" style="left: 50%; top: 6%;">You dictate</div>
-          <div class="loop-node alt" style="left: 94%; top: 50%;"><span class="goster-word">gōster</span> generates</div>
-          <div class="loop-node" style="left: 50%; top: 94%;">You correct</div>
-          <div class="loop-node alt" style="left: 6%; top: 50%;"><span class="goster-word">gōster</span> learns</div>
+          <div class="loop-node" style="left: 50%; top: 6%;">Você dita</div>
+          <div class="loop-node alt" style="left: 94%; top: 50%;"><span class="goster-word">gōster</span> gera</div>
+          <div class="loop-node" style="left: 50%; top: 94%;">Você corrige</div>
+          <div class="loop-node alt" style="left: 6%; top: 50%;"><span class="goster-word">gōster</span> aprende</div>
         </div>
       </div>
     </div>
@@ -2620,71 +2783,111 @@
     <div class="container">
       <div class="ap">
         <div class="ap-head">
-          <div class="tag">Autopilot mode</div>
-          <h2>No templates? <span class="accent">You don't need them.</span></h2>
-          <p><span class="goster-word">gōster</span> masters radiology language. No template, no dictionary — just dictate your findings and get a professional report with structure, terminology and diagnostic conclusions.</p>
+          <div class="tag">Modo autopilot</div>
+          <h2>Não tem modelos? <span class="accent">Não precisa deles.</span></h2>
+          <p>O <span class="goster-word">gōster</span> domina a linguagem radiológica. Sem modelo, sem dicionário — apenas dite seus achados e receba um laudo profissional com estrutura, terminologia e conclusões diagnósticas.</p>
         </div>
         <div class="ap-grid">
           <div class="ap-step">
-            <h4>01 — Just dictate</h4>
-            <p>Talk as if discussing the case. Nothing to configure.</p>
+            <h4>01 — Apenas dite</h4>
+            <p>Fale como se comentasse o caso. Sem configurar nada.</p>
           </div>
           <div class="ap-step">
-            <h4>02 — Full report</h4>
-            <p>Structured findings, diagnostic conclusion and professional formatting.</p>
+            <h4>02 — Laudo completo</h4>
+            <p>Achados estruturados, conclusão diagnóstica e formatação profissional.</p>
           </div>
           <div class="ap-step">
-            <h4>03 — Ready to sign</h4>
-            <p>Review, tweak if you want, copy and paste. That simple.</p>
+            <h4>03 — Pronto para assinar</h4>
+            <p>Revise, ajuste se quiser, copie e cole. Simples assim.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VISUAL PERSONALIZATION -->
-  <section class="block" id="personalization">
+  <!-- PERSONALIZACIÓN VISUAL -->
+  <section class="block" id="personalizacion">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow">Personalization</div>
-          <h2 class="sec-title">Make it <span class="accent">yours.</span></h2>
+          <div class="sec-eyebrow">Personalização</div>
+          <h2 class="sec-title">Faça do <span class="accent">seu jeito.</span></h2>
         </div>
-        <p class="sec-desc">Your workspace, your way. Change it whenever — <span class="goster-word">gōster</span> adapts.</p>
+        <p class="sec-desc">Seu espaço de trabalho, do seu jeito. Mude quando quiser — o <span class="goster-word">gōster</span> se adapta.</p>
       </div>
       <div class="theme-row">
         <div class="theme-card">
-          <h4>Light and dark theme</h4>
-          <p>Switch with one click.</p>
+          <h4>Tema claro e escuro</h4>
+          <p>Mude com um clique.</p>
           <div class="theme-toggle">
-            <span class="t">Light</span>
-            <span class="t on">Dark</span>
+            <span class="t">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+              </span>
+              Claro
+            </span>
+            <span class="t on">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              </span>
+              Escuro
+            </span>
           </div>
         </div>
         <div class="theme-card">
-          <h4>Tone control</h4>
-          <p>From black to gray. From white to sepia.</p>
-          <div class="tone-bar"></div>
-          <div style="display:flex;justify-content:space-between;margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;">
-            <span>Black</span><span>Gray</span><span>White</span><span>Sepia</span>
+          <h4>Controle de tom</h4>
+          <p>Sépia a branco no claro. Preto a cinza no escuro.</p>
+          <div class="tone-stack">
+            <div class="tone-row">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+              </span>
+              <div class="tone-bar light"><span class="knob" style="left:78%"></span></div>
+            </div>
+            <div class="tone-row">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              </span>
+              <div class="tone-bar dark"><span class="knob" style="left:22%"></span></div>
+            </div>
+          </div>
+          <div class="tone-labels">
+            <span>Sépia / Preto</span>
+            <span>Branco / Cinza</span>
           </div>
         </div>
         <div class="theme-card">
-          <h4>12 accent colors</h4>
-          <p>Pick the one that represents your style.</p>
+          <h4>24 cores de destaque</h4>
+          <p>Escolha a que representa seu estilo.</p>
           <div class="accent-row">
-            <div class="ac on" style="background:oklch(0.87 0.21 142)"></div>
-            <div class="ac" style="background:oklch(0.7 0.2 30)"></div>
-            <div class="ac" style="background:oklch(0.75 0.18 60)"></div>
-            <div class="ac" style="background:oklch(0.8 0.18 90)"></div>
-            <div class="ac" style="background:oklch(0.75 0.18 200)"></div>
-            <div class="ac" style="background:oklch(0.65 0.2 250)"></div>
-            <div class="ac" style="background:oklch(0.7 0.2 300)"></div>
-            <div class="ac" style="background:oklch(0.7 0.22 350)"></div>
-            <div class="ac" style="background:oklch(0.8 0.18 170)"></div>
-            <div class="ac" style="background:oklch(0.75 0.15 220)"></div>
-            <div class="ac" style="background:oklch(0.85 0.1 80)"></div>
-            <div class="ac" style="background:oklch(0.7 0.05 240)"></div>
+            <!-- Row 1: pastels -->
+            <div class="ac on" style="background:oklch(0.78 0.17 152)"></div>
+            <div class="ac" style="background:oklch(0.74 0.14 290)"></div>
+            <div class="ac" style="background:oklch(0.86 0.04 240)"></div>
+            <div class="ac" style="background:oklch(0.9 0.03 10)"></div>
+            <div class="ac" style="background:oklch(0.88 0.04 160)"></div>
+            <div class="ac" style="background:oklch(0.72 0.01 250)"></div>
+            <!-- Row 2: muted earth tones -->
+            <div class="ac" style="background:oklch(0.92 0.02 85)"></div>
+            <div class="ac" style="background:oklch(0.76 0.04 135)"></div>
+            <div class="ac" style="background:oklch(0.78 0.06 80)"></div>
+            <div class="ac" style="background:oklch(0.78 0.04 295)"></div>
+            <div class="ac" style="background:oklch(0.78 0.05 30)"></div>
+            <div class="ac" style="background:oklch(0.78 0.02 270)"></div>
+            <!-- Row 3: saturated brights -->
+            <div class="ac" style="background:oklch(0.66 0.21 25)"></div>
+            <div class="ac" style="background:oklch(0.73 0.18 55)"></div>
+            <div class="ac" style="background:oklch(0.86 0.18 95)"></div>
+            <div class="ac" style="background:oklch(0.78 0.21 130)"></div>
+            <div class="ac" style="background:oklch(0.68 0.15 165)"></div>
+            <div class="ac" style="background:oklch(0.7 0.15 220)"></div>
+            <!-- Row 4: vivid blues/purples/pinks -->
+            <div class="ac" style="background:oklch(0.76 0.14 235)"></div>
+            <div class="ac" style="background:oklch(0.62 0.2 260)"></div>
+            <div class="ac" style="background:oklch(0.58 0.22 290)"></div>
+            <div class="ac" style="background:oklch(0.65 0.25 325)"></div>
+            <div class="ac" style="background:oklch(0.68 0.24 345)"></div>
+            <div class="ac" style="background:oklch(0.63 0.22 8)"></div>
           </div>
         </div>
       </div>
@@ -2692,84 +2895,84 @@
   </section>
 
   <!-- PRICING -->
-  <section class="block" id="pricing">
+  <section class="block" id="precios">
     <div class="container">
       <div class="pricing-head">
-        <div class="sec-eyebrow" style="justify-content: center;">Plans</div>
-        <h2>Choose <span style="color:var(--neon);font-style:italic;font-weight:500">your plan.</span></h2>
-        <p>No long-term contracts. Cancel anytime.</p>
+        <div class="sec-eyebrow" style="justify-content: center;">Planos</div>
+        <h2>Escolha <span style="color:var(--neon);font-style:italic;font-weight:500">seu plano.</span></h2>
+        <p>Sem contratos de longo prazo. Cancele quando quiser.</p>
       </div>
 
       <div class="pricing-grid">
 
         <div class="price">
           <div class="pname">Trial</div>
-          <div class="pval">Free</div>
-          <div class="punit">No time limit</div>
-          <p class="pdesc">Try everything risk-free.</p>
+          <div class="pval">Grátis</div>
+          <div class="punit">Sem limite de tempo</div>
+          <p class="pdesc">Teste tudo sem compromisso.</p>
           <ul>
-            <li>3 custom templates</li>
-            <li>15 generated reports</li>
-            <li>Your own clinical dictionary</li>
-            <li>Voice dictation</li>
-            <li>Phone as microphone</li>
-            <li>Study history</li>
+            <li>3 modelos personalizados</li>
+            <li>15 laudos gerados</li>
+            <li>Dicionário clínico próprio</li>
+            <li>Ditado por voz</li>
+            <li>Celular como microfone</li>
+            <li>Histórico de exames</li>
           </ul>
-          <a href="https://app.goster.ai/" class="btn btn-ghost">Start trial</a>
+          <a href="https://app.goster.ai/" class="btn btn-ghost">Começar teste</a>
         </div>
 
         <div class="price">
           <div class="pname">Base</div>
           <div class="pval"><span class="cur">$</span>249</div>
-          <div class="punit">MXN / month</div>
-          <p class="pdesc">Ideal to get started.</p>
+          <div class="punit">MXN / mês</div>
+          <p class="pdesc">Ideal para começar.</p>
           <ul>
-            <li>20 templates</li>
-            <li>50 reports per month</li>
-            <li>Everything in Trial</li>
-            <li>Email support</li>
-            <li>Updates included</li>
+            <li>20 modelos</li>
+            <li>50 laudos por mês</li>
+            <li>Tudo do Trial</li>
+            <li>Suporte por email</li>
+            <li>Atualizações incluídas</li>
           </ul>
-          <a href="https://checkout.stripe.com/c/pay/cs_live_b1kP0mTggpOHdItZabeqrln8Izm6ohM6lMB6QAhKzgmU38tDvzGlEbYbGh#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdpamZkaWAnPydgdigxNDwnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWmlsc2BaMDRWUXF0fEJnf1MxSTBiPEhqVFdwQn9wbEpKNn18cWg2dFxqTFRqaGJwdmZoMDRXTzB%2FTX9zTUpqYFN%2FYFM9SXxkSzxtZkFocHZSNUdcUzZHQmFUPUA0SFc1NWdjRlFHfUJjJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl" class="btn btn-ghost">Start now</a>
+          <a href="https://checkout.stripe.com/c/pay/cs_live_b1kP0mTggpOHdItZabeqrln8Izm6ohM6lMB6QAhKzgmU38tDvzGlEbYbGh#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdpamZkaWAnPydgdigxNDwnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWmlsc2BaMDRWUXF0fEJnf1MxSTBiPEhqVFdwQn9wbEpKNn18cWg2dFxqTFRqaGJwdmZoMDRXTzB%2FTX9zTUpqYFN%2FYFM9SXxkSzxtZkFocHZSNUdcUzZHQmFUPUA0SFc1NWdjRlFHfUJjJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl" class="btn btn-ghost">Começar agora</a>
         </div>
 
         <div class="price featured">
-          <div class="badge">Most popular</div>
+          <div class="badge">Mais popular</div>
           <div class="pname">Pro</div>
           <div class="pval"><span class="cur">$</span>499</div>
-          <div class="punit">MXN / month</div>
-          <p class="pdesc">No limits. For high demand.</p>
+          <div class="punit">MXN / mês</div>
+          <p class="pdesc">Sem limites. Para alta demanda.</p>
           <ul>
-            <li>Unlimited templates</li>
-            <li>Unlimited reports</li>
-            <li>Everything in Base</li>
-            <li>Priority support</li>
-            <li>Early access to new features</li>
-            <li>Word and plain-text export</li>
+            <li>Modelos ilimitados</li>
+            <li>Laudos ilimitados</li>
+            <li>Tudo do Base</li>
+            <li>Suporte prioritário</li>
+            <li>Acesso antecipado a novas funções</li>
+            <li>Exportação para Word e texto simples</li>
           </ul>
-          <a href="https://checkout.stripe.com/c/pay/cs_live_b1ylOnUj2NCPv8c7U9QqRUcgi2nEQ4rmt3hf87CfEemRR7WgFP3fK3AhKT#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdpamZkaWAnPydgdigxNDwnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWmlsc2BaMDRWUXF0fEJnf1MxSTBiPEhqVFdwQn9wbEpKNn18cWg2dFxqTFRqaGJwdmZoMDRXTzB%2FTX9zTUpqYFN%2FYFM9SXxkSzxtZkFocHZSNUdcUzZHQmFUPUA0SFc1NWdjRlFHfUJjJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl" class="btn btn-primary">Start now</a>
+          <a href="https://checkout.stripe.com/c/pay/cs_live_b1ylOnUj2NCPv8c7U9QqRUcgi2nEQ4rmt3hf87CfEemRR7WgFP3fK3AhKT#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdpamZkaWAnPydgdigxNDwnKSdicGRmZGhqaWBTZHdsZGtxJz8nZmprcXdqaScpJ2R1bE5gfCc%2FJ3VuWmlsc2BaMDRWUXF0fEJnf1MxSTBiPEhqVFdwQn9wbEpKNn18cWg2dFxqTFRqaGJwdmZoMDRXTzB%2FTX9zTUpqYFN%2FYFM9SXxkSzxtZkFocHZSNUdcUzZHQmFUPUA0SFc1NWdjRlFHfUJjJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmNjY2NjYycpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl" class="btn btn-primary">Começar agora</a>
         </div>
 
         <div class="price">
           <div class="pname">Enterprise</div>
-          <div class="pval" style="font-size: 28px;">Custom</div>
-          <div class="punit">Quote</div>
-          <p class="pdesc">For institutions and radiology groups.</p>
+          <div class="pval" style="font-size: 28px;">Sob medida</div>
+          <div class="punit">Cotação</div>
+          <p class="pdesc">Para instituições e grupos de radiologistas.</p>
           <ul>
-            <li>Everything in Pro</li>
-            <li>Preloaded institutional templates</li>
-            <li>Homogenized reports across the organization</li>
-            <li>Group and multi-user plans</li>
-            <li>Dedicated onboarding</li>
-            <li>Institutional billing</li>
-            <li>Dedicated 24/7 support</li>
+            <li>Tudo do Plano Pro</li>
+            <li>Modelos institucionais pré-carregados</li>
+            <li>Laudos homogeneizados para toda a organização</li>
+            <li>Planos grupais e multiusuário</li>
+            <li>Onboarding dedicado</li>
+            <li>Faturamento institucional</li>
+            <li>Suporte 24/7 dedicado</li>
           </ul>
-          <a href="mailto:contacto@goster.ai" class="btn btn-ghost">Contact sales</a>
+          <a href="mailto:contacto@goster.ai" class="btn btn-ghost">Contatar vendas</a>
         </div>
 
       </div>
 
-      <div class="pricing-foot">* All prices in Mexican pesos. No credit card required for the free trial.</div>
+      <div class="pricing-foot">* Todos os preços em pesos mexicanos. Sem cartão de crédito para o teste gratuito.</div>
     </div>
   </section>
 
@@ -2778,23 +2981,23 @@
     <div class="container">
       <div class="pricing-head">
         <div class="sec-eyebrow" style="justify-content: center;">FAQ</div>
-        <h2>Frequently <span style="color:var(--neon);font-style:italic;font-weight:500">asked questions.</span></h2>
+        <h2>Perguntas <span style="color:var(--neon);font-style:italic;font-weight:500">frequentes.</span></h2>
       </div>
 
       <div class="faq-grid" id="faqList">
-        <div class="faq-item"><button class="faq-q">Is my data private?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. All data is processed with end-to-end encryption. We don't use your information to train public models, and your reports are yours: export or delete them anytime.</div></div></div>
-        <div class="faq-item"><button class="faq-q">What happens if I upload a report with patient data?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner"><span class="goster-word">gōster</span> automatically anonymizes names, dates, identifiers and any sensitive patient data before extracting triggers and descriptions for your dictionary.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Can I use <span class="goster-word">gōster</span> without a dictionary or template?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes — use autopilot mode. <span class="goster-word">gōster</span> masters standard radiology language and generates a structured report from your dictation alone, even if you haven't configured any templates yet.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Does <span class="goster-word">gōster</span> learn from my corrections?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. Every correction you save becomes a rule <span class="goster-word">gōster</span> applies in future reports. Your dictionary and style are built automatically through daily use.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Can <span class="goster-word">gōster</span> invent findings?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">No. The golden rule is absolute fidelity: if you didn't dictate it, it doesn't appear. <span class="goster-word">gōster</span> expands your triggers using descriptions you taught it, without filling in information you didn't provide.</div></div></div>
-        <div class="faq-item"><button class="faq-q">What study types does it support?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Any study you can describe in natural language: CT, MRI, US, X-ray, mammography, interventional. If you upload a template, <span class="goster-word">gōster</span> uses it; if not, autopilot mode covers most modalities.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Can I access from any device?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. <span class="goster-word">gōster</span> is web-based — it runs on any modern computer. You can also pair your phone via QR to use it as a wireless microphone, no app to install.</div></div></div>
-        <div class="faq-item"><button class="faq-q">What browser do I need?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Chrome, Edge, Safari and Firefox in their recent versions. We recommend Chrome or Edge for optimal voice dictation.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Do I need to dictate in a structured way?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">No. Talk as if you were discussing the case with a colleague. <span class="goster-word">gōster</span> interprets the clinical intent and arranges the findings within the template's structure.</div></div></div>
-        <div class="faq-item"><button class="faq-q">What if I correct myself mid-dictation?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner"><span class="goster-word">gōster</span> discards the previous value and keeps your final decision. For example: "16 degrees… no, 19 degrees" → the report shows 19°, propagated to tables and conclusions.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Can I add specific instructions per study type?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. Each template can carry its own rules (calculations, conventions, classifications). They combine with your global instructions.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Does <span class="goster-word">gōster</span> generate the diagnostic impression?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes. Based on the findings you dictated, <span class="goster-word">gōster</span> drafts the diagnostic conclusion respecting your style and format. You decide whether to sign it as-is or edit it.</div></div></div>
-        <div class="faq-item"><button class="faq-q">Does <span class="goster-word">gōster</span> replace the radiologist?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">No. <span class="goster-word">gōster</span> gives you back the time spent on the keyboard. Interpretation, clinical judgment and the signature remain yours — <span class="goster-word">gōster</span> only writes what you dictate, in your style.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Meus dados são privados?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. Todos os dados são processados com criptografia de ponta a ponta. Não usamos sua informação para treinar modelos públicos e os laudos são seus: pode exportá-los ou excluí-los quando quiser.</div></div></div>
+        <div class="faq-item"><button class="faq-q">O que acontece se eu subir um laudo com dados do paciente?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">O <span class="goster-word">gōster</span> anonimiza automaticamente nomes, datas, identificadores e qualquer dado sensível do paciente antes de extrair triggers e descrições para seu dicionário.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Posso usar o <span class="goster-word">gōster</span> sem dicionário nem modelo?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim — use o modo autopilot. O <span class="goster-word">gōster</span> domina a linguagem radiológica padrão e gera um laudo estruturado apenas a partir do seu ditado, mesmo que não tenha modelos configurados ainda.</div></div></div>
+        <div class="faq-item"><button class="faq-q">O <span class="goster-word">gōster</span> aprende com minhas correções?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. Cada correção que você salva se torna uma regra que o <span class="goster-word">gōster</span> aplica em laudos futuros. Seu dicionário e seu estilo se constroem automaticamente com o uso diário.</div></div></div>
+        <div class="faq-item"><button class="faq-q">O <span class="goster-word">gōster</span> pode inventar achados?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Não. A regra de ouro é fidelidade absoluta: se você não ditou, não aparece. O <span class="goster-word">gōster</span> expande seus triggers usando descrições que você mesmo ensinou, sem completar com informação que você não forneceu.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Que tipos de exame são suportados?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Qualquer exame que você possa descrever em linguagem natural: TC, RM, US, RX, mamografia, intervencionismo. Se subir um modelo, o <span class="goster-word">gōster</span> o usa; senão, o modo autopilot cobre a maioria das modalidades.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Posso acessar de qualquer dispositivo?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. O <span class="goster-word">gōster</span> é web — funciona em qualquer computador moderno. Além disso, pode vincular seu celular por QR para usá-lo como microfone sem fio, sem instalar apps.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Qual navegador preciso?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Chrome, Edge, Safari e Firefox em suas versões recentes. Recomendamos Chrome ou Edge para o ditado por voz ideal.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Preciso ditar de forma estruturada?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Não. Fale como se comentasse o caso com um colega. O <span class="goster-word">gōster</span> interpreta a intenção clínica e organiza os achados na estrutura do modelo.</div></div></div>
+        <div class="faq-item"><button class="faq-q">O que acontece se eu me corrigir durante o ditado?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">O <span class="goster-word">gōster</span> descarta o anterior e mantém sua decisão final. Por exemplo: "16 graus... não, 19 graus" → no laudo fica 19°, propagado para tabelas e conclusões.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Posso adicionar instruções específicas por tipo de exame?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. Cada modelo pode ter suas próprias regras (cálculos, convenções, classificações). Combinam-se com suas instruções globais.</div></div></div>
+        <div class="faq-item"><button class="faq-q">O <span class="goster-word">gōster</span> gera a impressão diagnóstica?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Sim. A partir dos achados que você ditou, o <span class="goster-word">gōster</span> redige a conclusão diagnóstica respeitando seu estilo e formato. Você decide se assina como está ou edita.</div></div></div>
+        <div class="faq-item"><button class="faq-q">O <span class="goster-word">gōster</span> substitui o radiologista?<span class="pl">+</span></button><div class="faq-a"><div class="faq-a-inner">Não. O <span class="goster-word">gōster</span> devolve o tempo do teclado. A interpretação, o julgamento clínico e a assinatura continuam sendo seus — o <span class="goster-word">gōster</span> apenas escreve o que você dita, no seu estilo.</div></div></div>
       </div>
     </div>
   </section>
@@ -2805,13 +3008,13 @@
       <div class="cta-card">
         <img class="cta-ghost" src="assets/goster-chibi.png" alt="" aria-hidden="true" />
         <img class="cta-ghost-left" src="assets/goster-chibi.png" alt="" aria-hidden="true" />
-        <h2>Focus on interpreting.<br /><span class="accent"><span class="goster-word">gōster</span> writes.</span></h2>
-        <p>Free with no time limit. No credit card, no commitment. 3 templates and 15 reports included.</p>
+        <h2>Dedique-se a interpretar.<br /><span class="accent"><span class="goster-word">gōster</span> escreve.</span></h2>
+        <p>Teste grátis sem limite de tempo. Sem cartão de crédito, sem compromisso. 3 modelos e 15 laudos incluídos.</p>
         <div class="cta-actions">
-          <a href="#pricing" class="btn btn-primary btn-lg">Try free</a>
-          <a href="#flow" class="btn btn-ghost btn-lg">See how it works</a>
+          <a href="#precios" class="btn btn-primary btn-lg">Experimentar grátis</a>
+          <a href="#flujo" class="btn btn-ghost btn-lg">Ver como funciona</a>
         </div>
-        <div class="cta-foot">No card · No commitment · Cancel anytime</div>
+        <div class="cta-foot">Sem cartão · Sem compromisso · Cancele quando quiser</div>
       </div>
     </div>
   </section>
@@ -2827,34 +3030,34 @@
             </div>
             <img class="wordmark-img" style="height:26px;" src="assets/goster-wordmark.png" alt="gōster" />
           </a>
-          <p>AI platform for radiology. Your clinical ghostwriter: voice dictation to professional report, in seconds, in your style.</p>
+          <p>Plataforma de IA para radiologia. Seu ghostwriter clínico: ditado de voz a laudo profissional, em segundos, com seu estilo.</p>
         </div>
         <div class="foot-col">
-          <h5>Product</h5>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#dictionary">Dictionary</a>
+          <h5>Produto</h5>
+          <a href="#capacidades">Capacidades</a>
+          <a href="#diccionario">Dicionário</a>
           <a href="#autopilot">Autopilot</a>
-          <a href="#pricing">Pricing</a>
+          <a href="#precios">Preços</a>
         </div>
         <div class="foot-col">
-          <h5>Resources</h5>
-          <a href="#flow">Get started in minutes</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#faq">FAQ</a>
-          <a href="guide.html">Documentation</a>
+          <h5>Recursos</h5>
+          <a href="#flujo">Comece em minutos</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#faq">Perguntas frequentes</a>
+          <a href="guia-pt.html">Documentação</a>
         </div>
         <div class="foot-col">
-          <h5>Company</h5>
-          <a href="#">About <span class="goster-word">gōster</span></a>
-          <a href="#">Contact</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <h5>Empresa</h5>
+          <a href="#">Sobre o <span class="goster-word">gōster</span></a>
+          <a href="#">Contato</a>
+          <a href="#">Privacidade</a>
+          <a href="#">Termos</a>
         </div>
       </div>
       <div class="foot-bottom">
-        <span>© 2026 <span class="goster-word">gōster</span> · Mexico</span>
-        <span>Made with care by radiologists, for radiologists.</span>
-        <span>Developed by <a href="https://stonevale.io" target="_blank" rel="noopener" style="color:var(--neon);text-decoration:none">STONEVALE</a></span>
+        <span>© 2026 <span class="goster-word">gōster</span> · México</span>
+        <span>Feito com cuidado por radiologistas, para radiologistas.</span>
+        <span>Desarrollado por <a href="https://stonevale.io" target="_blank" rel="noopener" style="color:var(--neon);text-decoration:none">STONEVALE</a></span>
       </div>
     </div>
   </footer>
@@ -3038,11 +3241,11 @@
   const target = document.getElementById('typeTarget');
   if (target) {
     const lines = [
-      "grade 2 anterior cruciate ligament injury...",
-      "grade 2 ACL injury, no complete loss of fiber continuity.",
-      "posterior horn of the medial meniscus with linear degenerative signal",
-      "not contacting the articular surface.",
-      "grade 2 ACL injury. meniscal degeneration without tear.",
+      "lesão grau 2 do ligamento cruzado anterior...",
+      "lesão grau 2 do LCA, sem solução de continuidade completa.",
+      "corno posterior do menisco medial com sinal degenerativo linear",
+      "que não contacta superfície articular.",
+      "lesão grau 2 do LCA. degeneração meniscal sem rotura.",
     ];
     let idx = 0;
     function step() {
@@ -3066,6 +3269,82 @@
       a.style.maxHeight = open ? a.scrollHeight + 'px' : '0';
     });
   });
+})();
+
+/* ============================================
+   Scroll-triggered reveal: each section gets a
+   different entrance — fade up, slide in from
+   the sides, diagonal, scale, blur — as the
+   ghost uncovers the page
+   ============================================ */
+(function () {
+  // Map of section id → [section-entrance variant, child-stagger variant]
+  const variants = {
+    'validacion':      ['reveal-rise',    'stagger-up'],
+    'producto':        ['reveal-zoom',    'stagger-scale'],
+    'capacidades':     ['reveal-up',      'stagger-zigzag'],
+    'flujo':           ['reveal-left',    'stagger-left'],
+    'diccionario':     ['reveal-right',   'stagger-right'],
+    'reglas':          ['reveal-diag-bl', 'stagger-diag'],
+    'como-funciona':   ['reveal-scale',   'stagger-scale'],
+    'aprendizaje':     ['reveal-blur',    'stagger-blur'],
+    'autopilot':       ['reveal-right',   'stagger-left'],
+    'personalizacion': ['reveal-tilt',    'stagger-zigzag'],
+    'precios':         ['reveal-up',      'stagger-scale'],
+    'faq':             ['reveal-left',    'stagger-up'],
+    'cta':             ['reveal-zoom',    'stagger-up'],
+  };
+  const defaultVariant = ['reveal-up', 'stagger-up'];
+
+  // Tag each top-level section + its container's direct children
+  const sections = document.querySelectorAll('section');
+  const list = [];
+
+  sections.forEach(section => {
+    if (section.id === 'top') return; // hero stays visible
+    if (section.parentElement && section.parentElement.tagName === 'SECTION') return;
+
+    const [secVariant, staggerVariant] = variants[section.id] || defaultVariant;
+    section.classList.add('reveal-item', secVariant, staggerVariant);
+    list.push(section);
+
+    // Also reveal direct children of the section's .container with their own variant
+    const container = section.querySelector(':scope > .container');
+    if (container) {
+      [...container.children].forEach((child, i) => {
+        // give each child an individual reveal with a small directional rotation
+        const childVariants = ['reveal-up', 'reveal-left', 'reveal-right', 'reveal-diag-bl', 'reveal-diag-br', 'reveal-scale'];
+        const v = childVariants[i % childVariants.length];
+        child.classList.add('reveal-item', v);
+        list.push(child);
+      });
+    }
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    list.forEach(el => el.classList.add('revealed'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+
+  list.forEach(el => io.observe(el));
+
+  // Safety: reveal anything already in viewport on load
+  setTimeout(() => {
+    const vh = window.innerHeight;
+    list.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.95 && r.bottom > 0) el.classList.add('revealed');
+    });
+  }, 150);
 })();
 
 /* ============================================
