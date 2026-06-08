@@ -1827,9 +1827,12 @@
   }
   .theme-btn:hover { color: var(--fg); border-color: var(--neon); }
   .theme-btn svg { width: 18px; height: 18px; }
-  .theme-btn .icon-sun { display: none; }
+  .theme-btn .icon-sun, .theme-btn .icon-crep { display: none; }
+  .theme-btn .icon-moon { display: block; }
+  [data-theme="crepusculo"] .theme-btn .icon-moon, [data-theme="crepusculo"] .theme-btn .icon-sun { display: none; }
+  [data-theme="crepusculo"] .theme-btn .icon-crep { display: block; }
+  [data-theme="light"] .theme-btn .icon-moon, [data-theme="light"] .theme-btn .icon-crep { display: none; }
   [data-theme="light"] .theme-btn .icon-sun { display: block; }
-  [data-theme="light"] .theme-btn .icon-moon { display: none; }
 
   /* ========== LIGHT THEME ========== */
   [data-theme="light"] {
@@ -2107,6 +2110,303 @@
   [data-theme="light"] .cta-ghost-left,
   [data-theme="light"] .foot-brand img,
   [data-theme="light"] .brand .mark img { filter: brightness(0) !important; }
+
+  /* ========== CREPUSCULO THEME ========== */
+  [data-theme="crepusculo"] {
+    --bg: oklch(0.95 0.02 75);
+    --bg-2: oklch(0.93 0.02 75);
+    --line: oklch(0.86 0.03 75);
+    --line-2: oklch(0.90 0.02 75);
+    --fg: oklch(0.20 0.02 250);
+    --muted: oklch(0.45 0.02 290);
+    --dim: oklch(0.55 0.02 290);
+    --neon: oklch(0.55 0.22 260);
+    --neon-soft: oklch(0.55 0.22 260 / 0.12);
+    --neon-glow: oklch(0.55 0.22 260 / 0.28);
+  }
+  [data-theme="crepusculo"] ::selection { background: oklch(0.55 0.22 260 / 0.3); color: var(--fg); }
+
+  /* Crepusculo: backgrounds */
+  [data-theme="crepusculo"] .bg-stage {
+    background:
+      radial-gradient(1200px 800px at var(--mx,50%) var(--my,30%), oklch(0.55 0.22 260 / 0.06), transparent 55%),
+      radial-gradient(900px 700px at calc(100% - var(--mx,50%)) calc(100% - var(--my,30%)), oklch(0.55 0.10 260 / 0.05), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  }
+  [data-theme="crepusculo"] .bg-vignette {
+    background: radial-gradient(120% 90% at 50% 50%, transparent 55%, oklch(0.92 0.02 75) 100%);
+  }
+  [data-theme="crepusculo"] .bg-grain { opacity: 0.02; }
+  [data-theme="crepusculo"] .cursor-aura {
+    background: radial-gradient(circle, oklch(0.55 0.22 260 / 0.10) 0%, transparent 60%);
+    mix-blend-mode: multiply;
+  }
+
+  /* Crepusculo: nav */
+  [data-theme="crepusculo"] nav.top {
+    background: oklch(0.95 0.02 75 / 0.80);
+    border-bottom-color: oklch(0.86 0.03 75 / 0.6);
+  }
+  [data-theme="crepusculo"] .brand .mark img {
+    filter: drop-shadow(0 0 12px oklch(0.55 0.22 260 / 0.30));
+  }
+  [data-theme="crepusculo"] .brand:hover .mark img {
+    filter: drop-shadow(0 0 18px oklch(0.55 0.22 260 / 0.50));
+  }
+  [data-theme="crepusculo"] .brand .wordmark-img { filter: brightness(0); }
+  [data-theme="crepusculo"] .nav-links a.nav-guide {
+    color: oklch(0.50 0.18 260);
+    border-color: oklch(0.55 0.22 260 / 0.30);
+    background: oklch(0.55 0.22 260 / 0.06);
+  }
+  [data-theme="crepusculo"] .nav-links a.nav-guide::before {
+    background: oklch(0.55 0.22 260);
+    box-shadow: 0 0 8px oklch(0.55 0.22 260 / 0.5);
+  }
+  [data-theme="crepusculo"] .nav-links a.nav-guide:hover {
+    color: oklch(0.40 0.28 260);
+    border-color: oklch(0.55 0.22 260 / 0.5);
+    background: oklch(0.55 0.22 260 / 0.10);
+    box-shadow: 0 0 0 1px oklch(0.55 0.22 260 / 0.25), 0 8px 24px -8px oklch(0.55 0.22 260 / 0.25);
+  }
+  [data-theme="crepusculo"] .lang-switch { background: oklch(0.93 0.02 75 / 0.6); }
+  [data-theme="crepusculo"] .nav-mobile { background: oklch(0.95 0.02 75 / 0.85); }
+  [data-theme="crepusculo"] .nav-mobile .mobile-login { color: #fff; }
+
+  /* Crepusculo: buttons */
+  [data-theme="crepusculo"] .btn-primary { color: #fff; }
+  [data-theme="crepusculo"] .btn-ghost:hover {
+    background: oklch(0.92 0.02 75);
+    border-color: oklch(0.80 0.03 75);
+  }
+
+  /* Crepusculo: hero wordmark */
+  [data-theme="crepusculo"] .hero-wordmark img {
+    filter:
+      brightness(0)
+      drop-shadow(0 0 18px oklch(0.55 0.22 260 / 0.30))
+      drop-shadow(0 0 50px oklch(0.55 0.22 260 / 0.10));
+    animation: wmFadeIn 1s ease-out, wmGlowCrep 4s ease-in-out infinite 1s;
+  }
+  @keyframes wmGlowCrep {
+    0%, 100% {
+      filter: brightness(0)
+        drop-shadow(0 0 18px oklch(0.55 0.22 260 / 0.30))
+        drop-shadow(0 0 50px oklch(0.55 0.22 260 / 0.10));
+    }
+    50% {
+      filter: brightness(0)
+        drop-shadow(0 0 28px oklch(0.55 0.22 260 / 0.45))
+        drop-shadow(0 0 70px oklch(0.55 0.22 260 / 0.18));
+    }
+  }
+
+  /* Crepusculo: ghost stage */
+  [data-theme="crepusculo"] .ghost-stage .halo {
+    background: radial-gradient(circle, oklch(0.55 0.22 260 / 0.45) 0%, oklch(0.55 0.22 260 / 0.18) 35%, transparent 65%);
+  }
+  [data-theme="crepusculo"] .ghost-stage .ring {
+    border-color: oklch(0.55 0.22 260 / 0.16);
+  }
+  [data-theme="crepusculo"] .ghost-stage .ring.inner {
+    border-color: oklch(0.55 0.22 260 / 0.10);
+  }
+  [data-theme="crepusculo"] .ghost-stage .ghost-img {
+    filter:
+      drop-shadow(0 20px 40px oklch(0.30 0.02 75 / 0.12))
+      drop-shadow(0 0 30px oklch(0.55 0.22 260 / 0.20));
+  }
+  [data-theme="crepusculo"] .ghost-stage .crosshair::before {
+    background: linear-gradient(to right, transparent, oklch(0.55 0.22 260 / 0.15), transparent);
+  }
+  [data-theme="crepusculo"] .ghost-stage .crosshair::after {
+    background: linear-gradient(to bottom, transparent, oklch(0.55 0.22 260 / 0.15), transparent);
+  }
+  [data-theme="crepusculo"] .ghost-stage .ticker {
+    border-color: oklch(0.55 0.22 260 / 0.18);
+    background: oklch(0.95 0.02 75 / 0.80);
+  }
+
+  /* Crepusculo: eyebrow */
+  [data-theme="crepusculo"] .eyebrow {
+    background: oklch(0.55 0.22 260 / 0.06);
+    border-color: oklch(0.55 0.22 260 / 0.22);
+  }
+
+  /* Crepusculo: panel (dictation demo) */
+  [data-theme="crepusculo"] .panel {
+    background: linear-gradient(180deg, oklch(0.95 0.02 75 / 0.92), oklch(0.93 0.02 75 / 0.92));
+    box-shadow:
+      0 0 0 1px oklch(0.86 0.03 75),
+      0 30px 80px -20px oklch(0.50 0 75 / 0.06),
+      inset 0 1px 0 oklch(1 0 0 / 0.6);
+  }
+  [data-theme="crepusculo"] .panel::before {
+    background: linear-gradient(135deg, oklch(0.55 0.22 260 / 0.20), transparent 40%, transparent 70%, oklch(0.55 0.22 260 / 0.08));
+  }
+  [data-theme="crepusculo"] .panel-head {
+    background: oklch(0.93 0.02 75 / 0.80);
+  }
+  [data-theme="crepusculo"] .panel-head .dots span { background: oklch(0.82 0.03 75); }
+  [data-theme="crepusculo"] .wave-row .mic {
+    background: oklch(0.55 0.22 260 / 0.07);
+    border-color: oklch(0.55 0.22 260 / 0.22);
+  }
+  [data-theme="crepusculo"] .wave .bar {
+    background: linear-gradient(180deg, oklch(0.55 0.22 260), oklch(0.45 0.20 260));
+  }
+  [data-theme="crepusculo"] .transcript { background: oklch(0.93 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .report { background: oklch(0.94 0.02 75 / 0.70); }
+  [data-theme="crepusculo"] .report .r-text mark { background: oklch(0.55 0.22 260 / 0.10); }
+
+  /* Crepusculo: showcase */
+  [data-theme="crepusculo"] .showcase-frame {
+    background: oklch(0.94 0.02 75);
+    box-shadow:
+      0 0 0 1px oklch(0.86 0.03 75),
+      0 30px 90px -20px oklch(0.50 0 75 / 0.06),
+      0 0 80px -20px oklch(0.55 0.22 260 / 0.06);
+  }
+  [data-theme="crepusculo"] .showcase-frame::before {
+    background: linear-gradient(135deg, oklch(0.55 0.22 260 / 0.20), transparent 30%, transparent 70%, oklch(0.55 0.22 260 / 0.10));
+  }
+  [data-theme="crepusculo"] .showcase-chrome { background: oklch(0.93 0.02 75); }
+  [data-theme="crepusculo"] .showcase-chrome .lights span { background: oklch(0.82 0.03 75); }
+  [data-theme="crepusculo"] .showcase-callout { background: oklch(0.95 0.02 75 / 0.75); }
+  [data-theme="crepusculo"] .showcase-callout .tag .num {
+    background: oklch(0.55 0.22 260 / 0.07);
+  }
+  [data-theme="crepusculo"] .showcase-caption { background: oklch(0.93 0.02 75 / 0.8); }
+
+  /* Crepusculo: cards — generic pattern for all card-like elements */
+  [data-theme="crepusculo"] .val-quote,
+  [data-theme="crepusculo"] .cap,
+  [data-theme="crepusculo"] .step,
+  [data-theme="crepusculo"] .dict-flow .df,
+  [data-theme="crepusculo"] .trigger-card,
+  [data-theme="crepusculo"] .ac-side,
+  [data-theme="crepusculo"] .pa-card,
+  [data-theme="crepusculo"] .pa-table-card,
+  [data-theme="crepusculo"] .theme-card,
+  [data-theme="crepusculo"] .price {
+    background: oklch(0.96 0.02 75 / 0.80);
+    box-shadow: 0 2px 12px -4px oklch(0.50 0 75 / 0.06);
+  }
+
+  /* Crepusculo: card hover accents */
+  [data-theme="crepusculo"] .val-quote:hover,
+  [data-theme="crepusculo"] .cap:hover,
+  [data-theme="crepusculo"] .step:hover,
+  [data-theme="crepusculo"] .trigger-card:hover {
+    border-color: oklch(0.55 0.22 260 / 0.30);
+  }
+  [data-theme="crepusculo"] .val-closer .check { background: oklch(0.55 0.22 260 / 0.08); }
+
+  /* Crepusculo: icon boxes */
+  [data-theme="crepusculo"] .cap .ico,
+  [data-theme="crepusculo"] .loop-point .lp-ico {
+    background: oklch(0.55 0.22 260 / 0.06);
+    border-color: oklch(0.55 0.22 260 / 0.18);
+  }
+
+  /* Crepusculo: step numbers */
+  [data-theme="crepusculo"] .step .num { background: oklch(0.93 0.02 75); }
+
+  /* Crepusculo: manifesto */
+  [data-theme="crepusculo"] .mani-card { background: oklch(0.94 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .mani-ghost { filter: drop-shadow(0 22px 44px oklch(0.50 0 75 / 0.06)); }
+
+  /* Crepusculo: trigger card internals */
+  [data-theme="crepusculo"] .tc-head { background: oklch(0.93 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .tc-head .study {
+    border-color: oklch(0.55 0.22 260 / 0.22);
+    background: oklch(0.55 0.22 260 / 0.04);
+  }
+  [data-theme="crepusculo"] .tc-section.input { background: oklch(0.93 0.02 75 / 0.50); }
+  [data-theme="crepusculo"] .tc-input-text { background: oklch(0.94 0.02 75 / 0.80); }
+
+  /* Crepusculo: autocorrect */
+  [data-theme="crepusculo"] .ac-quote { background: oklch(0.93 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .ac-quote .keep { background: oklch(0.55 0.22 260 / 0.10); }
+
+  /* Crepusculo: personalization */
+  [data-theme="crepusculo"] .pa-card .scope {
+    border-color: oklch(0.55 0.22 260 / 0.22);
+    background: oklch(0.55 0.22 260 / 0.04);
+  }
+  [data-theme="crepusculo"] .pa-rule { background: oklch(0.93 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .table-demo { background: oklch(0.94 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .table-demo .td-head { background: oklch(0.93 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .table-demo .td-foot { background: oklch(0.93 0.02 75 / 0.80); }
+
+  /* Crepusculo: loop ring */
+  [data-theme="crepusculo"] .loop-node { background: oklch(0.95 0.02 75 / 0.92); }
+  [data-theme="crepusculo"] .loop-node.alt { border-color: oklch(0.55 0.22 260 / 0.30); }
+
+  /* Crepusculo: autopilot */
+  [data-theme="crepusculo"] .ap {
+    background:
+      radial-gradient(800px 400px at 20% 0%, oklch(0.55 0.22 260 / 0.04), transparent 60%),
+      oklch(0.94 0.02 75 / 0.80);
+  }
+  [data-theme="crepusculo"] .ap-step { background: oklch(0.93 0.02 75 / 0.70); }
+
+  /* Crepusculo: theme demo cards */
+  [data-theme="crepusculo"] .theme-toggle-legacy { background: oklch(0.93 0.02 75 / 0.80); }
+  [data-theme="crepusculo"] .theme-toggle-legacy .t.on { color: #fff; }
+  [data-theme="crepusculo"] .theme-toggle { background: oklch(0.93 0.02 75); }
+  [data-theme="crepusculo"] .theme-toggle .t .ico { background: oklch(0.91 0.02 75); }
+  [data-theme="crepusculo"] .theme-toggle .t.on .ico { color: #fff; }
+  [data-theme="crepusculo"] .tone-row .ico { background: oklch(0.91 0.02 75); }
+  [data-theme="crepusculo"] .tone-bar .knob { border-color: oklch(0.95 0.02 75); }
+
+  /* Crepusculo: pricing featured */
+  [data-theme="crepusculo"] .price.featured {
+    background:
+      radial-gradient(600px 300px at 50% -20%, oklch(0.55 0.22 260 / 0.06), transparent 60%),
+      oklch(0.94 0.02 75 / 0.85);
+  }
+  [data-theme="crepusculo"] .price .badge { color: #fff; }
+
+  /* Crepusculo: FAQ */
+  [data-theme="crepusculo"] .faq-q .pl { border-color: oklch(0.55 0.22 260 / 0.25); }
+
+  /* Crepusculo: CTA */
+  [data-theme="crepusculo"] .cta-card {
+    background:
+      radial-gradient(circle at 50% 0%, oklch(0.55 0.22 260 / 0.04), transparent 60%),
+      oklch(0.94 0.02 75 / 0.80);
+  }
+
+  /* Crepusculo: footer */
+  [data-theme="crepusculo"] footer { background: oklch(0.93 0.02 75); }
+
+  /* Crepusculo: iPhone frames */
+  [data-theme="crepusculo"] .iphone-frame {
+    background: oklch(0.93 0.02 75);
+    box-shadow:
+      0 0 0 2px oklch(0.85 0.03 75),
+      0 30px 80px -20px oklch(0.50 0 75 / 0.10),
+      inset 0 0 0 1px oklch(0.90 0.02 75);
+  }
+  [data-theme="crepusculo"] .iphone-frame::before { background: oklch(0.90 0.02 75); }
+
+  /* Crepusculo: ghost cursor */
+  [data-theme="crepusculo"] #ghostCursor {
+    background: oklch(0.55 0.22 260) !important;
+    mix-blend-mode: normal !important;
+  }
+  [data-theme="crepusculo"] #ghostDot { background: oklch(0.55 0.22 260); }
+
+  /* Crepusculo: black ghosts */
+  [data-theme="crepusculo"] .ghost-stage .ghost-img,
+  [data-theme="crepusculo"] .mani-ghost,
+  [data-theme="crepusculo"] .cta-ghost,
+  [data-theme="crepusculo"] .cta-ghost-left,
+  [data-theme="crepusculo"] .foot-brand img,
+  [data-theme="crepusculo"] .brand .mark img { filter: brightness(0) !important; }
+  [data-theme="crepusculo"] .brand .wordmark-img { filter: brightness(0); }
+
   /* ========== MOBILE OPTIMIZATIONS ========== */
   @media (hover: none), (pointer: coarse) { html, body, *, a, button, input, select, textarea, [role="button"] { cursor: auto !important; } #ghostCursor, .cursor-aura { display: none !important; } }
   .nav-hamburger { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px; color: var(--muted); }
@@ -2148,7 +2448,12 @@
   }
 </style>
 <script>
-(function(){var t=localStorage.getItem('goster-theme');if(t){document.documentElement.setAttribute('data-theme',t)}})();
+(function(){
+  var t = localStorage.getItem('goster-theme');
+  if (t === 'light' || t === 'crepusculo') {
+    document.documentElement.setAttribute('data-theme', t);
+  }
+})();
 </script>
 </head>
 <body>
@@ -2188,6 +2493,7 @@
       </div>
       <button class="theme-btn" id="themeToggle" aria-label="Cambiar tema">
         <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.752 15.002A9.718 9.718 0 0 1 18 15.75 9.75 9.75 0 0 1 8.25 6c0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25 9.75 9.75 0 0 0 12.75 21a9.753 9.753 0 0 0 8.002-5.998Z"/></svg>
+        <svg class="icon-crep" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v3m0 14v3m-7.07-4.93 2.12-2.12m9.9-9.9 2.12-2.12M2 12h3m14 0h3"/><path d="M8 16a4 4 0 0 1 8 0"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
         <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-7.364-1.414 1.414M7.05 16.95l-1.414 1.414m12.728 0-1.414-1.414M7.05 7.05 5.636 5.636"/></svg>
       </button>
       <a href="https://app.goster.ai/" class="login">Iniciar sesión</a>
@@ -2468,7 +2774,7 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </div>
           <h4>Hazlo tuyo</h4>
-          <p>Tema claro/oscuro, tono sepia a blanco y 23 colores de acento + personalizable.</p>
+          <p>Tres temas (oscuro, crepúsculo y claro), tono sepia a blanco y 23 colores de acento + personalizable.</p>
         </div>
       </div>
     </div>
@@ -2817,7 +3123,7 @@
       </div>
       <div class="theme-row">
         <div class="theme-card">
-          <h4>Tema claro y oscuro</h4>
+          <h4>Tres temas: oscuro, crepúsculo y claro</h4>
           <p>Cambia con un clic.</p>
           <div class="theme-toggle">
             <span class="t">
@@ -3172,20 +3478,24 @@
       d.y += (d.oy + pushY - d.y) * 0.12;
       const base = 0.08 + breath * 0.03;
       const size = 1.1 + glow * 1.6;
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const theme = document.documentElement.getAttribute('data-theme');
+      const isLight = theme === 'light';
+      const isCrep = theme === 'crepusculo';
       if (glow > 0.15) {
         const a = Math.min(0.6, 0.15 + glow * 0.5);
-        ctx.fillStyle = isLight ? `oklch(0.55 0.18 295 / ${a})` : `oklch(0.87 0.21 142 / ${a})`;
+        ctx.fillStyle = isCrep ? `oklch(0.55 0.22 260 / ${a})` : isLight ? `oklch(0.55 0.18 295 / ${a})` : `oklch(0.87 0.21 142 / ${a})`;
         ctx.beginPath(); ctx.arc(d.x, d.y, size, 0, Math.PI * 2); ctx.fill();
       } else {
-        ctx.fillStyle = isLight ? `oklch(0.55 0.012 270 / ${base})` : `oklch(0.55 0.012 240 / ${base})`;
+        ctx.fillStyle = isCrep ? `oklch(0.55 0.02 75 / ${base})` : isLight ? `oklch(0.55 0.012 270 / ${base})` : `oklch(0.55 0.012 240 / ${base})`;
         ctx.beginPath(); ctx.arc(d.x, d.y, 1, 0, Math.PI * 2); ctx.fill();
       }
     }
 
     if (mouse.active) {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      ctx.strokeStyle = isLight ? `oklch(0.55 0.18 295 / 0.08)` : `oklch(0.87 0.21 142 / 0.10)`;
+      const theme = document.documentElement.getAttribute('data-theme');
+      const isLight = theme === 'light';
+      const isCrep = theme === 'crepusculo';
+      ctx.strokeStyle = isCrep ? `oklch(0.55 0.22 260 / 0.08)` : isLight ? `oklch(0.55 0.18 295 / 0.08)` : `oklch(0.87 0.21 142 / 0.10)`;
       ctx.lineWidth = 1;
       const LINK_R = 70;
       const LINK_R2 = LINK_R * LINK_R;
@@ -3355,8 +3665,20 @@
   if (!btn) return;
   btn.addEventListener('click', function () {
     var html = document.documentElement;
-    var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', next);
+    var cur = html.getAttribute('data-theme');
+    var next;
+    if (!cur || cur === 'dark') {
+      next = 'crepusculo';
+    } else if (cur === 'crepusculo') {
+      next = 'light';
+    } else {
+      next = 'dark';
+    }
+    if (next === 'dark') {
+      html.removeAttribute('data-theme');
+    } else {
+      html.setAttribute('data-theme', next);
+    }
     localStorage.setItem('goster-theme', next);
   });
 })();
