@@ -1665,9 +1665,12 @@
   }
   .theme-btn:hover { color: var(--fg); border-color: var(--neon); }
   .theme-btn svg { width: 18px; height: 18px; }
-  .theme-btn .icon-sun { display: none; }
+  .theme-btn .icon-sun, .theme-btn .icon-crep { display: none; }
+  .theme-btn .icon-moon { display: block; }
+  [data-theme="crepusculo"] .theme-btn .icon-moon, [data-theme="crepusculo"] .theme-btn .icon-sun { display: none; }
+  [data-theme="crepusculo"] .theme-btn .icon-crep { display: block; }
+  [data-theme="light"] .theme-btn .icon-moon, [data-theme="light"] .theme-btn .icon-crep { display: none; }
   [data-theme="light"] .theme-btn .icon-sun { display: block; }
-  [data-theme="light"] .theme-btn .icon-moon { display: none; }
 
   /* ========== LIGHT THEME ========== */
   [data-theme="light"] {
@@ -1985,7 +1988,12 @@
   }
 </style>
 <script>
-(function(){var t=localStorage.getItem('goster-theme');if(t){document.documentElement.setAttribute('data-theme',t)}})();
+(function(){
+  var t = localStorage.getItem('goster-theme');
+  if (t === 'light' || t === 'crepusculo') {
+    document.documentElement.setAttribute('data-theme', t);
+  }
+})();
 </script>
 </head>
 <body>
