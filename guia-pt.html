@@ -884,11 +884,14 @@
         <a href="#diccionario">Dicionário clínico</a>
         <a href="#tablas">Tabelas por voz</a>
         <a href="#correcciones">Correções por voz</a>
+        <a href="#asistente">Assistente pós-geração</a>
+        <a href="#literatura">Literatura médica</a>
       </div>
 
       <div class="toc-group">
         <h5>Avançado</h5>
         <a href="#reglas">Instruções e regras</a>
+        <a href="#aprendizaje">Aprendizado automático</a>
         <a href="#exportar">Editar e exportar</a>
         <a href="#movil">Celular como microfone</a>
         <a href="#personalizacion">Aparência</a>
@@ -916,8 +919,8 @@
         </p>
         <div class="meta-row">
           <span>Leitura ≈ 15 min</span>
-          <span>12 capítulos</span>
-          <span>Atualizado · maio 2026</span>
+          <span>20 capítulos</span>
+          <span>Atualizado · junho 2026</span>
         </div>
       </header>
 
@@ -1104,13 +1107,22 @@
           <li>Quando uma variante use classificações ou tabelas que a outra não.</li>
         </ul>
 
-        <div class="callout warn">
-          <div class="ico">!</div>
+        <div class="callout">
+          <div class="ico">i</div>
           <div>
-            <h5>Mantenha os modelos limpos</h5>
-            <p>Suba um laudo normal — não um patológico. Os achados patológicos devem ir ao <a href="#diccionario">dicionário</a>, não ao modelo.</p>
+            <h5>Normal ou patológico?</h5>
+            <p>Você pode subir tanto laudos normais quanto patológicos. O <span class="goster-word">gōster</span> detecta automaticamente o tipo. Os laudos normais servem como esqueleto de normalidade; os patológicos como baseline clínico com achados preservados.</p>
           </div>
         </div>
+
+        <h3 class="sub" id="modelos-patologicos">Modelos patológicos</h3>
+        <p>Além dos modelos normais, você pode subir <strong>modelos patológicos</strong> — laudos com achados anormais preexistentes que servem como baseline clínico.</p>
+        <ul class="bullets">
+          <li><strong>Modo normal</strong> (padrão): o modelo é um esqueleto de normalidade que é modificado com seu ditado.</li>
+          <li><strong>Modo patológico</strong>: o modelo conserva achados patológicos prévios como baseline. O <span class="goster-word">gōster</span> interpreta seu ditado como: adicionar, modificar, negar, substituir, confirmar, comparar ou mudar lateralidade.</li>
+          <li>Você pode mudar o modo a partir do cartão de cada modelo com o botão <em>Marcar como patológico/normal</em>, ou pelo toggle dentro do editor.</li>
+          <li>Ao subir um modelo, o <span class="goster-word">gōster</span> detecta automaticamente se é normal ou patológico.</li>
+        </ul>
       </section>
 
       <!-- DICIONÁRIO -->
@@ -1211,9 +1223,59 @@
         <p>O <span class="goster-word">gōster</span> interpreta correções expressas com naturalidade — por exemplo "não, são...", "desculpa, quis dizer...", "tira isso de...", "troca X por Y". O motor combina correspondência literal, semântica e fonética sobre o ditado mais recente; você não precisa memorizar frases mágicas, apenas se corrigir como faria falando com um colega.</p>
       </section>
 
+      <!-- ASSISTENTE -->
+      <section class="chap" id="asistente">
+        <div class="chap-eyebrow">— Capítulo 09</div>
+        <h2 class="chap-title">Assistente pós-geração.</h2>
+        <p class="chap-lede">
+          Depois de gerar o laudo, o widget de assistente permite refinar o resultado sem reescrever.
+        </p>
+
+        <h3 class="sub" id="asistente-funciones">Funções do assistente</h3>
+        <ul class="bullets">
+          <li><strong>Ditar correção</strong> — dite uma mudança e o <span class="goster-word">gōster</span> a aplica cirurgicamente ao laudo.</li>
+          <li><strong>Correção com seleção ativa</strong> — selecione um trecho do laudo e dite a correção. O <span class="goster-word">gōster</span> edita exclusivamente esse trecho.</li>
+          <li><strong>Reformular conclusões</strong> — sugere conclusões integradas e ordenadas por relevância clínica.</li>
+          <li><strong>Vincular com literatura</strong> — busca referências no PubMed e Radiopaedia relacionadas com os achados do laudo.</li>
+        </ul>
+
+        <h3 class="sub" id="conclusiones-interactivas">Edição interativa de conclusões</h3>
+        <p>Faça <strong>clique direito</strong> sobre o laudo gerado para acessar o menu contextual:</p>
+        <ul class="bullets">
+          <li><strong>Priorizar conclusão</strong> — força esse achado como primeiro bullet da impressão.</li>
+          <li><strong>Despriorizar conclusão</strong> — empurra o achado para o fundo da impressão.</li>
+          <li><strong>Eliminar conclusão</strong> — exclui o achado da impressão.</li>
+          <li><strong>Assistente</strong> — abre o assistente focado na seleção.</li>
+        </ul>
+        <div class="callout">
+          <div class="ico">i</div>
+          <div>
+            <h5>Função Pro</h5>
+            <p>As ações de Priorizar, Despriorizar e Eliminar conclusões estão disponíveis exclusivamente no plano Pro.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LITERATURA -->
+      <section class="chap" id="literatura">
+        <div class="chap-eyebrow">— Capítulo 10</div>
+        <h2 class="chap-title">Literatura médica.</h2>
+        <p class="chap-lede">
+          Vincule seus achados com referências do PubMed e Radiopaedia diretamente do laudo.
+        </p>
+
+        <h3 class="sub" id="literatura-como">Como funciona</h3>
+        <ul class="bullets">
+          <li>No assistente, pressione <em>Vincular com literatura</em>.</li>
+          <li>O <span class="goster-word">gōster</span> analisa os achados do laudo e busca artigos relevantes no PubMed.</li>
+          <li>Se não encontrar resultados no PubMed, busca automaticamente no Radiopaedia como alternativa.</li>
+          <li>Também extrai classificações aplicáveis (BI-RADS, TIRADS, etc.) e uma pérola clínica relevante.</li>
+        </ul>
+      </section>
+
       <!-- REGRAS -->
       <section class="chap" id="reglas">
-        <div class="chap-eyebrow">— Capítulo 09</div>
+        <div class="chap-eyebrow">— Capítulo 11</div>
         <h2 class="chap-title">Instruções e regras.</h2>
         <p class="chap-lede">
           Defina como o <span class="goster-word">gōster</span> redige por você. Seu estilo, suas convenções, sua terminologia — sempre aplicadas, sem que precise lembrar delas.
@@ -1244,9 +1306,29 @@
         </div>
       </section>
 
+      <!-- APRENDIZADO -->
+      <section class="chap" id="aprendizaje">
+        <div class="chap-eyebrow">— Capítulo 12</div>
+        <h2 class="chap-title">Aprendizado automático.</h2>
+        <p class="chap-lede">
+          O <span class="goster-word">gōster</span> aprende com cada correção que você faz e melhora com o uso.
+        </p>
+
+        <h3 class="sub" id="como-aprende">Como aprende</h3>
+        <ul class="bullets">
+          <li>Quando você corrige um laudo e o salva, o <span class="goster-word">gōster</span> analisa as diferenças.</li>
+          <li>Extrai <strong>regras de usuário</strong> — preferências de estilo, terminologia e redação que são exclusivamente suas.</li>
+          <li>Enriquece seu dicionário automaticamente com novos triggers e descrições que detecta nas suas correções.</li>
+          <li>As regras se ativam automaticamente quando alcançam confiança suficiente (3+ ocorrências).</li>
+        </ul>
+
+        <h3 class="sub" id="optimizer">Otimizador de dicionário</h3>
+        <p>Na seção de dicionário, o botão <em>Otimizar</em> unifica entradas duplicadas, normaliza triggers e melhora as descrições usando IA. O processo roda em paralelo para máxima velocidade.</p>
+      </section>
+
       <!-- EXPORTAR -->
       <section class="chap" id="exportar">
-        <div class="chap-eyebrow">— Capítulo 10</div>
+        <div class="chap-eyebrow">— Capítulo 13</div>
         <h2 class="chap-title">Editar e exportar.</h2>
         <p class="chap-lede">
           Quando o laudo está gerado, você o edita com o teclado ou com a voz, e o envia para o sistema que usa para assiná-lo.
@@ -1277,7 +1359,7 @@
 
       <!-- CELULAR -->
       <section class="chap" id="movil">
-        <div class="chap-eyebrow">— Capítulo 11</div>
+        <div class="chap-eyebrow">— Capítulo 14</div>
         <h2 class="chap-title">Celular como microfone.</h2>
         <p class="chap-lede">
           Melhor qualidade de áudio? Mobilidade sem cabo? Vincule seu celular e use-o como microfone sem fio. Sem app, sem instalação.
@@ -1301,7 +1383,7 @@
 
       <!-- PERSONALIZAÇÃO -->
       <section class="chap" id="personalizacion">
-        <div class="chap-eyebrow">— Capítulo 12</div>
+        <div class="chap-eyebrow">— Capítulo 15</div>
         <h2 class="chap-title">Aparência.</h2>
         <p class="chap-lede">
           Seu espaço de trabalho, do seu jeito. Mude quando quiser pelo painel de ajustes na barra lateral.
@@ -1309,16 +1391,16 @@
 
         <div class="feat-grid">
           <div class="feat">
-            <h4>Tema claro / escuro</h4>
-            <p>Mude com um clique. A preferência é salva por dispositivo.</p>
+            <h4>Três temas</h4>
+            <p>Penumbra (escuro), Crepúsculo (bege quente) e Amanhecer (claro). Mude com um clique.</p>
           </div>
           <div class="feat">
             <h4>Controle de tom</h4>
             <p>Deslize o slider de brilho para ajustar a temperatura do fundo. Útil para reduzir fadiga visual em plantões longos.</p>
           </div>
           <div class="feat">
-            <h4>24 cores de destaque</h4>
-            <p>Escolha a cor do cursor, botões, ondas de ditado e destaques. Quatro fileiras: signature, neutros quentes, vivos quentes e vivos frios. Só muda a cromática; o contraste se mantém legível.</p>
+            <h4>23 cores de destaque + personalizável</h4>
+            <p>Escolha a cor do cursor, botões, ondas de ditado e destaques. Quatro fileiras: signature, neutros quentes, vivos quentes e vivos frios. Só muda a cromática; o contraste se mantém legível. Inclui a opção <em>Minha cor</em> para uma cor de destaque personalizada.</p>
           </div>
           <div class="feat">
             <h4>Idioma</h4>

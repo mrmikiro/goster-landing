@@ -884,11 +884,14 @@
         <a href="#dictionary">Clinical dictionary</a>
         <a href="#tables">Tables by voice</a>
         <a href="#corrections">Voice corrections</a>
+        <a href="#assistant">Post-generation assistant</a>
+        <a href="#literature">Medical literature</a>
       </div>
 
       <div class="toc-group">
         <h5>Advanced</h5>
         <a href="#rules">Instructions & rules</a>
+        <a href="#learning">Automatic learning</a>
         <a href="#export">Edit & export</a>
         <a href="#mobile">Phone as microphone</a>
         <a href="#appearance">Appearance</a>
@@ -916,8 +919,8 @@
         </p>
         <div class="meta-row">
           <span>≈ 15 min read</span>
-          <span>12 chapters</span>
-          <span>Updated · May 2026</span>
+          <span>20 chapters</span>
+          <span>Updated · June 2026</span>
         </div>
       </header>
 
@@ -1104,13 +1107,22 @@
           <li>When one variant uses classifications or tables the other doesn't.</li>
         </ul>
 
-        <div class="callout warn">
-          <div class="ico">!</div>
+        <div class="callout">
+          <div class="ico">i</div>
           <div>
-            <h5>Keep templates clean</h5>
-            <p>Upload a normal report — not a pathological one. Pathological findings belong in the <a href="#dictionary">dictionary</a>, not in the template.</p>
+            <h5>Normal or pathological?</h5>
+            <p>You can upload both normal and pathological reports. <span class="goster-word">gōster</span> automatically detects the type. Normal reports serve as a normality skeleton; pathological ones as a clinical baseline with preserved findings.</p>
           </div>
         </div>
+
+        <h3 class="sub" id="pathological-templates">Pathological templates</h3>
+        <p>In addition to normal templates, you can upload <strong>pathological templates</strong> — reports with pre-existing abnormal findings that serve as a clinical baseline.</p>
+        <ul class="bullets">
+          <li><strong>Normal mode</strong> (default): the template is a normality skeleton that is modified by your dictation.</li>
+          <li><strong>Pathological mode</strong>: the template preserves pre-existing pathological findings as a baseline. <span class="goster-word">gōster</span> interprets your dictation as: add, modify, negate, replace, confirm, compare or change laterality.</li>
+          <li>You can change the mode from each template's card with the <em>Mark as pathological/normal</em> button, or from the toggle inside the editor.</li>
+          <li>When uploading a template, <span class="goster-word">gōster</span> automatically detects whether it is normal or pathological.</li>
+        </ul>
       </section>
 
       <!-- DICTIONARY -->
@@ -1211,9 +1223,59 @@
         <p><span class="goster-word">gōster</span> interprets corrections phrased naturally — things like "no, it's…", "sorry, I meant…", "drop the part about…", or "change X to Y". The engine combines literal, semantic and phonetic matching against your most recent dictation; you don't need magic phrases, just correct yourself as you would speaking with a colleague.</p>
       </section>
 
+      <!-- POST-GENERATION ASSISTANT -->
+      <section class="chap" id="assistant">
+        <div class="chap-eyebrow">— Chapter 09</div>
+        <h2 class="chap-title">Post-generation assistant.</h2>
+        <p class="chap-lede">
+          After generating the report, the assistant widget lets you refine the result without rewriting.
+        </p>
+
+        <h3 class="sub" id="assistant-functions">Assistant functions</h3>
+        <ul class="bullets">
+          <li><strong>Dictate correction</strong> — dictate a change and <span class="goster-word">gōster</span> applies it surgically to the report.</li>
+          <li><strong>Correction with active selection</strong> — select a fragment of the report and dictate the correction. <span class="goster-word">gōster</span> edits exclusively that fragment.</li>
+          <li><strong>Reformulate conclusions</strong> — suggests integrated conclusions sorted by clinical relevance.</li>
+          <li><strong>Link with literature</strong> — searches PubMed and Radiopaedia for references related to the report findings.</li>
+        </ul>
+
+        <h3 class="sub" id="interactive-conclusions">Interactive conclusion editing</h3>
+        <p><strong>Right-click</strong> on the generated report to access the context menu:</p>
+        <ul class="bullets">
+          <li><strong>Prioritize conclusion</strong> — forces that finding as the first bullet of the impression.</li>
+          <li><strong>Deprioritize conclusion</strong> — pushes the finding to the bottom of the impression.</li>
+          <li><strong>Remove conclusion</strong> — excludes the finding from the impression.</li>
+          <li><strong>Assistant</strong> — opens the assistant focused on the selection.</li>
+        </ul>
+        <div class="callout">
+          <div class="ico">i</div>
+          <div>
+            <h5>Pro feature</h5>
+            <p>The Prioritize, Deprioritize and Remove conclusion actions are available exclusively on the Pro plan.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEDICAL LITERATURE -->
+      <section class="chap" id="literature">
+        <div class="chap-eyebrow">— Chapter 10</div>
+        <h2 class="chap-title">Medical literature.</h2>
+        <p class="chap-lede">
+          Link your findings with PubMed and Radiopaedia references directly from the report.
+        </p>
+
+        <h3 class="sub" id="literature-how">How it works</h3>
+        <ul class="bullets">
+          <li>From the assistant, press <em>Link with literature</em>.</li>
+          <li><span class="goster-word">gōster</span> analyzes the report findings and searches for relevant articles on PubMed.</li>
+          <li>If no results are found on PubMed, it automatically searches Radiopaedia as a fallback.</li>
+          <li>It also extracts applicable classifications (BI-RADS, TIRADS, etc.) and a relevant clinical pearl.</li>
+        </ul>
+      </section>
+
       <!-- RULES -->
       <section class="chap" id="rules">
-        <div class="chap-eyebrow">— Chapter 09</div>
+        <div class="chap-eyebrow">— Chapter 11</div>
         <h2 class="chap-title">Instructions & rules.</h2>
         <p class="chap-lede">
           Define how <span class="goster-word">gōster</span> writes for you. Your style, your conventions, your terminology — always applied, without you having to remember.
@@ -1244,9 +1306,29 @@
         </div>
       </section>
 
+      <!-- AUTOMATIC LEARNING -->
+      <section class="chap" id="learning">
+        <div class="chap-eyebrow">— Chapter 12</div>
+        <h2 class="chap-title">Automatic learning.</h2>
+        <p class="chap-lede">
+          <span class="goster-word">gōster</span> learns from every correction you make and improves with use.
+        </p>
+
+        <h3 class="sub" id="how-it-learns">How it learns</h3>
+        <ul class="bullets">
+          <li>When you correct a report and save it, <span class="goster-word">gōster</span> analyzes the differences.</li>
+          <li>It extracts <strong>user rules</strong> — style, terminology and writing preferences that are uniquely yours.</li>
+          <li>It automatically enriches your dictionary with new triggers and descriptions detected in your corrections.</li>
+          <li>Rules activate automatically when sufficient confidence is reached (3+ occurrences).</li>
+        </ul>
+
+        <h3 class="sub" id="optimizer">Dictionary optimizer</h3>
+        <p>In the dictionary section, the <em>Optimize</em> button merges duplicate entries, normalizes triggers and improves descriptions using AI. The process runs in parallel for maximum speed.</p>
+      </section>
+
       <!-- EXPORT -->
       <section class="chap" id="export">
-        <div class="chap-eyebrow">— Chapter 10</div>
+        <div class="chap-eyebrow">— Chapter 13</div>
         <h2 class="chap-title">Edit & export.</h2>
         <p class="chap-lede">
           Once the report is generated, you edit it with keyboard or voice, and send it to whatever system you use to sign it.
@@ -1277,7 +1359,7 @@
 
       <!-- MOBILE -->
       <section class="chap" id="mobile">
-        <div class="chap-eyebrow">— Chapter 11</div>
+        <div class="chap-eyebrow">— Chapter 14</div>
         <h2 class="chap-title">Phone as microphone.</h2>
         <p class="chap-lede">
           Better audio quality? Wireless mobility? Pair your phone and use it as a wireless microphone. No app, no installation.
@@ -1301,7 +1383,7 @@
 
       <!-- APPEARANCE -->
       <section class="chap" id="appearance">
-        <div class="chap-eyebrow">— Chapter 12</div>
+        <div class="chap-eyebrow">— Chapter 15</div>
         <h2 class="chap-title">Appearance.</h2>
         <p class="chap-lede">
           Your workspace, your way. Change it whenever from the settings panel in the sidebar.
@@ -1309,16 +1391,16 @@
 
         <div class="feat-grid">
           <div class="feat">
-            <h4>Light / dark theme</h4>
-            <p>Switch with one click. The preference is saved per device.</p>
+            <h4>Three themes</h4>
+            <p>Penumbra (dark), Twilight (warm beige) and Dawn (light). Switch with one click.</p>
           </div>
           <div class="feat">
             <h4>Tone control</h4>
             <p>Use the brightness slider to fine-tune the background warmth. Useful for reducing visual fatigue on long shifts.</p>
           </div>
           <div class="feat">
-            <h4>24 accent colors</h4>
-            <p>Pick the color for cursors, buttons, dictation waves and highlights. Four rows: signature, warm neutrals, vivid warm and vivid cool. Only chroma changes — contrast stays readable.</p>
+            <h4>23 accent colors + customizable</h4>
+            <p>Pick the color for cursors, buttons, dictation waves and highlights. Four rows: signature, warm neutrals, vivid warm and vivid cool. Only chroma changes — contrast stays readable. Includes a <em>My color</em> option for a custom accent color.</p>
           </div>
           <div class="feat">
             <h4>Language</h4>
