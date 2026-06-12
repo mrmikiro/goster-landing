@@ -198,9 +198,21 @@
     overflow: hidden;
   }
   .hero-wordmark {
-    display: flex; justify-content: center; align-items: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
     margin-bottom: 56px;
     position: relative;
+  }
+  .hero-chibi-mobile {
+    display: none;
+    width: 80px; height: auto;
+    margin-bottom: 16px;
+    animation: ghostFloat 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px var(--neon-glow));
+  }
+  [data-theme="light"] .hero-chibi-mobile,
+  [data-theme="crepusculo"] .hero-chibi-mobile { filter: brightness(0) drop-shadow(0 0 20px var(--neon-glow)); }
+  @media (max-width: 900px) {
+    .hero-chibi-mobile { display: block; }
   }
   .hero-wordmark img {
     width: 100%;
@@ -2516,6 +2528,7 @@
   <section class="hero" id="top">
     <div class="container">
       <div class="hero-wordmark">
+        <img class="hero-chibi-mobile" src="assets/goster-chibi.png" alt="" />
         <img src="assets/goster-wordmark.png" alt="gōster" />
       </div>
       <div class="hero-inner">
