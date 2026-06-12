@@ -884,11 +884,14 @@
         <a href="#diccionario">Diccionario clínico</a>
         <a href="#tablas">Tablas por voz</a>
         <a href="#correcciones">Correcciones por voz</a>
+        <a href="#asistente">Asistente post-generación</a>
+        <a href="#literatura">Literatura médica</a>
       </div>
 
       <div class="toc-group">
         <h5>Avanzado</h5>
         <a href="#reglas">Instrucciones y reglas</a>
+        <a href="#aprendizaje">Aprendizaje automático</a>
         <a href="#exportar">Editar y exportar</a>
         <a href="#movil">Celular como micrófono</a>
         <a href="#personalizacion">Apariencia</a>
@@ -916,8 +919,8 @@
         </p>
         <div class="meta-row">
           <span>Lectura ≈ 15 min</span>
-          <span>12 capítulos</span>
-          <span>Actualizado · mayo 2026</span>
+          <span>20 capítulos</span>
+          <span>Actualizado · junio 2026</span>
         </div>
       </header>
 
@@ -1104,13 +1107,22 @@
           <li>Cuando una variante use clasificaciones o tablas que la otra no.</li>
         </ul>
 
-        <div class="callout warn">
-          <div class="ico">!</div>
+        <div class="callout">
+          <div class="ico">i</div>
           <div>
-            <h5>Mantén las plantillas limpias</h5>
-            <p>Sube un informe normal — no uno patológico. Los hallazgos patológicos deben ir al <a href="#diccionario">diccionario</a>, no a la plantilla.</p>
+            <h5>¿Normal o patológica?</h5>
+            <p>Puedes subir tanto informes normales como patológicos. <span class="goster-word">gōster</span> detecta automáticamente el tipo. Los informes normales sirven como esqueleto de normalidad; los patológicos como baseline clínico con hallazgos preservados.</p>
           </div>
         </div>
+
+        <h3 class="sub" id="plantillas-patologicas">Plantillas patológicas</h3>
+        <p>Además de las plantillas normales, puedes subir <strong>plantillas patológicas</strong> — informes con hallazgos anormales preexistentes que sirven como baseline clínico.</p>
+        <ul class="bullets">
+          <li><strong>Modo normal</strong> (por defecto): la plantilla es un esqueleto de normalidad que se modifica con tu dictado.</li>
+          <li><strong>Modo patológico</strong>: la plantilla conserva hallazgos patológicos previos como baseline. <span class="goster-word">gōster</span> interpreta tu dictado como: agregar, modificar, negar, reemplazar, confirmar, comparar o cambiar lateralidad.</li>
+          <li>Puedes cambiar el modo desde la tarjeta de cada plantilla con el botón <em>Marcar como patológica/normal</em>, o desde el toggle dentro del editor.</li>
+          <li>Al subir una plantilla, <span class="goster-word">gōster</span> detecta automáticamente si es normal o patológica.</li>
+        </ul>
       </section>
 
       <!-- DICCIONARIO -->
@@ -1211,9 +1223,59 @@
         <p><span class="goster-word">gōster</span> interpreta correcciones expresadas con naturalidad — por ejemplo "no, son…", "perdón, quise decir…", "quítale lo de…", "cámbiale X por Y". El motor combina coincidencia literal, semántica y fonética sobre el dictado más reciente; no necesitas memorizar frases mágicas, solo corregirte como lo harías hablando con un colega.</p>
       </section>
 
+      <!-- ASISTENTE -->
+      <section class="chap" id="asistente">
+        <div class="chap-eyebrow">— Capítulo 09</div>
+        <h2 class="chap-title">Asistente post-generación.</h2>
+        <p class="chap-lede">
+          Después de generar el informe, el widget de asistente te permite refinar el resultado sin reescribir.
+        </p>
+
+        <h3 class="sub" id="asistente-funciones">Funciones del asistente</h3>
+        <ul class="bullets">
+          <li><strong>Dictar corrección</strong> — dicta un cambio y <span class="goster-word">gōster</span> lo aplica quirúrgicamente al informe.</li>
+          <li><strong>Corrección con selección activa</strong> — selecciona un fragmento del informe y dicta la corrección. <span class="goster-word">gōster</span> edita exclusivamente ese fragmento.</li>
+          <li><strong>Reformular conclusiones</strong> — sugiere conclusiones integradas y ordenadas por relevancia clínica.</li>
+          <li><strong>Vincular con literatura</strong> — busca referencias en PubMed y Radiopaedia relacionadas con los hallazgos del informe.</li>
+        </ul>
+
+        <h3 class="sub" id="conclusiones-interactivas">Edición interactiva de conclusiones</h3>
+        <p>Haz <strong>clic derecho</strong> sobre el informe generado para acceder al menú contextual:</p>
+        <ul class="bullets">
+          <li><strong>Priorizar conclusión</strong> — fuerza ese hallazgo como primer bullet de la impresión.</li>
+          <li><strong>Despriorizar conclusión</strong> — empuja el hallazgo al fondo de la impresión.</li>
+          <li><strong>Eliminar conclusión</strong> — excluye el hallazgo de la impresión.</li>
+          <li><strong>Asistente</strong> — abre el asistente focalizado en la selección.</li>
+        </ul>
+        <div class="callout">
+          <div class="ico">i</div>
+          <div>
+            <h5>Función Pro</h5>
+            <p>Las acciones de Priorizar, Despriorizar y Eliminar conclusiones están disponibles exclusivamente en el plan Pro.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LITERATURA -->
+      <section class="chap" id="literatura">
+        <div class="chap-eyebrow">— Capítulo 10</div>
+        <h2 class="chap-title">Literatura médica.</h2>
+        <p class="chap-lede">
+          Vincula tus hallazgos con referencias de PubMed y Radiopaedia directamente desde el informe.
+        </p>
+
+        <h3 class="sub" id="literatura-como">Cómo funciona</h3>
+        <ul class="bullets">
+          <li>Desde el asistente, pulsa <em>Vincular con literatura</em>.</li>
+          <li><span class="goster-word">gōster</span> analiza los hallazgos del informe y busca artículos relevantes en PubMed.</li>
+          <li>Si no encuentra resultados en PubMed, busca automáticamente en Radiopaedia como respaldo.</li>
+          <li>También extrae clasificaciones aplicables (BI-RADS, TIRADS, etc.) y una perla clínica relevante.</li>
+        </ul>
+      </section>
+
       <!-- REGLAS -->
       <section class="chap" id="reglas">
-        <div class="chap-eyebrow">— Capítulo 09</div>
+        <div class="chap-eyebrow">— Capítulo 11</div>
         <h2 class="chap-title">Instrucciones y reglas.</h2>
         <p class="chap-lede">
           Define cómo <span class="goster-word">gōster</span> redacta por ti. Tu estilo, tus convenciones, tu terminología — siempre aplicadas, sin que tengas que recordarlas.
@@ -1244,9 +1306,29 @@
         </div>
       </section>
 
+      <!-- APRENDIZAJE -->
+      <section class="chap" id="aprendizaje">
+        <div class="chap-eyebrow">— Capítulo 12</div>
+        <h2 class="chap-title">Aprendizaje automático.</h2>
+        <p class="chap-lede">
+          <span class="goster-word">gōster</span> aprende de cada corrección que haces y mejora con el uso.
+        </p>
+
+        <h3 class="sub" id="como-aprende">Cómo aprende</h3>
+        <ul class="bullets">
+          <li>Cuando corriges un informe y lo guardas, <span class="goster-word">gōster</span> analiza las diferencias.</li>
+          <li>Extrae <strong>reglas de usuario</strong> — preferencias de estilo, terminología y redacción que son únicas tuyas.</li>
+          <li>Enriquece tu diccionario automáticamente con nuevos triggers y descripciones que detecta en tus correcciones.</li>
+          <li>Las reglas se activan automáticamente cuando alcanza suficiente confianza (3+ ocurrencias).</li>
+        </ul>
+
+        <h3 class="sub" id="optimizer">Optimizador de diccionario</h3>
+        <p>En la sección de diccionario, el botón <em>Optimizar</em> fusiona entradas duplicadas, normaliza triggers y mejora las descripciones usando IA. El proceso corre en paralelo para máxima velocidad.</p>
+      </section>
+
       <!-- EXPORTAR -->
       <section class="chap" id="exportar">
-        <div class="chap-eyebrow">— Capítulo 10</div>
+        <div class="chap-eyebrow">— Capítulo 13</div>
         <h2 class="chap-title">Editar y exportar.</h2>
         <p class="chap-lede">
           Cuando el informe está generado, lo editas con el teclado o con la voz, y lo envías al sistema que uses para firmarlo.
@@ -1277,7 +1359,7 @@
 
       <!-- MÓVIL -->
       <section class="chap" id="movil">
-        <div class="chap-eyebrow">— Capítulo 11</div>
+        <div class="chap-eyebrow">— Capítulo 14</div>
         <h2 class="chap-title">Celular como micrófono.</h2>
         <p class="chap-lede">
           ¿Mejor calidad de audio? ¿Movilidad sin cable? Vincula tu celular y úsalo como micrófono inalámbrico. Sin app, sin instalación.
@@ -1301,7 +1383,7 @@
 
       <!-- PERSONALIZACIÓN -->
       <section class="chap" id="personalizacion">
-        <div class="chap-eyebrow">— Capítulo 12</div>
+        <div class="chap-eyebrow">— Capítulo 15</div>
         <h2 class="chap-title">Apariencia.</h2>
         <p class="chap-lede">
           Tu espacio de trabajo, a tu manera. Cámbialo cuando quieras desde el panel de ajustes en la barra lateral.
@@ -1309,16 +1391,16 @@
 
         <div class="feat-grid">
           <div class="feat">
-            <h4>Tema claro / oscuro</h4>
-            <p>Cambia con un clic. La preferencia se guarda por dispositivo.</p>
+            <h4>Tres temas</h4>
+            <p>Penumbra (oscuro), Crepúsculo (beige cálido) y Amanecer (claro). Cambia con un clic.</p>
           </div>
           <div class="feat">
             <h4>Control de tono</h4>
             <p>Desliza el slider de brillo para ajustar la temperatura del fondo. Útil para reducir fatiga visual en turnos largos.</p>
           </div>
           <div class="feat">
-            <h4>24 colores de acento</h4>
-            <p>Elige el color de cursor, botones, ondas de dictado y destacados. Cuatro filas: signature, neutrales cálidos, vivos cálidos y vivos fríos. Solo cambia el cromatismo; el contraste se mantiene legible.</p>
+            <h4>23 colores de acento + personalizable</h4>
+            <p>Elige el color de cursor, botones, ondas de dictado y destacados. Cuatro filas: signature, neutrales cálidos, vivos cálidos y vivos fríos. Solo cambia el cromatismo; el contraste se mantiene legible. Incluye opción <em>Mi color</em> para elegir un color personalizado.</p>
           </div>
           <div class="feat">
             <h4>Idioma</h4>
