@@ -936,7 +936,7 @@
         <p>O <span class="goster-word">gōster</span> converte seu ditado clínico em um laudo finalizado. Não é um ditado clássico que transcreve palavra por palavra: <strong>interpreta sua intenção</strong>, aplica seus modelos, expande suas frases curtas com o dicionário que você ensinou e respeita o formato que você definiu.</p>
 
         <ul class="bullets">
-          <li><strong>Fala natural.</strong> Comente o caso como com um colega.</li>
+          <li><strong>Dite como preferir.</strong> Dite da forma que te resulte mais cômoda: de maneira ordenada e estruturada, de forma livre, como se comentasses o caso com um colega ou como se explicasses o estudo ao teu paciente. <span class="goster-word">gōster</span> se adapta à tua maneira de trabalhar.</li>
           <li><strong>Aprende com você.</strong> Cada correção que você salva se torna uma regra para o futuro.</li>
           <li><strong>Fidelidade absoluta.</strong> Se você não ditou, não aparece. Sem alucinações, sem invenções.</li>
           <li><strong>Funciona sem configurar.</strong> Se ainda não tem modelo nem dicionário, o <span class="goster-word">gōster</span> aplica seu conhecimento radiológico padrão — depois você personaliza ao seu estilo.</li>
@@ -965,33 +965,32 @@
             <div class="step-n">01</div>
             <div>
               <h4>Suba seus modelos</h4>
-              <p>Na barra lateral, vá a <code>Modelos → Novo</code>. Suba um laudo normal por cada tipo de exame que você reporta. O <span class="goster-word">gōster</span> detecta automaticamente a modalidade (TC, RM, US, RX...) e a região anatômica.</p>
+              <p>Suba seus modelos de forma individual ou carregue um documento completo que contenha todos seus formatos ou modelos. O <span class="goster-word">gōster</span> os incorporará à sua biblioteca para que você possa utilizá-los ao gerar laudos. Detecta automaticamente a modalidade (TC, RM, US, RX...) e a região anatômica.</p>
               <div class="hint">Formatos aceitos: DOCX, DOC, PDF</div>
             </div>
           </div>
           <div class="step-row">
             <div class="step-n">02</div>
             <div>
-              <h4>Construa seu dicionário</h4>
-              <p>Vá a <code>Dicionário → Importar</code> e suba laudos <em>patológicos</em> anteriores. O <span class="goster-word">gōster</span> extrai cada achado como um <em>trigger</em>, associa a descrição completa do corpo e anonimiza os dados do paciente. As medidas são eliminadas; a descrição fica reutilizável.</p>
-              <div class="hint">Recomendado: 20–30 laudos por modalidade para começar</div>
+              <h4>Construa seu dicionário clínico</h4>
+              <p>Você pode construir seu dicionário clínico carregando laudos anteriores para que o <span class="goster-word">gōster</span> identifique achados, descrições e frases recorrentes. Você também pode começar sem um dicionário previamente criado. Nesse caso, o <span class="goster-word">gōster</span> começará a construí-lo a partir do primeiro laudo que você ditar, identificando e extraindo as frases que você usa com frequência.</p>
+              <div class="hint">Opcional: 20–30 laudos por modalidade se você preferir começar com um dicionário pré-carregado</div>
             </div>
           </div>
           <div class="step-row">
             <div class="step-n">03</div>
             <div>
-              <h4>Dite e gere</h4>
-              <p>Abra um exame novo, ative o modelo por voz (<em>"ressonância magnética de ombro"</em>) e dite seus achados como se comentasse o caso com um colega. Pressione <kbd>Gerar laudo</kbd> e revise o resultado.</p>
+              <h4>Dite os achados</h4>
+              <p>Dite os achados relevantes do exame. Você não precisa mencionar cada estrutura normal: o <span class="goster-word">gōster</span> interpreta que o que não foi apontado apresenta características normais e completa o modelo correspondente.</p>
               <div class="hint">O dicionário se vincula automaticamente com o modelo</div>
             </div>
           </div>
-        </div>
-
-        <div class="callout warn">
-          <div class="ico">!</div>
-          <div>
-            <h5>Você só precisa fazer isso uma vez</h5>
-            <p>A configuração inicial é a única parte que leva tempo. A partir daí, o <span class="goster-word">gōster</span> aprende com cada laudo — você não precisa mexer em modelos nem dicionário, a não ser que queira.</p>
+          <div class="step-row">
+            <div class="step-n">04</div>
+            <div>
+              <h4>Faça crescer seu espaço de trabalho</h4>
+              <p>Seu espaço de trabalho pode continuar crescendo com você. Adicione novos modelos, edite os existentes, carregue outros formatos e amplie ou atualize seus dicionários quando necessário.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1028,7 +1027,7 @@
           <li><strong>Inativo</strong> — o botão mostra o ícone de microfone na sua cor de destaque, em repouso com respiração suave.</li>
           <li><strong>Ouvindo</strong> — o <span class="goster-word">gōster</span> captura sua voz; o botão pulsa no ritmo da voz com ondas expansivas na sua cor de destaque.</li>
           <li><strong>Em pausa</strong> — a gravação se detém momentaneamente com o botão mais tênue. Pressione novamente para retomar.</li>
-          <li><strong>Processando</strong> — o <span class="goster-word">gōster</span> interpreta e redige; tipicamente entre 10 e 25 segundos para um laudo padrão.</li>
+          <li><strong>Gerando laudo</strong> — o <span class="goster-word">gōster</span> interpreta e redige; tipicamente entre 10 e 25 segundos para um laudo padrão.</li>
           <li><strong>Pronto</strong> — o laudo aparece na coluna direita; você pode continuar ditando para adicionar ou corrigir.</li>
         </ul>
       </section>
@@ -1038,7 +1037,7 @@
         <div class="chap-eyebrow">— Capítulo 04</div>
         <h2 class="chap-title">Ditar um laudo.</h2>
         <p class="chap-lede">
-          O segredo do <span class="goster-word">gōster</span> é que você <strong>não</strong> precisa ditar de forma estruturada. Fale como se contasse o caso a um colega — o <span class="goster-word">gōster</span> organiza os achados na estrutura do modelo.
+          Dite o laudo como preferir. Você pode seguir a ordem do modelo, mencionar apenas os achados relevantes, ditar de forma livre ou explicar o exame com um estilo conversacional. O <span class="goster-word">gōster</span> organiza a informação e a integra no modelo selecionado.
         </p>
 
         <h3 class="sub" id="empezar-dictado">Como começar</h3>
@@ -1130,7 +1129,7 @@
         <div class="chap-eyebrow">— Capítulo 06</div>
         <h2 class="chap-title">Dicionário clínico.</h2>
         <p class="chap-lede">
-          O dicionário é onde vive seu estilo. Cada entrada associa um <em>trigger</em> (o que você dita) com uma descrição clínica completa (o que o <span class="goster-word">gōster</span> escreve).
+          Seu dicionário clínico reúne as expressões e descrições que você usa habitualmente. Você pode criá-lo carregando laudos anteriores ou permitir que o <span class="goster-word">gōster</span> comece a construí-lo a partir do seu primeiro laudo ditado. Cada entrada associa um <em>trigger</em> (o que você dita) com uma descrição clínica completa (o que o <span class="goster-word">gōster</span> escreve).
         </p>
 
         <h3 class="sub" id="como-funciona-dict">Como funciona</h3>
@@ -1399,8 +1398,8 @@
             <p>Deslize o slider de brilho para ajustar a temperatura do fundo. Útil para reduzir fadiga visual em plantões longos.</p>
           </div>
           <div class="feat">
-            <h4>23 cores de destaque + personalizável</h4>
-            <p>Escolha a cor do cursor, botões, ondas de ditado e destaques. Quatro fileiras: signature, neutros quentes, vivos quentes e vivos frios. Só muda a cromática; o contraste se mantém legível. Inclui a opção <em>Minha cor</em> para uma cor de destaque personalizada.</p>
+            <h4>35+ cores de destaque + personalizável</h4>
+            <p>Escolha a cor do cursor, botões, ondas de ditado e destaques. Múltiplas opções: signature, neutros quentes, vivos quentes e vivos frios. Só muda a cromática; o contraste se mantém legível. Inclui a opção <em>Minha cor</em> para uma cor de destaque personalizada.</p>
           </div>
           <div class="feat">
             <h4>Idioma</h4>
