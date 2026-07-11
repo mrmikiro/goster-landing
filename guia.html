@@ -936,7 +936,7 @@
         <p><span class="goster-word">gōster</span> convierte tu dictado clínico en un informe terminado. No es un dictado clásico que transcribe palabra por palabra: <strong>interpreta tu intención</strong>, aplica tus plantillas, expande tus frases cortas con el diccionario que tú le enseñaste y respeta el formato que tú definiste.</p>
 
         <ul class="bullets">
-          <li><strong>Habla natural.</strong> Comenta el caso como con un colega.</li>
+          <li><strong>Dicta como prefieras.</strong> Dicta de la forma que te resulte más cómoda: de manera ordenada y estructurada, de forma libre, como si comentaras el caso con un colega o como si le explicaras el estudio a tu paciente. <span class="goster-word">gōster</span> se adapta a tu manera de trabajar.</li>
           <li><strong>Aprende de ti.</strong> Cada corrección que guardas se convierte en una regla para el futuro.</li>
           <li><strong>Fidelidad absoluta.</strong> Si no lo dictaste, no aparece. Sin alucinaciones, sin invenciones.</li>
           <li><strong>Funciona sin configurar.</strong> Si todavía no tienes plantilla ni diccionario, <span class="goster-word">gōster</span> aplica su conocimiento radiológico estándar — luego personalizas a tu estilo.</li>
@@ -965,33 +965,32 @@
             <div class="step-n">01</div>
             <div>
               <h4>Sube tus plantillas</h4>
-              <p>En la barra lateral, ve a <code>Plantillas → Nueva</code>. Sube un informe normal por cada tipo de estudio que reportes. <span class="goster-word">gōster</span> detecta automáticamente la modalidad (TC, RM, US, RX…) y la región anatómica.</p>
+              <p>Sube tus plantillas de manera individual o carga un documento completo que contenga todos tus formatos o machotes. <span class="goster-word">gōster</span> los incorporará a tu biblioteca para que puedas utilizarlos al generar informes. Detecta automáticamente la modalidad (TC, RM, US, RX…) y la región anatómica.</p>
               <div class="hint">Formatos aceptados: DOCX, DOC, PDF</div>
             </div>
           </div>
           <div class="step-row">
             <div class="step-n">02</div>
             <div>
-              <h4>Construye tu diccionario</h4>
-              <p>Ve a <code>Diccionario → Importar</code> y sube informes <em>patológicos</em> previos. <span class="goster-word">gōster</span> extrae cada hallazgo como un <em>trigger</em>, asocia la descripción completa del cuerpo y anonimiza los datos del paciente. Las medidas se eliminan; la descripción queda reutilizable.</p>
-              <div class="hint">Recomendado: 20–30 informes por modalidad para empezar</div>
+              <h4>Construye tu diccionario clínico</h4>
+              <p>Puedes construir tu diccionario clínico cargando informes previos para que <span class="goster-word">gōster</span> identifique hallazgos, descripciones y frases recurrentes. También puedes comenzar sin un diccionario previamente creado. En ese caso, <span class="goster-word">gōster</span> empezará a construirlo a partir del primer informe que dictes, identificando y extrayendo las frases que utilizas con frecuencia.</p>
+              <div class="hint">Opcional: 20–30 informes por modalidad si prefieres comenzar con un diccionario precargado</div>
             </div>
           </div>
           <div class="step-row">
             <div class="step-n">03</div>
             <div>
-              <h4>Dicta y genera</h4>
-              <p>Abre un estudio nuevo, activa la plantilla por voz (<em>"resonancia magnética de hombro"</em>) y dicta tus hallazgos como si comentaras el caso a un colega. Pulsa <kbd>Generar informe</kbd> y revisa el resultado.</p>
+              <h4>Dicta los hallazgos</h4>
+              <p>Dicta los hallazgos relevantes del estudio. No es necesario mencionar cada estructura normal: <span class="goster-word">gōster</span> interpreta que lo que no fue señalado presenta características normales y completa la plantilla correspondiente.</p>
               <div class="hint">El diccionario se vincula automáticamente con la plantilla</div>
             </div>
           </div>
-        </div>
-
-        <div class="callout warn">
-          <div class="ico">!</div>
-          <div>
-            <h5>Solo tienes que hacerlo una vez</h5>
-            <p>La configuración inicial es la única parte que toma tiempo. A partir de ahí, <span class="goster-word">gōster</span> aprende con cada informe — no vuelves a tocar plantillas ni diccionario salvo que quieras.</p>
+          <div class="step-row">
+            <div class="step-n">04</div>
+            <div>
+              <h4>Haz crecer tu espacio de trabajo</h4>
+              <p>Tu espacio de trabajo puede seguir creciendo contigo. Agrega nuevas plantillas, edita las existentes, carga otros formatos y amplía o actualiza tus diccionarios cuando lo necesites.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1028,7 +1027,7 @@
           <li><strong>Inactivo</strong> — el botón muestra el ícono de micrófono en tu color de acento, en reposo con respiración suave.</li>
           <li><strong>Escuchando</strong> — <span class="goster-word">gōster</span> captura tu voz; el botón pulsa al ritmo de la voz con ondas expansivas en tu color de acento.</li>
           <li><strong>En pausa</strong> — la grabación se detiene momentáneamente con el botón más tenue. Pulsa de nuevo para reanudar.</li>
-          <li><strong>Procesando</strong> — <span class="goster-word">gōster</span> interpreta y redacta; típicamente entre 10 y 25 segundos para un informe estándar.</li>
+          <li><strong>Generando informe</strong> — <span class="goster-word">gōster</span> interpreta y redacta; típicamente entre 10 y 25 segundos para un informe estándar.</li>
           <li><strong>Listo</strong> — el informe aparece en la columna derecha; puedes seguir dictando para añadir o corregir.</li>
         </ul>
       </section>
@@ -1038,7 +1037,7 @@
         <div class="chap-eyebrow">— Capítulo 04</div>
         <h2 class="chap-title">Dictar un informe.</h2>
         <p class="chap-lede">
-          El secreto de <span class="goster-word">gōster</span> es que <strong>no</strong> tienes que dictar de forma estructurada. Habla como si le contaras el caso a un colega — <span class="goster-word">gōster</span> ordena los hallazgos en la estructura de la plantilla.
+          Dicta el informe como prefieras. Puedes seguir el orden de la plantilla, mencionar únicamente los hallazgos relevantes, dictar de manera libre o explicar el estudio con un estilo conversacional. <span class="goster-word">gōster</span> organiza la información y la integra en la plantilla seleccionada.
         </p>
 
         <h3 class="sub" id="empezar-dictado">Cómo empezar</h3>
@@ -1130,7 +1129,7 @@
         <div class="chap-eyebrow">— Capítulo 06</div>
         <h2 class="chap-title">Diccionario clínico.</h2>
         <p class="chap-lede">
-          El diccionario es donde vive tu estilo. Cada entrada empareja un <em>trigger</em> (lo que dictas) con una descripción clínica completa (lo que <span class="goster-word">gōster</span> escribe).
+          El diccionario clínico reúne las expresiones y descripciones que utilizas habitualmente. Puedes crearlo cargando informes previos o permitir que <span class="goster-word">gōster</span> comience a construirlo a partir de tu primer informe dictado. Cada entrada empareja un <em>trigger</em> (lo que dictas) con una descripción clínica completa (lo que <span class="goster-word">gōster</span> escribe).
         </p>
 
         <h3 class="sub" id="como-funciona-dict">Cómo funciona</h3>
@@ -1399,8 +1398,8 @@
             <p>Desliza el slider de brillo para ajustar la temperatura del fondo. Útil para reducir fatiga visual en turnos largos.</p>
           </div>
           <div class="feat">
-            <h4>23 colores de acento + personalizable</h4>
-            <p>Elige el color de cursor, botones, ondas de dictado y destacados. Cuatro filas: signature, neutrales cálidos, vivos cálidos y vivos fríos. Solo cambia el cromatismo; el contraste se mantiene legible. Incluye opción <em>Mi color</em> para elegir un color personalizado.</p>
+            <h4>35+ colores de acento + personalizable</h4>
+            <p>Elige el color de cursor, botones, ondas de dictado y destacados. Múltiples opciones: signature, neutrales cálidos, vivos cálidos y vivos fríos. Solo cambia el cromatismo; el contraste se mantiene legible. Incluye opción <em>Mi color</em> para elegir un color personalizado.</p>
           </div>
           <div class="feat">
             <h4>Idioma</h4>

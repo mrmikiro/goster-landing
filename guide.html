@@ -936,7 +936,7 @@
         <p><span class="goster-word">gōster</span> turns your clinical dictation into a finished report. This isn't classic dictation that transcribes word by word: it <strong>interprets your intent</strong>, applies your templates, expands your short phrases with the dictionary you taught it, and respects the format you defined.</p>
 
         <ul class="bullets">
-          <li><strong>Speak naturally.</strong> Discuss the case as with a colleague.</li>
+          <li><strong>Dictate your way.</strong> Dictate however you prefer: in an organized and structured manner, freely, as if discussing the case with a colleague, or as if explaining the study to your patient. <span class="goster-word">gōster</span> adapts to your way of working.</li>
           <li><strong>Learns from you.</strong> Every correction you save becomes a rule for the future.</li>
           <li><strong>Absolute fidelity.</strong> If you didn't dictate it, it doesn't appear. No hallucinations, no fabrications.</li>
           <li><strong>Works out of the box.</strong> Even without templates or a dictionary, <span class="goster-word">gōster</span> applies standard radiology knowledge — personalize later.</li>
@@ -965,33 +965,32 @@
             <div class="step-n">01</div>
             <div>
               <h4>Upload your templates</h4>
-              <p>In the sidebar, go to <code>Templates → New</code>. Upload one normal report per study type you read. <span class="goster-word">gōster</span> automatically detects the modality (CT, MRI, US, X-ray…) and the anatomic region.</p>
+              <p>Upload your templates individually or load a complete document containing all your formats or templates. <span class="goster-word">gōster</span> will add them to your library for use when generating reports. It automatically detects the modality (CT, MRI, US, X-ray…) and the anatomic region.</p>
               <div class="hint">Accepted formats: DOCX, DOC, PDF</div>
             </div>
           </div>
           <div class="step-row">
             <div class="step-n">02</div>
             <div>
-              <h4>Build your dictionary</h4>
-              <p>Go to <code>Dictionary → Import</code> and upload previous <em>pathological</em> reports. <span class="goster-word">gōster</span> extracts each finding as a <em>trigger</em>, associates the full description from the body, and anonymizes patient data. Measurements are stripped; the description stays reusable.</p>
-              <div class="hint">Recommended: 20–30 reports per modality to start</div>
+              <h4>Build your clinical dictionary</h4>
+              <p>You can build your clinical dictionary by uploading previous reports so <span class="goster-word">gōster</span> identifies findings, descriptions and recurring phrases. You can also start without a pre-built dictionary. In that case, <span class="goster-word">gōster</span> will begin building it from the first report you dictate, identifying and extracting the phrases you use frequently.</p>
+              <div class="hint">Optional: 20–30 reports per modality if you prefer to start with a pre-loaded dictionary</div>
             </div>
           </div>
           <div class="step-row">
             <div class="step-n">03</div>
             <div>
-              <h4>Dictate and generate</h4>
-              <p>Open a new study, activate the template by voice (<em>"shoulder MRI"</em>) and dictate your findings as if discussing the case with a colleague. Press <kbd>Generate report</kbd> and review the output.</p>
+              <h4>Dictate your findings</h4>
+              <p>Dictate the relevant findings from the study. You don't need to mention each normal structure: <span class="goster-word">gōster</span> interprets what wasn't mentioned as normal and completes the corresponding template.</p>
               <div class="hint">The dictionary links automatically to the template</div>
             </div>
           </div>
-        </div>
-
-        <div class="callout warn">
-          <div class="ico">!</div>
-          <div>
-            <h5>You only do it once</h5>
-            <p>The initial setup is the only part that takes time. From there, <span class="goster-word">gōster</span> learns with every report — you won't touch templates or dictionary again unless you want to.</p>
+          <div class="step-row">
+            <div class="step-n">04</div>
+            <div>
+              <h4>Grow your workspace</h4>
+              <p>Your workspace can keep growing with you. Add new templates, edit existing ones, upload more formats, and expand or update your dictionaries whenever you need to.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1028,7 +1027,7 @@
           <li><strong>Idle</strong> — the button shows the microphone icon in your accent color, resting with a soft breathing pulse.</li>
           <li><strong>Listening</strong> — <span class="goster-word">gōster</span> is capturing your voice; the button pulses to your voice with expanding rings in your accent color.</li>
           <li><strong>Paused</strong> — recording is temporarily halted with the button dimmer. Press again to resume.</li>
-          <li><strong>Processing</strong> — <span class="goster-word">gōster</span> interprets and writes; typically 10 to 25 seconds for a standard report.</li>
+          <li><strong>Generating report</strong> — <span class="goster-word">gōster</span> interprets and writes; typically 10 to 25 seconds for a standard report.</li>
           <li><strong>Ready</strong> — the report appears in the right column; you can keep dictating to add or correct.</li>
         </ul>
       </section>
@@ -1038,7 +1037,7 @@
         <div class="chap-eyebrow">— Chapter 04</div>
         <h2 class="chap-title">Dictating a report.</h2>
         <p class="chap-lede">
-          The secret to <span class="goster-word">gōster</span> is that you <strong>don't</strong> need to dictate in a structured way. Talk as if you were describing the case to a colleague — <span class="goster-word">gōster</span> arranges the findings inside the template structure.
+          Dictate your report however you prefer. You can follow the template order, mention only relevant findings, dictate freely, or explain the study in a conversational style. <span class="goster-word">gōster</span> organizes the information and integrates it into the selected template.
         </p>
 
         <h3 class="sub" id="how-to-start">How to start</h3>
@@ -1130,7 +1129,7 @@
         <div class="chap-eyebrow">— Chapter 06</div>
         <h2 class="chap-title">Clinical dictionary.</h2>
         <p class="chap-lede">
-          The dictionary is where your style lives. Each entry pairs a <em>trigger</em> (what you dictate) with a full clinical description (what <span class="goster-word">gōster</span> writes).
+          Your clinical dictionary gathers the expressions and descriptions you use regularly. You can build it by uploading past reports or let <span class="goster-word">gōster</span> start building it from your first dictated report. Each entry pairs a <em>trigger</em> (what you dictate) with a full clinical description (what <span class="goster-word">gōster</span> writes).
         </p>
 
         <h3 class="sub" id="how-dict-works">How it works</h3>
@@ -1399,8 +1398,8 @@
             <p>Use the brightness slider to fine-tune the background warmth. Useful for reducing visual fatigue on long shifts.</p>
           </div>
           <div class="feat">
-            <h4>23 accent colors + customizable</h4>
-            <p>Pick the color for cursors, buttons, dictation waves and highlights. Four rows: signature, warm neutrals, vivid warm and vivid cool. Only chroma changes — contrast stays readable. Includes a <em>My color</em> option for a custom accent color.</p>
+            <h4>35+ accent colors + customizable</h4>
+            <p>Pick the color for cursors, buttons, dictation waves and highlights. Multiple options: signature, warm neutrals, vivid warm and vivid cool. Only chroma changes — contrast stays readable. Includes a <em>My color</em> option for a custom accent color.</p>
           </div>
           <div class="feat">
             <h4>Language</h4>
