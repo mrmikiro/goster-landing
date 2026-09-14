@@ -20,7 +20,7 @@ Open http://127.0.0.1:4180/.
 - Supplied original logo: `assets/goster-logo-original.png`; isolated ghost: `assets/goster-ghost-original.png`.
 - The hero animates only the ghost; the Poppins wordmark and trademark remain static.
 
-The pages are rendered HTML and work without a runtime framework. The generator uses only the Python standard library. Existing user guides are preserved. Product CTAs link to `app.goster.ai`; Base/Pro use the application's `upgrade` flow rather than stored Stripe checkout sessions. Enterprise and resident requests use the existing contact email.
+The pages are rendered HTML and work without a runtime framework. The generator uses only the Python standard library. Existing user guides are preserved. Trial and sign-in CTAs link to `app.goster.ai`; Base/Pro use the public Stripe Payment Links in `PAYMENT_LINKS` in the generator. Payment links remain unchanged when switching themes. Enterprise and resident requests use the existing contact email.
 
 ## Review notes
 

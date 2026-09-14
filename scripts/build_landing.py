@@ -4,6 +4,10 @@ import json
 import re
 from html.parser import HTMLParser
 ROOT=Path(__file__).resolve().parents[1]
+PAYMENT_LINKS={
+ 'Base': 'https://buy.stripe.com/bJe8wP4S7dYH1qfaFZb3q00',
+ 'Pro': 'https://buy.stripe.com/00w6oH98n6wfb0Pg0jb3q01',
+}
 COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'description': 'Gōster convierte tu dictado en informes radiológicos estructurados, con tus '
                        'plantillas, tu terminología y tu estilo.',
@@ -395,7 +399,9 @@ for lang,c in COPY.items():
  plans=''
  for i,(name,price,unit) in enumerate([('Trial',c['free'],c['days']),('Base','$249',c['month']),('Pro','$499',c['month'])]):
   desc,items=c['plans'][i]
-  plans+=f'<article class="plan reveal {"featured" if i==2 else ""}"><div class="plan-top"><h3>{name}</h3>{"<span>"+c["protag"]+"</span>" if i==2 else ""}</div><div class="price">{price}</div><p class="price-unit">{unit}</p><p class="plan-description">{desc}</p><ul>'+''.join(f'<li>{x}</li>' for x in items)+f'</ul><a class="button {"primary" if i==2 else "secondary"}" data-app href="{app}{"&amp;upgrade="+name.lower() if i else ""}">{c["try"] if i==0 else c["choose"]+" "+name}{ARROW}</a></article>'
+  destination=PAYMENT_LINKS[name] if i else app
+  link_attribute='data-payment' if i else 'data-app'
+  plans+=f'<article class="plan reveal {"featured" if i==2 else ""}"><div class="plan-top"><h3>{name}</h3>{"<span>"+c["protag"]+"</span>" if i==2 else ""}</div><div class="price">{price}</div><p class="price-unit">{unit}</p><p class="plan-description">{desc}</p><ul>'+''.join(f'<li>{x}</li>' for x in items)+f'</ul><a class="button {"primary" if i==2 else "secondary"}" {link_attribute} href="{destination}">{c["try"] if i==0 else c["choose"]+" "+name}{ARROW}</a></article>'
  faq=''.join(f'<details class="reveal"><summary><span class="faq-question">{q}</span><span aria-hidden="true">+</span></summary><p>{a}</p></details>' for q,a in c['faq'])
  folders=''.join(f'<div class="folder {"selected" if i==1 else ""}"><span aria-hidden="true">▱</span>{x}</div>' for i,x in enumerate(c['folders']))
  html=f'''<!doctype html>
