@@ -115,7 +115,6 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'endtitle': 'Menos teclado.<br><span>Más radiología.</span>',
         'endbody': 'Tu próximo informe puede empezar de otra manera.',
         'footer': 'Tu ghostwriter radiológico.',
-        'guide': 'Guía del usuario',
         'privacy': 'Privacidad',
         'contact': 'Contacto',
         'made': 'Hecho por radiólogos, para radiólogos.',
@@ -125,7 +124,6 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'theme': 'Cambiar tema',
         'motion': 'Pausar animaciones',
         'resume': 'Activar animaciones',
-        'guidelink': 'guia.html',
         'library': 'BIBLIOTECA'},
  'en': {'title': 'Your voice. Your judgment. Your report.',
         'description': 'Gōster turns your dictation into structured radiology reports, with your templates, '
@@ -236,7 +234,6 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'endtitle': 'Less typing.<br><span>More radiology.</span>',
         'endbody': 'Your next report can start differently.',
         'footer': 'Your radiology ghostwriter.',
-        'guide': 'User guide',
         'privacy': 'Privacy',
         'contact': 'Contact',
         'made': 'Made by radiologists, for radiologists.',
@@ -246,7 +243,6 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'theme': 'Switch theme',
         'motion': 'Pause animations',
         'resume': 'Enable animations',
-        'guidelink': 'guide.html',
         'library': 'LIBRARY'},
  'pt': {'title': 'Sua voz. Seu critério. Seu laudo.',
         'description': 'Gōster transforma seu ditado em laudos radiológicos estruturados, com seus modelos, '
@@ -355,7 +351,6 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'endtitle': 'Menos teclado.<br><span>Mais radiologia.</span>',
         'endbody': 'Seu próximo laudo pode começar de outra maneira.',
         'footer': 'Seu ghostwriter radiológico.',
-        'guide': 'Guia do usuário',
         'privacy': 'Privacidade',
         'contact': 'Contato',
         'made': 'Feito por radiologistas, para radiologistas.',
@@ -365,7 +360,6 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'theme': 'Mudar tema',
         'motion': 'Pausar animações',
         'resume': 'Ativar animações',
-        'guidelink': 'guia-pt.html',
         'library': 'BIBLIOTECA'}}
 
 class BrandTypography(HTMLParser):
@@ -424,9 +418,9 @@ for lang,c in COPY.items():
 <section class="section flow" id="flujo"><div class="container"><div class="section-heading reveal"><div><p class="eyebrow">{c['flowtag']}</p><h2>{c['flowtitle']}</h2></div><p class="section-intro">{c['flowbody']}</p></div><div class="demo reveal"><div class="demo-top"><span class="micro-label"><span class="status-dot"></span>{c['demo']}</span><div class="demo-tabs" role="tablist" aria-label="{c['demo']}">{tabs}</div></div><div class="demo-panels" role="tabpanel" id="demo-panel" aria-labelledby="tab-0"><div class="dictation-panel"><span class="micro-label">{c['dictation']}</span><div class="dictation-quote">“<span id="dictation-text">{c['examples'][0][0]}</span>”</div>{wave}<div class="dictation-bottom"><span class="mic-icon">{MIC}</span><span>gōster</span><span class="time">00:08</span></div></div><div class="transform-arrow" aria-hidden="true">{ARROW}</div><div class="report-panel"><div class="report-header"><span class="micro-label">{c['report']}</span><span class="report-dots" aria-hidden="true">•••</span></div><div class="report-rule"></div><p id="report-text">{c['examples'][0][1]}</p><div class="report-lines" aria-hidden="true"><i></i><i></i><i></i></div><div class="report-status" role="status"><span>✓</span><span id="report-status">{c['ready']}</span></div></div></div><div class="demo-footer"><p id="demo-explanation">{c['examples'][0][2]}</p><button class="demo-play" type="button">{c['play']}{ARROW}</button></div></div><p class="demo-note">{c['sample']}</p><ol class="steps">{steps}</ol></div></section>
 <section class="section product" id="producto"><div class="container"><div class="section-heading reveal"><div><p class="eyebrow">{c['producttag']}</p><h2>{c['producttitle']}</h2></div></div><div class="product-grid"><div class="workspace-visual reveal"><p class="micro-label">{c['workspace']}</p><h3>{c['workspaceTitle']}</h3><div class="template-stack"><div class="template-back"></div><div class="template-card"><div class="template-top"><span class="library-label">{c['library']}</span><span aria-hidden="true">•••</span></div>{folders}</div><span class="style-chip"><span class="status-dot"></span>{c['yourstyle']}</span></div><div class="visual-coordinate" aria-hidden="true">G / 01 — PERSONAL</div></div><div class="features">{features}</div></div><div class="mobility reveal"><div class="mobility-copy"><p class="eyebrow">{c['mobiletag']}</p><h3>{c['mobiletitle']}</h3><p>{c['mobilebody']}</p><span class="mobility-foot">{c['mobilefoot']}</span></div><div class="mobile-visual" aria-label="{c['connected']}"><div class="connection-orbit" aria-hidden="true"></div><span class="connection-chip"><span class="status-dot"></span>{c['connected']}</span><div class="phone"><div class="phone-island"></div><span class="mini-brand">gōster</span><div class="phone-mic">{MIC}</div>{wave}<span>{c['listening']}</span><div class="phone-bottom"></div></div></div></div></div></section>
 <section class="section pricing" id="precios"><span id="planes" class="anchor-alias"></span><div class="container"><div class="center-heading reveal"><p class="eyebrow">{c['pricingtag']}</p><h2>{c['pricingtitle']}</h2><p>{c['pricingbody']}</p></div><div class="plans">{plans}</div><div class="enterprise reveal"><div><strong>{c['enterprise']}</strong><p>{c['enterprisebody']}</p></div><a class="text-link" href="mailto:hello@goster.ai?subject=Goster%20Enterprise">{c['talk']}{ARROW}</a></div><div class="resident reveal" id="residentes"><div class="resident-art" aria-hidden="true"><img src="assets/goster-ghost-original.png" width="706" height="617" alt="" loading="lazy"><div class="resident-wordmark">gōster<sup>™</sup></div></div><div><p class="eyebrow">{c['residenttag']}</p><h3>{c['residenttitle']}</h3><p>{c['residentbody']}</p><a class="text-link" href="mailto:hello@goster.ai?subject=Acceso%20residente">{c['residentcta']}{ARROW}</a></div></div></div></section>
-<section class="section faq" id="faq"><div class="container faq-grid"><div class="reveal"><p class="eyebrow">{c['faqtag']}</p><h2>{c['faqtitle']}</h2><a class="text-link" href="{c['guidelink']}">{c['guide']}{ARROW}</a></div><div class="faq-list">{faq}</div></div></section>
+<section class="section faq" id="faq"><div class="container faq-grid"><div class="reveal"><p class="eyebrow">{c['faqtag']}</p><h2>{c['faqtitle']}</h2></div><div class="faq-list">{faq}</div></div></section>
 <section class="closing"><div class="closing-orbit" aria-hidden="true"></div><div class="container reveal"><p class="eyebrow">{c['endtag']}</p><h2>{c['endtitle']}</h2><p>{c['endbody']}</p><a class="button primary" data-app href="{app}">{c['try']}{ARROW}</a><p class="trial-note">{c['trial']} · {c['nocard']}</p></div></section>
-</main><footer><div class="container"><div class="footer-top"><div><a class="wordmark" href="#top">gōster</a><p>{c['footer']}</p></div><div class="footer-links"><a href="{c['guidelink']}">{c['guide']}</a><a data-app href="https://app.goster.ai/privacidad?lang={lang}">{c['privacy']}</a><a href="mailto:hello@goster.ai">{c['contact']}</a><div class="languages">{langs}</div></div></div><div class="footer-bottom"><span>© {__import__('datetime').date.today().year} Gōster</span><span>{c['made']}</span><span>{c['dev']} <a href="https://stonevale.io" target="_blank" rel="noopener noreferrer">STONEVALE ↗</a></span></div></div></footer>
+</main><footer><div class="container"><div class="footer-top"><div><a class="wordmark" href="#top">gōster</a><p>{c['footer']}</p></div><div class="footer-links"><a data-app href="https://app.goster.ai/privacidad?lang={lang}">{c['privacy']}</a><a href="mailto:hello@goster.ai">{c['contact']}</a><div class="languages">{langs}</div></div></div><div class="footer-bottom"><span>© {__import__('datetime').date.today().year} Gōster</span><span>{c['made']}</span><span>{c['dev']} <a href="https://stonevale.io" target="_blank" rel="noopener noreferrer">STONEVALE ↗</a></span></div></div></footer>
 <script id="landing-copy" type="application/json">{json.dumps({k:c[k] for k in ['examples','ready','generating','play','again','motion','resume']},ensure_ascii=False)}</script>
 </body></html>'''
  branded=BrandTypography()
