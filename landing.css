@@ -182,6 +182,8 @@ h1 .brand-name { color: inherit; }
   .phone { margin-top: 0; }
 }
 
+.hero-actions .diagonal-arrow { width: 16px; height: 16px; }
+
 /* The guide's ghost and trailing dot, with a dedicated color for each theme. */
 :root { --cursor-color: #329164; }
 :root[data-theme="dark"] { --cursor-color: #b69afc; }
