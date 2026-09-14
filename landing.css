@@ -181,3 +181,23 @@ h1 .brand-name { color: inherit; }
   .mobile-visual { min-height: 400px; padding: 35px 30px 52px; }
   .phone { margin-top: 0; }
 }
+
+/* The guide's ghost and trailing dot, with a dedicated color for each theme. */
+:root { --cursor-color: #329164; }
+:root[data-theme="dark"] { --cursor-color: #b69afc; }
+#ghostCursor, #ghostDot {
+  position: fixed; top: 0; left: 0; pointer-events: none;
+  background: var(--cursor-color); opacity: 0;
+  transform: translate3d(-100px, -100px, 0); will-change: transform;
+}
+#ghostCursor {
+  width: 36px; height: 36px; margin: -10px 0 0 -10px; z-index: 99999;
+  -webkit-mask: url('assets/goster-cursor.png') center / contain no-repeat;
+  mask: url('assets/goster-cursor.png') center / contain no-repeat;
+}
+#ghostDot { width: 6px; height: 6px; border-radius: 50%; z-index: 99998; }
+@media (any-hover: hover) and (any-pointer: fine) {
+  html.ghost-cursor-active, .ghost-cursor-active * { cursor: none !important; }
+  .ghost-cursor-active #ghostCursor { opacity: .95; }
+  .ghost-cursor-active #ghostDot { opacity: .75; }
+}

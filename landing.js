@@ -44,6 +44,53 @@
   setMotion();
   motionButton.addEventListener('click', () => { paused = !paused; setMotion(); save('goster-motion-paused', String(paused)); });
   reduceMotion.addEventListener('change', e => { paused = e.matches; setMotion(); });
+  // Reuse the guide's ghost and directional follower on mouse devices only.
+  // Keep the native cursor until the image is loaded and a mouse actually moves.
+  const ghost = document.getElementById('ghostCursor');
+  const dot = document.getElementById('ghostDot');
+  const finePointer = matchMedia('(any-hover: hover) and (any-pointer: fine)');
+  const cursorImage = new Image();
+  let cursorReady = false, cursorVisible = false, cursorFrame = 0;
+  let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, facingRight = true, lastFrame = 0;
+  function hideCursor() {
+    cursorVisible = false;
+    root.classList.remove('ghost-cursor-active');
+    cancelAnimationFrame(cursorFrame); cursorFrame = 0; lastFrame = 0;
+  }
+  function drawDot(time) {
+    cursorFrame = 0;
+    if (!cursorVisible) return;
+    const targetX = mouseX + (facingRight ? -10 : 18);
+    const targetY = mouseY + (facingRight ? 14 : 15);
+    const amount = paused || reduceMotion.matches ? 1 : 1 - Math.pow(.94, Math.min(time - (lastFrame || time - 16.67), 50) / 16.67);
+    lastFrame = time;
+    dotX += (targetX - dotX) * amount;
+    dotY += (targetY - dotY) * amount;
+    dot.style.transform = `translate3d(${dotX - 2}px, ${dotY - 2}px, 0)`;
+    if (Math.abs(targetX - dotX) + Math.abs(targetY - dotY) > .1) {
+      cursorFrame = requestAnimationFrame(drawDot);
+    } else { lastFrame = 0; }
+  }
+  cursorImage.onload = () => { cursorReady = true; };
+  cursorImage.src = 'assets/goster-cursor.png';
+  window.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse' || !finePointer.matches || !cursorReady) { hideCursor(); return; }
+    if (cursorVisible && Math.abs(e.clientX - mouseX) > 2) facingRight = e.clientX > mouseX;
+    mouseX = e.clientX; mouseY = e.clientY;
+    ghost.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scaleX(${facingRight ? 1 : -1})`;
+    if (!cursorVisible) {
+      dotX = mouseX + (facingRight ? -10 : 18); dotY = mouseY + (facingRight ? 14 : 15);
+      dot.style.transform = `translate3d(${dotX - 2}px, ${dotY - 2}px, 0)`;
+      cursorVisible = true; root.classList.add('ghost-cursor-active');
+    }
+    if (!cursorFrame) cursorFrame = requestAnimationFrame(drawDot);
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', hideCursor);
+  window.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') hideCursor(); }, { passive: true });
+  window.addEventListener('blur', hideCursor);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) hideCursor(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Tab') hideCursor(); });
+  finePointer.addEventListener('change', () => { if (!finePointer.matches) hideCursor(); });
   // Reveal each block once as it enters the reading area. Content stays
   // available without JS and when reduced motion or the pause control is on.
   let revealObserver;

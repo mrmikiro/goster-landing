@@ -54,7 +54,7 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
                      ['Empieza sin configurar nada.',
                       'Con Autopilot puedes dictar desde el primer momento. Añade plantillas y reglas cuando '
                       'quieras personalizar más.'],
-                     ['gōster, también a tu estilo.',
+                     ['gōster en tu estilo',
                       'Elige entre dos temas, ajusta el tono y personaliza la interfaz con más de 35 colores. '
                       'Tu espacio de trabajo, a tu gusto.']],
         'workspace': 'UN ESPACIO PARA CONCENTRARTE',
@@ -177,7 +177,7 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
                      ['Start without setting anything up.',
                       'Autopilot lets you dictate right away. Add templates and rules whenever you want more '
                       'personalization.'],
-                     ['gōster, in your style.',
+                     ['gōster in your style',
                       'Choose between two themes, adjust the tone and personalize your interface with more '
                       'than 35 colors. Your workspace, your way.']],
         'workspace': 'ROOM TO FOCUS',
@@ -298,7 +298,7 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
                      ['Comece sem configurar nada.',
                       'Com Autopilot, você pode ditar desde o primeiro momento. Adicione modelos e regras '
                       'quando quiser personalizar mais.'],
-                     ['gōster, também no seu estilo.',
+                     ['gōster no seu estilo',
                       'Escolha entre dois temas, ajuste o tom e personalize a interface com mais de 35 cores. '
                       'Seu espaço de trabalho, do seu jeito.']],
         'workspace': 'UM ESPAÇO PARA SE CONCENTRAR',
@@ -416,6 +416,7 @@ for lang,c in COPY.items():
 <link rel="stylesheet" href="landing.css"><script src="landing.js" defer></script>
 </head>
 <body>
+<div id="ghostCursor" aria-hidden="true"></div><div id="ghostDot" aria-hidden="true"></div>
 <a class="skip" href="#contenido">{c['skip']}</a>
 <header class="header"><a class="wordmark" href="#top" aria-label="Gōster">gōster</a><nav class="desktop-nav" aria-label="{c['nav'][0]}">{nav}</nav><div class="nav-actions"><div class="languages">{langs}</div><button class="icon-button theme-toggle" aria-label="{c['theme']}" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/></svg></button><a class="login" data-app href="{app}">{c['login']}</a><a class="button nav-cta primary" data-app href="{app}">{c['try']}{ARROW}</a><button class="icon-button menu-toggle" aria-label="{c['menu']}" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button></div><nav id="mobile-menu" class="mobile-menu" hidden>{nav}<a data-app href="{app}">{c['login']}</a></nav></header>
 <main id="contenido">
