@@ -171,3 +171,13 @@ h1 .brand-name { color: inherit; }
 @media(prefers-reduced-motion:reduce) {
   .reveal, .reveal.pending { opacity: 1; filter: none; transform: none; transition: none; }
 }
+
+/* Allow for the rotated phone's corners and shadow inside the panel. */
+.mobile-visual { min-height: 420px; padding: 40px 38px 55px; align-items: center; }
+.phone { margin-top: 0; flex-shrink: 0; }
+/* Match the lowercase Poppins x-height to the surrounding uppercase label. */
+.closing .eyebrow .brand-name { font-size: 1.25em; letter-spacing: .06em; font-weight: 600; }
+@media(max-width:600px) {
+  .mobile-visual { min-height: 400px; padding: 35px 30px 52px; }
+  .phone { margin-top: 0; }
+}

@@ -20,8 +20,9 @@
       const url = new URL(link.href); url.searchParams.set('theme', root.dataset.theme); link.href = url.href;
     });
   }
-  setTheme(params.get('theme') || read('goster-theme') || 'light');
-  themeButton.addEventListener('click', () => { setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'); save('goster-theme', root.dataset.theme); });
+  // Every visit starts in dark mode; the toggle applies to the current visit.
+  setTheme('dark');
+  themeButton.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
   const menuButton = document.querySelector('.menu-toggle');
   const menu = document.getElementById('mobile-menu');
   function closeMenu() { menu.hidden = true; menuButton.setAttribute('aria-expanded', 'false'); }

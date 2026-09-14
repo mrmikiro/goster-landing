@@ -405,11 +405,11 @@ for lang,c in COPY.items():
  faq=''.join(f'<details class="reveal"><summary><span class="faq-question">{q}</span><span aria-hidden="true">+</span></summary><p>{a}</p></details>' for q,a in c['faq'])
  folders=''.join(f'<div class="folder {"selected" if i==1 else ""}"><span aria-hidden="true">▱</span>{x}</div>' for i,x in enumerate(c['folders']))
  html=f'''<!doctype html>
-<html lang="{lang}">
+<html lang="{lang}" data-theme="dark">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gōster — {c['title']}</title><meta name="description" content="{c['description']}">
-<meta name="theme-color" content="#f8f7fa"><meta property="og:title" content="Gōster — {c['title']}"><meta property="og:description" content="{c['description']}"><meta property="og:type" content="website"><meta property="og:image" content="https://goster.ai/assets/goster-logo-original.png">
+<meta name="theme-color" content="#131c18"><meta property="og:title" content="Gōster — {c['title']}"><meta property="og:description" content="{c['description']}"><meta property="og:type" content="website"><meta property="og:image" content="https://goster.ai/assets/goster-logo-original.png">
 <link rel="icon" href="assets/goster-chibi-favicon.png"><link rel="canonical" href="https://goster.ai/{'' if lang=='es' else lang+'.html'}">
 <link rel="alternate" hreflang="es" href="https://goster.ai/"><link rel="alternate" hreflang="en" href="https://goster.ai/en.html"><link rel="alternate" hreflang="pt" href="https://goster.ai/pt.html"><link rel="alternate" hreflang="x-default" href="https://goster.ai/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
