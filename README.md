@@ -15,7 +15,7 @@ Open http://127.0.0.1:4180/.
 - Copy and page structure: `scripts/build_landing.py`. Run `python3 scripts/build_landing.py` after changes.
 - Every visit starts in dark mode, including links with an old theme preference. The theme toggle works within the current visit.
 - Shared design and responsive styles: `landing.css`.
-- The guide's ghost cursor and trailing dot are purple in dark mode and green in light mode. They activate on mouse movement, hide for touch/keyboard use, and respect the animation controls.
+- The guide's ghost cursor and trailing dot are purple in dark mode. In light mode, the ghost is black and the trailing dot is green. They activate on mouse movement, hide for touch/keyboard use, and respect the animation controls.
 - Interactive demo, navigation, language/theme continuity and animation controls: `landing.js`.
 - Supplied original logo: `assets/goster-logo-original.png`; isolated ghost: `assets/goster-ghost-original.png`.
 - The hero animates only the ghost; the Poppins wordmark and trademark remain static.
