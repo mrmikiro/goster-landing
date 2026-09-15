@@ -201,7 +201,6 @@ h1 .brand-name { color: inherit; }
   -webkit-mask: url('assets/goster-cursor.png') center / contain no-repeat;
   mask: url('assets/goster-cursor.png') center / contain no-repeat;
 }
-:root:not([data-theme=dark]) #ghostCursor { background: #000; }
 #ghostDot { width: 6px; height: 6px; border-radius: 50%; z-index: 99998; }
 @media (any-hover: hover) and (any-pointer: fine) {
   html.ghost-cursor-active, .ghost-cursor-active * { cursor: none !important; }
