@@ -101,7 +101,9 @@ h1 .brand-name { color: inherit; }
   line-height: 1;
   letter-spacing: 0;
 }
-.brand-lockup sup { top: 2.6em; right: -1.35em; }
+.brand-lockup sup {
+  top: .62em; right: auto; left: calc(100% + .15em); font-size: .24em;
+}
 [data-theme=dark] .brand-lockup { color: #fff; }
 .resident-art { text-align: center; width: 245px; }
 .resident-art img { width: 66%; margin: auto; }
