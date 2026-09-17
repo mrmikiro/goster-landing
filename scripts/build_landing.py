@@ -8,6 +8,10 @@ PAYMENT_LINKS={
  'Base': 'https://buy.stripe.com/bJe8wP4S7dYH1qfaFZb3q00',
  'Pro': 'https://buy.stripe.com/00w6oH98n6wfb0Pg0jb3q01',
 }
+# Banco de México FIX, determined 2026-09-15: MXN per USD.
+# Reference only; Stripe continues charging the MXN prices shown above it.
+USD_MXN_RATE=17.1527
+USD_REFERENCE_DATE='15/09/2026'
 COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'description': 'Gōster convierte tu dictado en informes radiológicos estructurados, con tus '
                        'plantillas, tu terminología y tu estilo.',
@@ -78,6 +82,8 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'free': 'Gratis',
         'days': 'durante 15 días',
         'month': 'MXN / mes',
+        'usd_month': '/ mes',
+        'usd_note': 'Equivalentes aproximados en USD al {date}. El cobro se realiza en MXN.',
         'choose': 'Elegir',
         'protag': 'EL PLAN MÁS POPULAR',
         'plans': [['Conoce todo lo que puede hacer por ti.',
@@ -199,6 +205,8 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'free': 'Free',
         'days': 'for 15 days',
         'month': 'MXN / month',
+        'usd_month': '/ month',
+        'usd_note': 'Approximate USD equivalents as of {date}. You will be charged in MXN.',
         'choose': 'Choose',
         'protag': 'THE MOST POPULAR PLAN',
         'plans': [['Discover what it can do for you.',
@@ -318,6 +326,8 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'free': 'Grátis',
         'days': 'durante 15 dias',
         'month': 'MXN / mês',
+        'usd_month': '/ mês',
+        'usd_note': 'Valores aproximados em USD em {date}. A cobrança é realizada em MXN.',
         'choose': 'Escolher',
         'protag': 'O PLANO MAIS POPULAR',
         'plans': [['Conheça tudo o que pode fazer por você.',
@@ -402,7 +412,9 @@ for lang,c in COPY.items():
   desc,items=c['plans'][i]
   destination=PAYMENT_LINKS[name] if i else app
   link_attribute='data-payment' if i else 'data-app'
-  plans+=f'<article class="plan reveal {"featured" if i==2 else ""}"><div class="plan-top"><h3>{name}</h3>{"<span>"+c["protag"]+"</span>" if i==2 else ""}</div><div class="price">{price}</div><p class="price-unit">{unit}</p><p class="plan-description">{desc}</p><ul>'+''.join(f'<li>{x}</li>' for x in items)+f'</ul><a class="button {"primary" if i==2 else "secondary"}" {link_attribute} href="{destination}">{c["try"] if i==0 else c["choose"]+" "+name}{ARROW}</a></article>'
+  usd_price=(f'<p class="price-usd">≈ US${int(price[1:])/USD_MXN_RATE:.2f} {c["usd_month"]}</p>' if i else '<p class="price-usd" aria-hidden="true"></p>')
+  plans+=f'<article class="plan reveal {"featured" if i==2 else ""}"><div class="plan-top"><h3>{name}</h3>{"<span>"+c["protag"]+"</span>" if i==2 else ""}</div><div class="price">{price}</div><p class="price-unit">{unit}</p>{usd_price}<p class="plan-description">{desc}</p><ul>'+''.join(f'<li>{x}</li>' for x in items)+f'</ul><a class="button {"primary" if i==2 else "secondary"}" {link_attribute} href="{destination}">{c["try"] if i==0 else c["choose"]+" "+name}{ARROW}</a></article>'
+ plans+=f'<p class="pricing-note reveal">{c["usd_note"].format(date=USD_REFERENCE_DATE)}</p>'
  faq=''.join(f'<details class="reveal"><summary><span class="faq-question">{q}</span><span aria-hidden="true">+</span></summary><p>{a}</p></details>' for q,a in c['faq'])
  folders=''.join(f'<div class="folder {"selected" if i==1 else ""}"><span aria-hidden="true">▱</span>{x}</div>' for i,x in enumerate(c['folders']))
  html=f'''<!doctype html>

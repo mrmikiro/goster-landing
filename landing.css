@@ -196,6 +196,19 @@ h1 .brand-name { color: inherit; }
 
 .hero-actions .diagonal-arrow { width: 16px; height: 16px; }
 
+.price-usd {
+  min-height: 1.5em; margin-top: 7px;
+  font-size: 12px; line-height: 1.5; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.pricing-note {
+  grid-column: 1 / -1; text-align: center;
+  font-size: 11px; line-height: 1.6; color: var(--muted);
+}
+@media (max-width: 600px) {
+  .price-usd:empty { display: none; }
+}
+
 /* The guide's ghost and trailing dot, with a dedicated color for each theme. */
 :root { --cursor-color: #329164; }
 :root[data-theme="dark"] { --cursor-color: #b69afc; }

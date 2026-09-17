@@ -25,6 +25,7 @@ The pages are rendered HTML and work without a runtime framework. The generator 
 ## Review notes
 
 - Prices are retained from the existing landing and the supplied reference: Base MXN 249/month; Pro MXN 499/month.
+- Paid plans also show approximate USD equivalents using the Banco de México FIX determined on September 15, 2026: 17.1527 MXN/USD ([source](https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarCuadro&idCuadro=CF102&locale=en&sector=7)). Update `USD_MXN_RATE` and `USD_REFERENCE_DATE` in the generator together when refreshing this reference. The displayed note dates the estimate and clarifies that billing is in MXN; these are static estimates, not separate USD prices.
 - The 15-day trial matches `TRIAL_DURATION_DAYS` in the application source reviewed for this redesign.
 - The report demonstration is illustrative, with predefined examples. It does not record audio or call an AI service.
 - Reduced-motion preferences and the pause control stop ambient animation. Demo tabs support arrow keys, Home and End; the mobile menu supports Escape.
