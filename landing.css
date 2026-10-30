@@ -109,6 +109,14 @@ h1 .brand-name { color: inherit; }
 .resident-art img { width: 66%; margin: auto; }
 .resident-wordmark { position: relative; display: inline-block; font-size: 48px; line-height: 1.2; letter-spacing: -.065em; margin-top: 8px; }
 .resident-wordmark .brand-name { letter-spacing: inherit; }
+.resident-copy { min-width: 0; }
+.resident-process { list-style: none; padding: 0; margin: 22px 0 24px; display: grid; gap: 12px; }
+.resident-process li { display: grid; grid-template-columns: 32px 1fr; gap: 13px; align-items: start; }
+.resident-process li > span { color: var(--accent); font-family: var(--display); font-size: 10px; line-height: 1.8; letter-spacing: .08em; }
+.resident .resident-process p { margin: 0; max-width: 500px; color: var(--ink); font-size: 12px; line-height: 1.65; }
+.resident-process a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.resident-process a:hover { color: var(--ink); }
+.resident .resident-cta { margin-top: 2px; }
 :root:not([data-theme=dark]) ::selection { background: #ded0f0; color: #352248; }
 :root:not([data-theme=dark]) .status-dot { background: #9974c2; box-shadow: 0 0 0 4px #9974c210; }
 :root:not([data-theme=dark]) .hero:before { background: radial-gradient(ellipse,#e3d5f266,transparent 65%); }
@@ -150,6 +158,9 @@ h1 .brand-name { color: inherit; }
   .wordmark { font-size: 28px; }
   .resident-art { width: 150px; }
   .resident-wordmark { font-size: 33px; }
+  .resident-process { margin: 19px 0 22px; gap: 11px; }
+  .resident-process li { grid-template-columns: 28px 1fr; gap: 9px; }
+  .resident .resident-process p { font-size: 11px; }
 }
 
 /* The descriptor belongs to the logo, with breathing room before the headline. */

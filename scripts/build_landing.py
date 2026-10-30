@@ -103,7 +103,13 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'residenttitle': 'El futuro se aprende<br>desde la residencia.',
         'residentbody': 'Solicita acceso completo sin costo durante tu formación. Tu próxima herramienta de '
                         'trabajo también puede acompañarte mientras aprendes.',
-        'residentcta': 'Solicitar acceso para residentes',
+        'residentsteps': [
+            'Crea tu cuenta gratuita en <a href="https://app.goster.io">app.goster.io</a>.',
+            'Envía a <a href="mailto:hello@goster.io">hello@goster.io</a> un documento que compruebe que eres residente.',
+            'En el correo, indícanos la dirección con la que creaste tu cuenta.',
+        ],
+        'residentcta': 'Enviar comprobante',
+        'residentmail': 'mailto:hello@goster.io?subject=Solicitud%20de%20acceso%20para%20residente&body=Hola%2C%0A%0ACre%C3%A9%20mi%20cuenta%20de%20g%C5%8Dster%20con%20el%20correo%3A%20%0A%0AAdjunto%20un%20documento%20que%20acredita%20que%20soy%20residente.',
         'faqtag': 'ANTES DE TU PRIMER INFORME',
         'faqtitle': 'Qué bueno que preguntas.',
         'faq': [['¿Necesito configurar plantillas para empezar?',
@@ -224,7 +230,13 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'residenttitle': 'The future starts<br>during residency.',
         'residentbody': 'Apply for full access at no cost during your training. Your next work tool can '
                         'support you while you learn.',
-        'residentcta': 'Apply for resident access',
+        'residentsteps': [
+            'Create your free account at <a href="https://app.goster.io">app.goster.io</a>.',
+            'Email <a href="mailto:hello@goster.io">hello@goster.io</a> a document confirming that you are a resident.',
+            'In the email, tell us which address you used to create your account.',
+        ],
+        'residentcta': 'Send verification',
+        'residentmail': 'mailto:hello@goster.io?subject=Resident%20access%20request&body=Hello%2C%0A%0AI%20created%20my%20g%C5%8Dster%20account%20with%20this%20email%20address%3A%20%0A%0AI%20have%20attached%20a%20document%20confirming%20that%20I%20am%20a%20resident.',
         'faqtag': 'BEFORE YOUR FIRST REPORT',
         'faqtitle': 'Glad you asked.',
         'faq': [['Do I need templates to get started?',
@@ -343,7 +355,13 @@ COPY={'es': {'title': 'Tu voz. Tu criterio. Tu informe.',
         'residenttitle': 'O futuro começa<br>na residência.',
         'residentbody': 'Solicite acesso completo sem custo durante sua formação. Sua próxima ferramenta de '
                         'trabalho também pode acompanhar seu aprendizado.',
-        'residentcta': 'Solicitar acesso para residentes',
+        'residentsteps': [
+            'Crie sua conta gratuita em <a href="https://app.goster.io">app.goster.io</a>.',
+            'Envie para <a href="mailto:hello@goster.io">hello@goster.io</a> um documento que comprove que você é residente.',
+            'No e-mail, informe o endereço usado para criar sua conta.',
+        ],
+        'residentcta': 'Enviar comprovante',
+        'residentmail': 'mailto:hello@goster.io?subject=Solicita%C3%A7%C3%A3o%20de%20acesso%20para%20residente&body=Ol%C3%A1%2C%0A%0ACriei%20minha%20conta%20g%C5%8Dster%20com%20o%20e-mail%3A%20%0A%0AAnexo%20um%20documento%20que%20comprova%20que%20sou%20residente.',
         'faqtag': 'ANTES DO SEU PRIMEIRO LAUDO',
         'faqtitle': 'Que bom que perguntou.',
         'faq': [['Preciso configurar modelos para começar?',
@@ -417,6 +435,10 @@ for lang,c in COPY.items():
  plans+=f'<p class="pricing-note reveal">{c["usd_note"].format(date=USD_REFERENCE_DATE)}</p>'
  faq=''.join(f'<details class="reveal"><summary><span class="faq-question">{q}</span><span aria-hidden="true">+</span></summary><p>{a}</p></details>' for q,a in c['faq'])
  folders=''.join(f'<div class="folder {"selected" if i==1 else ""}"><span aria-hidden="true">▱</span>{x}</div>' for i,x in enumerate(c['folders']))
+ resident_steps=''.join(
+  f'<li><span>{i+1:02}</span><p>{step}</p></li>'
+  for i,step in enumerate(c['residentsteps'])
+ )
  html=f'''<!doctype html>
 <html lang="{lang}" data-theme="dark">
 <head>
@@ -436,7 +458,7 @@ for lang,c in COPY.items():
 <section class="hero" id="top"><div class="hero-orbit orbit-one" aria-hidden="true"></div><div class="hero-orbit orbit-two" aria-hidden="true"></div><div class="hero-content"><div class="hero-logo" role="img" aria-label="gōster™"><img class="hero-ghost" src="assets/goster-ghost-original.png" alt="" width="706" height="617" fetchpriority="high"><div class="brand-lockup" aria-hidden="true">gōster<sup>™</sup></div></div><p class="eyebrow hero-eyebrow"><span class="status-dot"></span>{c['eyebrow']}</p><h1>{c['hero']}</h1><p class="hero-intro">{c['intro']}</p><div class="hero-actions"><a class="button primary" data-app href="{app}">{c['try']}{ARROW}</a><a class="text-link" href="#flujo">{c['watch']}{DIAGONAL_ARROW}</a></div><p class="trial-note"><span>{c['trial']}</span><i></i><span>{c['nocard']}</span></p></div><div class="hero-bottom"><span>{c['scroll']}</span><a href="#flujo" aria-label="{c['watch']}" class="scroll-arrow">↓</a><button class="motion-toggle" aria-label="{c['motion']}" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button></div></section>
 <section class="section flow" id="flujo"><div class="container"><div class="section-heading reveal"><div><p class="eyebrow">{c['flowtag']}</p><h2>{c['flowtitle']}</h2></div><p class="section-intro">{c['flowbody']}</p></div><div class="demo reveal"><div class="demo-top"><span class="micro-label"><span class="status-dot"></span>{c['demo']}</span><div class="demo-tabs" role="tablist" aria-label="{c['demo']}">{tabs}</div></div><div class="demo-panels" role="tabpanel" id="demo-panel" aria-labelledby="tab-0"><div class="dictation-panel"><span class="micro-label">{c['dictation']}</span><div class="dictation-quote">“<span id="dictation-text">{c['examples'][0][0]}</span>”</div>{wave}<div class="dictation-bottom"><span class="mic-icon">{MIC}</span><span>gōster</span><span class="time">00:08</span></div></div><div class="transform-arrow" aria-hidden="true">{ARROW}</div><div class="report-panel"><div class="report-header"><span class="micro-label">{c['report']}</span><span class="report-dots" aria-hidden="true">•••</span></div><div class="report-rule"></div><p id="report-text">{c['examples'][0][1]}</p><div class="report-lines" aria-hidden="true"><i></i><i></i><i></i></div><div class="report-status" role="status"><span>✓</span><span id="report-status">{c['ready']}</span></div></div></div><div class="demo-footer"><p id="demo-explanation">{c['examples'][0][2]}</p><button class="demo-play" type="button">{c['play']}{ARROW}</button></div></div><p class="demo-note">{c['sample']}</p><ol class="steps">{steps}</ol></div></section>
 <section class="section product" id="producto"><div class="container"><div class="section-heading reveal"><div><p class="eyebrow">{c['producttag']}</p><h2>{c['producttitle']}</h2></div></div><div class="product-grid"><div class="workspace-visual reveal"><p class="micro-label">{c['workspace']}</p><h3>{c['workspaceTitle']}</h3><div class="template-stack"><div class="template-back"></div><div class="template-card"><div class="template-top"><span class="library-label">{c['library']}</span><span aria-hidden="true">•••</span></div>{folders}</div><span class="style-chip"><span class="status-dot"></span>{c['yourstyle']}</span></div><div class="visual-coordinate" aria-hidden="true">G / 01 — PERSONAL</div></div><div class="features">{features}</div></div><div class="mobility reveal"><div class="mobility-copy"><p class="eyebrow">{c['mobiletag']}</p><h3>{c['mobiletitle']}</h3><p>{c['mobilebody']}</p><span class="mobility-foot">{c['mobilefoot']}</span></div><div class="mobile-visual" aria-label="{c['connected']}"><div class="connection-orbit" aria-hidden="true"></div><span class="connection-chip"><span class="status-dot"></span>{c['connected']}</span><div class="phone"><div class="phone-island"></div><span class="mini-brand">gōster</span><div class="phone-mic">{MIC}</div>{wave}<span>{c['listening']}</span><div class="phone-bottom"></div></div></div></div></div></section>
-<section class="section pricing" id="precios"><span id="planes" class="anchor-alias"></span><div class="container"><div class="center-heading reveal"><p class="eyebrow">{c['pricingtag']}</p><h2>{c['pricingtitle']}</h2><p>{c['pricingbody']}</p></div><div class="plans">{plans}</div><div class="enterprise reveal"><div><strong>{c['enterprise']}</strong><p>{c['enterprisebody']}</p></div><a class="text-link" href="mailto:hello@goster.ai?subject=Goster%20Enterprise">{c['talk']}{ARROW}</a></div><div class="resident reveal" id="residentes"><div class="resident-art" aria-hidden="true"><img src="assets/goster-ghost-original.png" width="706" height="617" alt="" loading="lazy"><div class="resident-wordmark">gōster<sup>™</sup></div></div><div><p class="eyebrow">{c['residenttag']}</p><h3>{c['residenttitle']}</h3><p>{c['residentbody']}</p><a class="text-link" href="mailto:hello@goster.ai?subject=Acceso%20residente">{c['residentcta']}{ARROW}</a></div></div></div></section>
+<section class="section pricing" id="precios"><span id="planes" class="anchor-alias"></span><div class="container"><div class="center-heading reveal"><p class="eyebrow">{c['pricingtag']}</p><h2>{c['pricingtitle']}</h2><p>{c['pricingbody']}</p></div><div class="plans">{plans}</div><div class="enterprise reveal"><div><strong>{c['enterprise']}</strong><p>{c['enterprisebody']}</p></div><a class="text-link" href="mailto:hello@goster.ai?subject=Goster%20Enterprise">{c['talk']}{ARROW}</a></div><div class="resident reveal" id="residentes"><div class="resident-art" aria-hidden="true"><img src="assets/goster-ghost-original.png" width="706" height="617" alt="" loading="lazy"><div class="resident-wordmark">gōster<sup>™</sup></div></div><div class="resident-copy"><p class="eyebrow">{c['residenttag']}</p><h3>{c['residenttitle']}</h3><p>{c['residentbody']}</p><ol class="resident-process">{resident_steps}</ol><a class="text-link resident-cta" href="{c['residentmail']}">{c['residentcta']}{ARROW}</a></div></div></div></section>
 <section class="section faq" id="faq"><div class="container faq-grid"><div class="reveal"><p class="eyebrow">{c['faqtag']}</p><h2>{c['faqtitle']}</h2></div><div class="faq-list">{faq}</div></div></section>
 <section class="closing"><div class="closing-orbit" aria-hidden="true"></div><div class="container reveal"><p class="eyebrow">{c['endtag']}</p><h2>{c['endtitle']}</h2><p>{c['endbody']}</p><a class="button primary" data-app href="{app}">{c['try']}{ARROW}</a><p class="trial-note">{c['trial']} · {c['nocard']}</p></div></section>
 </main><footer><div class="container"><div class="footer-top"><div><a class="wordmark" href="#top">gōster<sup>™</sup></a><p>{c['footer']}</p></div><div class="footer-links"><a data-app href="https://app.goster.ai/privacidad?lang={lang}">{c['privacy']}</a><a href="mailto:hello@goster.ai">{c['contact']}</a><div class="languages">{langs}</div></div></div><div class="footer-bottom"><span>© {__import__('datetime').date.today().year} Gōster</span><span>{c['made']}</span><span>{c['dev']} <a href="https://stonevale.io" target="_blank" rel="noopener noreferrer">STONEVALE ↗</a></span></div></div></footer>
